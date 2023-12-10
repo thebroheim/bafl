@@ -1,0 +1,72 @@
+html {
+    background-color: black;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;    
+}
+
+
+
+.function {
+    background-color: #212121;
+    padding: 40px;
+    border-radius: 15px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: solid #24e3fd;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    gap: 30px;
+}
+
+header h1 {
+    width: 60%;
+}
+
+img {
+    min-width: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 80%;
+}
+
+div #button {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#btn1 {
+    height: 80px;
+    background-color: black;
+    color: white;
+    width: 100px;
+    border-radius: 10%;
+}
+
+
+#btn1:hover {
+    height: 80px;
+    background-color: black;
+    cursor: pointer;
+}
+
+#btn2 {
+    background-color: black;
+    color: white;
+}
+
+input {
+    background-color: black;
+    color: white;
+}
