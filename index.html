@@ -19,7 +19,7 @@
             <input type="text" id="p2name">
          </div>
          <div id ="button">
-            <button id="btn1">Generate Teams</button>
+          
             <button id="btn2">Refresh</button>
          </div>
          <div class="teams">
@@ -27,6 +27,8 @@
             <p id = p1team></p>
             <p id = p2team></p>
          </div>
+         <button id="btn1">Generate Teams</button>
+         <p>Finals Override</p><input type="checkbox" id="finalsovr"> 
     </div>
 
     <script>
@@ -51,7 +53,7 @@ function randNum(number) {
 
 randomNumber = randNum()
 
-
+finalsovr = document.getElementById('finalsovr')
 
 
 function matchType() {
@@ -101,18 +103,28 @@ function setMatchType() {
 
 }
 
-let actualMatchType = strong //setMatchType()
+let actualMatchType = setMatchType()
 
 function selectTeam(p1name, p2name) {
-    let team1 = actualMatchType[Math.floor(Math.random()*actualMatchType.length)]
+    if (finalsovr.checked){
+        let team1 = strong[Math.floor(Math.random()*strong.length)]
+        strong.splice(strong.indexOf(team1),1)
+        let team2 = strong[Math.floor(Math.random()*strong.length)]
+        p1Team.innerHTML = player1.value + " will play as: " + team1
+    p2Team.innerHTML = player2.value + " will play as: " + team2
+    } else {let team1 = actualMatchType[Math.floor(Math.random()*actualMatchType.length)]
     actualMatchType.splice(actualMatchType.indexOf(team1),1)
     let team2 = actualMatchType[Math.floor(Math.random()*actualMatchType.length)]
     p1Team.innerHTML = player1.value + " will play as: " + team1
     p2Team.innerHTML = player2.value + " will play as: " + team2
-}
+}}
 
 function printType() {
-    outputType.innerHTML = theMatchType;
+    if (finalsovr.checked){
+        outputType.innerHTML = "Strong"
+    } else {
+        outputType.innerHTML= theMatchType
+    }
 }
 
 
