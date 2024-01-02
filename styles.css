@@ -111,3 +111,8 @@ a:hover {
     border-radius: 10%;
     border: solid 5px rgb(226, 203, 71);
 }
+
+#tables {
+    display: flex;
+    gap: 20px;
+}
