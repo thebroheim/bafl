@@ -43,7 +43,7 @@ const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napo
 ];
 const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC Union Berlin', 'Racing Club de Lens', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr', 'Flamengo', 'Borussia Monchengladbach', 'Sport-Club Freiburg', 'Eintracht Frankfurt', 'TSG Hoffenheim', 'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice', 'Stade Rennais FC', 'River Plate', 'SC Braga', 'Wolverhampton Wanderers', 'Palmeiras', 'Brentford','RC Celta de Vigo', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'Clube Atletico Mineiro', 'AEK Athens', 'Torino F.C.', 'Union Deportiva Almeria', 'Besiktas JK', 'Boca Juniors', 'U.S. Sassuolo Calcio', 'AFC Bournemouth', '1. FSV Mainz 05', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
 const women = ['Arsenal', 'Chelsea', 'Manchester City', 'Manchester United', 'Olympique Lyonnais', 'Paris Saint-Germain', 'FC Bayern Munchen', 'VFL Wolfsburg', 'Juventus', 'FC Barcelona', 'Portland Thorns', 'San Diego Wave'];
-const wildcard = ['WildCard' , 'WildCard']
+const international = ['England', 'France', 'Germany', 'Portugal', 'Spain', 'Argentina', 'Italy', 'Netherlands', 'Belgium', 'Croatia', 'Denmark', 'Norway']
 
 
 const player1 = document.getElementById('p1name')
@@ -64,7 +64,7 @@ finalsovr = document.getElementById('finalsovr')
 
 function matchType() {
     //This calculates the match type, based on the amount of types. This needs to be written better though as the case statements need to be altered if adding types
-    const type = [strong, mid, weak, women]
+    const type = [strong, mid, weak, women, international]
     num = randNum(type.length + 5);
     switch (num) {
         case 0:
@@ -86,7 +86,7 @@ function matchType() {
         case 8:
             return "Weak"
         case 9:
-            return "Wildcard"
+            return "International"
     }
 }
 
@@ -103,8 +103,8 @@ function setMatchType() {
             return weak;
         case "Women":
             return women
-        case "Wildcard":
-            return wildcard
+        case "International":
+            return international
     }
 
 }
