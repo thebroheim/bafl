@@ -14,20 +14,6 @@ function matchTypeSelect(){
 
 let selectedType = matchTypeSelect() 
 
-function finalsOvr(){
-    if(document.getElementById('finalsovr').checked == 1){
-        selectedType[0] = strong
-        console.log(selectedType[0])
-        return selectedType[0]
-        
-    } else {
-        selectedType = matchTypeSelect()
-        console.log(selectedType[0])
-        return selectedType[0]
-        
-    }
-}
-
 function teamSelect(selectedType){
     let team = selectedType[Math.floor(Math.random()*selectedType.length)]
     console.log(selectedType)
@@ -36,6 +22,12 @@ function teamSelect(selectedType){
 }
 
 function generateTeam(){
+    if (document.getElementById('finalsovr').checked ==1) {
+        selectedType[0] = strong
+        selectedType[1] ='Strong'
+    } else {
+        selectedType = matchTypeSelect()
+    }
     let team1 = teamSelect(selectedType[0])
     let team2 = teamSelect(selectedType[0])
     let player1 = document.getElementById('p1name').value
@@ -52,7 +44,6 @@ function refreshPage(){
     document.getElementById('p1name').value =''
     document.getElementById('p2name').value =''
     location.reload()
-   
 }
 
 
