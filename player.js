@@ -2,34 +2,48 @@ const strong = ['Manchester City', 'Real Madrid', 'FC Bayern Munchen', 'FC Barce
 const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napoli', 'Aston Villa', 'Chelsea', 'Bayer 04 Leverkusen', 'RB Leipzig', 'Juventus', 'Lazio', 'AC Milan', 'Roma', 'Sevilla FC', 'Athletic Club de Bilbao', 'Real Betis Balompie', 'Real Sociedad', 'Villarreal CF', 'SL Benfica', 'West Ham United', 'Fiorentina', 'Atalanta', 'Galatasaray SK', 'Olympique de Marseille', 'FC Porto'
 ];
 const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC Union Berlin', 'Racing Club de Lens', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr', 'Flamengo', 'Borussia Monchengladbach', 'Sport-Club Freiburg', 'Eintracht Frankfurt', 'TSG Hoffenheim', 'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice', 'Stade Rennais FC', 'River Plate', 'SC Braga', 'Wolverhampton Wanderers', 'Palmeiras', 'Brentford','RC Celta de Vigo', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'Clube Atletico Mineiro', 'AEK Athens', 'Torino F.C.', 'Union Deportiva Almeria', 'Besiktas JK', 'Boca Juniors', 'U.S. Sassuolo Calcio', 'AFC Bournemouth', '1. FSV Mainz 05', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
-const women = ['Test', 'Testing'];
+const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
 const wildcard = ['WildCard' , 'WildCard']
 const international = ['England', 'France', 'Germany', 'Portugal', 'Spain', 'Argentina', 'Italy', 'Netherlands', 'Belgium', 'Croatia', 'Denmark', 'Norway']
 
 function matchTypeSelect(){
-    const matchTypes = [strong, mid, weak, international]
+    const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [weak, 'Weak'], [international, 'International'], [women, 'Women']]
     let selectedType = matchTypes[Math.floor(Math.random()*matchTypes.length)]
     return selectedType
 }
 
 let selectedType = matchTypeSelect() 
 
+function finalsOvr(){
+    if(document.getElementById('finalsovr').checked == 1){
+        selectedType[0] = strong
+        console.log(selectedType[0])
+        return selectedType[0]
+        
+    } else {
+        selectedType = matchTypeSelect()
+        console.log(selectedType[0])
+        return selectedType[0]
+        
+    }
+}
+
 function teamSelect(selectedType){
     let team = selectedType[Math.floor(Math.random()*selectedType.length)]
+    console.log(selectedType)
     selectedType.splice(selectedType.indexOf(team), 1)
     return team
 }
 
-
-let team1 = teamSelect(selectedType)
-let team2 = teamSelect(selectedType)
-
 function generateTeam(){
+    let team1 = teamSelect(selectedType[0])
+    let team2 = teamSelect(selectedType[0])
     let player1 = document.getElementById('p1name').value
     let player2 = document.getElementById('p2name').value
     if (player1 == null || player1 == '' || player2 == null || player2 == '' ){
         alert('Please fill in both player names!')
     } else {
+    document.getElementById('type').innerHTML = selectedType[1]
     document.getElementById('p1team').innerHTML = `${player1} will play as:  ${team1}`
     document.getElementById('p2team').innerHTML = `${player2} will play as:  ${team2}`
     }}
