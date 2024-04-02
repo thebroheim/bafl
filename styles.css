@@ -89,10 +89,6 @@ a {
 a:hover {
     color: #24e3fd;
 }
-.champs {
-    display: flex;
-    gap: 30px;
-}
 
 #winner {
     display: flex;
@@ -118,7 +114,10 @@ a:hover {
     display: flex;
     gap: 20px;
 }
-
+#photos {
+    display: flex;
+    align-items: center;
+}
 #div1champs {
     align-items: center;
     display: flex;
@@ -133,4 +132,13 @@ a:hover {
     align-items: center;
     display: flex;
     flex-direction: column;
+}
+
+#otherchamps {
+    align-items: center;
+    display: flex;
+    border-top: solid 10px white;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
