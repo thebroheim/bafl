@@ -3,7 +3,7 @@ const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napo
 ];
 const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC Union Berlin', 'Racing Club de Lens', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr', 'Flamengo', 'Borussia Monchengladbach', 'Sport-Club Freiburg', 'Eintracht Frankfurt', 'TSG Hoffenheim', 'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice', 'Stade Rennais FC', 'River Plate', 'SC Braga', 'Wolverhampton Wanderers', 'Palmeiras', 'Brentford','RC Celta de Vigo', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'Clube Atletico Mineiro', 'AEK Athens', 'Torino F.C.', 'Union Deportiva Almeria', 'Besiktas JK', 'Boca Juniors', 'U.S. Sassuolo Calcio', 'AFC Bournemouth', '1. FSV Mainz 05', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
 const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
-const wildcard = ['WildCard' , 'WildCard']
+// const wildcard = ['WildCard' , 'WildCard']
 const international = ['England', 'France', 'Germany', 'Portugal', 'Spain', 'Argentina', 'Italy', 'Netherlands', 'Belgium', 'Croatia', 'Denmark', 'Norway']
 
 function matchTypeSelect(){
@@ -16,7 +16,7 @@ let selectedType = matchTypeSelect()
 
 function teamSelect(selectedType){
     let team = selectedType[Math.floor(Math.random()*selectedType.length)]
-    console.log(selectedType)
+    // console.log(selectedType)
     selectedType.splice(selectedType.indexOf(team), 1)
     return team
 }
@@ -25,7 +25,8 @@ function generateTeam(){
     if (document.getElementById('finalsovr').checked ==1) {
         selectedType[0] = strong
         selectedType[1] ='Strong'
-    } else {
+    } 
+    else {
         selectedType = matchTypeSelect()
     }
     let team1 = teamSelect(selectedType[0])
@@ -87,24 +88,38 @@ class Player {
 }
 
 class Match {
-    constructor(matchId){
-        this._matchId = matchId;
-        this._player1 = players[0].name
-        this._player2 = players[1].name
-        this._player1team = teamSelect(selectedType)
-        this._player2team = teamSelect(selectedType)
+    constructor(){
+        this._player1 = ''
+        this._player2 = ''
+        this._matchType = selectedType[1]
+        this._player1team = teamSelect(selectedType[0])
+        this._player2team = teamSelect(selectedType[0])
     }
 }
 
 const sam = new Player('Sam Harvey')
 const lachlan = new Player('Lachlan Thomson')
-const players = [sam, lachlan]
+const macca = new Player('Mackenzie Hyder')
+const lei = new Player('Lei Zhang')
+const players = [sam, lachlan, macca, lei]
 
-function createMatches(num){
+function createMatches(players){
     let matches = []
-for (let i = 0; i<num; i++){
-    let match = new Match(i)
+for (let i = 0; i<players.length; i++){
+    
+    for (let x = 0; x < players.length; x++){
+        if(x == i){
+            continue
+        }
+    selectedType = matchTypeSelect()
+    let match = new Match
+    match._player1 = players[i]._name
+    match._player2 = players[x]._name
     matches.push(match)
+    }
 }
 return matches
 }
+
+let schedule = createMatches(players)
+console.log(players[3])
