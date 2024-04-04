@@ -7,7 +7,8 @@ html {
 body {
     display: flex;
     flex-flow: column;
-    align-items: center;    
+    align-items: center;  
+    margin: 0;  
 }
 
 
@@ -15,8 +16,9 @@ body {
 .function {
     background-color: #212121;
     padding: 40px;
-    border-radius: 15px;
-    width: 600px;
+    /* border-radius: 15px; */
+    width: 30%;
+    height: 600px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -34,7 +36,8 @@ header {
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    border: solid #24e3fd;
+    border-bottom: solid #24e3fd;
+    margin-top: 0;
 }
 
 #logotitle {
@@ -105,9 +108,15 @@ a:hover {
 }
 
 .player img {
-    border-radius: 10%;
+    /* border-radius: 10%; */
     width: 200px;
     border: solid 3px #24e3fd;
+    transition: margin-top 0.5s;
+}
+
+.player img:hover {
+    margin-top: -10px;
+    transition: margin-top 0.5s;
 }
 
 #tables {
@@ -141,4 +150,5 @@ a:hover {
     flex-direction: column;
     margin-bottom: 20px;
     margin-top: 30px;
+    width: 100%;
 }
