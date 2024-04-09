@@ -44,6 +44,7 @@ header {
 
 header h1 {
     flex-shrink: 2;
+
 }
 
 header img {
@@ -131,6 +132,7 @@ a:hover {
 
 #tables {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 #photos {
