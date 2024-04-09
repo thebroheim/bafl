@@ -2,24 +2,27 @@ html {
     background-color: black;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%
 }
 
 body {
-    display: flex;
+    /* display: flex; */
     flex-flow: column;
     align-items: center;  
     margin: 0;  
 }
 
-
+.content {
+    display: flex;
+    justify-content: center;
+}
 
 .function {
     background-color: #212121;
     padding: 40px;
     /* border-radius: 15px; */
-    width: 30%;
-    height: 600px;
     display: flex;
+    flex-basis: 80%;
     flex-direction: column;
     gap: 20px;
     border: solid #24e3fd;
@@ -29,15 +32,23 @@ body {
 
 header {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     background-color: #212121;
-    width: 100%;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     padding-top: 20px;
     padding-bottom: 20px;
     border-bottom: solid #24e3fd;
     margin-top: 0;
+}
+
+header h1 {
+    flex-shrink: 2;
+    border: solid blue;
+}
+
+header img {
+    flex-shrink: 0;
 }
 
 #logotitle {
