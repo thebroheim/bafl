@@ -44,7 +44,6 @@ header {
 
 header h1 {
     flex-shrink: 2;
-    border: solid blue;
 }
 
 header img {
