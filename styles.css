@@ -32,7 +32,7 @@ body {
 
 header {
     display: flex;
-    gap: 10px;
+    gap: 50px;
     background-color: #212121;
     justify-content: center;
     /* align-items: center; */
@@ -40,6 +40,7 @@ header {
     padding-bottom: 20px;
     border-bottom: solid #24e3fd;
     margin-top: 0;
+    font-size: 14px;
 }
 
 header h1 {
@@ -109,6 +110,7 @@ a:hover {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    flex-shrink: 1;
 }
 
 .player {
@@ -116,6 +118,8 @@ a:hover {
     gap: 0px;
     align-items: center;
     flex-direction:column;
+    flex-shrink: 1;
+    overflow: auto;
 }
 
 .player img {
@@ -164,3 +168,21 @@ a:hover {
     margin-top: 30px;
     width: 100%;
 }
+
+@media (max-width: 800px){
+    header {
+        /* display: none; */
+        flex-direction: column;
+        padding-left:20px;
+        gap: 0px;
+        font-size: 12px;
+    }
+    #winner {
+        flex-direction: column;
+    }
+
+    #tables {
+        flex-direction: column;
+    }
+}
+    
