@@ -35,12 +35,12 @@ header {
     gap: 50px;
     background-color: #212121;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
     border-bottom: solid #24e3fd;
     margin-top: 0;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 header h1 {
@@ -173,9 +173,15 @@ a:hover {
     header {
         /* display: none; */
         flex-direction: column;
-        padding-left:20px;
         gap: 0px;
         font-size: 12px;
+        padding-top: 0px;
+    padding-bottom: 0px;
+    }
+
+    header img {
+        height: 80px;
+        width: 80px;
     }
     #winner {
         flex-direction: column;
