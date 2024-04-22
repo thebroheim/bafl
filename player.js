@@ -12,13 +12,20 @@ function matchTypeSelect(){
     return selectedType
 }
 
+
 let selectedType = matchTypeSelect() 
 
 function teamSelect(selectedType){
-    let team = selectedType[Math.floor(Math.random()*selectedType.length)]
-    // console.log(selectedType)
-    selectedType.splice(selectedType.indexOf(team), 1)
-    return team
+    let teamsList = selectedType
+    let teams = []
+    let team1 = (teamsList[Math.floor(Math.random()*teamsList.length)])
+    selectedType.splice(teamsList.indexOf(team1), 1)
+    let team2 = (teamsList[Math.floor(Math.random()*teamsList.length)])
+    teamsList.push(team1)
+    
+    teams.push(team1, team2)
+
+    return teams
 }
 
 function generateTeam(){
@@ -29,8 +36,10 @@ function generateTeam(){
     else {
         selectedType = matchTypeSelect()
     }
-    let team1 = teamSelect(selectedType[0])
-    let team2 = teamSelect(selectedType[0])
+
+    let teams = teamSelect(selectedType[0])
+    let team1 = teams[0]
+    let team2 = teams[1]
     let player1 = document.getElementById('p1name').value
     let player2 = document.getElementById('p2name').value
     if (player1 == null || player1 == '' || player2 == null || player2 == '' ){
@@ -41,11 +50,6 @@ function generateTeam(){
     document.getElementById('p2team').innerHTML = `${player2} will play as:  ${team2}`
     }}
 
-function refreshPage(){
-    document.getElementById('p1name').value =''
-    document.getElementById('p2name').value =''
-    location.reload()
-}
 
 
 
@@ -121,5 +125,3 @@ for (let i = 0; i<players.length; i++){
 return matches
 }
 
-let schedule = createMatches(players)
-console.log(players[3])
