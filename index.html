@@ -6,17 +6,19 @@
     <title>Big Ant FIFA League</title>
     <link rel="icon" href="images\BaflLogo.png">
     <link rel="stylesheet" href="styles.css">
+    <script src="player.js"></script>
 </head>
 <body>
     <header>
             <img src="images\BaflLogo.png">
-            <h1><a href="index.html">BAFL Team Generator</a></h1>
-            <h1>-</h1>
+            <h1><a href="index.html">Team Generator</a></h1>
+            <!-- <h1>-</h1> -->
             <h1><a href="table.html">Table</a></h1>
-            <h1>-</h1>
+            <!-- <h1>-</h1> -->
         <h1><a href="hallfame.html">Hall of Fame</a></h1>
 
     </header>
+    <div class ="content">
     <div class="function">
         <div class="player">
             <h2>Player 1 is:</h2>
@@ -24,127 +26,14 @@
             <h2>Player 2 is:</h2>
             <input type="text" id="p2name">
          </div>
-         <div id ="button">
-          
-            <button id="btn2">Refresh</button>
-         </div>
          <div class="teams">
             <h2>Match type: <span class = "type" id = 'type'></span></h2>
             <p id = p1team></p>
             <p id = p2team></p>
          </div>
-         <button id="btn1">Generate Teams</button>
-         <p>Finals Override</p><input type="checkbox" id="finalsovr"> 
+         <button id="btn1" onclick="generateTeam()">Generate Teams</button>
+         <p>Finals Override</p><input type="checkbox" id="finalsovr" onclick="finalsOvr()"> 
     </div>
-
-    <script>
-        const strong = ['Manchester City', 'Real Madrid', 'FC Bayern Munchen', 'FC Barcelona', 'Liverpool', 'Paris Saint-Germain', 'Atletico de Madrid', 'Inter', 'Arsenal', 'Manchester United'];
-const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napoli', 'Aston Villa', 'Chelsea', 'Bayer 04 Leverkusen', 'RB Leipzig', 'Juventus', 'Lazio', 'AC Milan', 'Roma', 'Sevilla FC', 'Athletic Club de Bilbao', 'Real Betis Balompie', 'Real Sociedad', 'Villarreal CF', 'SL Benfica', 'West Ham United', 'Fiorentina', 'Atalanta', 'Galatasaray SK', 'Olympique de Marseille', 'FC Porto'
-];
-const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC Union Berlin', 'Racing Club de Lens', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr', 'Flamengo', 'Borussia Monchengladbach', 'Sport-Club Freiburg', 'Eintracht Frankfurt', 'TSG Hoffenheim', 'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice', 'Stade Rennais FC', 'River Plate', 'SC Braga', 'Wolverhampton Wanderers', 'Palmeiras', 'Brentford','RC Celta de Vigo', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'Clube Atletico Mineiro', 'AEK Athens', 'Torino F.C.', 'Union Deportiva Almeria', 'Besiktas JK', 'Boca Juniors', 'U.S. Sassuolo Calcio', 'AFC Bournemouth', '1. FSV Mainz 05', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
-const women = ['Arsenal', 'Chelsea', 'Manchester City', 'Manchester United', 'Olympique Lyonnais', 'Paris Saint-Germain', 'FC Bayern Munchen', 'VFL Wolfsburg', 'Juventus', 'FC Barcelona', 'Portland Thorns', 'San Diego Wave'];
-const international = ['England', 'France', 'Germany', 'Portugal', 'Spain', 'Argentina', 'Italy', 'Netherlands', 'Belgium', 'Croatia', 'Denmark', 'Norway']
-
-
-const player1 = document.getElementById('p1name')
-const player2 = document.getElementById('p2name')
-const outputType = document.getElementById('type')
-const p1Team = document.getElementById('p1team')
-const p2Team = document.getElementById('p2team')
-
-
-function randNum(number) {
-    return Math.floor(Math.random()*number + 1)
-}
-
-randomNumber = randNum()
-
-finalsovr = document.getElementById('finalsovr')
-
-
-function matchType() {
-    //This calculates the match type, based on the amount of types. This needs to be written better though as the case statements need to be altered if adding types
-    const type = [strong, mid, weak, women, international]
-    num = randNum(type.length + 5);
-    switch (num) {
-        case 0:
-            return "Strong";
-        case 1:
-            return "Strong";
-        case 2:
-            return "Strong";
-        case 3:
-            return "Strong"
-        case 4:
-            return "Mid"
-        case 5:
-            return "Mid";
-        case 6:
-            return "Mid";
-        case 7:
-            return "Women";
-        case 8:
-            return "Weak"
-        case 9:
-            return "International"
-        case 10:
-            return "Weak"
-    }
-}
-
-let theMatchType = matchType()
-console.log(`The Match Type is: ${theMatchType}`)
-
-function setMatchType() {
-    switch (theMatchType){
-        case "Strong":
-            return strong;
-        case "Mid":
-            return mid;
-        case "Weak":
-            return weak;
-        case "Women":
-            return women
-        case "International":
-            return international
-    }
-
-}
-
-let actualMatchType = setMatchType()
-
-function selectTeam(p1name, p2name) {
-    if (finalsovr.checked){
-        let team1 = strong[Math.floor(Math.random()*strong.length)]
-        strong.splice(strong.indexOf(team1),1)
-        let team2 = strong[Math.floor(Math.random()*strong.length)]
-        p1Team.innerHTML = player1.value + " will play as: " + team1
-    p2Team.innerHTML = player2.value + " will play as: " + team2
-    } else {let team1 = actualMatchType[Math.floor(Math.random()*actualMatchType.length)]
-    actualMatchType.splice(actualMatchType.indexOf(team1),1)
-    let team2 = actualMatchType[Math.floor(Math.random()*actualMatchType.length)]
-    p1Team.innerHTML = player1.value + " will play as: " + team1
-    p2Team.innerHTML = player2.value + " will play as: " + team2
-}}
-
-function printType() {
-    if (finalsovr.checked){
-        outputType.innerHTML = "Strong"
-    } else {
-        outputType.innerHTML= theMatchType
-    }
-}
-
-
-// Refresh Page Function
-function refreshPage(){
-    window.location.reload();
-} 
-
-btn1.addEventListener('click', printType)
-btn1.addEventListener('click', selectTeam)
-btn2.addEventListener('click', refreshPage)
-
-    </script>
+</div>
 </body>
 </html>

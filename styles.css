@@ -2,22 +2,27 @@ html {
     background-color: black;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%
 }
 
 body {
-    display: flex;
+    /* display: flex; */
     flex-flow: column;
-    align-items: center;    
+    align-items: center;  
+    margin: 0;  
 }
 
-
+.content {
+    display: flex;
+    justify-content: center;
+}
 
 .function {
     background-color: #212121;
     padding: 40px;
-    border-radius: 15px;
-    width: 600px;
+    /* border-radius: 15px; */
     display: flex;
+    flex-basis: 80%;
     flex-direction: column;
     gap: 20px;
     border: solid #24e3fd;
@@ -27,14 +32,24 @@ body {
 
 header {
     display: flex;
-    gap: 20px;
+    gap: 50px;
     background-color: #212121;
-    width: 100%;
     justify-content: center;
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    border: solid #24e3fd;
+    border-bottom: solid #24e3fd;
+    margin-top: 0;
+    font-size: 16px;
+}
+
+header h1 {
+    flex-shrink: 2;
+
+}
+
+header img {
+    flex-shrink: 0;
 }
 
 #logotitle {
@@ -89,30 +104,91 @@ a {
 a:hover {
     color: #24e3fd;
 }
-#champs {
-    display: flex;
-    gap: 30px;
-}
 
 #winner {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: 20px;
+    flex-shrink: 1;
 }
 
-#player {
+.player {
     display: flex;
-    gap: 10px;
+    gap: 0px;
     align-items: center;
-    flex-direction: column;
+    flex-direction:column;
+    flex-shrink: 1;
+    overflow: auto;
 }
 
-#player img {
-    border-radius: 10%;
-    border: solid 5px rgb(226, 203, 71);
+.player img {
+    /* border-radius: 10%; */
+    width: 200px;
+    border: solid 3px #24e3fd;
+    transition: margin-top 0.5s;
+}
+
+.player img:hover {
+    margin-top: -10px;
+    transition: margin-top 0.5s;
 }
 
 #tables {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
+#photos {
+    display: flex;
+    align-items: center;
+}
+#div1champs {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#div2champs {
+    margin-top: 30px;
+    width: 100%;
+    border-top: solid 10px white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#otherchamps {
+    align-items: center;
+    display: flex;
+    border-top: solid 10px white;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+@media (max-width: 800px){
+    header {
+        /* display: none; */
+        flex-direction: column;
+        gap: 0px;
+        font-size: 12px;
+        padding-top: 0px;
+    padding-bottom: 0px;
+    }
+
+    header img {
+        height: 80px;
+        width: 80px;
+    }
+    #winner {
+        flex-direction: column;
+    }
+
+    #tables {
+        flex-direction: column;
+    }
+}
+    
