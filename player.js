@@ -96,8 +96,16 @@ class Match {
         this._player1 = ''
         this._player2 = ''
         this._matchType = selectedType[1]
+<<<<<<< HEAD
+        let teams = teamSelect(selectedType[0])
+        let team1 = teams[0]
+        let team2 = teams[1]
+        this._player1team = team1
+        this._player2team = team2
+=======
         this._player1team = teamSelect(selectedType[0])
         this._player2team = teamSelect(selectedType[0])
+>>>>>>> a758cc1cd65f6cf0278393c6a86259ad8d100490
     }
 }
 
@@ -105,7 +113,12 @@ const sam = new Player('Sam Harvey')
 const lachlan = new Player('Lachlan Thomson')
 const macca = new Player('Mackenzie Hyder')
 const lei = new Player('Lei Zhang')
+<<<<<<< HEAD
+const reg = new Player('Reginold John')
+const players = [sam, lachlan, macca, lei, reg]
+=======
 const players = [sam, lachlan, macca, lei]
+>>>>>>> a758cc1cd65f6cf0278393c6a86259ad8d100490
 
 function createMatches(players){
     let matches = []
@@ -125,3 +138,10 @@ for (let i = 0; i<players.length; i++){
 return matches
 }
 
+<<<<<<< HEAD
+
+let generatedMatches = createMatches(players)
+console.log(generatedMatches)
+console.log(generatedMatches.length)
+=======
+>>>>>>> a758cc1cd65f6cf0278393c6a86259ad8d100490
