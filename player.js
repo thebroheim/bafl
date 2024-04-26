@@ -119,6 +119,8 @@ function addPlayer(){
     return players
 }
 
+
+
 function createMatches(players){
     let matches = []
 for (let i = 0; i<players.length; i++){
@@ -130,15 +132,6 @@ for (let i = 0; i<players.length; i++){
     let match = new Match
     match._player1 = players[i]._name
     match._player2 = players[x]._name
-    const para = document.createElement('h2');
-    para.appendChild(document.createTextNode(match._player1))
-    para.appendChild(document.createTextNode(match._player1team))
-    para.appendChild(document.createTextNode(match._player2))
-    para.appendChild(document.createTextNode(match._player2team))
-    para.appendChild(document.createTextNode(match._matchType))
-   
-  
-    document.getElementById('players').appendChild(para)
     matches.push(match)
     
     }
