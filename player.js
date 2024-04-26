@@ -104,17 +104,24 @@ class Match {
     }
 }
 
-const sam = new Player('Sam Harvey')
-const lachlan = new Player('Lachlan Thomson')
-const macca = new Player('Mackenzie Hyder')
-const lei = new Player('Lei Zhang')
-const reg = new Player('Reginold John')
-const players = [sam, lachlan, macca, lei, reg]
+let players = []
+function addPlayer(){
+    
+    let newPlayer = document.getElementById('name').value;
+    let playerObject = new Player
+    playerObject._name = newPlayer
+    players.push(playerObject)
+
+    const para = document.createElement('p');
+    const node = document.createTextNode(newPlayer)
+    para.appendChild(node)
+    document.getElementById('players').appendChild(para)
+    return players
+}
 
 function createMatches(players){
     let matches = []
 for (let i = 0; i<players.length; i++){
-    
     for (let x = 0; x < players.length; x++){
         if(x == i){
             continue
@@ -123,9 +130,21 @@ for (let i = 0; i<players.length; i++){
     let match = new Match
     match._player1 = players[i]._name
     match._player2 = players[x]._name
+    const para = document.createElement('h2');
+    para.appendChild(document.createTextNode(match._player1))
+    para.appendChild(document.createTextNode(match._player1team))
+    para.appendChild(document.createTextNode(match._player2))
+    para.appendChild(document.createTextNode(match._player2team))
+    para.appendChild(document.createTextNode(match._matchType))
+   
+  
+    document.getElementById('players').appendChild(para)
     matches.push(match)
+    
     }
 }
+
+console.log(matches)
 return matches
 }
 
@@ -133,3 +152,4 @@ return matches
 // let generatedMatches = createMatches(players)
 // console.log(generatedMatches)
 // console.log(generatedMatches.length)
+

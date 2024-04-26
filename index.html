@@ -7,15 +7,29 @@
     <link rel="icon" href="images\BaflLogo.png">
     <link rel="stylesheet" href="styles.css">
     <script src="player.js"></script>
+    <script src="login.js"></script>
 </head>
 <body>
+    <div id ='login' style="display: none;">
+        <label for="uname"><b>Username</b></label>
+        <input id = 'username' type="text" placeholder="Enter Username" name="uname" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input id = 'password' type="password" placeholder="Enter Password" name="psw" required>
+    
+        <button type="submit" onclick="checkLogin()">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+    
     <header>
-            <img src="images\BaflLogo.png">
+            <img onclick = loginScreen() src="images\BaflLogo.png">
             <h1><a href="index.html">Team Generator</a></h1>
-            <!-- <h1>-</h1> -->
             <h1><a href="table.html">Table</a></h1>
-            <!-- <h1>-</h1> -->
-        <h1><a href="hallfame.html">Hall of Fame</a></h1>
+            <h1><a href="hallfame.html">Hall of Fame</a></h1>
+            <h1 id = 'adminLink' style="visibility: hidden;"><a href="admin.html">Admin</a></h1>
+            
 
     </header>
     <div class ="content">
