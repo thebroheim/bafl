@@ -105,6 +105,7 @@ class Match {
 }
 
 let players = []
+
 function addPlayer(){
     
     let newPlayer = document.getElementById('name').value;
@@ -133,16 +134,22 @@ for (let i = 0; i<players.length; i++){
     match._player1 = players[i]._name
     match._player2 = players[x]._name
     matches.push(match)
-    
+    console.log(match)
     }
 }
 
-console.log(matches)
+// console.log(matches)
 return matches
 }
 
 
-// let generatedMatches = createMatches(players)
-// console.log(generatedMatches)
-// console.log(generatedMatches.length)
+// //Testing Code
+// let Sam = new Player('Sam') 
+// let Max = new Player('Max')
+// let Joe = new Player('Joe')
 
+// players = [Sam, Max]
+
+// let generatedMatches = createMatches(players)
+// // console.log(generatedMatches)
+// // console.log(generatedMatches.length)
