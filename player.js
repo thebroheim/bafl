@@ -3,11 +3,12 @@ const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napo
 ];
 const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC Union Berlin', 'Racing Club de Lens', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr', 'Borussia Monchengladbach', 'Sport-Club Freiburg', 'Eintracht Frankfurt', 'TSG Hoffenheim', 'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice', 'Stade Rennais FC', 'River Plate', 'SC Braga', 'Wolverhampton Wanderers', 'Brentford','RC Celta de Vigo', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'Clube Atletico Mineiro', 'AEK Athens', 'Torino F.C.', 'Union Deportiva Almeria', 'Besiktas JK', 'Boca Juniors', 'U.S. Sassuolo Calcio', 'AFC Bournemouth', '1. FSV Mainz 05', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
 const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
-const international = ['England', 'France', 'Germany', 'Portugal', 'Spain', 'Argentina', 'Italy', 'Netherlands', 'Belgium', 'Croatia', 'Denmark', 'Norway']
+const copaAmerica = ['Argentina', 'Canada', 'Chile', 'Ecuador', 'Mexico', 'USA', 'Jamaica', 'Columbia'];
+const euros = ['Belgium', 'Denmark', 'Croatia', 'Czech Republic', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
 
 function matchTypeSelect(){
-    const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [weak, 'Weak'], [international, 'International'], [women, 'Women']]
+    const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [copaAmerica, 'Copa America'], [euros, 'Euros']]
     let selectedType = matchTypes[Math.floor(Math.random()*matchTypes.length)]
     return selectedType
 }
@@ -48,7 +49,7 @@ function generateTeam(){
     document.getElementById('type').innerHTML = selectedType[1]
     document.getElementById('p1team').innerHTML = `${player1} will play as:  ${team1}`
     document.getElementById('p2team').innerHTML = `${player2} will play as:  ${team2}`
-    }}
+    } return `Team 1 is: ${team1} and Team 2 is: ${team2}`}
 
 
 
@@ -142,14 +143,17 @@ for (let i = 0; i<players.length; i++){
 return matches
 }
 
-
-// //Testing Code
+// // //Testing Code
 // let Sam = new Player('Sam') 
 // let Max = new Player('Max')
 // let Joe = new Player('Joe')
 
-// players = [Sam, Max]
+// // players = [Sam, Max]
 
 // let generatedMatches = createMatches(players)
-// // console.log(generatedMatches)
-// // console.log(generatedMatches.length)
+// console.log(generatedMatches)
+// // // console.log(generatedMatches.length)
+
+// function matchEquals(match1, match2) {
+
+// }
