@@ -3,12 +3,11 @@ const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napo
 ];
 const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC Union Berlin', 'Racing Club de Lens', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr', 'Borussia Monchengladbach', 'Sport-Club Freiburg', 'Eintracht Frankfurt', 'TSG Hoffenheim', 'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice', 'Stade Rennais FC', 'River Plate', 'SC Braga', 'Wolverhampton Wanderers', 'Brentford','RC Celta de Vigo', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'Clube Atletico Mineiro', 'AEK Athens', 'Torino F.C.', 'Union Deportiva Almeria', 'Besiktas JK', 'Boca Juniors', 'U.S. Sassuolo Calcio', 'AFC Bournemouth', '1. FSV Mainz 05', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
 const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
-const copaAmerica = ['Argentina', 'Canada', 'Chile', 'Ecuador', 'Mexico', 'USA', 'Jamaica', 'Columbia'];
-const euros = ['Belgium', 'Denmark', 'Croatia', 'Czech Republic', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
+const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
 
 function matchTypeSelect(){
-    const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [copaAmerica, 'Copa America'], [euros, 'Euros'], [weak, 'Weak']]
+    const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [euros, 'Euros'], [weak, 'Weak']]
     let selectedType = matchTypes[Math.floor(Math.random()*matchTypes.length)]
     return selectedType
 }
