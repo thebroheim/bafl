@@ -41,7 +41,8 @@ function assignTeams(players){
         let team = selectTeam(type)
 
         // Push the player and team to array
-        teams.push(`${player}: ${team}`)
+        // teams.push(`${player}: ${team}`)
+        teams.push({playerName: player, teamName: team})
         type.splice(type.indexOf(team), 1)
 
 
@@ -75,4 +76,19 @@ function selectType(players, player){
 
 }
 
-console.log(assignTeams(players))
+const assignedTeams = (assignTeams(players))
+
+//Display the teams on website
+function displayTeams(assignedTeams){
+    
+    assignedTeams.forEach(player => {
+        let list =
+            document.getElementById("myList");
+            let li =
+                document.createElement("li");
+            li.innerText = `${player.playerName}: ${player.teamName}`;
+            
+            list.appendChild(li);
+        console.log(player.playerName, player.teamName)
+    })
+}

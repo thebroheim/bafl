@@ -17,6 +17,8 @@ body {
     justify-content: center;
 }
 
+
+
 .function {
     background-color: #212121;
     padding: 40px;
@@ -173,6 +175,18 @@ a:hover {
 .champs {
     display: flex;
     gap: 20px;
+}
+
+
+/* KnockOut Tournament Page */
+li {
+    font-size: 16px;
+}
+
+.contentKO {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (max-width: 800px){
