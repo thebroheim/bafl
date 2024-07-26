@@ -24,11 +24,14 @@ const players = [
     'Yasin',
 ]
 
+//Selects the team randomly from the type
 function selectTeam(type) {
     let selectedTeam = (type[Math.floor(Math.random()*type.length)])
     return selectedTeam
 }
 
+
+//This is where the player gets assigned a team and it pushes the player and their team to an array
 function assignTeams(players){
     let teams = []
     // For each player, assign a team and push it to the array
@@ -53,6 +56,8 @@ function assignTeams(players){
     return teams
 }
 
+
+//This is where the type is selected, based on the players rank in the players array.
 function selectType(players, player){
     //grab index of player
     index = players.indexOf(player)
@@ -76,11 +81,12 @@ function selectType(players, player){
 
 }
 
-const assignedTeams = (assignTeams(players))
+// let assignedTeams = (assignTeams(players))
+let assignedTeams = []
 
 //Display the teams on website
 function displayTeams(assignedTeams){
-    
+    assignedTeams = assignTeams(players)
     assignedTeams.forEach(player => {
         let list =
             document.getElementById("myList");
@@ -89,6 +95,6 @@ function displayTeams(assignedTeams){
             li.innerText = `${player.playerName}: ${player.teamName}`;
             
             list.appendChild(li);
-        console.log(player.playerName, player.teamName)
-    })
+        
+    }) 
 }
