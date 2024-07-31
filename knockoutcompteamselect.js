@@ -5,19 +5,19 @@ const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC U
 
 //Put players in order of rank. Best = Top, Worst = Bottom
 const players = [
-    'Lei',
-    'Macca',
     'Sam',
+    'Macca',
     'Kelvin',
+    'Lei',
     'Alex',
     'David', 
     'Elliot',
     'Dan',
+    'Rav',
     'Regi',
     'Lachlan',
     'Pat',
     'Jude',
-    'Rav',
     'Dru',
     'John',
     'Oscar',
@@ -29,7 +29,6 @@ function selectTeam(type) {
     let selectedTeam = (type[Math.floor(Math.random()*type.length)])
     return selectedTeam
 }
-
 
 //This is where the player gets assigned a team and it pushes the player and their team to an array
 function assignTeams(players){
@@ -82,19 +81,31 @@ function selectType(players, player){
 }
 
 // let assignedTeams = (assignTeams(players))
-let assignedTeams = []
+let assignedTeams = assignTeams(players)
+console.log(assignedTeams)
 
-//Display the teams on website
+// Display the teams on website
 function displayTeams(assignedTeams){
-    assignedTeams = assignTeams(players)
-    assignedTeams.forEach(player => {
-        let list =
-            document.getElementById("myList");
-            let li =
-                document.createElement("li");
-            li.innerText = `${player.playerName}: ${player.teamName}`;
+
+        function slowIterate(arr) {
+            if (arr.length === 0) {
+              return;
+            } 
+            // console.log(arr[0]); // <-- replace with your custom code below
+            let list = document.getElementById("myList");
+            let li = document.createElement("li");
             
-            list.appendChild(li);
+            li.innerText = `${arr[0].playerName} will play as ${arr[0].teamName}`;
+
+        list.appendChild(li)
+            
+            setTimeout(() => {
+              slowIterate(arr.slice(1));
+            }, 3000); // <-- replace with your desired delay (in milliseconds) 
+          }
+          
+          slowIterate(assignedTeams);
+        }
+
+
         
-    }) 
-}
