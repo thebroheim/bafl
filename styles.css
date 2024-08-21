@@ -129,7 +129,7 @@ a:hover {
 .player img {
     /* border-radius: 10%; */
     width: 270px;
-    height: 420px;
+    height: 350px;
     border: solid 3px #24e3fd;
     transition: margin-top 0.5s;
 }

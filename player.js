@@ -5,6 +5,7 @@ const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', '1. FC U
 const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
 const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
+console.log(teamData.strong[0])
 
 function matchTypeSelect(){
     const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [euros, 'Euros'], [weak, 'Weak']]
