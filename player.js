@@ -7,7 +7,12 @@ const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 
 
 
 function matchTypeSelect(){
-    const matchTypes = [[strong, 'Strong'], [mid, 'Mid'], [euros, 'Euros'], [weak, 'Weak']]
+    const matchTypes = [
+        [strong, 'Strong'],
+        [mid, 'Mid'],
+        [women, 'Women'],
+        [weak, 'Weak']
+    ]
     let selectedType = matchTypes[Math.floor(Math.random()*matchTypes.length)]
     return selectedType
 }
