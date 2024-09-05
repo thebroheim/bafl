@@ -5,10 +5,7 @@ html {
     width: 100%
 }
 
-body {
-    /* display: flex; */
-    flex-flow: column;
-    align-items: center;  
+body {  
     margin: 0;  
 }
 
@@ -32,7 +29,6 @@ header {
 
 header h1 {
     flex-shrink: 2;
-    
 
 }
 
@@ -53,6 +49,16 @@ header img {
     border-radius: 80%;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #24e3fd;
+}
+
+
 /* Generator */
 .function {
     background-color: #212121;
@@ -60,18 +66,25 @@ header img {
     /* border-radius: 15px; */
     display: flex;
     flex-basis: 80%;
-    flex-direction: column;
+    /* flex-direction: column; */
+    width: 50%;
     gap: 20px;
     border: solid #24e3fd;
     align-items: center;
     margin-top: 20px;
+    justify-content: center;
 }
 
-
-div #button {
+#buttons {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.teams {
+    height: 100%;
+    width: 200px;
 }
 
 #btn1 {
@@ -83,29 +96,16 @@ div #button {
 }
 
 
-#btn1:hover {
+ #btn1:hover {
     height: 80px;
     background-color: black;
     cursor: pointer;
-}
-
-#btn2 {
-    background-color: black;
-    color: white;
-}
+} 
 
 input {
     background-color: black;
     color: white;
-}
-
-a {
-    color: white;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #24e3fd;
+    /* width: 100px; */
 }
 
 /* Tables */
@@ -134,7 +134,6 @@ a:hover {
     flex-direction: column;
     width: 300px;
     min-width: 200px;
-
 }
 
 .player img {
@@ -172,6 +171,10 @@ a:hover {
         font-size: 12px;
         padding-top: 0px;
     padding-bottom: 0px;
+    }
+
+    .function {
+        flex-direction: column;
     }
 
     header img {
