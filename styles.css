@@ -66,25 +66,24 @@ a:hover {
     /* border-radius: 15px; */
     display: flex;
     flex-basis: 80%;
-    /* flex-direction: column; */
+    flex-direction: column;
     width: 50%;
     gap: 20px;
     border: solid #24e3fd;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
     justify-content: center;
 }
 
 #buttons {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     height: 100%;
+    gap: 30px;
 }
 
 .teams {
-    height: 100%;
-    width: 200px;
+    width: 100%;
 }
 
 #btn1 {
@@ -105,7 +104,7 @@ a:hover {
 input {
     background-color: black;
     color: white;
-    /* width: 100px; */
+    width: 100%;
 }
 
 /* Tables */
