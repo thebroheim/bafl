@@ -120,6 +120,18 @@ input {
     width: 90%;
 }
 
+#tablesActual {
+    margin-top: 30px;
+    border: #24e3fd solid;
+}
+
+#schedule {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 400px;
+}
+
 
 
 
@@ -131,35 +143,23 @@ input {
 .champs {
     border-top: white solid;
     display: flex;
-    gap: 15px;
-    /* justify-content: center; */
-    overflow: auto;
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
 }
 
 .player {
     display: flex;
     flex-direction: column;
     width: 300px;
-    min-width: 200px;
+    min-width: 120px;
 }
 
 .player img {
     aspect-ratio: 3/4;
-    width: 100%;
-    /* height: 400px; */
+    width: 90%;
     border: #24e3fd solid 3px;
 }
-
-#div2champs .champs {
-    justify-content: center;
-}
-
-#otherchamps .champs {
-    justify-content: center;
-}
-
-
-
 
 /* Knockout */
 .contentKO {
@@ -195,6 +195,7 @@ input {
 
     .champs {
         flex-direction: column;
+        align-items: center;
     }
 }
     
