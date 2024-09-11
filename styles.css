@@ -109,19 +109,18 @@ input {
 
 /* Tables */
 #tables {
+    width: 100%;
     display: flex;
     justify-content: center;
+    /* flex-wrap: wrap; */
     gap: 20px;
 }
 
-.mb-8 img {
-    display: flex;
-    aspect-ratio: 16/9;
-    width: 100%;
-    min-width: 450px;
-    height: 300px;
-
+#tableContainer {
+    width: 90%;
 }
+
+
 
 
 /* Hall of Fame */
