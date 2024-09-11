@@ -109,20 +109,12 @@ input {
 
 /* Tables */
 #tables {
-    width: 100%;
     display: flex;
+    width: 100%;
+
     justify-content: center;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     gap: 20px;
-}
-
-#tableContainer {
-    width: 90%;
-}
-
-#tablesActual {
-    margin-top: 30px;
-    border: #24e3fd solid;
 }
 
 #schedule {
