@@ -1,25 +1,22 @@
 const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Inter', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Manchester United', 'Tottenham Hotspur', 'Borussia Dortmund', 'AC Milan']
 const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Atalanta', 'Lazio', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City']
-const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
+const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient', 'Blackburn Rovers']
 //Put players in order of rank. Best = Top, Worst = Bottom
 const players = [
     'Sam',
-    'Macca',
-    'Kelvin',
     'Lei',
-    'Alex',
-    'David', 
-    'Elliot',
     'Dan',
-    'Rav',
-    'Regi',
+    'Alex', 
     'Lachlan',
-    'Pat',
-    'Jude',
+    'Brent',
     'Dru',
+    'Lachy W',
+    'Jude',
     'John',
-    'Oscar',
-    'Yasin',
+    'MJ',
+    'Ricardo',
+    'Justin',
+    'Mac'
 ]
 
 //Selects the team randomly from the type
@@ -63,9 +60,13 @@ function selectType(players, player){
     const listLength = players.length
     //define percentiles
     const divider = listLength / 3
-    const firstThird = divider
-    const secondThird = divider + divider
-    const thirdThird = divider *3
+    const firstThird = Math.round(divider)
+    const secondThird = Math.round(divider + divider)
+    const thirdThird = Math.round(divider *3)
+    console.log(`First third: ${firstThird}`)
+    console.log(`Second third: ${secondThird}`)
+    console.log(`Third third: ${thirdThird}`)
+
 
     //set type bases on the players index
     if (index < firstThird){
