@@ -10,47 +10,48 @@
     <script src="login.js"></script>
 </head>
 <body>
-    <div id ='login' style="display: none;">
-        <label for="uname"><b>Username</b></label>
-        <input id = 'username' type="text" placeholder="Enter Username" name="uname" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input id = 'password' type="password" placeholder="Enter Password" name="psw" required>
-    
-        <button type="submit" onclick="checkLogin()">Login</button>
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-    </div>
-    
     <header>
-            <img onclick = loginScreen() src="images\BaflLogo.png">
-            <h1><a href="index.html">Team Generator</a></h1>
-            <h1><a href="table.html">Table</a></h1>
-            <h1><a href="hallfame.html">Hall of Fame</a></h1>
-            <h1 id = 'adminLink' style="visibility: hidden;"><a href="admin.html">Admin</a></h1>
+        <img onclick = loginScreen() src="images\BaflLogo.png">
+        <h1><a href="index.html">News</a></h1>
+        <h1><a href="table.html">Table</a></h1>
+        <h1><a href="hallfame.html">Hall of Fame</a></h1>
+        <h1><a href="teamgen.html">Team Generator</a></h1>
+        <h1 id = 'adminLink' style="visibility: hidden;"><a href="admin.html">Admin</a></h1>
     </header>
 
-    <div class ="content">
-    <div class="function">
-        <div class="players">
-          <h2>Player 1:</h2>
-          <input type="text" id="p1name">
-          <h2>Player 2:</h2>
-          <input type="text" id="p2name">
-          <div class="teams">
-            <h2>Match type: <span class = "type" id = 'type'></span></h2>
-            <p id = p1team></p>
-            <p id = p2team></p>
-          </div>
-        </div>
-      <div id="buttons">  
-        <button id="btn1" onclick="generateTeam()">Generate Teams</button>
-        <input type="checkbox" id="finalsovr" onclick="finalsOvr()"> 
-      </div>
+    <div class="news-section">
+        <h1>Latest News</h1>
         
+        <div class="news-article">
+            <h2>Season 9 Week 1</h2>
+            <p><small>Published on: Feb 13, 2025</small></p>
+            <p><small>Author: Alex Villani</small></p>
+            <p>On the opening week of the 9th installment of the BAFL, we were treated to an exciting lineup of matches. The league welcomed some newcomers, including Bass and Matthew, while Justin made his return from a six-week retirement, claiming he was a changed man and ready for the season ahead. <br> <br>
+                Before the season officially began, a one-off playoff match was held between Season 8 Division 2 winner Brent and the confident newcomer Bass to determine Bass’s placement for the upcoming season. After a hard-fought battle, Brent secured a 2-1 victory, convincing the commissioners that Bass was worthy of a spot in Division 1.
+                <br><br>
+                To start off the season we had the newbies spread their wings with defeats in their first ever matches. Although Bass proved his worth against Season 8 runner up Dan in a 3-2 loss. Lachlan who controversially went down to Division 2 despite some last minute punch-ons with the board. He was determined to prove the doubters wrong, he did so by losing to Jude 4-3. At least he'll keep his job... 
+                <br><br>
+                During the week, the BAFL was saddened at the sudden loss of Lei who decided to follow his work dreams to Sydney... sorry, his wife's work dreams to Sydney and bowed out of the tournament knowing full well prior he wouldn't be able to compete. Which is like meal prepping everyday then ordering Uber Eats after work anyways. We will forever miss you Lei, your win in Season 5 of the BAFL will never be forgotten (except when I had to fact check it) <br> <br>
+                To conclude the week, we had some very interesting matchups including the highly anticipated Lachy W vs MJ matchup and the Battle of the Bottom with Ricardo and Justin. Ricardo broke a run of 8 straight divison matches without a goal, by scoring 2 in a 2-2 draw with Justin, we are still yet to find a conclusion to the Battle of the Bottom. 
+                <br><br>
+                Fans gathered in their 10s for the matchup of Lachy W and MJ, tempers flaired early with MJ controversially playing a practice match prior to his actual match during lunchtime. The jury is still out on this and Lachy is still pissed. Getting back to the match, it was a proper snoozefest, no goals, no skill, no passion. It made the recent Superbowl look like the 1998 Bulls Season. 
+                <br><br>
+                To cap off the final match of the week we had Bass take on defending champion Sam in match 4. This match reminded me of Finding Nemo, where Bass was Nemo trying to find himself while also trying to find his Dad and in the end he did, his name was Sam Harvey. A 12-1 defeat spread speculation and sparred heavy critcism of the move to put Bass in Division 1, however time will tell as there is much to play for in Season 9.</p>
+        </div>
+        
+        <!-- <div class="news-article">
+            <h2>Article Title 2</h2>
+            <p><small>Published on: Feb 12, 2025</small></p>
+            <p>Integer vel felis eu lacus tristique fermentum a id nisi.</p>
+        </div> -->
+        
+        <!-- <div class="news-article">
+            <h2>Article Title 3</h2>
+            <p><small>Published on: Feb 11, 2025</small></p>
+            <p>Curabitur vehicula, augue sit amet cursus bibendum, dui nisl fermentum erat.</p>
+        </div> -->
     </div>
-  </div>
-</body>
 
-</html>
+
+
+</body>

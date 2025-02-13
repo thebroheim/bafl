@@ -159,6 +159,25 @@ input {
     justify-content: center;
 }
 
+
+/* News Section */
+
+.news-section {
+    max-width: 800px;
+    margin: auto;
+}
+.news-article {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+.news-article h2 {
+    margin: 0;
+    color: #61d5f8;
+}
+.news-article p {
+    color: #ffffff;
+}
+
 /* Media Queries */
 
 @media (max-width: 800px){
