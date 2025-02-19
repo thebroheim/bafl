@@ -3,7 +3,6 @@ const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma'
 const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
 const women = []
 
-
 // Archived FC24 teams
 // const strong = ['Manchester City', 'Real Madrid', 'FC Bayern Munchen', 'FC Barcelona', 'Liverpool', 'Paris Saint-Germain', 'Atletico de Madrid', 'Inter', 'Arsenal', 'Manchester United'];
 // const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napoli', 'Aston Villa', 'Chelsea', 'Bayer 04 Leverkusen', 'RB Leipzig', 'Juventus', 'Latium', 'AC Milan', 'Roma', 'Sevilla FC', 'Athletic Club de Bilbao', 'Real Betis Balompie', 'Real Sociedad', 'Villarreal CF', 'SL Benfica', 'West Ham United', 'Fiorentina', 'Bergamo Calcio', 'Galatasaray SK', 'Olympique de Marseille', 'FC Porto'
@@ -40,13 +39,27 @@ function teamSelect(selectedType){
 }
 
 function generateTeam(){
-    if (document.getElementById('finalsovr').checked ==1) {
-        selectedType[0] = strong
-        selectedType[1] ='Strong'
-    } 
-    else {
+    // Old Finals Override Button 
+    // if (document.getElementById('finalsovr').checked ==1) {
+    //     selectedType[0] = strong
+    //     selectedType[1] ='Strong'
+    // } 
+    // else {
+    //     selectedType = matchTypeSelect()
+    // }
+
+    // New Option Select Drop Down For Match Type
+    let optionSelect = document.getElementById('optionDropdown').value;
+    console.log('The selected option is: ', optionSelect)
+    console.log(typeof optionSelect)
+
+    if (optionSelect !== 'Any') {
+        selectedType[0] = eval(optionSelect.toLowerCase());
+        selectedType[1] = `${optionSelect}`
+    } else {
         selectedType = matchTypeSelect()
     }
+
 
     let teams = teamSelect(selectedType[0])
     let team1 = teams[0]
