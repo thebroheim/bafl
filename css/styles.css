@@ -126,13 +126,15 @@ input {
     justify-content: center;
     /* flex-wrap: wrap; */
     gap: 20px;
+    /* overflow: auto;
+    height: 800px; */
 }
 
 #schedule {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     overflow: auto;
-    height: 700px;
+    height: 200px;
 }
 
 
