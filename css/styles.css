@@ -29,6 +29,7 @@ header {
     border-bottom: #24e3fd solid;
     position: fixed;
     width: 100%;
+    z-index: 1;
 
 }
 
@@ -124,17 +125,14 @@ input {
     display: flex;
     width: 100%;
     justify-content: center;
-    /* flex-wrap: wrap; */
     gap: 20px;
-    /* overflow: auto;
-    height: 800px; */
+
 }
 
 #schedule {
     /* display: flex;
     flex-direction: column; */
-    overflow: auto;
-    height: 200px;
+    max-height: 200px;
 }
 
 
