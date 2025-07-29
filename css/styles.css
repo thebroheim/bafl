@@ -1,9 +1,10 @@
 html {
     background-color: black;
     color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     width: 100%
 }
+
 
 body {  
     margin: 0;  
@@ -184,8 +185,10 @@ input {
     padding: 20px;
 }
 .news-article {
-    border-bottom: 1px solid #ccc;
-    padding: 15px 0;
+    padding: 15px 15px;
+    background-color: #0c0c0c;
+    border-radius: 5%;
+    margin-bottom: 10px;
 }
 .news-article h2 {
     margin: 0;
