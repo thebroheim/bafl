@@ -12,6 +12,10 @@ const women = ['Chelsea', 'Arsenal', 'Manchester United', 'Manchester City', 'FC
 // const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
 // const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
+function viewTeams() {
+    document.getElementById('showTeams').innerHTML = `Strong: ${strong}<br><br> Mid: ${mid}<br><br> International: ${international}<br><br> Women: ${women}`
+}
+
 
 function matchTypeSelect(){
     const matchTypes = [

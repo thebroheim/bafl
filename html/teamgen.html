@@ -33,32 +33,40 @@
   </header>
   
     <div class ="content">
-    <div class="function">
-        <div class="players">
-          <h2>Player 1:</h2>
-          <input type="text" id="p1name">
-          <h2>Player 2:</h2>
-          <input type="text" id="p2name">
-          <div class="teams">
-            <h2>Match type: <span class = "type" id = 'type'></span></h2>
-            <p id = p1team></p>
-            <p id = p2team></p>
+      <div class="function">
+          <div class="players">
+            <h2>Player 1:</h2>
+            <input type="text" id="p1name">
+            <h2>Player 2:</h2>
+            <input type="text" id="p2name">
+            <div class="teams">
+              <h2>Match type: <span class = "type" id = 'type'></span></h2>
+              <p id = p1team></p>
+              <p id = p2team></p>
+            </div>
           </div>
+        <div id="buttons">  
+          <button id="btn1" onclick="generateTeam()">Generate Teams</button>
+          <!-- <input type="checkbox" id="finalsovr" onclick="finalsOvr()">  -->
+          <select id="optionDropdown">
+            <option id="option1">Any</option>
+            <option id="option2">Strong</option>
+            <option id="option3">Mid</option>
+            <option id="option4">International</option>
+            <option id="option5">Women</option>
+          </select>
+          <button onclick="viewTeams()">View Teams</button>
         </div>
-      <div id="buttons">  
-        <button id="btn1" onclick="generateTeam()">Generate Teams</button>
-        <!-- <input type="checkbox" id="finalsovr" onclick="finalsOvr()">  -->
-        <select id="optionDropdown">
-          <option id="option1">Any</option>
-          <option id="option2">Strong</option>
-          <option id="option3">Mid</option>
-          <option id="option4">International</option>
-          <option id="option5">Women</option>
-        </select>
+          
       </div>
-        
+    <div>
+      <div>
+        <p id="showTeams"></p>
+      </div>
     </div>
+    
   </div>
+  
 </body>
 
 </html>

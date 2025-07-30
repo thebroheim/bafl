@@ -121,6 +121,11 @@ input {
     width: 100%;
 }
 
+#showTeams {
+    padding: 50px;
+    padding-top: 10px;
+}
+
 /* Tables */
 #tables {
     display: flex;
