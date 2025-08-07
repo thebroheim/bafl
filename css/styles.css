@@ -185,7 +185,7 @@ input {
 /* News Section */
 
 .news-section {
-    max-width: 800px;
+    max-width: 70%;
     margin: auto;
     padding: 20px;
 }
