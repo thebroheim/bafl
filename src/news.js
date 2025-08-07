@@ -1,44 +1,59 @@
 const newsArticles = [
     // {
-    //     season:"Seasom",
-    //     week: " ",
+    //     season:"",
+    //     week: "",
     //     date: "",
     //     summary: ``,
     //     author: "Alex Villani"
     // },
+
+     {
+        season:"10",
+        week: "7",
+        date: "August 8",
+        summary: `Hi, it's me again. Collingwood just lost to the Hawks and I'm reallyyyy not in the mood to write this. Full hate speech rant incoming, and Manjeeve and Bass are on my radars. Welcome back to the BAFL times.
+                  <br><br>
+                  We began the week with Dan pulling out of his match against Oscar — not the first time, mind you. Something has to come from the commissioner… I dunno, maybe give me an extra win or something? I filled in, of course. Felt like Volkanovski stepping in on short notice — except unlike him, I didn’t get my head caved in by a Dagestani. I took Lachy to the cleaners in a match that both gave Bass a chance at survival and kept my cousin out of the relegation battle. Just call me Mother Teresa. Ricardo then shocked the BAFL world (okay, small suburb) by actually putting up a fight for once. Jude failed to capitalise, and Ricardo secured his first BAFL point with a 3–3 draw.
+                  <br><br>
+                  Tuesday, we finally got the Dan v Oscar showdown we were supposedly all craving — though let’s be honest, no one really cared. The real highlight was Ben and Matthew’s season finale. With nothing on the line, they went all out. Punches thrown, insults hurled, and Matthew walked away 3–1. What a scrap, lads. Oh right — back to Division 1, if I must. Oscar shocked everyone by taking an early lead, but Dan fired up, booting the next four. Despite a late Oscar rally, Dan held on for a 4–3 win.
+                  <br><br>
+                  Right, if for some reason you’re standing — grab a seat. We’ve made it to Wednesday. For context, Manjeeve was 6–0 going into this match. Notice my use of was. A win would have secured him automatic promotion. Standing in his way was BAFL debutant Yasin, who delivered the biggest choke since Melbourne a couple weeks ago… and it wasn’t him choking. With his unmatched aura-farming ability, Yasin tore Manjeeve apart 6–3, knocking him to second place and putting promotion in jeopardy. We also had a top-of-the-table clash between Dan and Sam. Yes, Dan played twice in a row — I couldn’t believe it either. It was a tough battle, maybe even a preview of the Division 1 final. I say maybe, because obviously I’m winning the whole thing. Sam walked away with a 3–1 win and the Division 1 top spot.
+                  <br><br>
+                 If you thought Wednesday was peak BAFL, wait for Thursday. I forgot to order lunch — embarrassing, I know. Oh, and Lachlan (allegedly) picked his own team before confirming his match. Poor Jade had to endure a Real Madrid onslaught as the totally-not-corrupt commissioner racked up a 12–2 win. Someone investigate this man. With that, Lachlan secured automatic promotion over Manjeeve. And then… the final match of the season. Bass vs Dru. A win for Bass would keep him alive, a loss would drop him straight to Division 2. Being the philanthropist he is, Bass decided to “meet in the middle” with a draw to keep Dru in Division 1. Oh wait… that actually relegated Bass. Turns out he’s just bad at maths. Poor Bass. Finals incoming!`,
+        author: "Alex Villani"
+    },
     
     {
-        season:"Season 10",
-        week: "Week 6",
-        date: "August 1",
-        summary: `A massive week for the BAFL, a full 5 days of matches, a perfect 10 as we prepare for the final week of season matches. The BAFL fans had to cancel their dinner plans in anticipation.
-                    <br><br>
-                    Monday kicked off with some decisive clashes. Bass faced off against Oscar, who was feeling overly confident and believed he could win with just nine men. 
-                    Embracing his French roots, Bass put up a serious fight. Oscar scraped through with a draw — just barely. Meanwhile, Yasin continued his fairytale BAFL debut, smashing Matthew 4-1 and keeping his promotion hopes alive. 
-                    What an inspiration that man is!
-                    <br><br>
-                    Tuesday brought one of the week’s most anticipated matchups: Brent vs. Lachy. The old allies — Germany and Italy — went head-to-head. Brent’s Germany emerged victorious, flexing a superior squadron. Lachy, in full Mussolini mode, retaliated by launching his controller into the downstairs TV. 
-                    Division 2 wasn’t short on action either. Unbeaten Manjeeve faced his rival Jude in a top-of-the-table clash. With full sigma rizz energy, Manjeeve crushed Jude 4-1, keeping his unbeaten streak alive and planting one hand firmly on the promotion medal.
-                    <br><br>
-                    Wednesday belonged to Portugal. RONNNYYYYYY SUIIIIIII. Ricardo went hunting for his first BAFL win… and fell short again. Even with France, it wasn’t enough — though to be fair, he did put Mbappé in goal. 
-                    Ben capitalized with a 2-1 win. Bass returned once more, as Sam — clearly still punishing him for going on holiday — scheduled him every second day. 
-                    Bass threw the kitchen sink at Dan (pretty sure that’s against BAFL rules), but Dan clung on for a 2-1 win.
-                    <br><br>
-                    With so many international teams this week, the BAFL is starting to look like a desperate man’s Tinder location settings. Thursday opened with Yasin continuing his dream run against Jade. 
-                    Channeling the power of the paella, his Spain dismantled Jade’s England 3-1. It was the BAFL version of the Anglo-Spanish War (1625–1630). Lachy also faced Dru downstairs, having finally retrieved his controller from the plasma. 
-                    He let loose, taking down the season 9 finalist 5-3.
-                    <br><br>
-                    Friday. We made it. You ready? Let’s go. Wait — another international matchup? At this point, just call us NATO. 
-                    Lachlan took on Matthew’s Portugal, but even the GOAT Bruno Fernandes couldn’t stop Lachlan's goal-hungry rampage, ending in a brutal 10-2 loss (shoutout to the Peninsular War). 
-                    To close out the week, Bass faced Brent in a match with huge implications — Brent chasing finals, Bass avoiding relegation. 
-                    A tight contest unfolded (or so I’m told — I was writing the rest of this recap with the match happening behind me). Brent clinched it 2-1, setting up a mouthwatering Dru vs. Bass clash next week.`,
-        author: "Alex Villani",
-        id: 5
+      season:"10",
+      week: "6",
+      date: "August 1",
+      summary: `A massive week for the BAFL, a full 5 days of matches, a perfect 10 as we prepare for the final week of season matches. The BAFL fans had to cancel their dinner plans in anticipation.
+                  <br><br>
+                  Monday kicked off with some decisive clashes. Bass faced off against Oscar, who was feeling overly confident and believed he could win with just nine men. 
+                  Embracing his French roots, Bass put up a serious fight. Oscar scraped through with a draw — just barely. Meanwhile, Yasin continued his fairytale BAFL debut, smashing Matthew 4-1 and keeping his promotion hopes alive. 
+                  What an inspiration that man is!
+                  <br><br>
+                  Tuesday brought one of the week’s most anticipated matchups: Brent vs. Lachy. The old allies — Germany and Italy — went head-to-head. Brent’s Germany emerged victorious, flexing a superior squadron. Lachy, in full Mussolini mode, retaliated by launching his controller into the downstairs TV. 
+                  Division 2 wasn’t short on action either. Unbeaten Manjeeve faced his rival Jude in a top-of-the-table clash. With full sigma rizz energy, Manjeeve crushed Jude 4-1, keeping his unbeaten streak alive and planting one hand firmly on the promotion medal.
+                  <br><br>
+                  Wednesday belonged to Portugal. RONNNYYYYYY SUIIIIIII. Ricardo went hunting for his first BAFL win… and fell short again. Even with France, it wasn’t enough — though to be fair, he did put Mbappé in goal. 
+                  Ben capitalized with a 2-1 win. Bass returned once more, as Sam — clearly still punishing him for going on holiday — scheduled him every second day. 
+                  Bass threw the kitchen sink at Dan (pretty sure that’s against BAFL rules), but Dan clung on for a 2-1 win.
+                  <br><br>
+                  With so many international teams this week, the BAFL is starting to look like a desperate man’s Tinder location settings. Thursday opened with Yasin continuing his dream run against Jade. 
+                  Channeling the power of the paella, his Spain dismantled Jade’s England 3-1. It was the BAFL version of the Anglo-Spanish War (1625–1630). Lachy also faced Dru downstairs, having finally retrieved his controller from the plasma. 
+                  He let loose, taking down the season 9 finalist 5-3.
+                  <br><br>
+                  Friday. We made it. You ready? Let’s go. Wait — another international matchup? At this point, just call us NATO. 
+                  Lachlan took on Matthew’s Portugal, but even the GOAT Bruno Fernandes couldn’t stop Lachlan's goal-hungry rampage, ending in a brutal 10-2 loss (shoutout to the Peninsular War). 
+                  To close out the week, Bass faced Brent in a match with huge implications — Brent chasing finals, Bass avoiding relegation. 
+                  A tight contest unfolded (or so I’m told — I was writing the rest of this recap with the match happening behind me). Brent clinched it 2-1, setting up a mouthwatering Dru vs. Bass clash next week.`,
+      author: "Alex Villani"
     },
 
     {
-      season: "Season 10",
-      week: "Week 5",
+      season: "10",
+      week: "5",
       date: "July 25",
       summary: `Hey, remember me? I went missing for a week — caught deep in the Big Ant grind. Late hours, drama, stress — it had it all. 
                 I earned a day in lieu, which I’m now spending writing this article. 
@@ -65,13 +80,12 @@ const newsArticles = [
                 Thursday marked the long-awaited return of Lachlan from his hiatus, and what a return it was. He faced Ricardo in what turned out to be a record-breaking 14-0 hammering. 
                 Clearly, Lachlan is coping well with the Destiny raid fail. Lachlan now sits just one game behind Manjeeve for the automatic promotion spot — the division is really heating up. 
                 To cap off the week, Lachy took on Dan. After dodging BAFL challenges all week, Dan finally showed his hand — and what a hand it was. Lachy, being the gentleman he is, welcomed Dan back by losing 4-0. And they say chivalry is dead, huh?`,
-      author: "Alex Villani",
-      id: 4
+      author: "Alex Villani"
     },
 
     {
-      season: "Season 10",
-      week: "Week 3",
+      season: "10",
+      week: "3",
       date: "July 11",
       summary: `I'm here later than usual, something about a Rugby League release. I didn't play this week in the BAFL so not much point in reading but Sam's forcing my hand. 
                     Welcome back to the BAFL Times.
@@ -91,13 +105,12 @@ const newsArticles = [
                     <br><br>
                     Finally, Manjeeve was back again, this time facing Ricardo. Ricardo, ever the showman, promised to be as loud and obnoxious as possible to throw Manjeeve off. 
                     It backfired spectacularly. Manjeeve cruised to a 7-0 win — and according to him, it should’ve been 12.`,
-      author: "Alex Villani",
-      id: 3
+      author: "Alex Villani"
     },
 
     {
-        season:"Season 10",
-        week: "Week 2",
+        season:"10",
+        week: "2",
         date: "July 4",
         summary: `I'm back yet again, and—like always—I'm writing this when I’m supposed to be working. I think the best work gets done when there's no pressure. 
                     That’s probably why my audience is shrinking by the week. Anyway, here are eight match summaries no one asked for!
@@ -119,13 +132,12 @@ const newsArticles = [
                     Finally, Thursday brought a historic debut win for Jade, smashing Ricardo 4-0. It only took Jade two matches to record a BAFL win. 
                     Meanwhile, Ricardo is now on a 17-match losing streak—but I respect a man who always comes back for more. Back in Division 1, it was cousin vs. cousin, the Battle of the Dutch—Ajax vs. PSV. 
                     It was scrappy, and after taking a 3-1 lead late, and Oscar calling me a !@#$ in an otherwise peaceful downstairs office, I walked away with a 3-2 win!`,
-        author: "Alex Villani",
-        id: 2
+        author: "Alex Villani"
     },
 
     {
-        season:"Season 10",
-        week: "Week 1",
+        season:"10",
+        week: "1",
         date: "June 27",
         summary: `Its back, bigger, betterer than everer. the BAFL returns and I am so excited for season X!. Ex? Well that's a funny story actually, I texted her Happy Birthday last week and haven't heard back, I wonder if....
                     <br><br>
@@ -146,8 +158,7 @@ const newsArticles = [
                     A 1–1 draw couldn’t separate them, but it’s clear, exciting battles lie ahead. To wrap up the week, Oscar made his BAFL debut against Dru in what promised to be an exciting encounter. 
                     Unfortunately, Dru doesn’t believe in fairytale—beginnings or endings—as he cruised to a 3–0 win to kick off his campaign in style. Upon asking for an explanation Oscar provided me with words 
                     I couldn't even repeat to myself in the mirror. `,
-        author: "Alex Villani",
-        id: 1
+        author: "Alex Villani"
     },
   ];
   
@@ -158,7 +169,7 @@ const newsArticles = [
     div.className = "news-article";
     
     div.innerHTML = `
-      <h2 id=${article.id}>${article.season} ${article.week}</h2>
+      <h2 id=${article.id}>Season ${article.season} Week ${article.week}</h2>
       <p><em>Published on: ${article.date}</em></p>
       <p>Author: ${article.author}</p>
       <p>${article.summary}</p>
