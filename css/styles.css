@@ -187,8 +187,8 @@ input {
 
 .news-section {
     display: flex;
-    max-width: 70%;
-    margin: auto;
+    /* max-width: 70%; */
+    /* margin: auto; */
     padding: 20px;
     gap: 20px;
 }
@@ -212,7 +212,6 @@ input {
 #newsNav {
     position: sticky;
     top:140px;
-    width: 100%;
     min-width: 140px;
     align-self: flex-start;
     background-color: #0c0c0c;
@@ -221,6 +220,10 @@ input {
     display: flex;
     flex-direction: column;
 
+}
+
+.news-section button {
+    display: none;
 }
 
 /* Media Queries */
@@ -262,7 +265,24 @@ input {
         padding-top: 20px;
     }
     .news-section {
-        flex-direction: column;
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+
+    #newsNav {
+        display: none;
+        width: 95%;
+        align-items: center;
+        position: relative;
+        top: 0;
+
+    }
+
+
+    .news-section button {
+        display: block;
+        background-color:#212121;
+        color: #ffffff;
     }
 }
     

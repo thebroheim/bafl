@@ -300,7 +300,7 @@ Finally we bid a sad fairwell to Justin as he departs back to his sacred land an
     },
 
   ];
-  
+  // Create news articles and nav bar
   const container = document.getElementById("news-container");
   const navContatiner =document.getElementById("newsNav")
   
@@ -322,4 +322,13 @@ Finally we bid a sad fairwell to Justin as he departs back to his sacred land an
   
     container.appendChild(div);
     navContatiner.appendChild(divNav);
+// 
+
+
   });
+
+  function showNav() {
+    navContatiner.style.display = 
+      navContatiner.style.display === 'flex' ? 'none':'flex';
+    
+  }
