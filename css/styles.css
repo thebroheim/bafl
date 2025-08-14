@@ -73,6 +73,9 @@ a:hover {
     color: #24e3fd;
 }
 
+#adminLink {
+    display: none;
+}
 
 /* Generator */
 .function {

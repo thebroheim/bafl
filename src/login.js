@@ -4,8 +4,8 @@ function loginScreen() {
     counter += 1 
     if (counter ==5){
         console.log('We are at 5')
-        let login = document.getElementById('login')
-        login.style.display = 'block'
+        let login = document.getElementById('adminLink')
+        login.style.display = 'flex'
     } 
 
 
