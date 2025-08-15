@@ -7,6 +7,30 @@ const newsArticles = [
     //     author: "Alex Villani"
     // },
 
+       {
+        season:"10",
+        week: "8",
+        date: "August 15<br><br> FINALS Week 1",
+        summary: `Hi, my name is Alex. You may remember me from such articles as 'BAFL Times Week 2' and 'Failing: An Addiction'. I am very very very very very very upset. Why you might ask? I don't wanna talk about it. Welcome to the finals...
+<br><br>
+Boom, here we are — the promotion match: Jude vs Manjeeve. If I had it my way, I’d relegate them both. What a spectacle this was… or lack thereof, am I right? 
+Manjeeve got off to a flying start with an early goal, while Jude decided to give Manjeeve’s goalie some target practice — and by some, I mean deadass 10 shots. A 2-1 result kept things close, but Manjeeve managed to sneak out of Division 2 for the first time ever, leaving Jude to wallow as he drafts the termination notice for Manjeeve.
+
+<br><br>
+Tuesday rolled around and… oh, Real Madrid again? Yeah, hilarious. What an awesome, balanced, and totally fair team. Dru and Lachy took center stage for the Division 1 relegation match. 
+Expectations were high downstairs, but quickly evaporated as Lachy tore Dru apart 7-0 — finally setting up the Lachy vs Manjeeve showdown in Division 1 we’ve all been waiting for.
+<br><br>
+The first qualifying match saw the two mucky-mucks of the BAFL — Dan vs Sam (apparently I can’t say heavyweights anymore because of fat-shaming). 
+It was a tight-fought match, with Sam underperforming by his usual lofty standards (and ego), as Dan looked to pounce on the opportunity. 
+But Sam held his nerve late, grabbing a 1-0 win and stumbling into yet another BAFL Final. Who will dethrone him? Me, right?
+<br><br>
+Thursday. My match. Brent, off a win against Sam and in fine form, came up against me — the industry plant. As I sat at my desk, I was informed I’d once again be playing against Real Madrid. Seriously. 
+Every. Time. I’m always the victim! Determined to break the curse, I immediately conceded two goals. But the comeback was on — I scraped back two of my own with Chelsea to force penalties. 
+Having never lost a BAFL shootout, I decided to throw it… out of pure sportsmanship, of course. Brent walked away with the win, and my BAFL Finals record now sits at 0-5. On to next week, I guess. Sobs.`,
+        author: "Alex Villani"
+    },
+
+
      {
         season:"10",
         week: "7",
