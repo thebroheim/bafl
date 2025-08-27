@@ -21,8 +21,8 @@ function filterTeams(key, value1, condition, value2) {
 }
 
 
-const eliteSet = filterTeams('ovr', 84, 'between', 100)
-const strongSet = filterTeams('ovr', 81,'between', 84)
+const eliteSet = filterTeams('ovr', 83, 'between', 100)
+const strongSet = filterTeams('ovr', 81,'between', 83)
 const midSet = filterTeams('ovr', 75, 'between', 81)
 const womenSet = filterTeams('gender', 'Women', 'equals')
 const internationalSet = filterTeams('gender', 'International', 'equals',)

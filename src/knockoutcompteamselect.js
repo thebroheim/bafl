@@ -1,6 +1,28 @@
-const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Inter', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Manchester United', 'Tottenham Hotspur', 'Borussia Dortmund', 'AC Milan']
-const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Atalanta', 'Lazio', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City']
-const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient', 'Blackburn Rovers']
+function filterTeams(key, value1, condition, value2) {
+    const teams = teamSet;
+    const filteredTeams = [];
+
+    if (condition === 'between') {
+        teams.forEach(element => {
+            if (element[key] >= value1 && element[key] < value2 && element.gender == 'Men') {
+                filteredTeams.push(element);
+            }
+        });
+    } else if (condition === 'equals') {
+        teams.forEach(element => {
+            if (element[key] === value1) {
+                filteredTeams.push(element);
+            }
+        });
+    }
+    return filteredTeams;
+}
+
+const elite = filterTeams('ovr', 84, 'between', 100)
+const strong = filterTeams('ovr', 81, 'between', 84)
+const mid = filterTeams('ovr', 80, 'between', 81)
+const weak = filterTeams('ovr', 70, 'between', 79)
+
 //Put players in order of rank. Best = Top, Worst = Bottom
 const players = [
     'Sam',
@@ -59,22 +81,22 @@ function selectType(players, player){
     //define list length
     const listLength = players.length
     //define percentiles
-    const divider = listLength / 3
-    const firstThird = Math.round(divider)
-    const secondThird = Math.round(divider + divider)
-    const thirdThird = Math.round(divider *3)
-    console.log(`First third: ${firstThird}`)
-    console.log(`Second third: ${secondThird}`)
-    console.log(`Third third: ${thirdThird}`)
+    const divider = listLength / 4
+    const firstQuarter = Math.round(divider)
+    const secondQuarter = Math.round(divider + divider)
+    const thirdQuarter = Math.round(divider *3)
+    const fourthQuarter = Math.round(divider *4)
 
 
     //set type bases on the players index
-    if (index < firstThird){
+    if (index < firstQuarter){
         return weak
-    }if (index < secondThird){
+    }if (index < secondQuarter){
         return mid
-    }if (index < thirdThird){
+    }if (index < thirdQuarter){
         return strong
+    }if (index < fourthQuarter){
+        return elite
     }
 
 }
@@ -94,7 +116,8 @@ function displayTeams(assignedTeams){
             let list = document.getElementById("myList");
             let li = document.createElement("li");
             
-            li.innerText = `${arr[0].playerName} will play as ${arr[0].teamName}`;
+            li.innerText = `${arr[0].playerName} will play as ${arr[0].teamName.name} OVR: ${arr[0].teamName.ovr}`;
+            console.log(arr[0])
 
         list.appendChild(li)
             
