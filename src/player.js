@@ -1,3 +1,34 @@
+// THIS CODE HERE IS FOR USING DATASET IN TEAMS.JS. For the future //////////////////////////////////
+
+function filterTeams(key, value1, condition, value2) {
+    const teams = teamSet;
+    const filteredTeams = [];
+
+    if (condition === 'between') {
+        teams.forEach(element => {
+            if (element[key] >= value1 && element[key] < value2 && element.gender == 'Men') {
+                filteredTeams.push(element);
+            }
+        });
+    } else if (condition === 'equals') {
+        teams.forEach(element => {
+            if (element[key] === value1) {
+                filteredTeams.push(element);
+            }
+        });
+    }
+    return filteredTeams;
+}
+
+
+const eliteSet = filterTeams('ovr', 84, 'between', 100)
+const strongSet = filterTeams('ovr', 81,'between', 84)
+const midSet = filterTeams('ovr', 75, 'between', 81)
+const womenSet = filterTeams('gender', 'Women', 'equals')
+const internationalSet = filterTeams('gender', 'International', 'equals',)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Lombardia FC (Inter)', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Borussia Dortmund', 'Milano (AC Milan)']
 const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Bergamo Calcio', 'Latium', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City', 'Manchester United', 'Tottenham Hotspur',]
 const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
