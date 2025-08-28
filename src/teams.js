@@ -12,13 +12,13 @@ window.teamSet = [
     { name: 'Crystal Palace', ovr: 78, star: 4, gender: 'Men' },
     { name: 'Brighton & Hove Albion', ovr: 78, star: 4, gender: 'Men' },
     { name: 'Nottingham Forest', ovr: 78, star: 4, gender: 'Men' },
-    { name: 'Everton', ovr: '', star: '', gender: 'Men' },
-    { name: 'Wolverhampton Wanderers', ovr: '', star: '', gender: 'Men' },
-    { name: 'Fulham FC', ovr: '', star: '', gender: 'Men' },
-    { name: 'Brentford', ovr: '', star: '', gender: 'Men' },
-    { name: 'AFC Bournemouth', ovr: '', star: '', gender: 'Men' },
-    { name: 'Southampton', ovr: '', star: '', gender: 'Men' },
-    { name: 'Leicester City', ovr: '', star: '', gender: 'Men' },
+    { name: 'Fulham FC', ovr: 77, star: 4, gender: 'Men' },
+    { name: 'Brentford', ovr: 77, star: 4, gender: 'Men' },
+    { name: 'Everton', ovr: 76, star: 4, gender: 'Men' },
+    { name: 'Wolverhampton Wanderers', ovr: 76, star: 4, gender: 'Men' },
+    { name: 'AFC Bournemouth', ovr: 77, star: 4, gender: 'Men' },
+    { name: 'Southampton', ovr: 74, star: 3.5, gender: 'Men' },
+    { name: 'Leicester City', ovr: 75, star: 4, gender: 'Men' },
 
     //Serie A
     { name: 'Lombardia FC (Inter)', ovr: 84, star: 5, gender: 'Men'},
@@ -44,8 +44,8 @@ window.teamSet = [
     { name: 'FC Bayern Munchen', ovr: 84, star: 5, gender: 'Men'},
     { name: 'Bayer 04 Leverkusen', ovr: 83, star: 5, gender: 'Men'},
     { name: 'Borussia Dortmund', ovr: 81, star: 4.5, gender: 'Men'},
-    { name: 'RB Leipzig', ovr: 80, star: '', gender: 'Men' },
-    { name: 'VFL Wolfsburg', ovr: '', star: '', gender: 'Men' },
+    { name: 'RB Leipzig', ovr: 80, star: 4.5, gender: 'Men' },
+    { name: 'VFL Wolfsburg', ovr: 77, star: 4, gender: 'Men' },
 
     //Ligue 1
     { name: 'Paris Saint-Germain', ovr: 83, star: 5, gender: 'Men'},
@@ -53,48 +53,48 @@ window.teamSet = [
     { name: 'Olympique de Marseille', ovr: 78, star: 4, gender: 'Men' },
 
     //Super Lig
-    { name: 'Fenerbahce SK', ovr: 80, star: '', gender: 'Men' },
-    { name: 'Galatasaray SK', ovr: '', star: '', gender: 'Men' },
+    { name: 'Fenerbahce SK', ovr: 80, star: 4.5, gender: 'Men' },
+    { name: 'Galatasaray SK', ovr: 79, star: 4.5, gender: 'Men' },
 
     //Primira Liga
-    { name: 'Sporting CP', ovr: '', star: '', gender: 'Men' },
-    { name: 'FC Porto', ovr: '', star: '', gender: 'Men' },
+    { name: 'SL Benfica', ovr: 79, star: 4.5, gender: 'Men' },
+    { name: 'Sporting CP', ovr: 79, star: 4.5, gender: 'Men' },
+    { name: 'FC Porto', ovr: 76, star: 4, gender: 'Men' },
 
     //Eredivisie
-    { name: 'PSV', ovr: '', star: '', gender: 'Men' },
-    { name: 'Ajax', ovr: '', star: '', gender: 'Men' },
+    { name: 'PSV', ovr: 78, star: 4, gender: 'Men' },
+    { name: 'Ajax', ovr: 76, star: 4, gender: 'Men' },
 
     //Saudi
-    { name: 'Al Hilal', ovr: '', star: '', gender: 'Men' },
-    { name: 'Al Nassr', ovr: '', star: '', gender: 'Men' },
+    { name: 'Al Hilal', ovr: 77, star: 4, gender: 'Men' },
+    { name: 'Al Nassr', ovr: 76, star: 4, gender: 'Men' },
+    { name: 'Al Ittihad', ovr: 74, star: 3.5, gender: 'Men' },
 
     //Championship
-    { name: 'Leeds United', ovr: '', star: '', gender: 'Men' },
-    { name: 'Ipswich Town', ovr: '', star: '', gender: 'Men' },
-    { name: 'Burnley', ovr: '', star: '', gender: 'Men' },
-    { name: 'Luton Town', ovr: '', star: '', gender: 'Men' },
-    { name: 'Sheffield United', ovr: '', star: '', gender: 'Men' },
-    { name: 'Norwich City', ovr: '', star: '', gender: 'Men' },
-    { name: 'Middlesbrough', ovr: '', star: '', gender: 'Men' },
-    { name: 'Sunderland', ovr: '', star: '', gender: 'Men' },
-    { name: 'West Bromwich Albion', ovr: '', star: '', gender: 'Men' },
-    { name: 'Cardiff City', ovr: '', star: '', gender: 'Men' },
+    { name: 'Leeds United', ovr: 74, star: 3.5, gender: 'Men' },
+    { name: 'Burnley', ovr: 74, star: 3.5, gender: 'Men' },
+    { name: 'Luton Town', ovr: 72, star: 3.5, gender: 'Men' },
+    { name: 'Sheffield United', ovr: 73, star: 3.5, gender: 'Men' },
+    { name: 'Norwich City', ovr: 70, star: 3, gender: 'Men' },
+    { name: 'Middlesbrough', ovr: 72, star: 3.5, gender: 'Men' },
+    { name: 'Sunderland', ovr: 72, star: 3.5, gender: 'Men' },
+    { name: 'West Bromwich Albion', ovr: 71, star: 3.5, gender: 'Men' },
+    { name: 'Cardiff City', ovr: 70, star: 3, gender: 'Men' },
 
     // Major League Soccer
-    { name: 'Inter Miami', ovr: '', star: '', gender: 'Men' },
-    { name: 'Los Angeles FC', ovr: '', star: '', gender: 'Men' },
-    { name: 'LA Galaxy', ovr: '', star: '', gender: 'Men' },
-    { name: 'FC Cincinnati', ovr: '', star: '', gender: 'Men' },
+    { name: 'Inter Miami', ovr: 73, star: 3.5, gender: 'Men' },
+    { name: 'Los Angeles FC', ovr: 71, star: 3.5, gender: 'Men' },
+    { name: 'LA Galaxy', ovr: 71, star: 3.5, gender: 'Men' },
 
     // international teams
-    {name: 'England', ovr: '85', star: '', gender: 'International'},
-    {name: 'Portugal', ovr: '83', star: '', gender: 'International'},
-    {name: 'France', ovr: '85', star: '', gender: 'International'},
-    {name: 'Germany', ovr: '84', star: '', gender: 'International'},
-    {name: 'Spain', ovr: '84', star: '', gender: 'International'},
-    {name: 'Netherlands', ovr: '83', star: '', gender: 'International'},
-    {name: 'Argentina', ovr: '83', star: '', gender: 'International'},
-    {name: 'Italy', ovr: '82', star: '', gender: 'International'},
+    {name: 'England', ovr: 85, star: '', gender: 'International'},
+    {name: 'Portugal', ovr: 83, star: '', gender: 'International'},
+    {name: 'France', ovr: 85, star: '', gender: 'International'},
+    {name: 'Germany', ovr: 84, star: '', gender: 'International'},
+    {name: 'Spain', ovr: 84, star: '', gender: 'International'},
+    {name: 'Netherlands', ovr: 83, star: '', gender: 'International'},
+    {name: 'Argentina', ovr: 83, star: '', gender: 'International'},
+    {name: 'Italy', ovr: 82, star: '', gender: 'International'},
 
     //women teams
     {name: 'Chelsea', ovr: '85', star: '', gender: 'Women'},

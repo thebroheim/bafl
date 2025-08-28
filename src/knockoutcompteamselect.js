@@ -20,8 +20,8 @@ function filterTeams(key, value1, condition, value2) {
 
 const elite = filterTeams('ovr', 84, 'between', 100)
 const strong = filterTeams('ovr', 81, 'between', 84)
-const mid = filterTeams('ovr', 80, 'between', 81)
-const weak = filterTeams('ovr', 70, 'between', 79)
+const mid = filterTeams('ovr', 77, 'between', 81)
+const weak = filterTeams('ovr', 70, 'between', 77)
 
 //Put players in order of rank. Best = Top, Worst = Bottom
 const players = [
