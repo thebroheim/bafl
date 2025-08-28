@@ -23,7 +23,7 @@ The PS5 is still nowhere to be seen. Gone just like Alex’s Ex. Oh well upstair
 <br><br>
 The second half Dan dominated the match and scored another 2 goal (2+2 is 4 quick mafs). Sam could barely get any shot in (only 2 to be exact). Rumours were he was trying to play like Man Utd and he did so successfully. The crowd was in awe, shocked and could not believe what was happening. Dan was victorious with a final score of 4-1. He is the new Champion of Season 10 BALF, preventing Sam from getting his 3rd Consecutive BALF championship in a row streak. 
 With that Season 10 comes to a close! Hope you all enjoyed this season.`,
-        author: "Alex Villani"
+        author: "Manjeeve Sookram (MJ)"
     },
 
        {
