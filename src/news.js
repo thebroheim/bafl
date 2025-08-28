@@ -7,6 +7,25 @@ const newsArticles = [
     //     author: "Alex Villani"
     // },
 
+        {
+        season:"10",
+        week: "9",
+        date: "August 29 <br><br> FINALS WEEK 2",
+        summary: `Hi, MJ here… Well this is awkward it’s not Alex. After 2 weeks of waiting for the final matches he got fed up and left the country. Game got postponed probably because another kid broke the PS5 again. Well after weeks of waiting, our commissioner finally swallowed his pride, ego and joy to make the executive decision of moving the final matches upstairs. 
+With that said, Welcome to Season 10 Finals!
+<br><br>
+Wednesday came for the second qualifying final: Dan vs Brent. Well let’s just say the game started with technical controller problem because of Lachlan’s pc (He totally rigged the div 2 games “I’m totally not salty about that medal”). 
+Hey I had to be the hero and get it fixed. Brent was the crowd favourite given it’s his home advantage. Alas he fell very short, Dan’s Barcelona showed Brent’s Leverkusen who’s the boss, with triumphing 7-1 win. 
+This solidified Dan’s spot to proceed into the Final versing Sam.
+<br><br>
+Oh! It’s Thursday already! You know what that means… GYG day.. uh no.. I meant Finals. 
+The PS5 is still nowhere to be seen. Gone just like Alex’s Ex. Oh well upstairs game it is. Dan was blessed by the BALF gods and got Real Madrid! The crowd was big and the cheer were loud. Sam started strong scoring the first goal. Without wasting time Dan responded quickly to that with a goal. Sam losing his cool when defending gave away a penalty to Dan and the latter made a meal of it. Oufff this was only the first half. 
+<br><br>
+The second half Dan dominated the match and scored another 2 goal (2+2 is 4 quick mafs). Sam could barely get any shot in (only 2 to be exact). Rumours were he was trying to play like Man Utd and he did so successfully. The crowd was in awe, shocked and could not believe what was happening. Dan was victorious with a final score of 4-1. He is the new Champion of Season 10 BALF, preventing Sam from getting his 3rd Consecutive BALF championship in a row streak. 
+With that Season 10 comes to a close! Hope you all enjoyed this season.`,
+        author: "Alex Villani"
+    },
+
        {
         season:"10",
         week: "8",
