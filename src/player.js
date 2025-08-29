@@ -44,9 +44,7 @@ const international = filterTeams('gender', 'International', 'equals',)
 // const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
 // const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
-function viewTeams() {
-    document.getElementById('showTeams').innerHTML = `Elite: ${elite}<br><br>Strong: ${strong}<br><br> Mid: ${mid}<br><br> International: ${international}<br><br> Women: ${women}`
-}
+
 
 const matchTypes = [
     [elite, 'Elite'],
@@ -55,6 +53,25 @@ const matchTypes = [
     [international, 'International'],
     [women, 'Women']
 ]
+
+let viewTeamsSwitch = false
+function viewTeams() {
+    if (!viewTeamsSwitch){
+    const showTeams = document.getElementById('showTeams')
+    showTeams.style='display: flex'
+    matchTypes.forEach(type => {
+        const matchType = document.createElement('h3');
+
+        matchType.innerHTML = `${type[1]}: `
+        showTeams.appendChild(matchType);
+        type[0].forEach(team => {
+            const teamName = document.createElement('p');
+            teamName.innerHTML = `${team.name}`
+            matchType.appendChild(teamName)
+        })
+    })}
+    viewTeamsSwitch = true
+}
 
 
     const options = document.getElementById("optionDropdown");

@@ -126,8 +126,17 @@ input {
 }
 
 #showTeams {
+    display: flex;
+    gap: 50px;
     padding: 50px;
     padding-top: 10px;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+#showTeams p{
+    font-size: 10pt;
+    line-height: 50%;
 }
 
 /* Tables */
