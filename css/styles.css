@@ -255,6 +255,10 @@ input {
         flex-direction: column;
     }
 
+    #showTeams {
+        flex-direction: column;
+    }
+
     header h1 {
         margin: 5px;
         border: 0;

@@ -1,4 +1,22 @@
-// THIS CODE HERE IS FOR USING DATASET IN TEAMS.JS. For the future //////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Archived arrays
+// const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Lombardia FC (Inter)', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Borussia Dortmund', 'Milano (AC Milan)']
+// const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Bergamo Calcio', 'Latium', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City', 'Manchester United', 'Tottenham Hotspur',]
+// const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
+// const international = ['England', 'Portugal', 'France', 'Germany', 'Spain', 'Netherlands', 'Argentina', 'Italy']
+// const women = ['Chelsea', 'Arsenal', 'Manchester United', 'Manchester City', 'FC Barcalona', 'Olympique Lyonnais', 'Bayern Munchen', 'Real Madrid', 'Wolfsburg', 'Paris Saint Germain']
+
+// Archived FC24 teams
+// const strong = ['Manchester City', 'Real Madrid', 'FC Bayern Munchen', 'FC Barcelona', 'Liverpool', 'Paris Saint-Germain', 'Atletico de Madrid', 'Inter', 'Arsenal', 'Manchester United'];
+// const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napoli', 'Aston Villa', 'Chelsea', 'Bayer 04 Leverkusen', 'RB Leipzig', 'Juventus', 'Latium', 'AC Milan', 'Roma', 'Sevilla FC', 'Athletic Club de Bilbao', 'Real Betis Balompie', 'Real Sociedad', 'Villarreal CF', 'SL Benfica', 'West Ham United', 'Fiorentina', 'Bergamo Calcio', 'Galatasaray SK', 'Olympique de Marseille', 'FC Porto'
+// ];
+// const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr',  'Eintracht Frankfurt',  'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice',  'Wolverhampton Wanderers', 'Brentford', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'AEK Athens', 'Torino F.C.', 'Boca Juniors', 'AFC Bournemouth', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
+// const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
+// const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
+
+
+
 
 function filterTeams(key, value1, condition, value2) {
     const teams = teamSet;
@@ -26,23 +44,6 @@ const strong = filterTeams('ovr', 81,'between', 83)
 const mid = filterTeams('ovr', 75, 'between', 81)
 const women = filterTeams('gender', 'Women', 'equals')
 const international = filterTeams('gender', 'International', 'equals',)
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Archived arrays
-// const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Lombardia FC (Inter)', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Borussia Dortmund', 'Milano (AC Milan)']
-// const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Bergamo Calcio', 'Latium', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City', 'Manchester United', 'Tottenham Hotspur',]
-// const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
-// const international = ['England', 'Portugal', 'France', 'Germany', 'Spain', 'Netherlands', 'Argentina', 'Italy']
-// const women = ['Chelsea', 'Arsenal', 'Manchester United', 'Manchester City', 'FC Barcalona', 'Olympique Lyonnais', 'Bayern Munchen', 'Real Madrid', 'Wolfsburg', 'Paris Saint Germain']
-
-// Archived FC24 teams
-// const strong = ['Manchester City', 'Real Madrid', 'FC Bayern Munchen', 'FC Barcelona', 'Liverpool', 'Paris Saint-Germain', 'Atletico de Madrid', 'Inter', 'Arsenal', 'Manchester United'];
-// const mid = ['Newcastle United', 'Tottenham Hotspur', 'Borussia Dortmund', 'Napoli', 'Aston Villa', 'Chelsea', 'Bayer 04 Leverkusen', 'RB Leipzig', 'Juventus', 'Latium', 'AC Milan', 'Roma', 'Sevilla FC', 'Athletic Club de Bilbao', 'Real Betis Balompie', 'Real Sociedad', 'Villarreal CF', 'SL Benfica', 'West Ham United', 'Fiorentina', 'Bergamo Calcio', 'Galatasaray SK', 'Olympique de Marseille', 'FC Porto'
-// ];
-// const weak = ['Everton', 'Nottingham Forest', 'Brighton & Hove Albion', 'AS Monaco', 'Fenerbahce SK', 'Al Hilal', 'Al Ittihad', 'Fulham', 'VfL Wolfsburg', 'CA Osasuna', 'Sporting CP', 'Crystal Palace', 'Al Nassr',  'Eintracht Frankfurt',  'LOSC Lille', 'Olympique Lyonnais', 'Getafe CF', 'OGC Nice',  'Wolverhampton Wanderers', 'Brentford', 'RCD Mallorca', 'Rayo Vallecano', 'Girona FC', 'Feyenoord', 'PSV', 'AEK Athens', 'Torino F.C.', 'Boca Juniors', 'AFC Bournemouth', 'Cadiz CF', 'AC Monza', 'Valencia CF', 'Ajax'];
-// const women = ['FC Bayern Munich', 'VFL Wolfsburg', 'FC Barcelona', 'Chelsea', 'Arsenal', 'West Ham', 'Aston Villa', 'Real Madrid', 'Paris Saint Germain', 'Olympique Lyon'];
-// const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
 
 
@@ -83,13 +84,6 @@ function viewTeams() {
     });
   
 
-{/* <select id="optionDropdown">
-<option id="option1">Any</option>
-<option id="option2">Strong</option>
-<option id="option3">Mid</option>
-<option id="option4">International</option>
-<option id="option5">Women</option>
-</select> */}
 
 
 
