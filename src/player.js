@@ -21,19 +21,20 @@ function filterTeams(key, value1, condition, value2) {
 }
 
 
-const eliteSet = filterTeams('ovr', 83, 'between', 100)
-const strongSet = filterTeams('ovr', 81,'between', 83)
-const midSet = filterTeams('ovr', 75, 'between', 81)
-const womenSet = filterTeams('gender', 'Women', 'equals')
-const internationalSet = filterTeams('gender', 'International', 'equals',)
+const elite = filterTeams('ovr', 83, 'between', 100)
+const strong = filterTeams('ovr', 81,'between', 83)
+const mid = filterTeams('ovr', 75, 'between', 81)
+const women = filterTeams('gender', 'Women', 'equals')
+const international = filterTeams('gender', 'International', 'equals',)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Lombardia FC (Inter)', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Borussia Dortmund', 'Milano (AC Milan)']
-const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Bergamo Calcio', 'Latium', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City', 'Manchester United', 'Tottenham Hotspur',]
-const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
-const international = ['England', 'Portugal', 'France', 'Germany', 'Spain', 'Netherlands', 'Argentina', 'Italy']
-const women = ['Chelsea', 'Arsenal', 'Manchester United', 'Manchester City', 'FC Barcalona', 'Olympique Lyonnais', 'Bayern Munchen', 'Real Madrid', 'Wolfsburg', 'Paris Saint Germain']
+// Archived arrays
+// const strong = ['Real Madrid', 'Manchester City', 'Liverpool', 'FC Bayern Munchen', 'FC Barcelona', 'Arsenal', 'Bayer 04 Leverkusen', 'Lombardia FC (Inter)', 'Paris Saint-Germain', 'Atletico Madrid', 'Chelsea', 'Borussia Dortmund', 'Milano (AC Milan)']
+// const mid = ['Aston Villa', 'Newcastle United', 'RB Leipzig', 'Juventus', 'Roma', 'Athletic Club', 'West Ham United', 'Bergamo Calcio', 'Latium', 'Napoli', 'Galatasaray SK', 'Fenerbahce SK', 'Girona FC', 'Crystal Palace', 'Brighton & Hove Albion', 'Fiorentina', 'Al Hilal', 'Real Sociedad', 'Sporting CP', 'PSV', 'Nottingham Forest', 'Olympique Lyonnnais', 'Wolverhampton Wanderers', 'Fulham FC', 'Olympique de Marseille', 'Sevilla FC', 'FC Porto', 'Everton', 'Al Nassr', 'Brentford', 'AFC Bournemouth', 'VFL Wolfsburg', 'Ajax', 'Southampton', 'Leicester City', 'Manchester United', 'Tottenham Hotspur',]
+// const weak = ['Leeds United', 'Inter Miami', 'Rangers FC', 'Ipswich Town', 'Burnley', 'Los Angeles FC', 'Shakhtar Donetsk', 'RCD Espanyol', 'Genoa', 'Racing Club', 'Luton Town', 'Viktoria Plzeň', 'FC Twente', 'LA Galaxy', 'Sheffield United', 'Norwich City', 'Middlesbrough', 'Sunderland', 'West Bromwich Albion', 'Cardiff City', 'FC Cincinnati', 'FC Lorient']
+// const international = ['England', 'Portugal', 'France', 'Germany', 'Spain', 'Netherlands', 'Argentina', 'Italy']
+// const women = ['Chelsea', 'Arsenal', 'Manchester United', 'Manchester City', 'FC Barcalona', 'Olympique Lyonnais', 'Bayern Munchen', 'Real Madrid', 'Wolfsburg', 'Paris Saint Germain']
 
 // Archived FC24 teams
 // const strong = ['Manchester City', 'Real Madrid', 'FC Bayern Munchen', 'FC Barcelona', 'Liverpool', 'Paris Saint-Germain', 'Atletico de Madrid', 'Inter', 'Arsenal', 'Manchester United'];
@@ -44,17 +45,39 @@ const women = ['Chelsea', 'Arsenal', 'Manchester United', 'Manchester City', 'FC
 // const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
 function viewTeams() {
-    document.getElementById('showTeams').innerHTML = `Strong: ${strong}<br><br> Mid: ${mid}<br><br> International: ${international}<br><br> Women: ${women}`
+    document.getElementById('showTeams').innerHTML = `Elite: ${elite}<br><br>Strong: ${strong}<br><br> Mid: ${mid}<br><br> International: ${international}<br><br> Women: ${women}`
 }
+
+const matchTypes = [
+    [elite, 'Elite'],
+    [strong, 'Strong'],
+    [mid, 'Mid'],
+    [international, 'International'],
+    [women, 'Women']
+]
+
+
+    const options = document.getElementById("optionDropdown");
+    matchTypes.forEach(type => {
+        const option = document.createElement("option");
+        option.innerHTML = `
+        <option>${type[1]}</option>`;
+        options.appendChild(option);
+    });
+  
+
+{/* <select id="optionDropdown">
+<option id="option1">Any</option>
+<option id="option2">Strong</option>
+<option id="option3">Mid</option>
+<option id="option4">International</option>
+<option id="option5">Women</option>
+</select> */}
+
 
 
 function matchTypeSelect(){
-    const matchTypes = [
-        [strong, 'Strong'],
-        [mid, 'Mid'],
-        [international, 'International'],
-        [women, 'Women']
-    ]
+
     let selectedType = matchTypes[Math.floor(Math.random()*matchTypes.length)]
     return selectedType
 }
@@ -107,6 +130,6 @@ function generateTeam(){
         alert('Please fill in both player names!')
     } else {
     document.getElementById('type').innerHTML = selectedType[1]
-    document.getElementById('p1team').innerHTML = `${player1} will play as:  ${team1}`
-    document.getElementById('p2team').innerHTML = `${player2} will play as:  ${team2}`
+    document.getElementById('p1team').innerHTML = `${player1} will play as:  ${team1.name}`
+    document.getElementById('p2team').innerHTML = `${player2} will play as:  ${team2.name}`
     } return `Team 1 is: ${team1} and Team 2 is: ${team2}`}
