@@ -107,13 +107,16 @@ function teamSelect(selectedType){
     return teams
 }
 
+const fallBackImg = new Image();
+fallBackImg.src = '/images/TeamImages/LilleOSC.png'
+
 function loadImage(src) {
     return new Promise((resolve) => {
         const img = new Image();
         img.src = src;
 
         img.onload = () => resolve(src);
-        img.onerror = () => resolve('/images/TeamImages/LilleOSC.png'); // fallback
+        img.onerror = () => resolve(fallBackImg.src); // fallback
     });
 }
 
