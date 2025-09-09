@@ -108,7 +108,7 @@ function teamSelect(selectedType){
 }
 
 const fallBackImg = new Image();
-fallBackImg.src = '/images/TeamImages/LilleOSC.png'
+fallBackImg.src = '/images/TeamImages/Default.png'
 
 function loadImage(src) {
     return new Promise((resolve) => {
