@@ -107,6 +107,26 @@ function teamSelect(selectedType){
     return teams
 }
 
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error(`Failed to load image: ${src}`))
+    })
+}
+
+async function showImage(src) {
+    try {
+        const img = await loadImage(src);
+    }
+
+    catch (error) {
+        console.error(error)
+    };
+}
+
+
 function generateTeam(){
     // Old Finals Override Button 
     // if (document.getElementById('finalsovr').checked ==1) {
@@ -133,13 +153,16 @@ function generateTeam(){
     let teams = teamSelect(selectedType[0])
     let team1 = teams[0]
     let team2 = teams[1]
+    let team1img = `/images/TeamImages/${team1.image}`
+    let team2img = `/images/TeamImages/${team2.image}`
     let player1 = document.getElementById('p1name').value
     let player2 = document.getElementById('p2name').value
     if (player1 == null || player1 == '' || player2 == null || player2 == '' ){
         alert('Please fill in both player names!')
     } else {
-    document.getElementById('type').innerHTML = selectedType[1]
-    document.getElementById('p1team').innerHTML = `<p>${player1} will play as:  ${team1.name}</p><img src='/images/TeamImages/${team1.image}'>`
+        showImage(team1img);
+        showImage(team2img);
+    document.getElementById('type').innerHTML = selectedType[1];
+    document.getElementById('p1team').innerHTML = `<p>${player1} will play as:  ${team1.name}</p><img src=${team1.image}'>`
     document.getElementById('p2team').innerHTML = `<p>${player2} will play as:  ${team2.name}</p><img src='/images/TeamImages/${team2.image}'>`
-    console.log(team1.image)
     } return `Team 1 is: ${team1} and Team 2 is: ${team2}`}
