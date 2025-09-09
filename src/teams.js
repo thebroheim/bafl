@@ -41,7 +41,7 @@ const teams = [
     { name: 'Sevilla FC', ovr: 76, star: 4, gender: 'Men' },
 
     //Bundesliga
-    { name: 'FC Bayern Munchen', ovr: 84, star: 5, gender: 'Men', image: 'FCBayernMunchen.png'},
+    { name: 'FC Bayern Munchen', ovr: 84, star: 5, gender: 'Men'},
     { name: 'Bayer 04 Leverkusen', ovr: 83, star: 5, gender: 'Men'},
     { name: 'Borussia Dortmund', ovr: 81, star: 4.5, gender: 'Men'},
     { name: 'RB Leipzig', ovr: 80, star: 4.5, gender: 'Men' },
