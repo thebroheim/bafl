@@ -16,8 +16,6 @@
 // const euros = ['Belgium', 'Denmark', 'Croatia', 'Czechia', 'England', 'France', 'Germany', 'Hungary', 'Italy', 'Netherlands', 'Poland', 'Portugal', 'Spain'];
 
 
-
-
 function filterTeams(key, value1, condition, value2) {
     const teams = teamSet;
     const filteredTeams = [];
@@ -121,8 +119,8 @@ function generateTeam(){
 
     // New Option Select Drop Down For Match Type
     let optionSelect = document.getElementById('optionDropdown').value;
-    console.log('The selected option is: ', optionSelect)
-    console.log(typeof optionSelect)
+    // console.log('The selected option is: ', optionSelect)
+    // console.log(typeof optionSelect)
 
     if (optionSelect !== 'Any') {
         selectedType[0] = eval(optionSelect.toLowerCase());
@@ -141,6 +139,7 @@ function generateTeam(){
         alert('Please fill in both player names!')
     } else {
     document.getElementById('type').innerHTML = selectedType[1]
-    document.getElementById('p1team').innerHTML = `${player1} will play as:  ${team1.name}`
-    document.getElementById('p2team').innerHTML = `${player2} will play as:  ${team2.name}`
+    document.getElementById('p1team').innerHTML = `<p>${player1} will play as:  ${team1.name}</p><img src='/images/TeamImages/${team1.image}'>`
+    document.getElementById('p2team').innerHTML = `<p>${player2} will play as:  ${team2.name}</p><img src='/images/TeamImages/${team2.image}'>`
+    console.log(team1.image)
     } return `Team 1 is: ${team1} and Team 2 is: ${team2}`}

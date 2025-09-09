@@ -1,12 +1,12 @@
-window.teamSet = [
+const teams = [
     // Premier League
-    { name: 'Manchester City', ovr: 85, star: 5, gender: 'Men'},
-    { name: 'Liverpool', ovr: 84, star: 5, gender: 'Men'},
-    { name: 'Arsenal', ovr: 83, star: 5, gender: 'Men'},
+    { name: 'Manchester City', ovr: 85, star: 5, gender: 'Men' },
+    { name: 'Liverpool', ovr: 84, star: 5, gender: 'Men' },
+    { name: 'Arsenal', ovr: 83, star: 5, gender: 'Men' },
     { name: 'Tottenham Hotspur', ovr: 81, star: 4.5, gender: 'Men' },
     { name: 'Aston Villa', ovr: 81, star: 4.5, gender: 'Men' },
     { name: 'Newcastle United', ovr: 81, star: 4.5, gender: 'Men' },
-    { name: 'Chelsea', ovr: 80, star: 4.5, gender: 'Men'},
+    { name: 'Chelsea', ovr: 80, star: 4.5, gender: 'Men' },
     { name: 'Manchester United', ovr: 80, star: 4.5, gender: 'Men' },
     { name: 'West Ham United', ovr: 78, star: 4, gender: 'Men' },
     { name: 'Crystal Palace', ovr: 78, star: 4, gender: 'Men' },
@@ -41,7 +41,7 @@ window.teamSet = [
     { name: 'Sevilla FC', ovr: 76, star: 4, gender: 'Men' },
 
     //Bundesliga
-    { name: 'FC Bayern Munchen', ovr: 84, star: 5, gender: 'Men'},
+    { name: 'FC Bayern Munchen', ovr: 84, star: 5, gender: 'Men', image: 'FCBayernMunchen.png'},
     { name: 'Bayer 04 Leverkusen', ovr: 83, star: 5, gender: 'Men'},
     { name: 'Borussia Dortmund', ovr: 81, star: 4.5, gender: 'Men'},
     { name: 'RB Leipzig', ovr: 80, star: 4.5, gender: 'Men' },
@@ -110,3 +110,8 @@ window.teamSet = [
 ];
 
 // {name: '',ovr: , star: }
+
+window.teamSet = teams.map(team => ({
+    ...team,
+    image: team.name.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+  }));

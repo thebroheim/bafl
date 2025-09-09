@@ -21,24 +21,21 @@ function filterTeams(key, value1, condition, value2) {
 const elite = filterTeams('ovr', 84, 'between', 100)
 const strong = filterTeams('ovr', 81, 'between', 84)
 const mid = filterTeams('ovr', 77, 'between', 81)
-const weak = filterTeams('ovr', 70, 'between', 77)
+const weak = filterTeams('ovr', 70, 'between', 76)
 
 //Put players in order of rank. Best = Top, Worst = Bottom
 const players = [
     'Sam',
-    'Lei',
     'Dan',
-    'Alex', 
-    'Lachlan',
     'Brent',
-    'Dru',
+    'Oscar', 
     'Lachy W',
-    'Jude',
-    'John',
+    'Dru',
+    'Bass',
+    'Lachlan',
     'MJ',
-    'Ricardo',
-    'Justin',
-    'Mac'
+    'Jude',
+    'Matthew',
 ]
 
 //Selects the team randomly from the type
@@ -55,7 +52,7 @@ function assignTeams(players){
 
         //Select the type
         let type = selectType(players, player)
-
+        console.log(player, {type})
         //Select the team
         let team = selectTeam(type)
 
@@ -116,7 +113,7 @@ function displayTeams(assignedTeams){
             let list = document.getElementById("myList");
             let li = document.createElement("li");
             
-            li.innerText = `${arr[0].playerName} will play as ${arr[0].teamName.name} OVR: ${arr[0].teamName.ovr}`;
+            li.innerText = `${arr[0].playerName} will play as ${arr[0].teamName.name}`;
             console.log(arr[0])
 
         list.appendChild(li)
