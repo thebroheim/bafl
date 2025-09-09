@@ -108,61 +108,52 @@ function teamSelect(selectedType){
 }
 
 function loadImage(src) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const img = new Image();
         img.src = src;
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error(`Failed to load image: ${src}`))
-    })
+
+        img.onload = () => resolve(src);
+        img.onerror = () => resolve('/images/TeamImages/LilleOSC.png'); // fallback
+    });
 }
 
-async function showImage(src) {
-    try {
-        const img = await loadImage(src);
-    }
-
-    catch (error) {
-        console.error(error)
-    };
-}
-
-
-function generateTeam(){
-    // Old Finals Override Button 
-    // if (document.getElementById('finalsovr').checked ==1) {
-    //     selectedType[0] = strong
-    //     selectedType[1] ='Strong'
-    // } 
-    // else {
-    //     selectedType = matchTypeSelect()
-    // }
-
-    // New Option Select Drop Down For Match Type
+function generateTeam() {
     let optionSelect = document.getElementById('optionDropdown').value;
-    // console.log('The selected option is: ', optionSelect)
-    // console.log(typeof optionSelect)
 
     if (optionSelect !== 'Any') {
         selectedType[0] = eval(optionSelect.toLowerCase());
-        selectedType[1] = `${optionSelect}`
+        selectedType[1] = `${optionSelect}`;
     } else {
-        selectedType = matchTypeSelect()
+        selectedType = matchTypeSelect();
     }
 
+    let teams = teamSelect(selectedType[0]);
+    let team1 = teams[0];
+    let team2 = teams[1];
+    let team1img = `/images/TeamImages/${team1.image}`;
+    let team2img = `/images/TeamImages/${team2.image}`;
+    let player1 = document.getElementById('p1name').value;
+    let player2 = document.getElementById('p2name').value;
 
-    let teams = teamSelect(selectedType[0])
-    let team1 = teams[0]
-    let team2 = teams[1]
-    let team1img = `/images/TeamImages/${team1.image}`
-    let team2img = `/images/TeamImages/${team2.image}`
-    let player1 = document.getElementById('p1name').value
-    let player2 = document.getElementById('p2name').value
-    if (player1 == null || player1 == '' || player2 == null || player2 == '' ){
-        alert('Please fill in both player names!')
-    } else {
-        showImage(team1img);
-        showImage(team2img);
-    document.getElementById('type').innerHTML = selectedType[1];
-    document.getElementById('p1team').innerHTML = `<p>${player1} will play as:  ${team1.name}</p><img src=${team1.image}'>`
-    document.getElementById('p2team').innerHTML = `<p>${player2} will play as:  ${team2.name}</p><img src='/images/TeamImages/${team2.image}'>`
-    } return `Team 1 is: ${team1} and Team 2 is: ${team2}`}
+    if (!player1 || !player2) {
+        alert('Please fill in both player names!');
+        return;
+    }
+
+    async function showImage() {
+        const [team1src, team2src] = await Promise.all([
+            loadImage(team1img),
+            loadImage(team2img)
+        ]);
+
+        document.getElementById('type').innerHTML = selectedType[1];
+        document.getElementById('p1team').innerHTML = 
+            `<p>${player1} will play as: ${team1.name}</p><img src='${team1src}'>`;
+        document.getElementById('p2team').innerHTML = 
+            `<p>${player2} will play as: ${team2.name}</p><img src='${team2src}'>`;
+    }
+
+    showImage();
+
+    return `Team 1 is: ${team1} and Team 2 is: ${team2}`;
+}
