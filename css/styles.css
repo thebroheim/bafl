@@ -105,17 +105,10 @@ a:hover {
 }
 
 
-#teamspicked {
+#teamspicked div {
+    /* border: solid blue; */
     display: flex;
-    flex-direction: column;
-    gap: 0px;
-    justify-content: center;
-    align-items: center;
-}
-
-#teamspicked img {
-    margin: auto;
-    
+    gap: 20px;
 }
 
 #btn1 {
