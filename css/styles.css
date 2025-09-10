@@ -106,7 +106,6 @@ a:hover {
 
 
 #teamspicked {
-    border: solid blue;
     display: flex;
     flex-direction: column;
     gap: 0px;
@@ -115,7 +114,6 @@ a:hover {
 }
 
 #teamspicked img {
-    border: #24e3fd solid;
     margin: auto;
     
 }
