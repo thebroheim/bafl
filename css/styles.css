@@ -107,7 +107,8 @@ a:hover {
 
 #teamspicked div {
     /* border: solid blue; */
-    display: flex;
+    display: grid;
+     grid-template-columns: 0.5fr 1fr 0.5fr;
     gap: 20px;
 }
 
