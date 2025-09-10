@@ -102,13 +102,22 @@ a:hover {
 
 .teams {
     width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
-.teams p {
+
+#teamspicked {
+    border: solid blue;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+#teamspicked img {
+    border: #24e3fd solid;
+    margin: auto;
+    
 }
 
 #btn1 {

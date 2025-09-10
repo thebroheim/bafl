@@ -148,12 +148,28 @@ function generateTeam() {
             loadImage(team1img),
             loadImage(team2img)
         ]);
+        let container = document.getElementById('teamspicked');
+        let div1 = document.createElement("div");
+        let div2 = document.createElement("div");
+
+        
+
+        div1.className= 'playerDiv';
+        div2.className = 'playerDiv';
 
         document.getElementById('type').innerHTML = selectedType[1];
-        document.getElementById('p1team').innerHTML = 
-            `<p>${player1} will play as: ${team1.name}</p><img src='${team1src}'>`;
-        document.getElementById('p2team').innerHTML = 
-            `<p>${player2} will play as: ${team2.name}</p><img src='${team2src}'>`;
+
+        div1 = `<p>${player1} will play as: ${team1.name}</p><img src='${team1src}'>`;
+
+        div2 = `<p>${player2} will play as: ${team2.name}</p><img src='${team2src}'>`;
+        
+        container.innerHTML = `${div1}${div2}`
+
+        console.log(container)
+
+
+
+        
     }
 
     showImage();
