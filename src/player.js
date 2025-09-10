@@ -154,14 +154,13 @@ function generateTeam() {
 
         
 
-        div1.className= 'playerDiv';
-        div2.className = 'playerDiv';
+
 
         document.getElementById('type').innerHTML = selectedType[1];
 
-        div1 = `<p>${player1} will play as: ${team1.name}</p><img src='${team1src}'>`;
+        div1 = `<div><h4>${player1}</h4> <p>${team1.name}</p><img src='${team1src}'></div>`;
 
-        div2 = `<p>${player2} will play as: ${team2.name}</p><img src='${team2src}'>`;
+        div2 = `<div><h4>${player2}</h4> <p>${team2.name}</p><img src='${team2src}'></div>`;
         
         container.innerHTML = `${div1}${div2}`
 
