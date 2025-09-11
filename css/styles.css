@@ -96,6 +96,10 @@ a:hover {
     justify-content: center;
 }
 
+input {
+    font-size: 20px;
+}
+
 #buttons {
     display: flex;
     flex-direction: column;
