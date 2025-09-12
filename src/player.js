@@ -43,8 +43,6 @@ const mid = filterTeams('ovr', 75, 'between', 81)
 const women = filterTeams('gender', 'Women', 'equals')
 const international = filterTeams('gender', 'International', 'equals',)
 
-
-
 const matchTypes = [
     [elite, 'Elite'],
     [strong, 'Strong'],
