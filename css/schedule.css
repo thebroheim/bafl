@@ -1,0 +1,14 @@
+#schedule {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.match {
+    padding: 10px;
+    background-color: rgb(27, 27, 27);
+    border-radius: 5%;
+    width: 40%;
+}
