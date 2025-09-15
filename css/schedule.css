@@ -6,9 +6,36 @@
     gap: 20px;
 }
 
+.match img {
+    max-width: 70px;
+    /* justify-self: flex-end; */
+}
 .match {
     padding: 10px;
     background-color: rgb(27, 27, 27);
+    border: #24e3fd solid;
+    border-width: 2px;
     border-radius: 5%;
-    width: 40%;
+    max-width: 500px;
+}
+
+#teams {
+    display: flex;
+    flex-direction: column;
+}
+
+.playerTeams {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.revealBtn {
+    background-color: rgb(27, 27, 27);
+    border: solid #24e3fd; 
+    border-width: 1px;
+    color: white;
+    width: 30%;
+    align-self: center;
 }

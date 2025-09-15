@@ -1,4 +1,4 @@
-const players = [
+const playersdiv1 = [
     {name: 'Sam', wins: 0, losses: 0, draws: 0},
     {name: 'Lachlan', wins: 0, losses: 0, draws: 0},
     {name: 'Alex', wins: 0, losses: 0, draws: 0},
@@ -67,9 +67,10 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
 
 let matchId = 0
 
-function createMatches(players){
-    
+function createMatches(playersdiv1){
+    let players = playersdiv1
 for (let i = 0; i<players.length; i++){
+
     for (let x = 0; x < players.length; x++){
         if(x === i){
             continue;
@@ -98,8 +99,17 @@ matches.forEach(match => {
     div.innerHTML = `
     <h3>Match ${matchId}</h3>
     <h4>${match.type}</h4>
-      <p>${match.player1.name} will play as ${match.team1.name}</p>
-      <p>${match.player2.name} will play as ${match.team2.name}</p>
+    <div id= "teams">
+        <div class= 'playerTeams'>
+            <p>${match.player1.name} will play as:</p> <div class='teamInfo' style='display: none'><p>${match.team1.name}</p><img src="/images/TeamImages/${match.team1.image}"></div>
+        </div>
+        
+        <div class= 'playerTeams'>
+            <p>${match.player2.name} will play as:</p> <div class='teamInfo' style='display: none'><p>${match.team2.name}</p><img src="/images/TeamImages/${match.team2.image}"</div>
+        </div>
+    </div>
+        <button class="revealBtn">Reveal Teams</button>
+      
     `;
   
     container.appendChild(div);
@@ -111,4 +121,15 @@ return matches
 
 }
 
-createMatches(players)
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("revealBtn")) {
+        const matchDiv = e.target.closest(".match"); 
+        const teams = matchDiv.querySelectorAll(".teamInfo");
+        teams.forEach(team => {
+            team.style.display = "flex";
+            team.style.gap = "10px";
+        });
+    }
+});
+
+createMatches(playersdiv1)
