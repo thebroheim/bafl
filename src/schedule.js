@@ -1,35 +1,51 @@
-const playersdiv1 = [
-    {name: 'Sam', wins: 0, losses: 0, draws: 0},
-    {name: 'Lachlan', wins: 0, losses: 0, draws: 0},
-    {name: 'Alex', wins: 0, losses: 0, draws: 0},
-    {name: 'Oscar', wins: 0, losses: 0, draws: 0},
-    {name: 'Lachy W', wins: 0, losses: 0, draws: 0},
-    {name: 'MJ', wins: 0, losses: 0, draws: 0},
-];
+let players = []
 
-let matches = []
+  // Your API key (same one you already have in your project)
+  const API_KEY = "AIzaSyDVtoBOmEt28FAgu0LAstQ7kI1eR7EmzZY";
 
-function filterTeams(key, value1, condition, value2) {
-    const teams = teamSet;
-    const filteredTeams = [];
+  // Discovery doc for Sheets API
+  const DISCOVERY_DOC = "https://sheets.googleapis.com/$discovery/rest?version=v4";
 
-    if (condition === 'between') {
-        teams.forEach(element => {
-            if (element[key] >= value1 && element[key] < value2 && element.gender == 'Men') {
-                filteredTeams.push(element);
-            }
-        });
-    } else if (condition === 'equals') {
-        teams.forEach(element => {
-            if (element[key] === value1) {
-                filteredTeams.push(element);
-            }
-        });
-    }
-    return filteredTeams;
+  // The spreadsheet ID and range you want to read
+  const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
+  const RANGE = "Players!A1:E5";
+
+  function convertToObjects(values) {
+  const headers = values[0]; // first row is the keys
+  return values.slice(1).map(row => {
+    let obj = {};
+    headers.forEach((key, i) => {
+      obj[key] = row[i]; // assign property from header → value
+    });
+    return obj;
+  });
 }
 
 
+
+async function getPlayers() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: RANGE,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+// Initiate page
+async function init() {
+  await gapi.client.init({
+    apiKey: API_KEY,
+    discoveryDocs: [DISCOVERY_DOC],
+  });
+
+  const players = await getPlayers(); 
+  const playersdiv1 = players
+
+let matches = []
 const elite = filterTeams('ovr', 83, 'between', 100)
 const strong = filterTeams('ovr', 81,'between', 83)
 const mid = filterTeams('ovr', 75, 'between', 81)
@@ -133,3 +149,35 @@ document.addEventListener("click", function(e) {
 });
 
 createMatches(playersdiv1)
+
+
+
+}
+
+  gapi.load("client", init);
+
+//   Begin
+
+
+
+function filterTeams(key, value1, condition, value2) {
+    const teams = teamSet;
+    const filteredTeams = [];
+
+    if (condition === 'between') {
+        teams.forEach(element => {
+            if (element[key] >= value1 && element[key] < value2 && element.gender == 'Men') {
+                filteredTeams.push(element);
+            }
+        });
+    } else if (condition === 'equals') {
+        teams.forEach(element => {
+            if (element[key] === value1) {
+                filteredTeams.push(element);
+            }
+        });
+    }
+    return filteredTeams;
+}
+
+
