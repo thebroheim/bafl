@@ -1,9 +1,45 @@
-#schedule {
+#table {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
+}
+
+table {
+  text-align: center;
+  border: #24e3fd solid 2px;
+  border-collapse: collapse;
+  width: 400px;
+}
+
+th,
+td {
+	border: 1px solid rgb(119, 119, 119);
+}
+
+tr {
+	border-bottom: 1px solid;
+}
+
+#schedule {
+    display: flex;
+    flex-direction: row;
     margin-left: 20px;
     margin-top: 20px;
     gap: 20px;
+}
+
+#div1matches {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#div2matches {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .match img {

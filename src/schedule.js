@@ -6,8 +6,8 @@
 
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:E3";
-  const matchesRange = "Matches!A1:G22";
+  const playersRange = "Players!A1:I8";
+  const matchesRange = "Matches!A1:H22";
 
 
 
@@ -55,8 +55,7 @@ async function init() {
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
-  const players = await getPlayers(); 
-  const playersdiv1 = players
+  let players = await getPlayers(); 
 
   const matchesFinal = await getMatches()
   console.log(matchesFinal)
@@ -64,11 +63,64 @@ async function init() {
 
 
 
+function sortPlayers() {
+  players.sort((a, b) => b.points - a.points); // highest points first
+  return players;
+}
+
+let sortedPlayers = sortPlayers()
+
+let playersDiv1 = sortedPlayers.filter(player => player.div === '1');
+let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
+
+
+console.log(playersDiv1)
+console.log(playersDiv2)
+// Print Tables for Div 1 and 2
+playersDiv1.forEach(player =>{
+  let container = document.getElementById('div1Table')
+  const row = document.createElement("tr")
+  row.innerHTML = `
+      <th scope="row">${player.name}</th>
+      <td>${player.wins}</td>
+      <td>${player.draws}</td>
+      <td>${player.losses}</td>
+      <td>${player.goalsfor}</td>
+      <td>${player.goalsagainst}</td>
+      <td>${player.goaldifference}</td>
+      <td>${player.points}</td>`
+
+  container.appendChild(row)
+
+})
+
+playersDiv2.forEach(player =>{
+  let container = document.getElementById('div2Table')
+  const row = document.createElement("tr")
+  row.innerHTML = `
+      <th scope="row">${player.name}</th>
+      <td>${player.wins}</td>
+      <td>${player.draws}</td>
+      <td>${player.losses}</td>
+      <td>${player.goalsfor}</td>
+      <td>${player.goalsagainst}</td>
+      <td>${player.goaldifference}</td>
+      <td>${player.points}</td>`
+
+  container.appendChild(row)
+
+})
+
+
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
-const container = document.getElementById("schedule")
+
 let importData = []
 matchesFinal.forEach(match => {
-    const div = document.createElement("div");
+  let container = document.getElementById("div1matches")
+  const div = document.createElement("div")
+  if(match.div === '2'){
+    container= document.getElementById('div2matches')
+  }
     let team1img = match.team1.replace(/[^a-zA-Z0-9]/g, '') + '.png'
     let team2img = match.team2.replace(/[^a-zA-Z0-9]/g, '') + '.png'
     let show1 = ''
@@ -98,7 +150,6 @@ matchesFinal.forEach(match => {
         
       
     `;
-  
     container.appendChild(div);
 
 
