@@ -6,7 +6,7 @@
 
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:I8";
+  const playersRange = "Players!A1:I17";
   const matchesRange = "Matches!A1:H22";
 
 
@@ -22,7 +22,10 @@
   });
 }
 
-
+let divisiontables = document.getElementById('table');
+divisiontables.style.display = 'none'
+let schedules = document.getElementById('schedule')
+schedules.style.display = 'none'
 
 async function getPlayers() {
   const response = await gapi.client.sheets.spreadsheets.values.get({
@@ -152,7 +155,8 @@ matchesFinal.forEach(match => {
     `;
     container.appendChild(div);
 
-
+    divisiontables.style.display = 'flex'
+    schedules.style.display = 'flex'
   });
 //   console.log(importData)
 }

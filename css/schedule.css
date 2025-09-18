@@ -10,7 +10,7 @@ table {
   text-align: center;
   border: #24e3fd solid 2px;
   border-collapse: collapse;
-  width: 400px;
+  width: 90%;
 }
 
 th,
@@ -28,6 +28,8 @@ tr {
     margin-left: 20px;
     margin-top: 20px;
     gap: 20px;
+    /* align-items: center; */
+    justify-content: center;
 }
 
 #div1matches {
@@ -75,3 +77,15 @@ tr {
     width: 30%;
     align-self: center;
 }
+
+/* Media Queries */
+
+@media (max-width: 800px){
+    #schedule {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+
+    }
+}
+    
