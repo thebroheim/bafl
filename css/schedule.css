@@ -1,8 +1,15 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #table {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%;
     
 }
 
@@ -10,7 +17,7 @@ table {
   text-align: center;
   border: #24e3fd solid 2px;
   border-collapse: collapse;
-  width: 90%;
+  width: 100%;
 }
 
 th,
@@ -25,23 +32,27 @@ tr {
 #schedule {
     display: flex;
     flex-direction: row;
-    margin-left: 20px;
-    margin-top: 20px;
+    /* margin-left: 20px;
+    margin-top: 20px; */
     gap: 20px;
     /* align-items: center; */
-    justify-content: center;
+    /* align-items: center; */
+    width: 90%;
 }
+
 
 #div1matches {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 50%;
 }
 
 #div2matches {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 50%;
 }
 
 .match img {
@@ -54,7 +65,8 @@ tr {
     border: #24e3fd solid;
     border-width: 2px;
     border-radius: 5%;
-    max-width: 500px;
+    /* max-width: 500px;
+    min-width: 350px; */
 }
 
 #teams {
@@ -87,5 +99,16 @@ tr {
         width: 90%;
 
     }
+
+    #div1matches {
+    width: 100%;
+}
+
+#div2matches {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
 }
     
