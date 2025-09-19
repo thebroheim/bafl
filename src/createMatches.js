@@ -1,15 +1,23 @@
-let playersdiv1 = [
-    "Sam",
-    "Lachlan",
-    "Alex",
-    "Oscar",
-    "Lachy W",
-    "MJ",
-    "Timothy"
+let playersdiv2 = [
+  "Alex",
+  "Bass",
+  "Brent",
+  "Dan",
+  "Dru",
+  "Lachy W",
+  "Oscar",
+  "Sam"
 ]
 
-let playersdiv2 = [
-    
+let playersdiv1 = [
+  "Ben",
+  "Jade",
+  "Jude",
+  "Lachlan",
+  "Matthew",
+  "MJ",
+  "Ricardo",
+  "Yasin"
 ]
 
 function filterTeams(key, value1, condition, value2) {
@@ -170,9 +178,9 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 }
 
 
-createMatches(playersdiv1)
-let finalMatches = reshuffleMatches(matches)
-// console.log(finalMatches)
+// createMatches(playersdiv1)
+// let finalMatches = reshuffleMatches(matches)
+// // console.log(finalMatches)
 
 // const data = finalMatches;
 // let csvContent = "data:text/csv;charset=utf-8," + data.map(e => e.join(",")).join("\n");

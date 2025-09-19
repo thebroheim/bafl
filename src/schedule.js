@@ -7,7 +7,7 @@
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
   const playersRange = "Players!A1:I17";
-  const matchesRange = "Matches!A1:H22";
+  const matchesRange = "Players!L1:U58";
 
 
 
@@ -134,7 +134,7 @@ matchesFinal.forEach(match => {
 
     if (match.reveal === "TRUE"){
       show1 = `<div class='teamInfo' style='display: flex; gap: 10px'><p>${match.team1}</p><img src="/images/TeamImages/${team1img}"></div>`
-      show2 = `<div class='teamInfo'style='display: flex; gap: 10px'><p>${match.team2}</p><img src="/images/TeamImages/${team2img}"</div>`
+      show2 = `<div class='teamInfo' style='display: flex; gap: 10px'><p>${match.team2}</p><img src="/images/TeamImages/${team2img}"></div>`
     }
 
     div.className = 'match'
@@ -143,11 +143,11 @@ matchesFinal.forEach(match => {
     <h4>${match.type}</h4>
     <div id= "teams">
         <div class= 'playerTeams'>
-            <p>${match.player1} will play as:</p> ${show1}
+            <p>${match.player1}</p><h2> ${match.p1score}</h2> ${show1}
         </div>
         
         <div class= 'playerTeams'>
-            <p>${match.player2} will play as:</p> ${show2}
+            <p>${match.player2}</p> <h2> ${match.p2score}</h2>${show2}
         </div>
     </div>
         
