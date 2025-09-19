@@ -143,11 +143,11 @@ matchesFinal.forEach(match => {
     <h4>${match.type}</h4>
     <div id= "teams">
         <div class= 'playerTeams'>
-            <p>${match.player1}</p><h2> ${match.p1score}</h2> ${show1}
+            <h2>${match.player1}</h2><h2> ${match.p1score}</h2> ${show1}
         </div>
         
         <div class= 'playerTeams'>
-            <p>${match.player2}</p> <h2> ${match.p2score}</h2>${show2}
+            <h2>${match.player2}</h2> <h2> ${match.p2score}</h2>${show2}
         </div>
     </div>
         
