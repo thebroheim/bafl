@@ -140,14 +140,14 @@ matchesFinal.forEach(match => {
     div.className = 'match'
     div.innerHTML = `
     <h3>Match ${match.matchId}</h3>
-    <h4>${match.type}</h4>
+    <h3>${match.type}</h3>
     <div id= "teams">
         <div class= 'playerTeams'>
-            <h2>${match.player1}</h2><h2> ${match.p1score}</h2> ${show1}
+            <h4>${match.player1}</h4><h2> ${match.p1score}</h2> ${show1}
         </div>
         
         <div class= 'playerTeams'>
-            <h2>${match.player2}</h2> <h2> ${match.p2score}</h2>${show2}
+            <h4>${match.player2}</h4> <h2> ${match.p2score}</h2>${show2}
         </div>
     </div>
         
@@ -160,6 +160,38 @@ matchesFinal.forEach(match => {
   });
 //   console.log(importData)
 }
+
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("buttonDiv")) {
+      const buttons = document.querySelectorAll('.buttonDiv');
+      buttons.forEach(button => {
+        button.style.backgroundColor = 'black';
+      })
+      e.target.style.backgroundColor = 'rgba(66, 66, 66, 1)';
+      let div = e.target.innerHTML;
+      let div1Content = [document.getElementById('tableDiv1'), document.getElementById('div1matches')]
+      let div2Content = [document.getElementById('tableDiv2'), document.getElementById('div2matches')]
+      switch (div) {
+        case "Div 1":
+          div1Content[0].style.display = "flex",
+          div1Content[1].style.display = "flex", div1Content[1].style.width = "100%",
+          div2Content[0].style.display = "none",
+          div2Content[1].style.display = "none";
+          break;
+        case "Both":
+          div1Content[0].style.display = "flex",
+          div1Content[1].style.display = "flex",
+          div2Content[0].style.display = "flex",
+          div2Content[1].style.display = "flex";
+          break;
+        case "Div 2":
+          div1Content[0].style.display = "none",
+          div1Content[1].style.display = "none", div2Content[1].style.width = "100%",
+          div2Content[0].style.display = "flex",
+          div2Content[1].style.display = "flex";
+      }
+    }})
+
 
 // document.addEventListener("click", function(e) {
 //     if (e.target.classList.contains("revealBtn")) {

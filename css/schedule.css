@@ -4,6 +4,22 @@ body {
     align-items: center;
 }
 
+#buttonsDivs {
+    display: flex;
+    margin-top: 20px;
+}
+
+button {
+        background-color: black;
+        color: #ffffff;
+        width: 120px;
+        height: 40px;
+}
+
+#bothButton{
+    background-color: rgba(66, 66, 66, 1);
+}
+
 #table {
     margin-top: 20px;
     display: flex;
@@ -18,6 +34,16 @@ table {
   border: #24e3fd solid 2px;
   border-collapse: collapse;
   width: 100%;
+}
+
+#tableDiv1 {
+    width: 100%;
+    flex-direction: column;
+}
+
+#tableDiv2 {
+    width: 100%;
+    flex-direction: column;
 }
 
 th,
