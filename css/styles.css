@@ -279,9 +279,9 @@ input {
 @media (max-width: 800px){
     header {
         /* display: none; */
-        flex-direction: column;
+        /* flex-direction: column; */
         gap: 0px;
-        font-size: 10px;
+        font-size: 9px;
         padding-top: 0px;
         padding-bottom: 0px;
         position: relative;
@@ -290,8 +290,13 @@ input {
 
     #navList {
         gap: 0px;
+        /* width: 90%; */
     }
 
+    #navList h1{
+        flex-shrink: 2;
+    
+    }
     .function {
         flex-direction: column;
         width: 78%;
@@ -309,6 +314,7 @@ input {
     header img {
         height: 50px;
         width: 50px;
+        margin-right: 0px;
     }
 
     #tables {
