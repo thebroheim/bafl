@@ -17,7 +17,7 @@
 
 
 function filterTeams(key, value1, condition, value2) {
-    const teams = teamSet;
+    const teams = teamSetFC25;
     const filteredTeams = [];
 
     if (condition === 'between') {
