@@ -32,7 +32,6 @@ button {
 table {
   text-align: center;
   border: #24e3fd solid 2px;
-  border-collapse: collapse;
   width: 100%;
 }
 
@@ -130,6 +129,10 @@ tr {
 
     #div1matches {
     width: 100%;
+}
+
+#bothButton {
+    display: none;
 }
 
 #div2matches {

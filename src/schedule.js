@@ -180,9 +180,9 @@ document.addEventListener("click", function(e) {
           break;
         case "Both":
           div1Content[0].style.display = "flex",
-          div1Content[1].style.display = "flex",
+          div1Content[1].style.display = "flex", div1Content[1].style.width = "50%",
           div2Content[0].style.display = "flex",
-          div2Content[1].style.display = "flex";
+          div2Content[1].style.display = "flex", div2Content[1].style.width = "50%";
           break;
         case "Div 2":
           div1Content[0].style.display = "none",
