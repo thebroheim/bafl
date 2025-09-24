@@ -67,8 +67,13 @@ async function init() {
 
 
 function sortPlayers() {
-  players.sort((a, b) => b.points - a.points); // highest points first
-  return players;
+  players.sort((a, b) => {
+    if (a.points !== b.points){
+      return b.points - a.points;
+    }
+    return b.goaldifference - a.goaldifference;
+  })
+  return players
 }
 
 let sortedPlayers = sortPlayers()

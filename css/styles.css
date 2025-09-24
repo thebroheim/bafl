@@ -163,15 +163,19 @@ input {
 
 #showTeams {
     display: flex;
-    gap: 50px;
+    gap: 10px;
     padding: 50px;
     padding-top: 10px;
-    max-height: 350px;
-    overflow-y: scroll;
+}
+#showTeams h3 {
+    overflow-y: auto;
+    font-size: 16px;
+    max-height: 500px;
+    font-weight: bold;
 }
 
 #showTeams p{
-    font-size: 10pt;
+    font-size: 9pt;
     line-height: 95%;
 }
 
