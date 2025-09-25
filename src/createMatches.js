@@ -1,4 +1,4 @@
-let playersdiv2 = [
+let playersdiv1 = [
   "Alex",
   "Bass",
   "Brent",
@@ -9,7 +9,7 @@ let playersdiv2 = [
   "Sam"
 ]
 
-let playersdiv1 = [
+let playersdiv2 = [
   "Ben",
   "Jade",
   "Jude",
@@ -21,7 +21,7 @@ let playersdiv1 = [
 ]
 
 function filterTeams(key, value1, condition, value2) {
-    const teams = teamSet;
+    const teams = teamSetFC25;
     const filteredTeams = [];
 
     if (condition === 'between') {
@@ -78,9 +78,9 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
 }
 
 let matchId = 0
-let matches = []
-function createMatches(playersdiv1){
-    let players = playersdiv1
+function createMatches(div){
+  let matches = []
+    let players = div
     let matchId = 0
 for (let i = 0; i<players.length; i++){
 
@@ -101,6 +101,7 @@ for (let i = 0; i<players.length; i++){
     let match = [selectedType[1], players[i], players[x], teams[0].name, teams[1].name]
     matches.push(match)
     }}
+    return matches
 }
 
 function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 } = {}) {
@@ -178,15 +179,18 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 }
 
 
-// createMatches(playersdiv1)
-// let finalMatches = reshuffleMatches(matches)
+// let div1matches = createMatches(playersdiv1)
+// let div2matches = createMatches(playersdiv2)
+
+// let finaldiv1Matches = reshuffleMatches(div1matches)
+// let finaldiv2Matches = reshuffleMatches(div2matches)
 // // console.log(finalMatches)
+// let finalMatches = finaldiv1Matches.concat(finaldiv2Matches)
 
 // const data = finalMatches;
 // let csvContent = "data:text/csv;charset=utf-8," + data.map(e => e.join(",")).join("\n");
 
-// const btn = document.createElement("button");
-// btn.innerText = "Download CSV";
+// const btn = document.getElementById('downloadCSV')
 
 // btn.addEventListener("click", () => {
 //   const encodedUri = encodeURI(csvContent);
