@@ -1,24 +1,58 @@
-let playersdiv1 = [
-  "Alex",
-  "Bass",
-  "Brent",
-  "Dan",
-  "Dru",
-  "Lachy W",
-  "Oscar",
-  "Sam"
-]
+// Your API key (same one you already have in your project)
+  const API_KEY = "AIzaSyDVtoBOmEt28FAgu0LAstQ7kI1eR7EmzZY";
 
-let playersdiv2 = [
-  "Ben",
-  "Jade",
-  "Jude",
-  "Lachlan",
-  "Matthew",
-  "MJ",
-  "Ricardo",
-  "Yasin"
-]
+  // Discovery doc for Sheets API
+  const DISCOVERY_DOC = "https://sheets.googleapis.com/$discovery/rest?version=v4";
+
+  // The spreadsheet ID and range you want to read
+  const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
+  const playersRange = "Players!A1:I17";
+
+  function convertToObjects(values) {
+    const headers = values[0]; // first row is the keys
+    return values.slice(1).map(row => {
+      let obj = {};
+      headers.forEach((key, i) => {
+        obj[key] = row[i]; // assign property from header → value
+      });
+      return obj;
+    });
+}
+
+async function getPlayers() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: playersRange,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+
+
+
+
+async function init() {
+  await gapi.client.init({
+    apiKey: API_KEY,
+    discoveryDocs: [DISCOVERY_DOC],
+  });
+  let playersFinal = await getPlayers(); 
+console.log(playersFinal)
+//   console.log(matchesFinal)
+
+let playersdiv1 = playersFinal.filter(player => {
+  return player.div == '1';
+});
+let playersdiv2 = playersFinal.filter(player => {
+  return player.div == '2';
+});
+
+console.log(playersdiv1)
+console.log(playersdiv2)
 
 function filterTeams(key, value1, condition, value2) {
     const teams = teamSetFC25;
@@ -77,11 +111,10 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
     );
 }
 
-let matchId = 0
+// let matchId = 0
 function createMatches(div){
   let matches = []
-    let players = div
-    let matchId = 0
+    let players = div;
 for (let i = 0; i<players.length; i++){
 
     for (let x = 0; x < players.length; x++){
@@ -179,27 +212,55 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 }
 
 
-// let div1matches = createMatches(playersdiv1)
-// let div2matches = createMatches(playersdiv2)
+let div1matches = createMatches(playersdiv1)
+let div2matches = createMatches(playersdiv2)
 
-// let finaldiv1Matches = reshuffleMatches(div1matches)
-// let finaldiv2Matches = reshuffleMatches(div2matches)
-// // console.log(finalMatches)
-// let finalMatches = finaldiv1Matches.concat(finaldiv2Matches)
+let finaldiv1Matches = reshuffleMatches(div1matches)
+let finaldiv2Matches = reshuffleMatches(div2matches)
+// console.log(finalMatches)
+let finalMatches = finaldiv1Matches.concat(finaldiv2Matches)
 
-// const data = finalMatches;
-// let csvContent = "data:text/csv;charset=utf-8," + data.map(e => e.join(",")).join("\n");
+const data = finalMatches;
+let csvContent = "data:text/csv;charset=utf-8," + data.map(e => e.join(",")).join("\n");
 
-// const btn = document.getElementById('downloadCSV')
+const btn = document.getElementById('downloadCSV')
 
-// btn.addEventListener("click", () => {
-//   const encodedUri = encodeURI(csvContent);
-//   const link = document.createElement("a");
-//   link.setAttribute("href", encodedUri);
-//   link.setAttribute("download", "my_array.csv");
-//   document.body.appendChild(link);
-//   link.click();
-//   document.body.removeChild(link);
-// });
+btn.addEventListener("click", () => {
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "my_array.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
 
-// document.getElementById("downloadMatches").appendChild(btn);
+document.getElementById("downloadMatches").appendChild(btn);
+let container = document.getElementById("players")
+let headerDiv1 = document.createElement('h2')
+headerDiv1.innerHTML = 'Division 1'
+container.appendChild(headerDiv1)
+playersdiv1.forEach(player => {
+  let div = document.createElement('p')
+  div.innerHTML = `${player.name}`
+  container.appendChild(div);
+})
+
+let headerDiv2 = document.createElement('h2')
+headerDiv2.innerHTML = 'Division 2'
+container.appendChild(headerDiv2)
+
+playersdiv2.forEach(player => {
+  let div = document.createElement('p')
+  div.innerHTML = `${player.name}`
+  container.appendChild(div);
+})
+
+let totalMatches = document.createElement('h4')
+totalMatches.innerHTML =`Total matches: ${finalMatches.length}`
+container.appendChild(totalMatches)
+
+}
+
+
+gapi.load("client", init);

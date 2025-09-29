@@ -9,22 +9,15 @@
 
 </head>
 <body>
-    <div id = playerEntry>
-        <h2>Enter Player Names Below</h2>
-        <input id="name">
-        <button onclick="addPlayer()">Go</button>
-        <div id = 'players'>
-            
-        </div>
+    <div id = downloadMatches>
+        <button id="downloadCSV">Download CSV</button>
     </div>
 
-    <div>
-        <button onclick="createMatches(players)">Generate matches</button>
-        <div id="generatedMatches">
-
-        </div>
+    <div id="players">
         
     </div>
-    <script src="\src\player.js"></script>
+    <!-- <script src="\src\player.js"></script> -->
     <script src="\src\admin.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="\src\createMatches.js"></script>
 </body>

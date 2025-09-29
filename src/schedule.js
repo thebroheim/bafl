@@ -9,8 +9,6 @@
   const playersRange = "Players!A1:I17";
   const matchesRange = "Players!L1:U58";
 
-
-
   function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
   return values.slice(1).map(row => {
@@ -138,22 +136,30 @@ matchesFinal.forEach(match => {
     // }
 
     if (match.reveal === "TRUE"){
-      show1 = `<div class='teamInfo' style='display: flex; gap: 10px'><p>${match.team1}</p><img src="/images/TeamImages/${team1img}"></div>`
-      show2 = `<div class='teamInfo' style='display: flex; gap: 10px'><p>${match.team2}</p><img src="/images/TeamImages/${team2img}"></div>`
+      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'<p>${match.team1}</p><img src="/images/TeamImages/${team1img}"></div>`
+      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><p>${match.team2}</p><img src="/images/TeamImages/${team2img}"></div>`
     }
 
     div.className = 'match'
     div.innerHTML = `
     <h3>Match ${match.matchId}</h3>
     <h3>${match.type}</h3>
-    <div id= "teams">
-        <div class= 'playerTeams'>
-            <h4>${match.player1}</h4><h2> ${match.p1score}</h2> ${show1}
-        </div>
-        
-        <div class= 'playerTeams'>
-            <h4>${match.player2}</h4> <h2> ${match.p2score}</h2>${show2}
-        </div>
+      <div id="teams">
+      <div class="row header">
+        <div>Player</div>
+        <div>Score</div>
+        <div>Team</div>
+      </div>
+      <div class="row">
+        <div>${match.player1}</div>
+        <div>${match.p1score}</div>
+        <div>${show1}</div>
+      </div>
+      <div class="row">
+        <div>${match.player2}</div>
+        <div>${match.p2score}</div>
+        <div>${show2}</div>
+      </div>
     </div>
         
       
@@ -164,6 +170,7 @@ matchesFinal.forEach(match => {
     schedules.style.display = 'flex'
   });
 //   console.log(importData)
+return players
 }
 
 document.addEventListener("click", function(e) {

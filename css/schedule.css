@@ -84,6 +84,7 @@ tr {
     max-width: 70px;
     /* justify-self: flex-end; */
     aspect-ratio: 1/1;
+    /* object-fit: none; */
 }
 .match {
     padding: 10px;
@@ -91,21 +92,36 @@ tr {
     border: #24e3fd solid;
     border-width: 2px;
     border-radius: 5%;
+    min-height: 280px;
     /* max-width: 500px;
     min-width: 350px; */
 }
 
+
 #teams {
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr; /* stack rows */
+  gap: 6px;
 }
 
-.playerTeams {
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr;
-    gap: 10px;
-    align-items: baseline;
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto 2fr; /* player | score | team */
+  align-items: center;
+  gap: 45px;
+  padding: 4px 0;
+  min-height: 25px;
+}
+
+.row.header {
+  font-weight: bold;
+  border-bottom: 1px solid #444;
+}
+
+.team {
+  display: flex;
+  align-items: center;  /* ✅ keeps text aligned with logo */
+  gap: 8px;
 }
 
 .revealBtn {
