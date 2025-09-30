@@ -136,8 +136,8 @@ matchesFinal.forEach(match => {
     // }
 
     if (match.reveal === "TRUE"){
-      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'<p>${match.team1}</p><img src="/images/TeamImages/${team1img}"></div>`
-      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><p>${match.team2}</p><img src="/images/TeamImages/${team2img}"></div>`
+      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.team1}</p></div>`
+      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.team2}</p></div>`
     }
 
     div.className = 'match'
