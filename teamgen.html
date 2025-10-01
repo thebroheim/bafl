@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Ant FIFA League</title>
+    <link rel="icon" href="\images\BaflLogo.png">
+    <link rel="stylesheet" href="\css\styles.css">
+    <link rel="preload" href="\images\TeamImages" as="images" />
+    <script src="\src\teams.js"></script>
+    
+</head>
+<body>
+    <div id ='login' style="display: none;">
+        <label for="uname"><b>Username</b></label>
+        <input id = 'username' type="text" placeholder="Enter Username" name="uname" required>
+    
+        <label for="psw"><b>Password</b></label>
+        <input id = 'password' type="password" placeholder="Enter Password" name="psw" required>
+    
+        <button type="submit" onclick="checkLogin()">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+    
+    <header>
+      <div>
+        <img onclick = loginScreen() src="\images\BaflLogo.png">
+      </div>
+      <div id="navList">
+        <h1><a href="index.html">News</a></h1>
+        <h1><a href="table.html">Table</a></h1>
+        <h1><a href="hallfame.html">Hall of Fame</a></h1>
+        <h1 id = "finalItem"><a href="teamgen.html">Team Generator</a></h1>
+        <!-- <h1 id = 'adminLink' style="visibility: hidden;"><a href="admin.html">Admin</a></h1> -->
+      </div>
+    </header>
+  
+    <div class ="content">
+      <div class="function">
+          <div class="players">
+            <h2>Player 1:</h2>
+            <input type="text" id="p1name">
+            <h2>Player 2:</h2>
+            <input type="text" id="p2name">
+            <div class="teams">
+              <h2>Match type: <span class = "type" id = 'type'></span></h2>
+              <div id="teamspicked">
+              </div>
+            </div>
+          </div>
+        <div id="buttons">  
+          <button id="btn1" onclick="generateTeam()">Generate Teams</button>
+          <!-- <input type="checkbox" id="finalsovr" onclick="finalsOvr()">  -->
+          <select id="optionDropdown">
+            <option id="option1">Any</option>
+          </select>
+          <button onclick="viewTeams()">View Teams</button>
+        </div>
+          
+      </div>
+    <div>
+      <div>
+        <h3 id="showTeams" style="display: none;"></h3>
+      </div>
+    </div>
+    
+  </div>
+  <script src="\src\player.js"></script>
+</body>
+
+</html>

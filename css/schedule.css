@@ -101,6 +101,7 @@ tr {
 #teams {
   display: grid;
   grid-template-columns: 1fr; /* stack rows */
+  grid-auto-rows: 60px;
   gap: 6px;
 }
 
@@ -122,10 +123,6 @@ tr {
   display: flex;
   align-items: center;  /* ✅ keeps text aligned with logo */
   gap: 8px;
-}
-
-.teamInfo {
-    /* padding-left: 20px; */
 }
 
 .revealBtn {
