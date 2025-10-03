@@ -6,7 +6,7 @@
 
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:I17";
+  const playersRange = "Players!A1:J17";
 
   function convertToObjects(values) {
     const headers = values[0]; // first row is the keys
@@ -51,57 +51,6 @@ let playersdiv2 = playersFinal.filter(player => {
   return player.div == '2';
 });
 
-console.log(playersdiv1)
-console.log(playersdiv2)
-
-function filterTeams(key, value1, condition, value2) {
-    const teams = teamSetFC25;
-    const filteredTeams = [];
-
-    if (condition === 'between') {
-        teams.forEach(element => {
-            if (element[key] >= value1 && element[key] < value2 && element.gender == 'Men') {
-                filteredTeams.push(element);
-            }
-        });
-    } else if (condition === 'equals') {
-        teams.forEach(element => {
-            if (element[key] === value1) {
-                filteredTeams.push(element);
-            }
-        });
-    }
-    return filteredTeams;
-}
-
-const elite = filterTeams('ovr', 83, 'between', 100)
-const strong = filterTeams('ovr', 81,'between', 83)
-const mid = filterTeams('ovr', 75, 'between', 81)
-const women = filterTeams('gender', 'Women', 'equals')
-const international = filterTeams('gender', 'International', 'equals',)
-
-const matchTypes = [
-    [elite, 'Elite'],
-    [strong, 'Strong'],
-    [mid, 'Mid'],
-    [international, 'International'],
-    [women, 'Women']
-]
-
-
-function teamSelect(selectedType){
-    let teamsList = selectedType
-    let teams = []
-    let team1 = (teamsList[Math.floor(Math.random()*teamsList.length)])
-    selectedType.splice(teamsList.indexOf(team1), 1)
-    let team2 = (teamsList[Math.floor(Math.random()*teamsList.length)])
-    teamsList.push(team1)
-    
-    teams.push(team1, team2)
-
-    return teams
-}
-
 function checkMatchForDupe(array, firstPlayer, secondPlayer) {
     // console.log(firstPlayer, secondPlayer)
     return array.some(obj =>
@@ -111,31 +60,77 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
     );
 }
 
-// let matchId = 0
-function createMatches(div){
-  let matches = []
-    let players = div;
-for (let i = 0; i<players.length; i++){
+// /////////////////////////////////////////////////////////////// NEW CREATE MATCHES 
+function filterTeams(minOvr, maxOvr, type) {
+    const teams = teamSetFC25;
+    const filteredTeams = [];
+        teams.forEach(element => {
+            if (minOvr == null && element.gender == type) {
+                filteredTeams.push(element)
+            } else if (element.ovr >= minOvr && element.ovr < maxOvr && element.gender == type) 
+                filteredTeams.push(element);
+            }); 
+            return filteredTeams
+        };
+        
+    
+
+
+const typeConfig = [
+    {name: 'Elite', minOvr: 83, maxOvr: 100, type: 'Men'},
+    {name: 'Strong', minOvr: 80, maxOvr: 83, type: 'Men'},
+    {name: 'Mid', minOvr: 75, maxOvr: 80, type: 'Men'},
+    {name: 'Women', minOvr: null, maxOvr: null, type: 'Women'},
+    {name: 'International', minOvr: null, maxOvr: null, type: 'International'},
+];
+
+function teamSelect(teamsArray){
+    let teamsList = teamsArray
+    let teams = []
+    let team1 = (teamsList[Math.floor(Math.random()*teamsList.length)])
+    teamsArray.splice(teamsList.indexOf(team1), 1)
+    let team2 = (teamsList[Math.floor(Math.random()*teamsList.length)])
+    teamsList.push(team1)
+    
+    teams.push(team1, team2)
+
+    return teams
+}
+
+function generateTeams(div){
+    let matches = []
+    let players = div
+    // console.log(selectedType)
+    
+    // console.log(teams)
+    
+    
+
+    for (let i = 0; i<players.length; i++){
 
     for (let x = 0; x < players.length; x++){
         if(x === i){
             continue;
         }
         // Check if the Match is  Dupe Pairing
-        if (checkMatchForDupe(matches, players[i], players[x])) {
+        if (checkMatchForDupe(matches, players[i].name, players[x].name)) {
             continue;
         }
   
-    let selectedType = matchTypes[Math.floor(Math.random()*matchTypes.length)]
-
-    let teams = teamSelect(selectedType[0])
+    let selectedType = typeConfig[Math.floor(Math.random()*typeConfig.length)]
+    let teams = filterTeams(selectedType.minOvr, selectedType.maxOvr, selectedType.type)
+    let teamsFinal = teamSelect(teams)
+    let team1 = teamsFinal[0];
+    let team2 = teamsFinal[1];
     matchId = matchId + 1
     // let match = {matchId: matchId, type: selectedType[1], player1: players[i], team1: teams[0], player2: players[x], team2: teams[1]}
-    let match = [selectedType[1], players[i], players[x], teams[0].name, teams[1].name]
+    let match = [selectedType.name, players[i].name, players[x].name, team1.name, team2.name]
     matches.push(match)
+    console.log(matches)
     }}
     return matches
-}
+};
+//////////////////////////////////////////////////////////////////
 
 function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 } = {}) {
   if (!Array.isArray(matches)) throw new TypeError("matches must be an array");
@@ -212,8 +207,8 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 }
 
 
-let div1matches = createMatches(playersdiv1)
-let div2matches = createMatches(playersdiv2)
+let div1matches = generateTeams(playersdiv1)
+let div2matches = generateTeams(playersdiv2)
 
 let finaldiv1Matches = reshuffleMatches(div1matches)
 let finaldiv2Matches = reshuffleMatches(div2matches)

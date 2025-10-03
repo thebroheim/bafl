@@ -6,8 +6,15 @@
 
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:I17";
-  const matchesRange = "Players!L1:U58";
+  const playersRange = "Players!A1:J17";
+  const matchesRange = "Players!M1:V58";
+
+let divisiontables = document.getElementById('table');
+divisiontables.style.display = 'none'
+let schedules = document.getElementById('schedule')
+schedules.style.display = 'none'
+let clearFilter = document.getElementById('filter')
+clearFilter.style.display = 'none'
 
   function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
@@ -20,10 +27,44 @@
   });
 }
 
-let divisiontables = document.getElementById('table');
-divisiontables.style.display = 'none'
-let schedules = document.getElementById('schedule')
-schedules.style.display = 'none'
+
+
+function filterMatches(e) {
+  let div1 = document.getElementById('div1matches');
+  let div2 = document.getElementById('div2matches');
+  const tagValue = e.target.dataset.div;
+  clearFilter.style.display = '';
+  clearFilter.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+
+  if(tagValue== 'div2'){
+    div1.style.cssText = "display: none; flex-direction: column;";
+    div2.style.cssText = "display: ''; flex-direction: column; width: 100%";
+  } else {
+    div1.style.cssText = "display: ''; flex-direction: column; width: 100%;";
+    div2.style.cssText = "display: none; flex-direction: column;";
+  }
+  
+  matches = document.querySelectorAll('.match')
+  let player = e.target.innerHTML
+  matches.forEach((match) => {
+    if(!match.textContent.includes(player)){
+      match.style.display = 'none'
+    } else {
+      match.style.display = ''
+    }
+  })
+}
+
+function clearFilterF(){
+  matches = document.querySelectorAll('.match');
+  matches.forEach((match) => {
+      match.style.display = ''
+
+  })
+  clearFilter.style.display = 'none'
+}
+
+
 
 async function getPlayers() {
   const response = await gapi.client.sheets.spreadsheets.values.get({
@@ -80,6 +121,7 @@ let playersDiv1 = sortedPlayers.filter(player => player.div === '1');
 let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
 
 
+
 console.log(playersDiv1)
 console.log(playersDiv2)
 // Print Tables for Div 1 and 2
@@ -87,7 +129,8 @@ playersDiv1.forEach(player =>{
   let container = document.getElementById('div1Table')
   const row = document.createElement("tr")
   row.innerHTML = `
-      <th scope="row">${player.name}</th>
+      <td scope="row"><a onClick=filterMatches(event) data-div="div1">${player.name}</a></td>
+      <td>${player.played}</td>
       <td>${player.wins}</td>
       <td>${player.draws}</td>
       <td>${player.losses}</td>
@@ -104,7 +147,8 @@ playersDiv2.forEach(player =>{
   let container = document.getElementById('div2Table')
   const row = document.createElement("tr")
   row.innerHTML = `
-      <th scope="row">${player.name}</th>
+      <td  scope="row"><a onClick=filterMatches(event) data-div="div2">${player.name}</a></td>
+      <td>${player.played}</td>
       <td>${player.wins}</td>
       <td>${player.draws}</td>
       <td>${player.losses}</td>
@@ -121,6 +165,8 @@ playersDiv2.forEach(player =>{
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
 
 let importData = []
+
+function displayMatches(){
 matchesFinal.forEach(match => {
   let container = document.getElementById("div1matches")
   const div = document.createElement("div")
@@ -168,7 +214,9 @@ matchesFinal.forEach(match => {
 
     divisiontables.style.display = 'flex'
     schedules.style.display = 'flex'
-  });
+  })};
+
+displayMatches()
 //   console.log(importData)
 return players
 }

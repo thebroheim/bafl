@@ -35,6 +35,10 @@ table {
   width: 100%;
 }
 
+th {
+    font-weight: bolder;
+}
+
 #tableDiv1 {
     width: 100%;
     flex-direction: column;

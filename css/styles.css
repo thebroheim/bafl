@@ -79,6 +79,7 @@ a {
 
 a:hover {
     color: #24e3fd;
+    cursor: pointer;
 }
 
 #adminLink {
