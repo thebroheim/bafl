@@ -39,9 +39,12 @@ function filterMatches(e) {
   if(tagValue== 'div2'){
     div1.style.cssText = "display: none; flex-direction: column;";
     div2.style.cssText = "display: ''; flex-direction: column; width: 100%";
-  } else {
+  } else if (tagValue== 'div1'){
     div1.style.cssText = "display: ''; flex-direction: column; width: 100%;";
     div2.style.cssText = "display: none; flex-direction: column;";
+  } else {
+    div1.style.cssText = "display: ''; flex-direction: column;";
+    div2.style.cssText = "display: ''; flex-direction: column;";
   }
   
   matches = document.querySelectorAll('.match')
@@ -231,6 +234,7 @@ document.addEventListener("click", function(e) {
       let div = e.target.innerHTML;
       let div1Content = [document.getElementById('tableDiv1'), document.getElementById('div1matches')]
       let div2Content = [document.getElementById('tableDiv2'), document.getElementById('div2matches')]
+      clearFilterF()
       switch (div) {
         case "Div 1":
           div1Content[0].style.display = "flex",
