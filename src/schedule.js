@@ -13,8 +13,8 @@ let divisiontables = document.getElementById('table');
 divisiontables.style.display = 'none'
 let schedules = document.getElementById('schedule')
 schedules.style.display = 'none'
-let clearFilter = document.getElementById('filter')
-clearFilter.style.display = 'none'
+let clearFilterBtn = document.getElementById('filter')
+clearFilterBtn.style.display = 'none'
 
   function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
@@ -33,8 +33,20 @@ function filterMatches(e) {
   let div1 = document.getElementById('div1matches');
   let div2 = document.getElementById('div2matches');
   const tagValue = e.target.dataset.div;
-  clearFilter.style.display = '';
-  clearFilter.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+
+  clearFilterBtn.style.display = '';
+  clearFilterBtn.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+  
+  const rows = document.querySelectorAll('#table tr');
+
+  // Set rows background to default colour
+  rows.forEach((row) => {
+    row.style.backgroundColor = ''
+  })
+
+  // Set targeted row background colour
+  const row = e.target.closest('tr')
+  row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
 
   if(tagValue== 'div2'){
     div1.style.cssText = "display: none; flex-direction: column;";
@@ -58,13 +70,19 @@ function filterMatches(e) {
   })
 }
 
-function clearFilterF(){
+function clearFilter(){
   matches = document.querySelectorAll('.match');
+  const rows = document.querySelectorAll('#table tr');
+  // Set rows background to default colour
+  rows.forEach((row) => {
+    row.style.backgroundColor = ''
+  })
+
   matches.forEach((match) => {
       match.style.display = ''
 
   })
-  clearFilter.style.display = 'none'
+  clearFilterBtn.style.display = 'none'
 }
 
 
@@ -234,7 +252,7 @@ document.addEventListener("click", function(e) {
       let div = e.target.innerHTML;
       let div1Content = [document.getElementById('tableDiv1'), document.getElementById('div1matches')]
       let div2Content = [document.getElementById('tableDiv2'), document.getElementById('div2matches')]
-      clearFilterF()
+      clearFilter()
       switch (div) {
         case "Div 1":
           div1Content[0].style.display = "flex",
