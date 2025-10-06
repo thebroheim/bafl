@@ -1,5 +1,8 @@
-function filterTeams(minOvr, maxOvr, type) {
-    const teams = teamSetFC25;
+function filterTeams(minOvr, maxOvr, type, FC) {
+    let teams = teamSetFC25;
+    if (FC == 'FC26'){
+        teams = teamSetFC26
+    }
     const filteredTeams = [];
         teams.forEach(element => {
             if (minOvr == null && element.gender == type) {
@@ -8,9 +11,8 @@ function filterTeams(minOvr, maxOvr, type) {
                 filteredTeams.push(element);
             }); 
             return filteredTeams
-        };
+};
         
-    
 
 
 const typeConfig = [
@@ -24,21 +26,23 @@ const typeConfig = [
 let viewTeamsSwitch = false
 
 function viewTeams() {
-    if (!viewTeamsSwitch){
+    let fc = document.getElementById('fc').value;
+    
     const showTeams = document.getElementById('showTeams')
+    showTeams.innerHTML = '';
     showTeams.style='display: flex'
     typeConfig.forEach(type => {
         const matchType = document.createElement('h3');
-
+        
         matchType.innerHTML = `${type.name}`
         showTeams.appendChild(matchType);
-        let teams = filterTeams(type.minOvr, type.maxOvr, type.type)
+        let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc)
         teams.forEach(team => {
             const teamName = document.createElement('p');
             teamName.innerHTML = `${team.name}`
             matchType.appendChild(teamName)
         })
-    })}
+    })
     viewTeamsSwitch = true
 }
 
@@ -78,13 +82,14 @@ function loadImage(src) {
 
 function generateTeam(){
     let optionSelect = document.getElementById('optionDropdown').value;
+    let fc = document.getElementById('fc').value;
     if (optionSelect !== 'Any') {
         selectedType = typeConfig.find(type => type.name == optionSelect);
     } else {
         selectedType = typeConfig[Math.floor(Math.random()*typeConfig.length)]
     }
     // console.log(selectedType)
-    let teams = filterTeams(selectedType.minOvr, selectedType.maxOvr, selectedType.type)
+    let teams = filterTeams(selectedType.minOvr, selectedType.maxOvr, selectedType.type, fc)
     // console.log(teams)
     let teamsFinal = teamSelect(teams)
     let team1 = teamsFinal[0];
