@@ -6,8 +6,9 @@
 
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:J17";
-  const matchesRange = "Players!M1:V58";
+  const playersRange = "Players!A1:J19";
+  const matchesRange = "Players!M1:V73";
+  const checkSchedule = "Players!B29:B30";
 
 let divisiontables = document.getElementById('table');
 divisiontables.style.display = 'none'
@@ -111,6 +112,18 @@ async function getMatches() {
   return convertToObjects(values);
 }
 
+async function getShowValue() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: checkSchedule,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
 
 // Initiate page
 async function init() {
@@ -118,10 +131,12 @@ async function init() {
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
-  let players = await getPlayers(); 
+  let showSchedule = await getShowValue();
 
-  const matchesFinal = await getMatches()
-  console.log(matchesFinal)
+  let players = await getPlayers(); 
+  let matchesFinal = await getMatches()
+  
+  console.log(showSchedule)
 //   console.log(matchesFinal)
 
 
@@ -145,7 +160,18 @@ let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
 
 console.log(playersDiv1)
 console.log(playersDiv2)
+
+
+function displayMaintenance(){
+  let buttons = document.getElementById('buttonsDivs')
+  buttons.style.display = 'none';
+  let container = document.getElementById('maintenance')
+  container.innerHTML = `<h2>Table is under maintenance</h2>`
+}
+
+
 // Print Tables for Div 1 and 2
+function displayTable(){
 playersDiv1.forEach(player =>{
   let container = document.getElementById('div1Table')
   const row = document.createElement("tr")
@@ -180,12 +206,10 @@ playersDiv2.forEach(player =>{
 
   container.appendChild(row)
 
-})
+})}
 
 
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
-
-let importData = []
 
 function displayMatches(){
 matchesFinal.forEach(match => {
@@ -237,7 +261,14 @@ matchesFinal.forEach(match => {
     schedules.style.display = 'flex'
   })};
 
-displayMatches()
+  console.log(showSchedule[0].show)
+
+if (showSchedule[0].show == "TRUE"){
+  displayTable()
+  displayMatches()
+} else {
+  displayMaintenance()
+}
 //   console.log(importData)
 return players
 }
