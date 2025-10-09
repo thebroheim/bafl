@@ -10,6 +10,8 @@
   const matchesRange = "Players!M1:V73";
   const checkSchedule = "Players!B29:B30";
 
+
+
 let divisiontables = document.getElementById('table');
 divisiontables.style.display = 'none'
 let schedules = document.getElementById('schedule')
@@ -28,6 +30,12 @@ clearFilterBtn.style.display = 'none'
   });
 }
 
+function setDefault(){
+    let div1 = document.getElementById('div1matches');
+    let div2 = document.getElementById('div2matches');
+    div1.style.cssText = "display: ''; flex-direction: column;";
+    div2.style.cssText = "display: ''; flex-direction: column;";
+}
 
 
 function filterMatches(e) {
@@ -78,6 +86,7 @@ function filterMatches(e) {
 }
 
 function clearFilter(){
+  setDefault()
   matches = document.querySelectorAll('.match');
   const rows = document.querySelectorAll('#table tr');
   // Set rows background to default colour
