@@ -58,6 +58,16 @@ tr {
 	border-bottom: 1px solid;
 }
 
+th:first-child,
+td:first-child {
+    width: 20%;
+
+}
+
+th, td {
+    width: 10%;
+}
+
 #schedule {
     display: flex;
     flex-direction: row;

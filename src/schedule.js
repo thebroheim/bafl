@@ -34,7 +34,10 @@ function filterMatches(e) {
   let div1 = document.getElementById('div1matches');
   let div2 = document.getElementById('div2matches');
   const tagValue = e.target.dataset.div;
-
+ if (e.target.dataset.selected == 'true'){
+    clearFilter();
+    e.target.dataset.selected = 'false';
+  } else {
   clearFilterBtn.style.display = '';
   clearFilterBtn.style.backgroundColor = 'rgba(66, 66, 66, 1)'
   
@@ -69,6 +72,9 @@ function filterMatches(e) {
       match.style.display = ''
     }
   })
+
+  e.target.dataset.selected = "true"
+}
 }
 
 function clearFilter(){
@@ -136,7 +142,6 @@ async function init() {
   let players = await getPlayers(); 
   let matchesFinal = await getMatches()
   
-  console.log(showSchedule)
 //   console.log(matchesFinal)
 
 
@@ -157,11 +162,6 @@ let playersDiv1 = sortedPlayers.filter(player => player.div === '1');
 let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
 
 
-
-console.log(playersDiv1)
-console.log(playersDiv2)
-
-
 function displayMaintenance(){
   let buttons = document.getElementById('buttonsDivs')
   buttons.style.display = 'none';
@@ -176,7 +176,7 @@ playersDiv1.forEach(player =>{
   let container = document.getElementById('div1Table')
   const row = document.createElement("tr")
   row.innerHTML = `
-      <td scope="row"><a onClick=filterMatches(event) data-div="div1">${player.name}</a></td>
+      <td scope="row"><a onClick=filterMatches(event) data-div="div1" data-selected="false">${player.name}</a></td>
       <td>${player.played}</td>
       <td>${player.wins}</td>
       <td>${player.draws}</td>
@@ -260,8 +260,6 @@ matchesFinal.forEach(match => {
     divisiontables.style.display = 'flex'
     schedules.style.display = 'flex'
   })};
-
-  console.log(showSchedule[0].show)
 
 if (showSchedule[0].show == "TRUE"){
   displayTable()

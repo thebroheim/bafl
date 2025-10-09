@@ -145,45 +145,77 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
     return a;
   };
 
-  // Normalize player value to a stable string id (supports objects with id/name or plain strings)
   const playerId = (p) => {
     if (p == null) return String(p);
-    if (typeof p === "object") return p.id !== undefined ? String(p.id) : p.name !== undefined ? String(p.name) : JSON.stringify(p);
+    if (typeof p === "object") return p.id ?? p.name ?? JSON.stringify(p);
     return String(p);
   };
 
   const getPlayers = (match) => playerIndices.map(i => playerId(match[i]));
 
-  // Greedy randomized attempts: pick an order by always selecting a next match
+  const allPlayers = Array.from(new Set(matches.flatMap(getPlayers)));
+
+  // Scoring helper: higher = better spacing
+  const scoreMatch = (match, lastPlayed) => {
+    const [p1, p2] = getPlayers(match);
+    const recency1 = lastPlayed[p1] ?? -Infinity;
+    const recency2 = lastPlayed[p2] ?? -Infinity;
+    // Prefer matches where players haven't played recently
+    return -Math.max(recency1, recency2);
+  };
+
+  // Greedy spacing algorithm
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const pool = shuffle(matches);
-    const out = [pool.shift()];
+    const out = [];
+    const lastPlayed = {}; // player → last match index they appeared in
 
-    let stuck = false;
     while (pool.length) {
-      const lastPlayers = new Set(getPlayers(out[out.length - 1]));
-      const idx = pool.findIndex(m => {
-        const [p1, p2] = getPlayers(m);
-        return !lastPlayers.has(p1) && !lastPlayers.has(p2);
-      });
+      // Score each match by how long its players have rested
+      const scored = pool
+        .map(m => ({ match: m, score: scoreMatch(m, lastPlayed) }))
+        .sort((a, b) => b.score - a.score);
 
-      if (idx === -1) { stuck = true; break; }
-      out.push(pool.splice(idx, 1)[0]);
+      let chosenIndex = -1;
+      for (let i = 0; i < scored.length; i++) {
+        const m = scored[i].match;
+        const [p1, p2] = getPlayers(m);
+
+        // avoid immediate repeat (strong constraint)
+        if (out.length) {
+          const lastPlayers = new Set(getPlayers(out[out.length - 1]));
+          if (lastPlayers.has(p1) || lastPlayers.has(p2)) continue;
+        }
+
+        chosenIndex = pool.findIndex(x => x === m);
+        break;
+      }
+
+      // If no valid match, restart this attempt
+      if (chosenIndex === -1) break;
+
+      const chosen = pool.splice(chosenIndex, 1)[0];
+      out.push(chosen);
+
+      // Update lastPlayed positions
+      const [p1, p2] = getPlayers(chosen);
+      lastPlayed[p1] = out.length - 1;
+      lastPlayed[p2] = out.length - 1;
     }
 
-    if (!stuck) return out;
+    if (out.length === matches.length) return out; // success
   }
 
-  // DFS fallback (tries all permutations with pruning) — slower but guaranteed to find solution if exists
+  // Fallback to your DFS version if fairness algorithm can’t find a good solution
+  console.warn("⚠️ Falling back to DFS — perfect spacing not found within attempts.");
+
   const n = matches.length;
   const used = new Array(n).fill(false);
   const order = new Array(n);
-
   const indices = Array.from({ length: n }, (_, i) => i);
 
   const dfs = (pos) => {
     if (pos === n) return true;
-    // iterate remaining indices in random order to avoid worst-case deterministic paths
     const remaining = shuffle(indices.filter(i => !used[i]));
     for (const i of remaining) {
       if (pos > 0) {
@@ -201,10 +233,9 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 
   if (dfs(0)) return order.map(i => matches[i]);
 
-  // If we reach here, it's impossible to produce a sequence with zero adjacent player repeats.
-  // Throw an error (caller can catch and decide to relax constraints).
-  throw new Error("Couldn't rearrange matches to avoid consecutive players — constraints may be impossible.");
+  throw new Error("Couldn't evenly rearrange matches — spacing constraints may be too strict.");
 }
+
 
 
 let div1matches = generateTeams(playersdiv1)
