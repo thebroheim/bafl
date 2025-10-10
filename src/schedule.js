@@ -37,15 +37,18 @@ function setDefault(){
     div2.style.cssText = "display: ''; flex-direction: column;";
 }
 
+let selectedPlayer = null
 
 function filterMatches(e) {
+  console.log(e)
   let div1 = document.getElementById('div1matches');
   let div2 = document.getElementById('div2matches');
-  const tagValue = e.target.dataset.div;
- if (e.target.dataset.selected == 'true'){
+  const tagValue = e.dataset.div;
+ if (selectedPlayer == e){
     clearFilter();
-    e.target.dataset.selected = 'false';
+    selectedPlayer = null;
   } else {
+  selectedPlayer = e;
   clearFilterBtn.style.display = '';
   clearFilterBtn.style.backgroundColor = 'rgba(66, 66, 66, 1)'
   
@@ -57,7 +60,7 @@ function filterMatches(e) {
   })
 
   // Set targeted row background colour
-  const row = e.target.closest('tr')
+  const row = e.closest('tr')
   row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
 
   if(tagValue== 'div2'){
@@ -72,7 +75,7 @@ function filterMatches(e) {
   }
   
   matches = document.querySelectorAll('.match')
-  let player = e.target.innerHTML
+  let player = e.innerHTML
   matches.forEach((match) => {
     if(!match.textContent.includes(player)){
       match.style.display = 'none'
@@ -80,8 +83,6 @@ function filterMatches(e) {
       match.style.display = ''
     }
   })
-
-  e.target.dataset.selected = "true"
 }
 }
 
@@ -185,7 +186,7 @@ playersDiv1.forEach(player =>{
   let container = document.getElementById('div1Table')
   const row = document.createElement("tr")
   row.innerHTML = `
-      <td scope="row"><a onClick=filterMatches(event) data-div="div1" data-selected="false">${player.name}</a></td>
+      <td scope="row"><a class= 'playerName' data-div="div1">${player.name}</a></td>
       <td>${player.played}</td>
       <td>${player.wins}</td>
       <td>${player.draws}</td>
@@ -203,7 +204,7 @@ playersDiv2.forEach(player =>{
   let container = document.getElementById('div2Table')
   const row = document.createElement("tr")
   row.innerHTML = `
-      <td  scope="row"><a onClick=filterMatches(event) data-div="div2">${player.name}</a></td>
+      <td  scope="row"><a class = 'playerName' data-div="div2">${player.name}</a></td>
       <td>${player.played}</td>
       <td>${player.wins}</td>
       <td>${player.draws}</td>
@@ -313,16 +314,13 @@ document.addEventListener("click", function(e) {
     }})
 
 
-// document.addEventListener("click", function(e) {
-//     if (e.target.classList.contains("revealBtn")) {
-//         const matchDiv = e.target.closest(".match"); 
-//         const teams = matchDiv.querySelectorAll(".teamInfo");
-//         teams.forEach(team => {
-//             team.style.display = "flex";
-//             team.style.gap = "10px";
-//         });
-//     }
-// }); <button class="revealBtn">Reveal Teams</button>
+
+
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("playerName")) {
+      filterMatches(e.target)
+    }
+});
 
 
 // console.log(matches)
