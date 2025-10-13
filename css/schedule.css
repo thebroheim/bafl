@@ -121,7 +121,7 @@ th, td {
 
 .row {
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr 2fr; /* player | score | team */
+  grid-template-columns: 1fr 1fr 2fr; /* player | score | team */
   align-items: center;
   gap: 45px;
   min-height: 40px;
