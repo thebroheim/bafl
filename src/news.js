@@ -7,6 +7,28 @@ const newsArticles = [
     //     author: "Alex Villani"
     // },
 
+      {
+        season:"11",
+        week: "1",
+        date: "October 17",
+        summary: `BAFL Times Season 11 - Week 1 
+
+It's the biggest, it's the baddest, it's the most competitive. No, it's not the race to be my girlfriend. It's the grand return of the BAFL — welcome to Season 11!
+<br><br>
+After a short absence and an amazing holiday, I took great pleasure in removing Manjeeve from the BAFL author roster and replacing him with myself full-time. My apologies once more.
+<br><br>
+Monday saw a total of 5 out of 18 BAFL members show up — a new record! That meant options were slim, but very exciting. I kicked off the season myself against long-time rival and newly promoted Lachlan. I absolutely tore that man apart — like, seriously... you'd think he’d have some sort of momentum after finishing top of Div 2. I haven’t seen this much of a skill gap since I got dropped to the floaties group at Swim School. A new recruit made his BAFL debut: Mr. Steal Your BAFL Rankings Idea himself, Brendan. Brendan gave Jude a run for his money early, as Jude began to sweat at 0–0 in the 80th minute with Brendan still asking which button was shoot. A late goal secured a tight 1–0 victory for Jude.
+<br><br>
+Tuesday saw yet another debutant, Gus Stone, as he faced off against the still-winless Ricardo. Gus showed plenty of gusto (Hamish and Andy shoutout) by demolishing Ricardo 10–0. Yet another long season awaits Ricardo, it seems. Heading downstairs, we were met with an unexpected game between Sam and Oscar. A nil-all draw was the surprising result — I haven’t seen such a lack of scoring since my mate went 0 for 37 at Levels Nightclub last year.
+<br><br>
+Oh look, it’s Alex saving the BAFL yet again. Two games in three days — just happy to play my part. This was a revenge match for Season 10’s semi-final as Brent and I took centre stage downstairs. Using my Isak-fuelled Newcastle United, a big 8–3 win came through as I shot up to the top of the Div 1 table. Geez, writing about your own wins is awesome, isn’t it, Manjeeve? Wait, what? Another first gamer? Nick started off his BAFL campaign against ELO farmer Bass. Looking to snatch an easy victory, Bass was caught off guard in what turned out to be a tough struggle. However, he managed to pull through, getting his first-ever BAFL season win 5–1.
+<br><br>
+We had a huge return with Kelvin making his first BAFL appearance since Season 8! He was met with the reigning champion — the man who stopped the Sam three-peat, the man who beat Sam 4–1 (alright, I think Sam’s clicked off). A tight comeback match ended in a 2–0 victory to Dan. Pundits are looking forward to what Kelvin has in store moving forward. To finish off, Jude ponied up yet again to verse the in-form Gus. A close match sat at 2–2 for the majority, but Gus proved his worth late with a 4–2 victory. In my incredibly humble opinion, if I were one of Bass, Dru, or Yasin... I’d be shitting myself.
+<br><br>
+Super late addition to the BAFL Times, because Sam decided to be greedy and play on a Friday. I was busy sipping my Piña Coladas when I was called into action to review the Dru and Brendan matchup. Dru decided to take a nap until halftime, while Brendan was still studying the FC25 manual. After the half, Dru decided to kick more goals than Ricardo has in his entire BAFL career, cruising to an 8–0 win.`,
+        author: "Alex Villani"
+    },
+
         {
         season:"10",
         week: "9",
