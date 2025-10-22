@@ -39,7 +39,7 @@ function viewTeams() {
         let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc)
         teams.forEach(team => {
             const teamName = document.createElement('p');
-            teamName.innerHTML = `${team.name}`
+            teamName.innerHTML = `${team.name}:  ${team.ovr}`;
             matchType.appendChild(teamName)
         })
     })

@@ -7,8 +7,9 @@
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
   const playersRange = "Players!A1:J19";
-  const matchesRange = "Players!M1:V73";
-  const checkSchedule = "Players!B29:B30";
+  const matchesRange = "Players!M1:V80";
+  const finalsRange = "Players!A22:J28";
+  const checkSchedule = "Players!B29:C30";
 
 
 
@@ -18,6 +19,11 @@ let schedules = document.getElementById('schedule')
 schedules.style.display = 'none'
 let clearFilterBtn = document.getElementById('filter')
 clearFilterBtn.style.display = 'none'
+let finalsBtn = document.getElementById("finalsFilter")
+let buttonsDivs = document.getElementById('buttonsDivs')
+buttonsDivs.style.display = 'none';
+let finalsContainer = document.getElementById('finals')
+finalsContainer.style.display = 'none'
 
   function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
@@ -36,6 +42,8 @@ function setDefault(){
     div1.style.cssText = "display: ''; flex-direction: column;";
     div2.style.cssText = "display: ''; flex-direction: column;";
 }
+
+setDefault()
 
 let selectedPlayer = null
 
@@ -128,6 +136,18 @@ async function getMatches() {
   return convertToObjects(values);
 }
 
+async function getFinalsMatches() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: finalsRange,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
 async function getShowValue() {
   const response = await gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
@@ -140,17 +160,21 @@ async function getShowValue() {
   return convertToObjects(values);
 }
 
-
 // Initiate page
 async function init() {
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
-  let showSchedule = await getShowValue();
-
+  let showToggle = await getShowValue();
   let players = await getPlayers(); 
-  let matchesFinal = await getMatches()
+  let matchesFinal = await getMatches();
+  let finalsMatches = await getFinalsMatches();
+  if (showToggle[0].finals == "FALSE"){
+    finalsBtn.style.display = 'none'
+  }
+
+  buttonsDivs.style.display = ''
   
 //   console.log(matchesFinal)
 
@@ -218,6 +242,51 @@ playersDiv2.forEach(player =>{
 
 })}
 
+function displayFinals(){
+  finalsMatches.forEach(match => {
+  const div = document.createElement("div")
+  let container = document.getElementById('finals')
+  container.style.display = ''
+    container= document.getElementById('finals')
+
+    let team1img = match.team1.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+    let team2img = match.team2.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+    let show1 = ''
+    let show2= ``
+
+    if (match.reveal === "TRUE"){
+      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.team1}</p></div>`
+      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.team2}</p></div>`
+    }
+    div.id = 'finalMatch'
+    div.className = 'match'
+    div.innerHTML = `
+    <h3>${match.matchId}</h3>
+    <h3>${match.type}</h3>
+      <div id="teams">
+      <div class="row header">
+        <div>Player</div>
+        <div>Score</div>
+        <div>Team</div>
+      </div>
+      <div class="row">
+        <div>${match.player1}</div>
+        <div>${match.p1score}</div>
+        <div>${show1}</div>
+      </div>
+      <div class="row">
+        <div>${match.player2}</div>
+        <div>${match.p2score}</div>
+        <div>${show2}</div>
+      </div>
+    </div>
+        
+      
+    `;
+    container.appendChild(div);
+  }
+)}
+
 
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
 
@@ -271,11 +340,18 @@ matchesFinal.forEach(match => {
     schedules.style.display = 'flex'
   })};
 
-if (showSchedule[0].show == "TRUE"){
+if (showToggle[0].show == "TRUE"){
   displayTable()
   displayMatches()
+  console.log(showToggle[0])
 } else {
   displayMaintenance()
+};
+
+if (showToggle[0].finals ==="TRUE"){
+  console.log(showToggle[0].finals)
+  displayFinals()
+  finalsBtn.style.display = '';
 }
 //   console.log(importData)
 return players
@@ -291,6 +367,7 @@ document.addEventListener("click", function(e) {
       let div = e.target.innerHTML;
       let div1Content = [document.getElementById('tableDiv1'), document.getElementById('div1matches')]
       let div2Content = [document.getElementById('tableDiv2'), document.getElementById('div2matches')]
+      let finals = document.getElementById('finals')
       clearFilter()
       switch (div) {
         case "Div 1":
@@ -298,18 +375,28 @@ document.addEventListener("click", function(e) {
           div1Content[1].style.display = "flex", div1Content[1].style.width = "100%",
           div2Content[0].style.display = "none",
           div2Content[1].style.display = "none";
+          finals.style.display = 'none';
           break;
         case "Both":
           div1Content[0].style.display = "flex",
           div1Content[1].style.display = "flex", div1Content[1].style.width = "50%",
           div2Content[0].style.display = "flex",
           div2Content[1].style.display = "flex", div2Content[1].style.width = "50%";
+          finals.style.display = '';
           break;
         case "Div 2":
           div1Content[0].style.display = "none",
           div1Content[1].style.display = "none", div2Content[1].style.width = "100%",
           div2Content[0].style.display = "flex",
           div2Content[1].style.display = "flex";
+          finals.style.display = 'none';
+          break;
+        case "Finals":
+          finals.style.display = '',
+          div1Content[0].style.display = 'none', div1Content[1].style.display = 'none'
+          div2Content[0].style.display = 'none', div2Content[1].style.display = 'none'
+
+
       }
     }})
 
