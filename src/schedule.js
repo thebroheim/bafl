@@ -382,7 +382,7 @@ document.addEventListener("click", function(e) {
           div1Content[1].style.display = "flex", div1Content[1].style.width = "50%",
           div2Content[0].style.display = "flex",
           div2Content[1].style.display = "flex", div2Content[1].style.width = "50%";
-          finals.style.display = '';
+          finals.style.display = 'none';
           break;
         case "Div 2":
           div1Content[0].style.display = "none",
