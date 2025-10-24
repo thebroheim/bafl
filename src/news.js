@@ -7,6 +7,29 @@ const newsArticles = [
     //     author: "Alex Villani"
     // },
 
+
+   {
+        season:"11",
+        week: "2",
+        date: "October 24",
+        summary: `This edition of the BAFL Times will be a much shorter, more comprehensive one. I’ve been told by the men in charge that I should only cover the best matches of the week.
+<br><br>
+Thank you for reading the BAFL Times.
+<br><br>
+I’m kidding, guys! How else am I going to burn precious company time? Welcome back to the BAFL Times (for real this time). To keep things fair—and potentially lift the standard of the BAFL—I’ll talk about one match per day. So, keep those matches interesting!
+<br><br>
+Oh Monday, what to choose... oh, definitely Yasin’s match. Gee whiz, what a reaction! Bass, fresh off his maiden BAFL win, went head-to-head with the BAFL’s Nick Kyrgios (only good when he wants to be). A super-tight match was locked at 0-0 between Ronny’s Portugal and that teeny-weeny bloke from Argentina. A late winner from Yasin provoked a huge fist pump and a “come on!” reaction the likes of which the BAFL is very unfamiliar with. We all hope that passion continues!
+<br><br>
+Tuesday—and what? Yasin again? I wanted to talk about the Sam vs Lachy matchup, but Yasin is in such good form that surely nothing could go wrong, right? WRONG! Matthew took a huge scalp, proving his worth with a 1-0 win, rocketing himself up to 2nd on the table. A massive result! I know I’m only supposed to talk about one match per day, but a historic moment occurred in Division 2. Mr Ricardo himself broke a 23-match winless streak as he stumbled over the line against freshman Nick, 1-0. The BAFL commends Ricardo’s determination—because lord knows I would’ve given up three seasons ago!
+<br><br>
+Kelvin and Lachy took centre stage on Wednesday, in what looked to be one of the most decisive matches in Division 1 so far. Lachy, after being gifted Leverkusen, crashed out in typical Lachy fashion—almost opting for a forfeit before the match even began. I witnessed this game in between Fall Guys rounds (I didn’t win), but a close encounter saw Lachy score late to secure a 2-1 win over Kelvin, which could pay dividends later in the season.
+<br><br>
+Just to keep the commissioner happy, I’ll write about his match. That’s a complete lie—it’s only because Manjeeve lost 9-2. Sam’s dominance using women’s teams continues (no correlation, he promises). I think I made this joke in 2024, but Manjeeve bad with women? Standard. With this and Lachlan’s loss, the two newly promoted players to Division 1 sit stone motherless last. LOL.
+<br><br>
+Finally, a gifted entry into the BAFL Times with only a single match being played on Friday: the battle of the Lachlans. While I was scoffing down my $9.95 treat box from KFC, the Lachlans did battle as the downstairs UI team crashed out, having their space occupied a full five out of five days this week. A very close match with a late winner from Lachy gave him a 3-1 win, pushing him into a finals spot on the table. A great week all around for the BAFL!`,
+        author: "Alex Villani"
+    },
+
       {
         season:"11",
         week: "1",
