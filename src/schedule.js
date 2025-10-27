@@ -12,7 +12,8 @@
   const checkSchedule = "Players!B29:C30";
 
 
-
+let mainContent = document.getElementById('main')
+mainContent.style.display = 'none'
 let divisiontables = document.getElementById('table');
 divisiontables.style.display = 'none'
 let schedules = document.getElementById('schedule')
@@ -24,6 +25,8 @@ let buttonsDivs = document.getElementById('buttonsDivs')
 buttonsDivs.style.display = 'none';
 let finalsContainer = document.getElementById('finals')
 finalsContainer.style.display = 'none'
+let upComingHide = document.getElementById('upComingHide')
+upComingHide.style.display = 'none'
 
   function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
@@ -173,7 +176,7 @@ async function init() {
   if (showToggle[0].finals == "FALSE"){
     finalsBtn.style.display = 'none'
   }
-
+  mainContent.style.display = ''
   buttonsDivs.style.display = ''
   
 //   console.log(matchesFinal)
@@ -242,58 +245,34 @@ playersDiv2.forEach(player =>{
 
 })}
 
-function displayFinals(){
-  finalsMatches.forEach(match => {
-  const div = document.createElement("div")
-  let container = document.getElementById('finals')
-  container.style.display = ''
-    container= document.getElementById('finals')
-
-    let team1img = match.team1.replace(/[^a-zA-Z0-9]/g, '') + '.png'
-    let team2img = match.team2.replace(/[^a-zA-Z0-9]/g, '') + '.png'
-    let show1 = ''
-    let show2= ``
-
-    if (match.reveal === "TRUE"){
-      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.team1}</p></div>`
-      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.team2}</p></div>`
-    }
-    div.id = 'finalMatch'
-    div.className = 'match'
-    div.innerHTML = `
-    <h3>${match.matchId}</h3>
-    <h3>${match.type}</h3>
-      <div id="teams">
-      <div class="row header">
-        <div>Player</div>
-        <div>Score</div>
-        <div>Team</div>
-      </div>
-      <div class="row">
-        <div>${match.player1}</div>
-        <div>${match.p1score}</div>
-        <div>${show1}</div>
-      </div>
-      <div class="row">
-        <div>${match.player2}</div>
-        <div>${match.p2score}</div>
-        <div>${show2}</div>
-      </div>
-    </div>
-        
-      
-    `;
-    container.appendChild(div);
-  }
-)}
-
 
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
 
-function displayMatches(){
-matchesFinal.forEach(match => {
-  let container = document.getElementById("div1matches")
+function displayMatches(matches){
+matches.forEach(match => {
+   let div1 = document.getElementById("div1matches");
+   let div2 = document.getElementById("div2matches");
+   let finals = document.getElementById("finals");
+   let upcomingMatches = document.getElementById('upcomingMatches');
+   let prefix = 'Match'
+   let container = null;
+   console.log(match.div)
+
+  switch (match.div) {
+    case '1':
+      container = div1
+      break;
+    case '2':
+      container = div2
+      break;
+    case 'finals':
+      container = finals;
+      container.style.display = '';
+      prefix = ''
+  } ;
+
   const div = document.createElement("div")
+  
   if(match.div === '2'){
     container= document.getElementById('div2matches')
   }
@@ -312,7 +291,7 @@ matchesFinal.forEach(match => {
 
     div.className = 'match'
     div.innerHTML = `
-    <h3>Match ${match.matchId}</h3>
+    <h3>${prefix} ${match.matchId}</h3>
     <h3>${match.type}</h3>
       <div id="teams">
       <div class="row header">
@@ -334,15 +313,23 @@ matchesFinal.forEach(match => {
         
       
     `;
+    if (match.reveal === "TRUE" && (!match.p1score || match.p1score.trim() === "")) {
+        upComingHide.style.display = ''
+          const clone = div.cloneNode(true);
+          let division = document.createElement("div")
+          clone.prepend(division)
+          division.innerHTML = `<div><strong>Division ${match.div}</strong></div>`
+          console.log(upcomingMatches);
+          upcomingMatches.appendChild(clone);
+    }
     container.appendChild(div);
-
     divisiontables.style.display = 'flex'
     schedules.style.display = 'flex'
   })};
 
 if (showToggle[0].show == "TRUE"){
   displayTable()
-  displayMatches()
+  displayMatches(matchesFinal)
   console.log(showToggle[0])
 } else {
   displayMaintenance()
@@ -350,7 +337,7 @@ if (showToggle[0].show == "TRUE"){
 
 if (showToggle[0].finals ==="TRUE"){
   console.log(showToggle[0].finals)
-  displayFinals()
+  displayMatches(finalsMatches)
   finalsBtn.style.display = '';
 }
 //   console.log(importData)
@@ -409,8 +396,6 @@ document.addEventListener("click", function(e) {
     }
 });
 
-
-// console.log(matches)
 
   gapi.load("client", init);
 
