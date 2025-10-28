@@ -2,6 +2,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* width: 90%; */
 }
 
 #buttonsDivs {
@@ -26,27 +27,21 @@ button {
     flex-direction: column;
     align-items: center;
     width: 90%;
-    
 }
 
 table {
   text-align: center;
+  align-self: center;
   border: #24e3fd solid 2px;
   width: 100%;
 }
 
+#table div {
+    width: 100%;
+}
+
 th {
     font-weight: bolder;
-}
-
-#tableDiv1 {
-    width: 100%;
-    flex-direction: column;
-}
-
-#tableDiv2 {
-    width: 100%;
-    flex-direction: column;
 }
 
 th,
@@ -76,8 +71,9 @@ th, td {
     gap: 20px;
     /* align-items: center; */
     /* align-items: center; */
-    width: 90%;
     overflow: visible;
+    width: 90%;
+    justify-content: center;
 }
 
 
@@ -85,31 +81,32 @@ th, td {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 50%;
 }
 
 #div2matches {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 50%;
 }
 
 #upComingHide {
     /* margin-left: 60px; */
-  width: 90%;
   /* overflow: visible;  */
+  width: 100%;
+  /* display: flex; */
+  align-items: center;
 }
 
 #upcomingMatches {
     display: flex;
     gap: 10px;
     overflow-x: auto;
-    width: 100%;
+    justify-content: flex-start;
+    
 }
 
 #upcomingMatches .match {
-    width: 400px;
+    flex: 1;
 }
 
 .match img {
@@ -131,7 +128,6 @@ th, td {
 }
 
 #finals {
-    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 10px;

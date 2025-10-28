@@ -21,86 +21,92 @@
     </script>
 
     <main id="main">
+    <div class="content">
+      <div id="buttonsDivs">
+        <button id= "finalsFilter"class="buttonDiv">Finals</button>
+        <button class="buttonDiv">Div 1</button>
+        <button id= 'bothButton' class="buttonDiv">Both</button>
+        <button class="buttonDiv">Div 2</button>
+        <button id="filter" onclick="clearFilter()">Clear Filter</button>
+      </div>
 
-    <div id="buttonsDivs">
-      <button id= "finalsFilter"class="buttonDiv">Finals</button>
-      <button class="buttonDiv">Div 1</button>
-      <button id= 'bothButton' class="buttonDiv">Both</button>
-      <button class="buttonDiv">Div 2</button>
-      <button id="filter" onclick="clearFilter()">Clear Filter</button>
-    </div>
+      <div id="maintenance">
+      </div>
 
-    <div id="maintenance"></div>
-
-    <div id="table">
-      
-      <div id="tableDiv1">
-        <table id="div1Table">
+      <div id="table">
+        <div id="div1Table">
           <h3>Division 1</h3>
-          <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">P</th>
-            <th scope="col">W</th>
-            <th scope="col">D</th>
-            <th scope="col">L</th>
-            <th scope="col">GF</th>
-            <th scope="col">GA</th>
-            <th scope="col">GD</th>
-            <th scope="col">Pts</th>
-          </tr>
-        </thead>
-        </table>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">P</th>
+              <th scope="col">W</th>
+              <th scope="col">D</th>
+              <th scope="col">L</th>
+              <th scope="col">GF</th>
+              <th scope="col">GA</th>
+              <th scope="col">GD</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="div1TableData">
+
+          </tbody>
+          </table>
+          </div>
+          <div id="div2Table">
+             <h3>Division 2</h3>
+          <table>
+            <thead>
+            <tr>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">P</th>
+              <th scope="col">W</th>
+              <th scope="col">D</th>
+              <th scope="col">L</th>
+              <th scope="col">GF</th>
+              <th scope="col">GA</th>
+              <th scope="col">GD</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="div2TableData">
+            
+          </tbody>
+          </table>
+          </div>
       </div>
-      <div id="tableDiv2">
-        <table id="div2Table">
-          <h3>Division 2</h3>
-          <thead>
-          <tr>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">P</th>
-            <th scope="col">W</th>
-            <th scope="col">D</th>
-            <th scope="col">L</th>
-            <th scope="col">GF</th>
-            <th scope="col">GA</th>
-            <th scope="col">GD</th>
-            <th scope="col">Pts</th>
-          </tr>
-        </thead>
-        </table>
+        <div id="finals">
+            <h3>Finals</h3>
         </div>
-    </div>
-      <div id="finals">
-          <h3>Finals</h3>
-      </div>
-        <div id="upComingHide">
-          <h3>Upcoming Matches</h3>
-          <div id="upcomingMatches">
 
           </div>
-        </div>
-    <div id="schedule">
+      <div id="schedule">
+            <div id="upComingHide">
+            <h3>Upcoming Matches</h3>
+            <div id="upcomingMatches">
 
- 
-        <div id="div1matches">
-          <h3>Division 1</h3>
-        </div>
-        <div id="div2matches">
-          <h3>Division 2</h3>
-        </div>
-    </div>
-      
-
-
-    <div id="downloadMatches"></div>
-    <pre id="content" style="white-space: pre-wrap;"></pre>
-
-    <script src="https://apis.google.com/js/api.js"></script>
+            </div>
+          <div id="div1matches">
+            <h3>Division 1</h3>
+          </div>
+          <div id="div2matches">
+            <h3>Division 2</h3>
+          </div>
+      </div>
+        
 
 
-    <script src="\src\schedule.js"></script>
-    <!-- <script src="\src\createMatches.js"></script> -->
+      <div id="downloadMatches"></div>
+      <pre id="content" style="white-space: pre-wrap;"></pre>
+
+      <script src="https://apis.google.com/js/api.js"></script>
+
+
+      <script src="\src\schedule.js"></script>
+      <!-- <script src="\src\createMatches.js"></script> -->
+     </div>
      </main>
 </body>

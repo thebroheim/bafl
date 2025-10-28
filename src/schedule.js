@@ -210,7 +210,7 @@ function displayMaintenance(){
 // Print Tables for Div 1 and 2
 function displayTable(){
 playersDiv1.forEach(player =>{
-  let container = document.getElementById('div1Table')
+  let container = document.getElementById('div1TableData')
   const row = document.createElement("tr")
   row.innerHTML = `
       <td scope="row"><a class= 'playerName' data-div="div1">${player.name}</a></td>
@@ -228,7 +228,7 @@ playersDiv1.forEach(player =>{
 })
 
 playersDiv2.forEach(player =>{
-  let container = document.getElementById('div2Table')
+  let container = document.getElementById('div2TableData')
   const row = document.createElement("tr")
   row.innerHTML = `
       <td  scope="row"><a class = 'playerName' data-div="div2">${player.name}</a></td>
@@ -352,30 +352,30 @@ document.addEventListener("click", function(e) {
       })
       e.target.style.backgroundColor = 'rgba(66, 66, 66, 1)';
       let div = e.target.innerHTML;
-      let div1Content = [document.getElementById('tableDiv1'), document.getElementById('div1matches')]
-      let div2Content = [document.getElementById('tableDiv2'), document.getElementById('div2matches')]
+      let div1Content = [document.getElementById('div1Table'), document.getElementById('div1matches')]
+      let div2Content = [document.getElementById('div2Table'), document.getElementById('div2matches')]
       let finals = document.getElementById('finals')
       clearFilter()
       switch (div) {
         case "Div 1":
-          div1Content[0].style.display = "flex",
-          div1Content[1].style.display = "flex", div1Content[1].style.width = "100%",
+          div1Content[0].style.display = "",
+          div1Content[1].style.display = "", div1Content[1].style.width = "100%",
           div2Content[0].style.display = "none",
           div2Content[1].style.display = "none";
           finals.style.display = 'none';
           break;
         case "Both":
-          div1Content[0].style.display = "flex",
-          div1Content[1].style.display = "flex", div1Content[1].style.width = "50%",
-          div2Content[0].style.display = "flex",
-          div2Content[1].style.display = "flex", div2Content[1].style.width = "50%";
+          div1Content[0].style.display = "",
+          div1Content[1].style.display = "", div1Content[1].style.width = "50%",
+          div2Content[0].style.display = "",
+          div2Content[1].style.display = "", div2Content[1].style.width = "50%";
           finals.style.display = 'none';
           break;
         case "Div 2":
           div1Content[0].style.display = "none",
           div1Content[1].style.display = "none", div2Content[1].style.width = "100%",
-          div2Content[0].style.display = "flex",
-          div2Content[1].style.display = "flex";
+          div2Content[0].style.display = "",
+          div2Content[1].style.display = "";
           finals.style.display = 'none';
           break;
         case "Finals":
