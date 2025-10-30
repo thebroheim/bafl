@@ -6,7 +6,21 @@ const newsArticles = [
     //     summary: ``,
     //     author: "Alex Villani"
     // },
-
+ {
+        season:"11",
+        week: "3",
+        date: "October 31",
+        summary: `Hey, guess what! BAFL Times is here this week — even after I tweeted about cancelling it. I feel like a real journo, just doing a full 180 after ten minutes. Welcome back to the BAFL Times.
+<br><br>
+We had a big international matchup to start off Week 3, with Brent and Dan kicking things off. With some insane crossing manoeuvres (I had to triple-check the spelling on that), Brent took an early lead. However, Dan — in his refusal to give up his crown to the French — smoked them with the Dutch (get it?). He walked away with a 2–1 victory.
+<br><br>
+Oh boy, huge news guys. Sam is finally mid at FIFA! It only took 11 seasons and about 15 miscellaneous tournaments, but we finally got there. After conceding a goal in the first 15 seconds, I picked up the pace to equalise in the 70th minute, then took the lead in the 90th — not before shouting an aura-losing “I JUST BEAT SAM!” to an empty UI department. Feels good. My head hasn’t been this inflated in years (according to my doctor).
+<br><br>
+Guess I better talk about my cousin, otherwise he’ll concuss me like he did last week. But credit where it’s due — he proved why he’s in Div 1 with a big win over Kelvin. Kelvin’s still clearly finding his feet in Division 1, as Oscar helped himself to a filthy rainbow-flick-over-the-keeper goal. Just nasty stuff in a close 4–3 victory. I’ll also quickly mention Gus, who claimed his third victim and returned to the top of the table once again with a 3–1 win over Matthew. Good to see Div 2 is having a close season… right, Bass?
+<br><br>
+To cap off the shortened week, let’s talk about Dru and Ricardo — one of the most verbally scathing rivalries in the BAFL. Ricardo, fresh off his maiden victory, decided to pass around the back for 95% of the match. That’s integrity at its finest! However, Dru wasn’t having it and took his chances well with a 4–1 victory — just 11 goals short of the record he swore to break. Ah well, next season I guess. I mean, I’m sorry Dru, I didn’t mean that you’ll stay in Div 2. I’m sorry. Don’t break me!`,
+        author: "Alex Villani"
+    },
 
    {
         season:"11",
