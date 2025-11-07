@@ -6,6 +6,20 @@ const newsArticles = [
     //     summary: ``,
     //     author: "Alex Villani"
     // },
+  {
+        season:"11",
+        week: "4",
+        date: "November 7",
+        summary: `It was a short week for the BAFL. Public holidays, rowdy parties, commissioners not being in the state — and that was just Tuesday. Welcome back to the BAFL Times.
+<br><br>
+You’d think for a shortened week I’d talk about more matches. HAHAHA. Oh yeah, sure, why not. We kicked off the week with Alex vs Dan… ah, maybe we shouldn’t talk about this. For once, I can actually blame Sam for one of my losses. He made Dan and me play with the exact same teams as I narrowly lost 1–0 (4.6 expected goals to me, by the way). Jude and Nick put the punters into a panic with a very close match until the 80th minute, when Jude realised he might actually need some goal difference this season — winning 6–1.
+<br><br>
+I want to issue a formal apology to Kelvin, as I was kinda the reason he lost to Sam on Wednesday. After holding an early 1–0 lead, I berated Sam about his poor season, which inspired an MJ-like performance (Michael Jordan, not that Genshin player) as he swept past for a 3–1 victory. Yasin stood his ground against Brendan with a huge 9–1 victory (his biggest yet in the BAFL) as Division 2 edges towards an insane finish. Bass, also keen not to miss the victory bus, took a big scalp by beating Matthew 6–0! I didn’t see the match, but he said he was playing like prime Hashtag Harry (respect to those who get that reference).
+<br><br>
+To finish off the week? Wow, already? Jeez, lucky I’m not getting paid by the paragraph. Wait — I’m not getting paid at all. Typical. Anyway, Lachlan and Oscar took their battle downstairs, with Lachlan previously having the wood on Oscar (had to get that line cleared). Oscar, however, went against the script to keep his unbeaten run in the BAFL alive. I wonder how he’ll go in the finals!! Dru and Nick wrapped up the week for the BAFL. Dru took an interesting approach by sitting 90 degrees to the monitor, giving himself about 10% eyesight for the whole match. That’s pure confidence in your own ability — and he showed it too, winning 3–1 and rocketing to the top of Div 2.`,
+        author: "Alex Villani"
+    },
+
  {
         season:"11",
         week: "3",
