@@ -115,7 +115,7 @@ th, td {
 }
 
 .match img {
-    max-width: 70px;
+    width: 3rem;
     /* justify-self: flex-end; */
     aspect-ratio: 1/1;
     /* object-fit: none; */
@@ -152,7 +152,7 @@ th, td {
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr; /* player | score | team */
+  grid-template-columns: 80px 40px 1fr; /* player | score | team */
   align-items: center;
   gap: 45px;
   min-height: 40px;
