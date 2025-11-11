@@ -82,6 +82,10 @@ function teamContent(aType){
     type = typeConfig.find(type => type.name == aType);
     let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc);
 
+    teams.sort((a, b) =>
+        b.ovr - a.ovr || a.name.localeCompare(b.name)
+        );
+
     const typeDiv = document.createElement('div');
 
     teams.forEach(team => {
