@@ -9,8 +9,10 @@ console.log('Are we hitting this?')
   
   
 
-  document.addEventListener('click', () => {
+  document.addEventListener('click', (e) => {
+    console.log(e.target)
+    if(e.target.classList == "hamburger"){
     const navLinks = document.querySelector('.nav-links');
     const hamburger = document.getElementById('hamburger');
     navLinks.classList.toggle('show');
-  });
+  }});

@@ -163,6 +163,7 @@ input {
     background-color: #212121;
     border: #53555569 solid;
     padding: 10px;
+    gap: 15px;
 }
 
 #teamsHeader {
@@ -182,16 +183,22 @@ input {
 
 #teamsContent {
     display: flex;
+    flex-wrap: wrap;
+    font-size: small;
     width: 100%;
     flex-direction: column;
     /* flex-wrap: wrap; */
     margin: 0px;
-    overflow-y: scroll;
-    max-height: 200px;
+    /* overflow-y: scroll; */
+    max-height: 250px;
+    column-gap: 10px;
 }
 
 #teamsContent * {
-    margin: 2px;
+    margin: 0px;
+    display: flex;
+    
+    justify-content: space-between;
 }
 
 #showTeams {

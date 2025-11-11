@@ -89,8 +89,8 @@ function teamContent(aType){
     const typeDiv = document.createElement('div');
 
     teams.forEach(team => {
-            const teamName = document.createElement('p');
-            teamName.innerHTML = `${team.name}: ${team.ovr}`;
+            const teamName = document.createElement('div');
+            teamName.innerHTML = `<p>${team.name}</P> <p>OVR: ${team.ovr}</p>`;
             typeDiv.appendChild(teamName);
             teamsContent.innerHTML = typeDiv.innerHTML
         })
