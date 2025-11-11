@@ -5,6 +5,10 @@ main {
     width: 100%;
 }
 
+.content {
+    align-items: center;
+}
+
 #buttonsDivs {
     display: flex;
     margin-top: 20px;

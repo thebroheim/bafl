@@ -24,28 +24,78 @@ const typeConfig = [
     {name: 'International', minOvr: null, maxOvr: null, type: 'International'},
 ];
 
-let viewTeamsSwitch = false
+let viewTeamsSwitch = true
 
 function viewTeams() {
     let fc = document.getElementById('fc').value;
-    
-    const showTeams = document.getElementById('showTeams')
+    const showTeams = document.getElementById('showTeams');
     showTeams.innerHTML = '';
-    showTeams.style='display: flex'
+    showTeams.style.display = 'flex';
+    showTeams.style.flexDirection = 'column'; // stack the sections vertically
+
     typeConfig.forEach(type => {
-        const matchType = document.createElement('h3');
-        
-        matchType.innerHTML = `${type.name}`
+        const matchType = document.createElement('div');
+        const matchTypeHeader = document.createElement('h3');
+        const typeDiv = document.createElement('div');
+
+        typeDiv.style.display = 'none';
+        matchType.className = 'showTeamType';
+        matchTypeHeader.innerHTML = `
+            <span class="type-name">${type.name}</span>
+            <span class="arrow">►</span>
+        `;
+
         showTeams.appendChild(matchType);
-        let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc)
+        matchType.appendChild(matchTypeHeader)
+        matchType.appendChild(typeDiv);
+
+        let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc);
         teams.forEach(team => {
             const teamName = document.createElement('p');
-            teamName.innerHTML = `${team.name}:  ${team.ovr}`;
-            matchType.appendChild(teamName)
-        })
-    })
-    viewTeamsSwitch = true
+            teamName.innerHTML = `${team.name}: ${team.ovr}`;
+            typeDiv.appendChild(teamName);
+        });
+    });
+
+    viewTeamsSwitch = true;
 }
+
+function teamsDisplay() {
+    let fc = document.getElementById('fc').value;
+    typeConfig.forEach(type => {
+        const matchTypeHeader = document.createElement('h4');
+        const teamsHeader = document.getElementById('teamsHeader')
+        
+        matchTypeHeader.textContent = type.name;
+        matchTypeHeader.className = "headerType"
+
+        teamsHeader.appendChild(matchTypeHeader)
+
+;
+    });
+
+    viewTeamsSwitch = true;
+}
+
+function teamContent(aType){
+    const teamsContent = document.getElementById('teamsContent')
+    type = typeConfig.find(type => type.name == aType);
+    let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc);
+
+    const typeDiv = document.createElement('div');
+
+    teams.forEach(team => {
+            const teamName = document.createElement('p');
+            teamName.innerHTML = `${team.name}: ${team.ovr}`;
+            typeDiv.appendChild(teamName);
+            teamsContent.innerHTML = typeDiv.innerHTML
+        })
+        
+}
+
+teamsDisplay()
+
+
 
 const options = document.getElementById("optionDropdown");
 typeConfig.forEach(type => {
@@ -124,3 +174,20 @@ function generateTeam(){
 
     return `Team 1 is: ${team1} and Team 2 is: ${team2}`;
 };
+
+
+document.addEventListener("click", function(e) {
+    if(e.target.classList == "headerType"){
+         const headers = document.querySelectorAll('#teamsHeader h4');
+ headers.forEach(header => {
+    console.log(header.innerHTML)
+    header.style.color = '#ffffff'
+ })
+    const type = e.target.innerHTML
+
+    e.target.style.color = '#24e3fd'
+    teamContent(type)
+    }
+
+});
+
