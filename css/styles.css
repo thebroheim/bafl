@@ -201,6 +201,11 @@ input {
     justify-content: space-between;
 }
 
+#teamsContent *:nth-child(2n) {
+    background-color: #0c0c0c;
+}
+
+
 #showTeams {
     flex-direction: column;
     gap: 5px;
