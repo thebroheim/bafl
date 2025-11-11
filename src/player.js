@@ -61,7 +61,6 @@ function viewTeams() {
 }
 
 function teamsDisplay() {
-    let fc = document.getElementById('fc').value;
     typeConfig.forEach(type => {
         const matchTypeHeader = document.createElement('h4');
         const teamsHeader = document.getElementById('teamsHeader')
@@ -78,6 +77,7 @@ function teamsDisplay() {
 }
 
 function teamContent(aType){
+    let fc = document.getElementById('fc').value;
     const teamsContent = document.getElementById('teamsContent')
     type = typeConfig.find(type => type.name == aType);
     let teams = filterTeams(type.minOvr, type.maxOvr, type.type, fc);
