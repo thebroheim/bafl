@@ -51,7 +51,7 @@ setDefault()
 let selectedPlayer = null
 
 function filterMatches(e) {
-  console.log(e)
+  console.log('Before filtering: ' + e.dataset.div)
   let div1 = document.getElementById('div1matches');
   let div2 = document.getElementById('div2matches');
   const tagValue = e.dataset.div;
@@ -68,11 +68,20 @@ function filterMatches(e) {
   // Set rows background to default colour
   rows.forEach((row) => {
     row.style.backgroundColor = ''
+    const text = row.textContent
+    const firstLine = text.split('\n')[1];
+    // console.log(firstLine)
   })
 
   // Set targeted row background colour
-  const row = e.closest('tr')
-  row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+ const targetText = e.textContent.trim(); // assuming e is an element
+rows.forEach(row => {
+  if (row.textContent.includes(targetText)) {
+    row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+  }
+  console.log('After filtering: ' + e.dataset.div)
+});
+  
 
   if(tagValue== 'div2'){
     div1.style.cssText = "display: none; flex-direction: column;";
@@ -252,6 +261,7 @@ function displayMatches(matches){
 matches.forEach(match => {
    let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
+   let divTag = null
    let finals = document.getElementById("finals");
    let upcomingMatches = document.getElementById('upcomingMatches');
    let prefix = 'Match'
@@ -260,7 +270,7 @@ matches.forEach(match => {
 
   switch (match.div) {
     case '1':
-      container = div1
+      container = div1;
       break;
     case '2':
       container = div2
@@ -272,6 +282,7 @@ matches.forEach(match => {
   } ;
 
   const div = document.createElement("div")
+  
   
   if(match.div === '2'){
     container= document.getElementById('div2matches')
@@ -300,12 +311,12 @@ matches.forEach(match => {
         <div>Team</div>
       </div>
       <div class="row">
-        <div>${match.player1}</div>
+        <div class= "playerName" data-div="div${match.div}">${match.player1}</div>
         <div>${match.p1score}</div>
         <div>${show1}</div>
       </div>
       <div class="row">
-        <div>${match.player2}</div>
+        <div class= "playerName" data-div="div${match.div}">${match.player2}</div>
         <div>${match.p2score}</div>
         <div>${show2}</div>
       </div>

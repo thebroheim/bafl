@@ -156,10 +156,8 @@ input {
     display: flex;
     flex-direction: column;
     width: 82%;
-    /* border: #212121 solid; */
     align-self: center;
     align-items: center;
-    /* margin: 10px; */
     background-color: #212121;
     border: #53555569 solid;
     padding: 10px;
@@ -197,49 +195,11 @@ input {
 #teamsContent * {
     margin: 0px;
     display: flex;
-    
     justify-content: space-between;
 }
 
 #teamsContent *:nth-child(2n) {
     background-color: #0c0c0c;
-}
-
-
-#showTeams {
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-}
-
-#showTeams p{
-    font-size: 9pt;
-    line-height: 95%;
-}
-
-.showTeamType {
-    align-items: space-between;
-    background: #212121;
-    width: 90%;
-    margin: 0;
-    align-self: center;
-}
-
-.showTeamType h3 {
-    display: flex;
-    margin: 0;
-    justify-content: space-between;
-}
-
-.showTeamType div {
-    display: flex;
-    flex-direction: column;
-    max-height: 300px;
-    overflow: auto;
-}
-
-.showTeamType div * {
-    margin: 5px;
 }
 
 /* Tables */

@@ -136,6 +136,11 @@ th, td {
     min-width: 350px; */
 }
 
+.playerName:hover {
+    cursor: pointer;
+    color: #24e3fd;
+}
+
 #finals {
     display: flex;
     flex-direction: column;
