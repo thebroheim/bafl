@@ -6,6 +6,36 @@ const newsArticles = [
     //     summary: ``,
     //     author: "Alex Villani"
     // },
+    {
+        season:"11",
+        week: "5/6 (so close...)",
+        date: "November 20",
+        summary: `Welcome, welcome! I'm writing this week’s entry at 4:30am on Cricket 26 release day! QA Lead? Yeah — lead us to a disrupted sleep schedule. But more importantly, BAFL was had, and BAFL we shall talk about!
+<br><br>
+Oh yeah, I didn’t write last week. Pure hatred for what I do and a severe lack of motivation were the main causes. Basically, I lost to Kelvin — no biggy. Manjeeve conceded 17 goals in two games — slight biggy. Oscar left the company?? — big biggy. I mean not from a productive stand point, but THATS MY COUSIN MAN!!
+<br><br>
+Alright, on with the week. We began with Lachlan vs Manjeeve: the battle of the absolute gutter-end of Div 1. I had to flip their controllers pre-match because they were holding them sideways (typical). Also keep in mind, Manjeeve beat Kelvin, who beat me, so he should have no problem beating Lachl— oh. He lost 5–2. Jeez, what even is this season sometimes?
+<br><br>
+Ooh, here we go: a great matchup with Bass and Gus. I would usually rag on Bass, but he is sitting 15 feet from me at 4:30am and he did have to play against Real Madrid, so in a Top 10 Football Respects moment, congrats on only losing 2–1, Bass!
+<br><br>
+Tuesday offered us a triple treat because Lachlan thought we were behind schedule (still on Cairns time). Dan and Sam to start off — wow oh wow. With Portugal and Argentina, simply orgasmic. Wait, can I even say that? Do I even have an editor? Do reporters speak in the third person this much?
+<br><br>
+Anyway, back to the match. It was close and high quality… then I left and Sam scored 5 goals (my bad). A convincing win that puts Sam back on top of Div 1 — FFS. Jude missed an opportunity to sit second on the table as he drew with Matthew. His aspirations for Div 1 glory seems on the backburner as he attempts to be Producer on basically every Big Ant game ever. #priorities Oh look at that — I also played against Lachy. The raging bull himself. I call him that because he nearly put his fist through my poor desk after going down 3–2 against my 10 men LOL. But he managed to claw it back to a 3–3 draw, keeping us both in finals contention.
+<br><br>
+Finally: I wasn’t / am not / was?? here for Wednesday’s games — I forget what tense I’m supposed to write this in. Anyway, Wednesday happened. Bass vs Dru and Yasin vs Gus. What a set of Div 2 matchups… shame no one really likes Div 2 apart from the players themselves. Yasin, as always, only shows up in big-time matches. Playing as his beloved Chelsea, he took the challenge to Gus in a 2–1 victory and — if you can believe it — put himself on top of Div 2!
+<br><br>
+Bass and Dru played a hugely decisive match downstairs, with Bass coming away with a massive win, putting himself back up to 4th with a real chance at promotion still looming large.
+<br><br>
+Hang on a sec — it’s Thursday and I’m not even here to write about the BAFL? Looks like Sam Harvey (GOAT) will have to take over… enjoy!
+<br><br>
+Sam Harvey, BAFL Commissioner here. <br>
+Ricardo met Brendan in a match where both players needed points to get some space from the wooden spoon of Div 2. Both claimed they deserved to win. Fittingly, the result was a 1-1 draw. Leaving Nick at 0 points as he tries his hardest to expand his kitchen utensils drawer.
+Downstairs, 
+<br><br>
+Lachlan faced Kelvin in the classic match up that is Real Betis vs Al Hilal. Lachlan proved too good and secured a 2-0 win. Placing himself comfortably in the middle of the table with 2 matches to play, which gives him the slimmest of chances to attain a 4th place finish. `,
+        author: "Alex Villani"
+    },
+
   {
         season:"11",
         week: "4",
