@@ -1,135 +1,135 @@
-  // Your API key (same one you already have in your project)
-  const API_KEY = "AIzaSyDVtoBOmEt28FAgu0LAstQ7kI1eR7EmzZY";
+//   // Your API key (same one you already have in your project)
+//   const API_KEY = "AIzaSyDVtoBOmEt28FAgu0LAstQ7kI1eR7EmzZY";
 
-  // Discovery doc for Sheets API
-  const DISCOVERY_DOC = "https://sheets.googleapis.com/$discovery/rest?version=v4";
+//   // Discovery doc for Sheets API
+//   const DISCOVERY_DOC = "https://sheets.googleapis.com/$discovery/rest?version=v4";
 
-  // The spreadsheet ID and range you want to read
-  const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:J19";
-  const matchesRange = "Players!M1:V80";
-  const finalsRange = "Players!A22:J28";
-  const checkSchedule = "Players!B29:C30";
-  const seasonElo = "Players!A79:B100";
-  const allTimeElo = "Players!E79:F115"
-
-
-
-let mainContent = document.getElementById('main')
-mainContent.style.display = 'none'
-let divisiontables = document.getElementById('table');
-divisiontables.style.display = 'none'
-let schedules = document.getElementById('schedule')
-schedules.style.display = 'none'
-let clearFilterBtn = document.getElementById('filter')
-clearFilterBtn.style.display = 'none'
-let finalsBtn = document.getElementById("finalsFilter")
-let buttonsDivs = document.getElementById('buttonsDivs')
-buttonsDivs.style.display = 'none';
-let finalsContainer = document.getElementById('finals')
-finalsContainer.style.display = 'none'
-let upComingHide = document.getElementById('upComingHide')
-upComingHide.style.display = 'none'
-
-let eloTables = document.getElementById('eloTables')
-
-eloTables.style.display = 'none'
+//   // The spreadsheet ID and range you want to read
+//   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
+//   const playersRange = "Players!A1:J19";
+//   const matchesRange = "Players!M1:V80";
+//   const finalsRange = "Players!A22:J28";
+//   const checkSchedule = "Players!B29:C30";
+//   const seasonElo = "Players!A79:B100";
+//   const allTimeElo = "Players!E79:F115"
 
 
 
-  function convertToObjects(values) {
-  const headers = values[0]; // first row is the keys
-  return values.slice(1).map(row => {
-    let obj = {};
-    headers.forEach((key, i) => {
-      obj[key] = row[i]; // assign property from header → value
-    });
-    return obj;
-  });
-}
+// let mainContent = document.getElementById('main')
+// mainContent.style.display = 'none'
+// let divisiontables = document.getElementById('table');
+// divisiontables.style.display = 'none'
+// let schedules = document.getElementById('schedule')
+// schedules.style.display = 'none'
+// let clearFilterBtn = document.getElementById('filter')
+// clearFilterBtn.style.display = 'none'
+// let finalsBtn = document.getElementById("finalsFilter")
+// let buttonsDivs = document.getElementById('buttonsDivs')
+// buttonsDivs.style.display = 'none';
+// let finalsContainer = document.getElementById('finals')
+// finalsContainer.style.display = 'none'
+// let upComingHide = document.getElementById('upComingHide')
+// upComingHide.style.display = 'none'
 
-function setDefault(){
-    let div1 = document.getElementById('div1matches');
-    let div2 = document.getElementById('div2matches');
-    div1.style.cssText = "display: ''; flex-direction: column;";
-    div2.style.cssText = "display: ''; flex-direction: column;";
-}
+// let eloTables = document.getElementById('eloTables')
 
-setDefault()
+// eloTables.style.display = 'none'
 
-let selectedPlayer = null
 
-function filterMatches(e) {
-  console.log('Before filtering: ' + e.dataset.div)
-  let div1 = document.getElementById('div1matches');
-  let div2 = document.getElementById('div2matches');
-  const tagValue = e.dataset.div;
- if (selectedPlayer == e){
-    clearFilter();
-    selectedPlayer = null;
-  } else {
-  selectedPlayer = e;
-  clearFilterBtn.style.display = '';
-  clearFilterBtn.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+
+//   function convertToObjects(values) {
+//   const headers = values[0]; // first row is the keys
+//   return values.slice(1).map(row => {
+//     let obj = {};
+//     headers.forEach((key, i) => {
+//       obj[key] = row[i]; // assign property from header → value
+//     });
+//     return obj;
+//   });
+// }
+
+// function setDefault(){
+//     let div1 = document.getElementById('div1matches');
+//     let div2 = document.getElementById('div2matches');
+//     div1.style.cssText = "display: ''; flex-direction: column;";
+//     div2.style.cssText = "display: ''; flex-direction: column;";
+// }
+
+// setDefault()
+
+// let selectedPlayer = null
+
+// function filterMatches(e) {
+//   console.log('Before filtering: ' + e.dataset.div)
+//   let div1 = document.getElementById('div1matches');
+//   let div2 = document.getElementById('div2matches');
+//   const tagValue = e.dataset.div;
+//  if (selectedPlayer == e){
+//     clearFilter();
+//     selectedPlayer = null;
+//   } else {
+//   selectedPlayer = e;
+//   clearFilterBtn.style.display = '';
+//   clearFilterBtn.style.backgroundColor = 'rgba(66, 66, 66, 1)'
   
-  const rows = document.querySelectorAll('#table tr');
+//   const rows = document.querySelectorAll('#table tr');
 
-  // Set rows background to default colour
-  rows.forEach((row) => {
-    row.style.backgroundColor = ''
-    const text = row.textContent
-    const firstLine = text.split('\n')[1];
-    // console.log(firstLine)
-  })
+//   // Set rows background to default colour
+//   rows.forEach((row) => {
+//     row.style.backgroundColor = ''
+//     const text = row.textContent
+//     const firstLine = text.split('\n')[1];
+//     // console.log(firstLine)
+//   })
 
-  // Set targeted row background colour
- const targetText = e.textContent.trim(); // assuming e is an element
-rows.forEach(row => {
-  if (row.textContent.includes(targetText)) {
-    row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
-  }
-  console.log('After filtering: ' + e.dataset.div)
-});
+//   // Set targeted row background colour
+//  const targetText = e.textContent.trim(); // assuming e is an element
+// rows.forEach(row => {
+//   if (row.textContent.includes(targetText)) {
+//     row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+//   }
+//   console.log('After filtering: ' + e.dataset.div)
+// });
   
 
-  if(tagValue== 'div2'){
-    div1.style.cssText = "display: none; flex-direction: column;";
-    div2.style.cssText = "display: ''; flex-direction: column; width: 100%";
-  } else if (tagValue== 'div1'){
-    div1.style.cssText = "display: ''; flex-direction: column; width: 100%;";
-    div2.style.cssText = "display: none; flex-direction: column;";
-  } else {
-    div1.style.cssText = "display: ''; flex-direction: column;";
-    div2.style.cssText = "display: ''; flex-direction: column;";
-  }
+//   if(tagValue== 'div2'){
+//     div1.style.cssText = "display: none; flex-direction: column;";
+//     div2.style.cssText = "display: ''; flex-direction: column; width: 100%";
+//   } else if (tagValue== 'div1'){
+//     div1.style.cssText = "display: ''; flex-direction: column; width: 100%;";
+//     div2.style.cssText = "display: none; flex-direction: column;";
+//   } else {
+//     div1.style.cssText = "display: ''; flex-direction: column;";
+//     div2.style.cssText = "display: ''; flex-direction: column;";
+//   }
   
-  matches = document.querySelectorAll('.match')
-  let player = e.innerHTML
-  matches.forEach((match) => {
-    if(!match.textContent.includes(player)){
-      match.style.display = 'none'
-    } else {
-      match.style.display = ''
-    }
-  })
-}
-}
+//   matches = document.querySelectorAll('.match')
+//   let player = e.innerHTML
+//   matches.forEach((match) => {
+//     if(!match.textContent.includes(player)){
+//       match.style.display = 'none'
+//     } else {
+//       match.style.display = ''
+//     }
+//   })
+// }
+// }
 
-function clearFilter(){
-  setDefault()
-  matches = document.querySelectorAll('.match');
-  const rows = document.querySelectorAll('#table tr');
-  // Set rows background to default colour
-  rows.forEach((row) => {
-    row.style.backgroundColor = ''
-  })
+// function clearFilter(){
+//   setDefault()
+//   matches = document.querySelectorAll('.match');
+//   const rows = document.querySelectorAll('#table tr');
+//   // Set rows background to default colour
+//   rows.forEach((row) => {
+//     row.style.backgroundColor = ''
+//   })
 
-  matches.forEach((match) => {
-      match.style.display = ''
+//   matches.forEach((match) => {
+//       match.style.display = ''
 
-  })
-  clearFilterBtn.style.display = 'none'
-}
+//   })
+//   clearFilterBtn.style.display = 'none'
+// }
 
 
 
@@ -418,5 +418,5 @@ async function loadData() {
 
   // Now continue with your object conversions and rendering...
 }
-
+console.log('Schedule 2')
 loadData()
