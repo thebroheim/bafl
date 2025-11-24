@@ -10,6 +10,9 @@
   const matchesRange = "Players!M1:V80";
   const finalsRange = "Players!A22:J28";
   const checkSchedule = "Players!B29:C30";
+  const seasonElo = "Players!A79:B100";
+  const allTimeElo = "Players!E79:F115"
+
 
 
 let mainContent = document.getElementById('main')
@@ -27,6 +30,12 @@ let finalsContainer = document.getElementById('finals')
 finalsContainer.style.display = 'none'
 let upComingHide = document.getElementById('upComingHide')
 upComingHide.style.display = 'none'
+
+let eloTables = document.getElementById('eloTables')
+
+eloTables.style.display = 'none'
+
+
 
   function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
@@ -172,6 +181,31 @@ async function getShowValue() {
   return convertToObjects(values);
 }
 
+async function getSeasonElo() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: seasonElo,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+async function getAllTimeElo() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: allTimeElo,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+
 // Initiate page
 async function init() {
   await gapi.client.init({
@@ -182,6 +216,8 @@ async function init() {
   let players = await getPlayers(); 
   let matchesFinal = await getMatches();
   let finalsMatches = await getFinalsMatches();
+  let seasonElo = await getSeasonElo();
+  let allTimeElo = await getAllTimeElo();
   if (showToggle[0].finals == "FALSE"){
     finalsBtn.style.display = 'none'
   }
@@ -254,7 +290,37 @@ playersDiv2.forEach(player =>{
 
 })}
 
+function displaySeasonEloTable() {
+  seasonElo.forEach(player => {
+      let container = document.getElementById('theSeasonEloTable')
+    const row = document.createElement("tr")
+      row.innerHTML = `
+        <td>${player.Name}</td>
+        <td>${player.Elo}</td>`
 
+    container.appendChild(row)
+  })
+
+
+}
+
+function displayAllTimeEloTable() {
+  allTimeElo.forEach(player => {
+      let container = document.getElementById('theAllTimeEloTable')
+    const row = document.createElement("tr")
+      row.innerHTML = `
+        <td>${player.Name}</td>
+        <td>${player.Elo}</td>`
+
+    container.appendChild(row)
+  })
+
+
+}
+
+
+displaySeasonEloTable()
+displayAllTimeEloTable()
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
 
 function displayMatches(matches){
@@ -391,10 +457,9 @@ document.addEventListener("click", function(e) {
           break;
         case "Finals":
           finals.style.display = '',
-          div1Content[0].style.display = 'none', div1Content[1].style.display = 'none'
-          div2Content[0].style.display = 'none', div2Content[1].style.display = 'none'
-
-
+          div1Content[0].style.display = 'none', div1Content[1].style.display = 'none';
+          div2Content[0].style.display = 'none', div2Content[1].style.display = 'none';
+          break;
       }
     }})
 
@@ -406,6 +471,19 @@ document.addEventListener("click", function(e) {
       filterMatches(e.target)
     }
 });
+
+function showElo(){
+  let eloButton = document.getElementById('eloButton')
+  if (eloTables.style.display == ''){
+    eloTables.style.display = 'none'
+
+    eloButton.style.backgroundColor = 'black'
+  } else {
+    eloTables.style.display = '';
+    eloButton.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+  }
+ 
+}
 
 
   gapi.load("client", init);

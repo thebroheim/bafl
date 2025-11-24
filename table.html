@@ -22,11 +22,42 @@
         <button id= 'bothButton' class="buttonDiv">Both</button>
         <button class="buttonDiv">Div 2</button>
         <button id="filter" onclick="clearFilter()">Clear Filter</button>
+        <button id="eloButton" onclick="showElo()">ELO</button>
       </div>
 
       <div id="maintenance">
       </div>
+      <div id="eloTables">
+      <div id="seasonEloTable" class="eloTable">
+        <h4>Season Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theSeasonEloTable">
 
+          </tbody>
+          </table>
+      </div>
+
+         <div id="allTimeEloTable" class="eloTable">
+          <h4>All Time Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theAllTimeEloTable">
+
+          </tbody>
+          </table>
+      </div>
+      </div>
       <div id="table">
         <div id="div1Table">
           <h3>Division 1</h3>

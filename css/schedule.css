@@ -25,6 +25,19 @@ button {
     background-color: rgba(66, 66, 66, 1);
 }
 
+#eloTables{
+    display: flex;
+    gap: 50px;
+    width: 60%;
+    
+}
+
+.eloTable {
+    width: 100%;
+    margin-top: 20px;
+    overflow-y: scroll;
+}
+
 #table {
     margin-top: 20px;
     display: flex;
