@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <link rel="stylesheet" href="\css\styles.css">
+    <link rel="stylesheet" href="\css\schedule.css">
+    <link rel="icon" href="images\BaflLogo.png">
+    <script src="\src\teams.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <script src="src\header.js"></script>
+
+    <main id="main">
+    <div class="content">
+      <div id="buttonsDivs">
+        <button id= "finalsFilter"class="buttonDiv">Finals</button>
+        <button class="buttonDiv">Div 1</button>
+        <button id= 'bothButton' class="buttonDiv">Both</button>
+        <button class="buttonDiv">Div 2</button>
+        <button id="filter" onclick="clearFilter()">Clear Filter</button>
+        <button id="eloButton" onclick="showElo()">ELO</button>
+      </div>
+
+      <div id="maintenance">
+      </div>
+      <div id="eloTables">
+      <div id="seasonEloTable" class="eloTable">
+        <h4>Season Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theSeasonEloTable">
+
+          </tbody>
+          </table>
+      </div>
+
+         <div id="allTimeEloTable" class="eloTable">
+          <h4>All Time Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theAllTimeEloTable">
+
+          </tbody>
+          </table>
+      </div>
+      </div>
+      <div id="table">
+        <div id="div1Table">
+          <h3>Division 1</h3>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">P</th>
+              <th scope="col">W</th>
+              <th scope="col">D</th>
+              <th scope="col">L</th>
+              <th scope="col">GF</th>
+              <th scope="col">GA</th>
+              <th scope="col">GD</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="div1TableData">
+
+          </tbody>
+          </table>
+          </div>
+          <div id="div2Table">
+             <h3>Division 2</h3>
+          <table>
+            <thead>
+            <tr>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">P</th>
+              <th scope="col">W</th>
+              <th scope="col">D</th>
+              <th scope="col">L</th>
+              <th scope="col">GF</th>
+              <th scope="col">GA</th>
+              <th scope="col">GD</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="div2TableData">
+            
+          </tbody>
+          </table>
+          </div>
+      </div>
+      <div id="matches">
+        <div id="finals">
+            <h3>Finals</h3>
+        </div>
+        <div>
+            <div id="upComingHide">
+            <h3>Upcoming Matches</h3>
+              <div id="upcomingMatches">
+              </div>
+            </div>
+          <div id="schedule">
+            <div id="div1matches">
+              <h3>Division 1</h3>
+            </div>
+            <div id="div2matches">
+              <h3>Division 2</h3>
+            </div>
+          </div>
+      </div>
+      </div>
+
+
+      <script src="\src\schedule2.js"></script>
+      <!-- <script src="\src\createMatches.js"></script> -->
+     </div>
+     </main>
+</body>
