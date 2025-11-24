@@ -35,7 +35,7 @@ button {
 .eloTable {
     width: 100%;
     margin-top: 20px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 #table {
