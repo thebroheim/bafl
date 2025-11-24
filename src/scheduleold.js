@@ -1,4 +1,19 @@
+  // Your API key (same one you already have in your project)
+  const API_KEY = "AIzaSyDVtoBOmEt28FAgu0LAstQ7kI1eR7EmzZY";
+
+  // Discovery doc for Sheets API
+  const DISCOVERY_DOC = "https://sheets.googleapis.com/$discovery/rest?version=v4";
+
   // The spreadsheet ID and range you want to read
+  const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
+  const playersRange = "Players!A1:J19";
+  const matchesRange = "Players!M1:V80";
+  const finalsRange = "Players!A22:J28";
+  const checkSchedule = "Players!B29:C30";
+  const seasonElo = "Players!A79:B100";
+  const allTimeElo = "Players!E79:F115"
+
+
 
 let mainContent = document.getElementById('main')
 mainContent.style.display = 'none'
@@ -118,35 +133,91 @@ function clearFilter(){
 
 
 
+async function getPlayers() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: playersRange,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+async function getMatches() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: matchesRange,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+async function getFinalsMatches() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: finalsRange,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+async function getShowValue() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: checkSchedule,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+async function getSeasonElo() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: seasonElo,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
+
+async function getAllTimeElo() {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: allTimeElo,
+  });
+
+  const values = response.result.values;
+  if (!values || values.length === 0) return [];
+
+  return convertToObjects(values);
+}
 
 
-
-
-
-async function loadData() {
-  const res = await fetch("/.netlify/functions/getData");
-  const batch = await res.json();
-
-  // The batch contains 6 valueRanges
-  const [
-    playersRes,
-    matchesRes,
-    finalsRes,
-    scheduleRes,
-    seasonEloRes,
-    allTimeEloRes
-  ] = batch.valueRanges;
-
-  // Convert each into your object arrays
-  const players = convertToObjects(playersRes.values);
-  const matchesFinal = convertToObjects(matchesRes.values);
-  const finalsMatches = convertToObjects(finalsRes.values);
-  const showToggle = convertToObjects(scheduleRes.values);
-  const seasonElo = convertToObjects(seasonEloRes.values);
-  const allTimeElo = convertToObjects(allTimeEloRes.values);
-
-  // Now run all your existing display logic here.
-
+// Initiate page
+async function init() {
+  await gapi.client.init({
+    apiKey: API_KEY,
+    discoveryDocs: [DISCOVERY_DOC],
+  });
+  let showToggle = await getShowValue();
+  let players = await getPlayers(); 
+  let matchesFinal = await getMatches();
+  let finalsMatches = await getFinalsMatches();
+  let seasonElo = await getSeasonElo();
+  let allTimeElo = await getAllTimeElo();
   if (showToggle[0].finals == "FALSE"){
     finalsBtn.style.display = 'none'
   }
@@ -415,5 +486,5 @@ function showElo(){
 }
 
 
-loadData()
+  gapi.load("client", init);
 
