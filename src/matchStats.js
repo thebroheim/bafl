@@ -15,6 +15,7 @@ let hof =[]
 
 async function loadData() {
   const res = await fetch("/.netlify/functions/getMatchData");
+  console.log('LoadingData')
   const batch = await res.json();
 
   // The batch contains 6 valueRanges
@@ -534,6 +535,3 @@ function playerStats() {
         </p></div>
     `;
 }
-
-
-generalStats()
