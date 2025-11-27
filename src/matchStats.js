@@ -29,7 +29,15 @@ async function loadData() {
 
 }
 
-loadData()
+async function init() {
+    await loadData();
+    console.log('Matches:', matches);
+    console.log('HoF:', hof);
+}
+
+init();
+
+console.log('AfterLoading')
 
 //Required Structure For Matches
 // { matchType: "strong", p1: "Nick", p2: "Ezekiel", p1score: 0, p2score: 3, p1team: "Liverpool", p2team: "Arsenal", season: 3, context: 'finals' }
