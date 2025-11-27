@@ -33,6 +33,30 @@ async function init() {
     await loadData();
     console.log('Matches:', matches);
     console.log('HoF:', hof);
+
+    let players = [];
+
+// Add Players To Dropdown
+matches.forEach(match => {
+    if (!players.includes(match.p1)) {
+        players.push(match.p1);
+    }
+
+    if (!players.includes(match.p2)) {
+        players.push(match.p2);
+    }
+});
+
+players = players.sort((a, b) => a.localeCompare(b));
+
+let select = document.getElementById("playerName")
+players.forEach(player => {
+    let option = document.createElement('option')
+    option.innerHTML = player
+    select.appendChild(option)
+})
+
+generalStats()
 }
 
 init();
@@ -148,27 +172,7 @@ const testhof = [
 
 
 
-let players = [];
 
-// Add Players To Dropdown
-matches.forEach(match => {
-    if (!players.includes(match.p1)) {
-        players.push(match.p1);
-    }
-
-    if (!players.includes(match.p2)) {
-        players.push(match.p2);
-    }
-});
-
-players = players.sort((a, b) => a.localeCompare(b));
-
-let select = document.getElementById("playerName")
-players.forEach(player => {
-    let option = document.createElement('option')
-    option.innerHTML = player
-    select.appendChild(option)
-})
 
 
 function getWinRates(){
