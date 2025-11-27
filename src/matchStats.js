@@ -532,5 +532,6 @@ function playerStats() {
         </p></div>
     `;
 }
+loadData()
 
 generalStats()
