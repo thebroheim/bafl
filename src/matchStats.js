@@ -12,6 +12,7 @@
 
 let matches = []
 let hof =[]
+let players = []
 
 async function loadData() {
   const res = await fetch("/.netlify/functions/getMatchData");
