@@ -1,5 +1,3 @@
-  // The spreadsheet ID and range you want to read
-
 let mainContent = document.getElementById('main')
 mainContent.style.display = 'none'
 let divisiontables = document.getElementById('table');

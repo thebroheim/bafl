@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+
+
+
+#statBoxes {
+  gap: 10px;
+  display: grid;
+  margin: 0 auto;
+  /* 6 equal columns gives easy fractions: 2/6 = 33.33%, 3/6 = 50%, 6/6 = 100% */
+  grid-template-columns: repeat(6, 1fr);
+  width: 90%;
+}
+
+/* shared */
+.statBoxSmall,
+.statBoxMedium,
+.statBoxLarge {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(66,66,66,1);
+}
+
+/* small: 2 of 6 = 33.33% -> 3 per row */
+.statBoxSmall { grid-column: span 2; }
+
+/* medium: 3 of 6 = 50% -> 2 per row */
+.statBoxMedium { grid-column: span 3; }
+
+/* large: full row (6 of 6) */
+.statBoxLarge { 
+    grid-column: span 6;
+    display: flex;
+    gap: 15px;
+ }

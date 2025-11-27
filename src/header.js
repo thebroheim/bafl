@@ -4,8 +4,6 @@
           document.getElementById("header").innerHTML = data;
         });
 
-console.log('Are we hitting this?')
-
   
   
 
