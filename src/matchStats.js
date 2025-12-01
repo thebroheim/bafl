@@ -56,11 +56,10 @@ players.forEach(player => {
     option.innerHTML = player
     select.appendChild(option)
 })
-
-generalStats()
 }
 
 init();
+generalStats();
 
 console.log('AfterLoading')
 
@@ -502,7 +501,11 @@ function getFinalResults(player, type) {
 // MAIN FUNCTION THAT UPDATES THE PAGE
 function playerStats() {
     const player = document.getElementById("playerName").value;
+    if(player == "Overall"){
+        generalStats()
+    } else {
     const statsContent = document.getElementById("statsContent");
+
 
     const totalMatches = getTotalMatches(player);
     const wins = getTotalWins(player);
@@ -546,5 +549,8 @@ function playerStats() {
             <div class="statBoxSmall"><p><strong>Final Losses:</strong> ${finalLosses.length}</p></div>
 
         </p></div>
-    `;
+    `
+    console.log(`Goals for: ${goalsFor}, Goals Against ${goalsAgainst}, Goal Diff ${goalDiff}`)
+    console.log(`Team most wins ${teamMostWins}`)
+    ;}
 }
