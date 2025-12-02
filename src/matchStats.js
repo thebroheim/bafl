@@ -76,8 +76,11 @@ players.forEach(player => {
 })
 }
 
-await init();
-generalStats();
+
+(async function initPage() {
+    await init();
+    generalStats();
+})();
 
 console.log('AfterLoading')
 
