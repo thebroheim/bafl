@@ -4,7 +4,20 @@
   margin: 20px;
   display: flex;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
+
+#search select {
+
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  border: 1px solid #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  height: 40px;
+}
+
 
 
 #statBoxes {
@@ -27,6 +40,7 @@
   text-align: center;
   background: rgb(27, 27, 27);
   border: solid #24e3fd;
+  border-width: 2px;
 }
 
 /* small: 2 of 6 = 33.33% -> 3 per row */
