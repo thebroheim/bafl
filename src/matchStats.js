@@ -55,8 +55,6 @@ async function init() {
     console.log('Matches:', matches);
     console.log('HoF:', hof);
 
-    let players = [];
-
 // Add Players To Dropdown
 matches.forEach(match => {
     if (!players.includes(match.p1)) {
