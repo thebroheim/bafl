@@ -1,13 +1,33 @@
-  function convertToObjects(values) {
-  const headers = values[0]; // first row is the keys
+//   function convertToObjects(values) {
+//   const headers = values[0]; // first row is the keys
+//   return values.slice(1).map(row => {
+//     let obj = {};
+//     headers.forEach((key, i) => {
+//       obj[key] = row[i]; // assign property from header → value
+//     });
+//     return obj;
+//   });
+// }
+
+function convertToObjects(values) {
+  const headers = values[0];
+
   return values.slice(1).map(row => {
     let obj = {};
+
     headers.forEach((key, i) => {
-      obj[key] = row[i]; // assign property from header → value
+      const val = row[i];
+
+      // Convert numbers that come in as strings
+      obj[key] = (typeof val === "string" && val.trim() !== "" && !isNaN(val))
+        ? Number(val)
+        : val;
     });
+
     return obj;
   });
 }
+
 
 
 let matches = []
