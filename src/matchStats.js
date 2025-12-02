@@ -76,7 +76,7 @@ players.forEach(player => {
 })
 }
 
-init();
+await init();
 generalStats();
 
 console.log('AfterLoading')
