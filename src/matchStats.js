@@ -66,6 +66,24 @@ matches.forEach(match => {
     }
 });
 
+let seasons = []
+
+matches.forEach(match => {
+    if (!seasons.includes(match.season)) {
+        seasons.push(match.season);
+    }
+});
+
+let seasonSelect = document.getElementById("seasonSelect")
+seasons = sortByValue(seasons, true)
+
+seasons.forEach(season => {
+    let option = document.createElement('option')
+    option.innerHTML = season
+    seasonSelect.appendChild(option)
+})
+
+
 players = players.sort((a, b) => a.localeCompare(b));
 
 let select = document.getElementById("playerName")
@@ -73,7 +91,7 @@ players.forEach(player => {
     let option = document.createElement('option')
     option.innerHTML = player
     select.appendChild(option)
-})
+});
 }
 
 
@@ -316,6 +334,7 @@ function generalStats(){
 
     const statsContent = document.getElementById("statsContent");
     statsContent.innerHTML = `
+    <h2>Overall Stats</h2>
     <div id="statBoxes">
             <div class="statBoxSmall"><p><strong>Best Win Rate:</strong> ${bestWinRate[0]} ${bestWinRate[1]}%</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>

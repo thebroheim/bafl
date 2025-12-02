@@ -1,5 +1,10 @@
 * { box-sizing: border-box; }
 
+#search {
+  margin: 20px;
+  display: flex;
+  gap: 20px;
+}
 
 
 #statBoxes {
