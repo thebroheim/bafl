@@ -578,7 +578,7 @@ function playerStats() {
     const winRate = getWinRate(player);
     const goalsFor = getGoalsFor(player);
     const goalsAgainst = getGoalsAgainst(player);
-    const goalDiff = getGoalDifference(player);
+    const goalDiff = Math.round(getGoalDifference(player));
 
     const biggestWin = getBiggestWin(player);
     const biggestLoss = getBiggestLoss(player);
@@ -594,8 +594,8 @@ function playerStats() {
             <p><strong>Wins: </strong> ${wins.length}</p>
             <p><strong>Losses: </strong> ${losses.length}</p>
             <p><strong>Draws: </strong> ${draws}</p>
-            
-            <div class="statBoxSmall"><p><strong>Win Rate:</strong>  ${winRate}%</p></div></div>
+            <p><strong>Win Rate:</strong>  ${winRate}%</p></div>
+
             <div class="statBoxSmall"><p><strong>Goals For: </strong> ${goalsFor}</p></div>
             <div class="statBoxSmall"><p><strong>Goals Against:</strong> ${goalsAgainst}</p></div>
             <div class="statBoxSmall"><p><strong>Goal Difference:</strong> ${goalDiff}</p></div>
