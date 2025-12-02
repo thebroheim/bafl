@@ -36,7 +36,6 @@ let players = []
 
 async function loadData() {
   const res = await fetch("/.netlify/functions/getMatchData");
-  console.log('LoadingData')
   const batch = await res.json();
 
   // The batch contains 6 valueRanges
@@ -52,8 +51,6 @@ async function loadData() {
 
 async function init() {
     await loadData();
-    console.log('Matches:', matches);
-    console.log('HoF:', hof);
 
 // Add Players To Dropdown
 matches.forEach(match => {
@@ -100,7 +97,6 @@ players.forEach(player => {
     generalStats();
 })();
 
-console.log('AfterLoading')
 
 //Required Structure For Matches
 // { matchType: "strong", p1: "Nick", p2: "Ezekiel", p1score: 0, p2score: 3, p1team: "Liverpool", p2team: "Arsenal", season: 3, context: 'finals' }
@@ -321,7 +317,6 @@ function getBiggestWinOfAll() {
 
 
 function generalStats(){
-    console.log(getWinRates())
     const bestWinRate = sortByValue(getWinRates(), true)[0];
     const div1Titles = getTitles().sortedDiv1;
     const div2Titles = getTitles().sortedDiv2;
@@ -619,7 +614,5 @@ function playerStats() {
 
         </p></div>
     `
-    console.log(`Goals for: ${goalsFor}, Goals Against ${goalsAgainst}, Goal Diff ${goalDiff}`)
-    console.log(`Team most wins ${teamMostWins}`)
     ;}
 }

@@ -25,7 +25,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: rgba(66,66,66,1);
+  background: rgb(27, 27, 27);
+  border: solid #24e3fd;
 }
 
 /* small: 2 of 6 = 33.33% -> 3 per row */
