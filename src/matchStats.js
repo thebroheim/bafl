@@ -302,6 +302,7 @@ function getBiggestWinOfAll() {
 
 
 function generalStats(){
+    console.log(getWinRates())
     const bestWinRate = sortByValue(getWinRates(), true)[0];
     const div1Titles = getTitles().sortedDiv1;
     const div2Titles = getTitles().sortedDiv2;
@@ -310,7 +311,6 @@ function generalStats(){
     const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
     const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
     const biggestWinOfAll = getBiggestWinOfAll();
-    console.log(biggestWinOfAll)
 
 
     const statsContent = document.getElementById("statsContent");
