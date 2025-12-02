@@ -339,8 +339,8 @@ function generalStats(){
             <div class="statBoxSmall"><p><strong>Best Win Rate:</strong> ${bestWinRate[0]} ${bestWinRate[1]}%</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Best Goal Difference: </strong>${bestGoalDiff[0]} ${bestGoalDiff[1]}</p></div>
-            <div class="statBoxSmall"><p><strong>Worst Goal Difference: </strong>${worstGoalDiff[0]} ${worstGoalDiff[1]}</p></div>
+            <div class="statBoxSmall"><p><strong>Best Goal Difference: </strong>${bestGoalDiff[0]} [${bestGoalDiff[1]}]</p></div>
+            <div class="statBoxSmall"><p><strong>Worst Goal Difference: </strong>${worstGoalDiff[0]} [${worstGoalDiff[1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
@@ -509,14 +509,19 @@ function getTeamMost(player, type) {
             return match.p1score === match.p2score;
         }
 
-        return false; // fallback
+        return false;
+    });
+
+    // NEW: Remove matches where the player's team is null
+    matches = matches.filter(match => {
+        const teamUsed = match.p1 === player ? match.p1team : match.p2team;
+        return teamUsed != null && teamUsed !== "";
     });
 
     const teamCounts = {};
 
     matches.forEach(match => {
         const teamUsed = match.p1 === player ? match.p1team : match.p2team;
-        if(teamUsed == null) {return};
         teamCounts[teamUsed] = (teamCounts[teamUsed] || 0) + 1;
     });
 
@@ -534,9 +539,10 @@ function getTeamMost(player, type) {
     return {
         team: bestTeam,
         count: bestCount,
-        type: type
+        type
     };
 }
+
 
 // Finals Results
 function getFinalResults(player, type) {
