@@ -6,6 +6,26 @@ const newsArticles = [
     //     summary: ``,
     //     author: "Alex Villani"
     // },
+
+        {
+        season:"11",
+        week: "7",
+        date: "November 28",
+        summary: `Jeez, Week 7 and we still have regular season matches to go? Far out. I get why people lose interest in this league. Anyway, welcome back to the BAFL Times!
+<br><br>
+Monday began with heavy controversy, with Lachlan’s PC exploding at the sheer thought of hosting a match between Matthew and Ricardo. Their combined talent forced his PC into a complete shutdown and reset, effectively demoting him back to Junior QA. This match was pushed to Tuesday.
+However, we still had a match to get through: Brendan vs Nick. It was a battle of the newcomers, with Nick scoring his first ever BAFL win over Brendan, 2–1, in a heroic display. Welcome to the league, Nick!
+<br><br>
+Tuesday we finally got the match we’ve all been waiting for — that’s right, Ricardo vs Matthew! Playing once again on Lachlan’s PC (now being held together with tape), Matthew got the big win, 4–2.
+Meanwhile, we had the battle of the corrupt Commissioners themselves: Lachlan vs Sam. At the Thailander lunch meet pre-match, Sam vowed not to concede or let Lachlan near the goals. He backed it up by going into halftime locked at 2–2. Unfortunately for Lachlan, Sam then decided he might actually need to win the match, turned up the heat, and took it 7–2.
+<br><br>
+I swear every time Kelvin plays me, he imagines his crush is watching or something. Because when he took on Brent on Wednesday, he lost again! Seriously, something must be in the Big Ant water in the UI department. Alas, Brent picked up a crucial win that further cemented his spot in the top 5.
+Dru and Jude took on the feature match upstairs in what promised to be high quality. However, ASADA might need to investigate Jude’s performance, as he destroyed Dru 7–1 — that’s pure anger right there. It rockets him into 2nd place, just behind Yasin, and still with a massive shot at the Div 2 Medal.
+<br><br>
+To cap off the week, I took on Manjeeve. In a bit of a dead rubber, I decided to throw every skill move I had at him (ball rolls). I took him apart in a convincing 5–2 win, cementing myself in 3rd place on the table.
+Gus and Nick played upstairs in an interesting spectacle — Nick, fresh off his maiden win, carried the momentum into his final match, as they settled for a 0–0 draw to close out their seasons.`,
+        author: "Alex Villani"
+    },
     {
         season:"11",
         week: "5/6 (so close...)",
