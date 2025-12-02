@@ -406,35 +406,58 @@ function getGoalDifference(player) {
 }
 
 // Biggest Win (returns scoreline)
+// function getBiggestWin(player) {
+//     let biggest = null;
+
+//     getMatchesForPlayer(player).forEach(match => {
+//         let diff = 0;
+//         let tempOpponent, tempWinScore, tempLoseScore;
+
+//         if (match.p1 === player) {
+//             diff = match.p1score - match.p2score;
+//             tempOpponent = match.p2;
+//             tempWinScore = match.p1score;
+//             tempLoseScore = match.p2score;
+//         } else if (match.p2 === player) {
+//             diff = match.p2score - match.p1score;
+//             tempOpponent = match.p1;
+//             tempWinScore = match.p2score;
+//             tempLoseScore = match.p1score;
+//         }
+
+//         const absDiff = Math.abs(diff);
+
+//         if (!biggest || absDiff > biggest.diff) {
+//             biggest = { match, diff: absDiff, opponent: tempOpponent, winScore: tempWinScore, loseScore: tempLoseScore };
+//         }
+//     });
+
+//     return biggest;
+// }
+
+
 function getBiggestWin(player) {
     let biggest = null;
-
     getMatchesForPlayer(player).forEach(match => {
         let diff = 0;
-        let tempOpponent, tempWinScore, tempLoseScore;
+        let opponent = null
 
         if (match.p1 === player) {
             diff = match.p1score - match.p2score;
-            tempOpponent = match.p2;
-            tempWinScore = match.p1score;
-            tempLoseScore = match.p2score;
-        } else if (match.p2 === player) {
+            opponent = match.p2
+        }
+        else if (match.p2 === player) {
             diff = match.p2score - match.p1score;
-            tempOpponent = match.p1;
-            tempWinScore = match.p2score;
-            tempLoseScore = match.p1score;
+            opponent = match.p1
+        
         }
 
-        const absDiff = Math.abs(diff);
-
-        if (!biggest || absDiff > biggest.diff) {
-            biggest = { match, diff: absDiff, opponent: tempOpponent, winScore: tempWinScore, loseScore: tempLoseScore };
+        if (diff > 0 && (!biggest || diff > biggest.diff)) {
+            biggest = { match, diff, opponent };
         }
     });
-
     return biggest;
 }
-
 
 
 //  Biggest Loss (returns scoreline) 
