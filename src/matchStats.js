@@ -315,6 +315,55 @@ function getBiggestWinOfAll() {
     return biggestOverall;
 }
 
+function getBestTeamOfAll(type) {
+    const teamCounts = {};
+
+    matches.forEach(match => {
+        let team1 = match.p1team;
+        let team2 = match.p2team;
+
+        // Skip if a team is null/empty
+        if (!team1 || !team2) return;
+
+        if (type === "wins") {
+            if (match.p1score > match.p2score) {
+                teamCounts[team1] = (teamCounts[team1] || 0) + 1;
+            } else if (match.p2score > match.p1score) {
+                teamCounts[team2] = (teamCounts[team2] || 0) + 1;
+            }
+        }
+
+        if (type === "losses") {
+            if (match.p1score < match.p2score) {
+                teamCounts[team1] = (teamCounts[team1] || 0) + 1;
+            } else if (match.p2score < match.p1score) {
+                teamCounts[team2] = (teamCounts[team2] || 0) + 1;
+            }
+        }
+
+        if (type === "draws") {
+            if (match.p1score === match.p2score) {
+                teamCounts[team1] = (teamCounts[team1] || 0) + 1;
+                teamCounts[team2] = (teamCounts[team2] || 0) + 1;
+            }
+        }
+    });
+
+    // Find the highest team
+    let bestTeam = null;
+    let bestCount = 0;
+
+    for (const team in teamCounts) {
+        if (teamCounts[team] > bestCount) {
+            bestTeam = team;
+            bestCount = teamCounts[team];
+        }
+    }
+
+    return { team: bestTeam, count: bestCount, type };
+}
+
+
 
 function generalStats(){
     const bestWinRate = sortByValue(getWinRates(), true)[0];
@@ -325,6 +374,8 @@ function generalStats(){
     const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
     const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
     const biggestWinOfAll = getBiggestWinOfAll();
+    const bestTeamOfAll = getBestTeamOfAll('wins');
+    const worstTeamOfAll = getBestTeamOfAll('losses');
 
 
     const statsContent = document.getElementById("statsContent");
@@ -337,8 +388,10 @@ function generalStats(){
             <div class="statBoxSmall"><p><strong>Best Goal Difference: </strong>${bestGoalDiff[0]} [${bestGoalDiff[1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Worst Goal Difference: </strong>${worstGoalDiff[0]} [${worstGoalDiff[1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
+            <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
+            <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
+            <div class="statBoxMedium"><p><strong>Best Team: </strong>${bestTeamOfAll.team} --- ${bestTeamOfAll.count} wins</p></div>
+            <div class="statBoxMedium"><p><strong>Best Team: </strong>${worstTeamOfAll.team} --- ${worstTeamOfAll.count} losses</p></div>
     </div>
     `;
 }
