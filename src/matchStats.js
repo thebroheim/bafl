@@ -391,7 +391,7 @@ function generalStats(){
             <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
             <div class="statBoxMedium"><p><strong>Best Team: </strong>${bestTeamOfAll.team} --- ${bestTeamOfAll.count} wins</p></div>
-            <div class="statBoxMedium"><p><strong>Best Team: </strong>${worstTeamOfAll.team} --- ${worstTeamOfAll.count} losses</p></div>
+            <div class="statBoxMedium"><p><strong>Worst Team: </strong>${worstTeamOfAll.team} --- ${worstTeamOfAll.count} losses</p></div>
     </div>
     `;
 }
