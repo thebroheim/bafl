@@ -8,100 +8,17 @@
 //     return obj;
 //   });
 // }
-
-function convertToObjects(values) {
-  const headers = values[0];
-
-  return values.slice(1).map(row => {
-    let obj = {};
-
-    headers.forEach((key, i) => {
-      const val = row[i];
-
-      // Convert numbers that come in as strings
-      obj[key] = (typeof val === "string" && val.trim() !== "" && !isNaN(val))
-        ? Number(val)
-        : val;
-    });
-
-    return obj;
-  });
-}
-
-
-
-let matches = []
-let hof =[]
 let players = []
 
-async function loadData() {
-  const res = await fetch("/.netlify/functions/getMatchData");
-  const batch = await res.json();
-
-  // The batch contains 6 valueRanges
-  const [
-    matchesRes,
-    hofRes,
-  ] = batch.valueRanges;
-
-  matches = convertToObjects(matchesRes.values);
-  hof = convertToObjects(hofRes.values);
-
-}
-
-async function init() {
-    await loadData();
-
-// Add Players To Dropdown
-matches.forEach(match => {
-    if (!players.includes(match.p1)) {
-        players.push(match.p1);
-    }
-
-    if (!players.includes(match.p2)) {
-        players.push(match.p2);
-    }
-});
-
-let seasons = []
-
-matches.forEach(match => {
-    if (!seasons.includes(match.season)) {
-        seasons.push(match.season);
-    }
-});
-
-let seasonSelect = document.getElementById("seasonSelect")
-seasons = sortByValue(seasons, true)
-
-seasons.forEach(season => {
-    let option = document.createElement('option')
-    option.innerHTML = season
-    seasonSelect.appendChild(option)
-})
 
 
-players = players.sort((a, b) => a.localeCompare(b));
 
-let select = document.getElementById("playerName")
-players.forEach(player => {
-    let option = document.createElement('option')
-    option.innerHTML = player
-    select.appendChild(option)
-});
-}
-
-
-(async function initPage() {
-    await init();
-    generalStats();
-})();
 
 
 //Required Structure For Matches
 // { matchType: "strong", p1: "Nick", p2: "Ezekiel", p1score: 0, p2score: 3, p1team: "Liverpool", p2team: "Arsenal", season: 3, context: 'finals' }
 
-const testmatches = [
+const matches = [
   { matchType: null, p1: "Dan", p1score: 2, p2: "Lachlan", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
   { matchType: null, p1: "Sam", p1score: 2, p2: "David", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
   { matchType: null, p1: "Kelvin", p1score: 2, p2: "Alex", p2score: 2, p1team: null, p2team: null, div: 1, season: 8, context: null },
@@ -152,7 +69,7 @@ const testmatches = [
   { matchType: null, p1: "Ricardo", p1score: 0, p2: "Dru", p2score: 8, p1team: null, p2team: null, div: 2, season: 8, context: null },
   { matchType: null, p1: "MJ", p1score: 2, p2: "Elliot", p2score: 2, p1team: null, p2team: null, div: 2, season: 8, context: null },
   { matchType: null, p1: "Jude", p1score: 2, p2: "Lachy W", p2score: 2, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Sam", p1score: 1, p2: "Dan", p2score: 0, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
+  { matchType: null, p1: "Sam", p1score: 1.4, p2: "Dan", p2score: 1.6, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
   { matchType: null, p1: "Alex", p1score: 2, p2: "Brent", p2score: 2, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
   { matchType: null, p1: "Dan", p1score: 7, p2: "Brent", p2score: 1, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
   { matchType: null, p1: "Dan", p1score: 4, p2: "Sam", p2score: 1, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
@@ -197,13 +114,52 @@ const testmatches = [
   { matchType: "Women", p1: "Ricardo", p1score: 0, p2: "Lachlan", p2score: 14, p1team: "Manchester City", p2team: "FC Barcelona", div: 1, season: 11, context: null }
 ];
 
-const testhof = [
+const hof = [
     {season: 1, div1Winner: 'Regi', div2Winner: null},
     {season: 2, div1Winner: 'Dan', div2Winner: null},
     {season: 3, div1Winner: 'Sam', div2Winner: null},
     {season: 4, div1Winner: 'Sam', div2Winner: "John"},
     {season: 5, div1Winner: "Lei", div2Winner: 'Dan'},
 ]
+
+
+// Add Players To Dropdown
+matches.forEach(match => {
+    if (!players.includes(match.p1)) {
+        players.push(match.p1);
+    }
+
+    if (!players.includes(match.p2)) {
+        players.push(match.p2);
+    }
+});
+
+let seasons = []
+
+matches.forEach(match => {
+    if (!seasons.includes(match.season)) {
+        seasons.push(match.season);
+    }
+});
+
+let seasonSelect = document.getElementById("seasonSelect")
+seasons = sortByValue(seasons, true)
+
+seasons.forEach(season => {
+    let option = document.createElement('option')
+    option.innerHTML = season
+    seasonSelect.appendChild(option)
+})
+
+
+players = players.sort((a, b) => a.localeCompare(b));
+
+let select = document.getElementById("playerName")
+players.forEach(player => {
+    let option = document.createElement('option')
+    option.innerHTML = player
+    select.appendChild(option)
+});
 
 
 
@@ -314,7 +270,6 @@ function getBiggestWinOfAll() {
 
     return biggestOverall;
 }
-
 function getBestTeamOfAll(type, topN = 3) {
     const teamCounts = {};
 
@@ -358,7 +313,6 @@ function getBestTeamOfAll(type, topN = 3) {
 }
 
 
-
 function generalStats(){
     const bestWinRate = sortByValue(getWinRates(), true)[0];
     const div1Titles = getTitles().sortedDiv1;
@@ -368,8 +322,8 @@ function generalStats(){
     const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
     const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
     const biggestWinOfAll = getBiggestWinOfAll();
-    const bestTeamOfAll = getBestTeamOfAll('wins');
-    const worstTeamOfAll = getBestTeamOfAll('losses');
+    const bestTeamOfAll = getBestTeamOfAll('wins')
+    const worstTeamOfAll = getBestTeamOfAll('losses')
 
 
     const statsContent = document.getElementById("statsContent");
@@ -384,7 +338,7 @@ function generalStats(){
             <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
-            <div class="statBoxMedium"><p><strong>Best Teams: </strong></p>
+            <div class="statBoxMedium"><p><strong>Best Team: </strong></p>
                 <div class="statBoxLeaderboard"><ol>
                     <li><p>${bestTeamOfAll[0].team}</p>  <p>${bestTeamOfAll[0].count} wins</p></li>
                     <li><p>${bestTeamOfAll[1].team}</p>  <p>${bestTeamOfAll[1].count} wins</p></li>
@@ -393,7 +347,7 @@ function generalStats(){
                 </div>
             </div> 
 
-            <div class="statBoxMedium"><p><strong>Worst Teams: </strong></p>
+            <div class="statBoxMedium"><p><strong>Worst Team: </strong></p>
                 <div class="statBoxLeaderboard"><ol>
                     <li><p>${worstTeamOfAll[0].team}</p>  <p>${worstTeamOfAll[0].count} losses</p></li>
                     <li><p>${worstTeamOfAll[1].team}</p>  <p>${worstTeamOfAll[1].count} losses</p></li>
@@ -678,3 +632,5 @@ function playerStats() {
     `
     ;}
 }
+
+generalStats()
