@@ -379,8 +379,8 @@ function getTotalDraws(player) {
 // Goals For
 function getGoalsFor(player) {
     return getMatchesForPlayer(player).reduce((sum, match) => {
-        if (match.p1 === player) return sum + match.p1score;
-        if (match.p2 === player) return sum + match.p2score;
+        if (match.p1 === player) return sum + Math.floor(match.p1score);
+        if (match.p2 === player) return sum + Math.floor(match.p2score);
         
         return sum;
     }, 0);
@@ -389,8 +389,8 @@ function getGoalsFor(player) {
 // Goals Against
 function getGoalsAgainst(player) {
     return getMatchesForPlayer(player).reduce((sum, match) => {
-        if (match.p1 === player) return sum + match.p2score;
-        if (match.p2 === player) return sum + match.p1score;
+        if (match.p1 === player) return sum + Math.floor(match.p2score);
+        if (match.p2 === player) return sum + Math.floor(match.p1score);
         return sum;
     }, 0);
 }
