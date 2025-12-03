@@ -360,11 +360,11 @@ function getBestTeamOfAll(type, topN = 3) {
 
 
 function generalStats(){
-    const bestWinRate = sortByValue(getWinRates(), true)[0];
+    const bestWinRate = sortByValue(getWinRates(), true);
     const div1Titles = getTitles().sortedDiv1;
     const div2Titles = getTitles().sortedDiv2;
-    const bestGoalDiff = sortByValue(getGoalDifferences(), true)[0]
-    const worstGoalDiff = sortByValue(getGoalDifferences(), false)[0]
+    const bestGoalDiff = sortByValue(getGoalDifferences(), true);
+    const worstGoalDiff = sortByValue(getGoalDifferences(), false);
     const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
     const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
     const biggestWinOfAll = getBiggestWinOfAll();
@@ -376,16 +376,37 @@ function generalStats(){
     statsContent.innerHTML = `
     <h2>Overall Stats</h2>
     <div id="statBoxes">
-            <div class="statBoxSmall"><p><strong>Best Win Rate:</strong> ${bestWinRate[0]} ${bestWinRate[1]}%</p></div>
+            <div class="statBoxSmallLeaderboard"><p><strong>Best Win Rate: </strong></p>
+                <div class="leaderboard"><ol>
+                    <li><p>${bestWinRate[0][0]}</p><p>${bestWinRate[0][1]}%</p></li>
+                    <li><p>${bestWinRate[1][0]}</p><p>${bestWinRate[1][1]}%</p></li>
+                    <li><p>${bestWinRate[2][0]}</p><p>${bestWinRate[2][1]}%</p></li>
+                    </ol>
+                </div>
+            </div> 
+            <div class="statBoxSmallLeaderboard"><p><strong>Best Goal Difference: </strong></p>
+                <div class="leaderboard"><ol>
+                    <li><p>${bestGoalDiff[0][0]}</p><p>${bestGoalDiff[0][1]}</p></li>
+                    <li><p>${bestGoalDiff[1][0]}</p><p>${bestGoalDiff[1][1]}</p></li>
+                    <li><p>${bestGoalDiff[2][0]}</p><p>${bestGoalDiff[2][1]}</p></li>
+                    </ol>
+                </div>
+            </div> 
+            <div class="statBoxSmallLeaderboard"><p><strong>Worst Goal Difference: </strong></p>
+                <div class="leaderboard"><ol>
+                    <li><p>${worstGoalDiff[0][0]}</p><p>${worstGoalDiff[0][1]}</p></li>
+                    <li><p>${worstGoalDiff[1][0]}</p><p>${worstGoalDiff[1][1]}</p></li>
+                    <li><p>${worstGoalDiff[2][0]}</p><p>${worstGoalDiff[2][1]}</p></li>
+                    </ol>
+                </div>
+            </div> 
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Best Goal Difference: </strong>${bestGoalDiff[0]} [${bestGoalDiff[1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Worst Goal Difference: </strong>${worstGoalDiff[0]} [${worstGoalDiff[1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
-            <div class="statBoxMedium"><p><strong>Best Teams: </strong></p>
-                <div class="statBoxLeaderboard"><ol>
+            <div class="statBoxMediumLeaderboard"><p><strong>Best Teams: </strong></p>
+                <div class="leaderboard"><ol>
                     <li><p>${bestTeamOfAll[0].team}</p>  <p>${bestTeamOfAll[0].count} wins</p></li>
                     <li><p>${bestTeamOfAll[1].team}</p>  <p>${bestTeamOfAll[1].count} wins</p></li>
                     <li><p>${bestTeamOfAll[2].team}</p>  <p>${bestTeamOfAll[2].count} wins</p></li>
@@ -393,8 +414,8 @@ function generalStats(){
                 </div>
             </div> 
 
-            <div class="statBoxMedium"><p><strong>Worst Teams: </strong></p>
-                <div class="statBoxLeaderboard"><ol>
+            <div class="statBoxMediumLeaderboard"><p><strong>Worst Teams: </strong></p>
+                <div class="leaderboard"><ol>
                     <li><p>${worstTeamOfAll[0].team}</p>  <p>${worstTeamOfAll[0].count} losses</p></li>
                     <li><p>${worstTeamOfAll[1].team}</p>  <p>${worstTeamOfAll[1].count} losses</p></li>
                     <li><p>${worstTeamOfAll[2].team}</p>  <p>${worstTeamOfAll[2].count} losses</p></li>

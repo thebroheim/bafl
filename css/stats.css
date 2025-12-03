@@ -42,7 +42,10 @@ main {
 /* shared */
 .statBoxSmall,
 .statBoxMedium,
-.statBoxLarge {
+.statBoxLarge,
+.statBoxSmallLeaderboard,
+.statBoxMediumLeaderboard,
+.statBoxLargeLeaderboard {
   padding: 10px;
   display: flex;
   align-items: center;
@@ -66,11 +69,28 @@ main {
     gap: 15px;
  }
 
-.statBoxLeaderboard {
+.statBoxSmallLeaderboard {
+  padding: 0px;
+  flex-direction: column;
+  grid-column: span 2;
 }
 
-.statBoxLeaderboard li{
+.statBoxMediumLeaderboard {
+  padding: 0px;
+  flex-direction: column;
+  grid-column: span 3;
+}
+
+.statBoxLargeLeaderboard {
+  padding: 0px;
+  flex-direction: column;
+  grid-column: span 6;
+}
+
+.leaderboard li{
   display: flex;
   gap: 20px;
   justify-content: space-between;
+
 }
+
