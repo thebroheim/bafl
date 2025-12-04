@@ -49,12 +49,14 @@ main {
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   background: rgb(27, 27, 27);
   border: solid #24e3fd;
   border-width: 2px;
   font-size: 0.9rem;
+  /* max-height: 300px; */
+  
 }
 
 /* small: 2 of 6 = 33.33% -> 3 per row */
@@ -89,9 +91,12 @@ main {
 }
 
 ol {
-  list-style: none;
+  list-style: disc;
   padding: 0;
   margin: 0;
+  max-height: 140px;
+  overflow-y: scroll;
+  padding-right: 10px;
 }
 
 .leaderboard li{

@@ -348,14 +348,11 @@ function getBestTeamOfAll(type, topN = 3) {
         }
     });
 
-    // Convert to array and sort
-    const sorted = Object.entries(teamCounts)
-        .map(([team, count]) => ({ team, count }))
-        .sort((a, b) => b.count - a.count);
-
-    // Return top N (default top 3)
-    return sorted.slice(0, topN);
+    // Convert to [team, count] arrays and sort
+    return Object.entries(teamCounts)
+        .sort((a, b) => b[1] - a[1]);
 }
+
 
 
 
@@ -371,59 +368,77 @@ function generalStats(){
     const bestTeamOfAll = getBestTeamOfAll('wins');
     const worstTeamOfAll = getBestTeamOfAll('losses');
 
+    function createLeaderboard(array, entries, suffix){
+        let counter = 1
+
+        const div = document.createElement('div')
+        div.className= 'leaderboard'
+        const ol = document.createElement('ol')
+        div.appendChild(ol)
+        array = array.slice(0, entries + 1)
+
+        array.forEach((item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<p>${counter}.  ${item[0]}</p><p>${item[1]}${suffix}</p>`
+            console.log(li)
+            ol.appendChild(li)
+            counter += 1
+        })); return div
+    }
+
+   
+    function appendLeaderboards(arrayIds){
+        arrayIds.forEach((id => {
+                document
+      .getElementById(id[0])
+      .appendChild(id[1])
+        }))
+    }
+
+    const bestWinRateLeaderboard = createLeaderboard(bestWinRate, 25, '%');
+    const bestGoalDiffLeaderboard = createLeaderboard(bestGoalDiff, 25, '');
+    const worstGoalDiffLeaderboard = createLeaderboard(worstGoalDiff, 25, '');
+    const bestTeamLeaderboard = createLeaderboard(bestTeamOfAll, 25, ' wins');
+    const worstTeamLeaderboard = createLeaderboard(worstTeamOfAll, 25, ' losses')
+
+
+     const arrayIds = [
+        ["bestWinRateLeaderboard", bestWinRateLeaderboard],
+        ["bestGoalDiffLeaderboard",bestGoalDiffLeaderboard],
+        ['worstGoalDiffLeaderboard', worstGoalDiffLeaderboard],
+        ["bestTeamLeaderboard", bestTeamLeaderboard],
+        ["worstTeamLeaderboard", worstTeamLeaderboard],
+    ]
+
+    
+
 
     const statsContent = document.getElementById("statsContent");
     statsContent.innerHTML = `
     <h2>Overall Stats</h2>
     <div id="statBoxes">
-            <div class="statBoxSmallLeaderboard"><p><strong>Best Win Rate: </strong></p>
-                <div class="leaderboard"><ol>
-                    <li><p>${bestWinRate[0][0]}</p><p>${bestWinRate[0][1]}%</p></li>
-                    <li><p>${bestWinRate[1][0]}</p><p>${bestWinRate[1][1]}%</p></li>
-                    <li><p>${bestWinRate[2][0]}</p><p>${bestWinRate[2][1]}%</p></li>
-                    </ol>
-                </div>
+            <div class="statBoxSmallLeaderboard" id="bestWinRateLeaderboard"><p><strong>Best Win Rate: </strong></p>
             </div> 
-            <div class="statBoxSmallLeaderboard"><p><strong>Best Goal Difference: </strong></p>
-                <div class="leaderboard"><ol>
-                    <li><p>${bestGoalDiff[0][0]}</p><p>${bestGoalDiff[0][1]}</p></li>
-                    <li><p>${bestGoalDiff[1][0]}</p><p>${bestGoalDiff[1][1]}</p></li>
-                    <li><p>${bestGoalDiff[2][0]}</p><p>${bestGoalDiff[2][1]}</p></li>
-                    </ol>
-                </div>
+            <div class="statBoxSmallLeaderboard" id="bestGoalDiffLeaderboard"><p><strong>Best Goal Difference: </strong></p>
             </div> 
-            <div class="statBoxSmallLeaderboard"><p><strong>Worst Goal Difference: </strong></p>
-                <div class="leaderboard"><ol>
-                    <li><p>${worstGoalDiff[0][0]}</p><p>${worstGoalDiff[0][1]}</p></li>
-                    <li><p>${worstGoalDiff[1][0]}</p><p>${worstGoalDiff[1][1]}</p></li>
-                    <li><p>${worstGoalDiff[2][0]}</p><p>${worstGoalDiff[2][1]}</p></li>
-                    </ol>
-                </div>
+            <div class="statBoxSmallLeaderboard" id="worstGoalDiffLeaderboard"><p><strong>Worst Goal Difference: </strong></p>
+
             </div> 
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
-            <div class="statBoxMediumLeaderboard"><p><strong>Best Teams: </strong></p>
-                <div class="leaderboard"><ol>
-                    <li><p>${bestTeamOfAll[0].team}</p>  <p>${bestTeamOfAll[0].count} wins</p></li>
-                    <li><p>${bestTeamOfAll[1].team}</p>  <p>${bestTeamOfAll[1].count} wins</p></li>
-                    <li><p>${bestTeamOfAll[2].team}</p>  <p>${bestTeamOfAll[2].count} wins</p></li>
-                    </ol>
-                </div>
+            <div class="statBoxMediumLeaderboard" id="bestTeamLeaderboard"><p><strong>Best Teams: </strong></p>
             </div> 
-
-            <div class="statBoxMediumLeaderboard"><p><strong>Worst Teams: </strong></p>
-                <div class="leaderboard"><ol>
-                    <li><p>${worstTeamOfAll[0].team}</p>  <p>${worstTeamOfAll[0].count} losses</p></li>
-                    <li><p>${worstTeamOfAll[1].team}</p>  <p>${worstTeamOfAll[1].count} losses</p></li>
-                    <li><p>${worstTeamOfAll[2].team}</p>  <p>${worstTeamOfAll[2].count} losses</p></li>
-                    </ol>
-                </div>
+            <div class="statBoxMediumLeaderboard" id="worstTeamLeaderboard"><p><strong>Worst Teams: </strong></p>
             </div> 
     </div>
     `;
+
+// Append the leaderboards
+appendLeaderboards(arrayIds)
+      
 }
 
 // Helper: All matches involving the player
