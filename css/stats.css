@@ -97,6 +97,8 @@ ol {
   max-height: 140px;
   overflow-y: scroll;
   padding-right: 10px;
+  scrollbar-width: thin;           /* makes scrollbar thin */
+  scrollbar-color: #888 #1f1d1d;
 }
 
 .leaderboard li{
@@ -106,3 +108,17 @@ ol {
 
 }
 
+/* Webkit browsers (Chrome, Edge, Safari) */
+ol::-webkit-scrollbar {
+  width: 8px;
+}
+
+ol::-webkit-scrollbar-track {
+  background: #272626; /* track color */
+}
+
+ol::-webkit-scrollbar-thumb {
+  background-color: #888; /* thumb color */
+  border-radius: 4px;     /* rounded corners */
+  border: 2px solid #000000; /* optional padding around thumb */
+}
