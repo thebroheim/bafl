@@ -101,11 +101,13 @@ ol {
   scrollbar-color: #888 #1f1d1d;
 }
 
-.leaderboard li{
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-
+.leaderboard li {
+    display: grid;
+    grid-template-columns: 2fr 0.3fr; 
+    align-items: center;
+    padding: 2px 0;
+    /* list-style-position: inside; */
+    gap: 0px;
 }
 
 /* Webkit browsers (Chrome, Edge, Safari) */
@@ -121,4 +123,19 @@ ol::-webkit-scrollbar-thumb {
   background-color: #888; /* thumb color */
   border-radius: 4px;     /* rounded corners */
   border: 2px solid #000000; /* optional padding around thumb */
+}
+
+@media (max-width: 600px){
+  #statsContent {
+  width: 95%;
+}
+
+.statBoxSmallLeaderboard {
+  grid-column: span 3;
+}
+
+.statBoxSmall {
+  grid-column: span 3;
+}
+
 }
