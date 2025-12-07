@@ -9,6 +9,23 @@ const newsArticles = [
 
         {
         season:"11",
+        week: "8",
+        date: "December 8",
+        summary: `Still more games? Far out. At least it's only five games this week — same pay for half the work. Sounds eerily similar to my own job. Anyway… welcome back to the BAFL Times.
+<br><br>
+Monday saw Dan take on Lachy downstairs. If Lachy won by 15 goals, he would’ve jumped me into 3rd spot. He started off well by conceding the first goal and then crashing out in typical Lachy fashion as he went down 2–1, which secured and set in stone the top four for Division 1. Bass and Ricardo finished off the day, with the Basstronaut in full flight as he tore Ricardo apart in a 5–1 victory. Special mention to Ricardo for not finishing bottom this time around!
+<br><br>
+On Tuesday we kicked things off with an absolute cracker — actually, a double cracker. Wait, that might need to be cleared by the commissioner. Anyway, Lachlan and Brent headed to the downstairs TV to duke it out in what ended up being a close match. With Lachlan needing a four-goal win to secure a finals spot, he instead decided to gift Brent a penalty after taking a 1–0 lead. Talk about charity work. Despite the 3–1 victory, Lachlan was knocked out of the finals!
+Jude and Yasin then fought out what was arguably the most anticipated match of the season: 1st vs 2nd, with a win securing top spot for either player. Jude fought hard but ultimately lost out to Yasin, who claimed his maiden BAFL crown as he topped Division 2!
+<br><br>
+Dru and Matthew wrapped up the regular season in style. In what has been a disappointing season for the once-3rd-place Division 1 finisher — #neverforget — Dru won his final match using Ronny and the gang from Portugal to finish Division 2 with a 4–1 win.
+<br><br>
+On to the finals we go!`,
+        author: "Alex Villani"
+    },
+
+        {
+        season:"11",
         week: "7",
         date: "November 28",
         summary: `Jeez, Week 7 and we still have regular season matches to go? Far out. I get why people lose interest in this league. Anyway, welcome back to the BAFL Times!
