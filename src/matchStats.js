@@ -354,6 +354,28 @@ function getBestTeamOfAll(type, topN = 3) {
 }
 
 
+function getFinalWinRates(){
+    let finalsWinRates = [];
+    players.forEach(player => {
+        let finalsMatches = getMatchesForPlayer(player, 'final');
+        let totalFinalWins = getFinalResults(player, 'wins')
+        let finalWinRate = (totalFinalWins.length / finalsMatches.length)*100
+
+        if(Number.isNaN(finalWinRate)){
+            return
+        } else {
+            finalsWinRates.push([player, finalWinRate])
+        }
+        
+        
+
+
+    })
+
+    return finalsWinRates
+    
+}
+
 
 
 function generalStats(){
@@ -400,12 +422,13 @@ function generalStats(){
     const worstGoalDiffLeaderboard = createLeaderboard(worstGoalDiff, 25, '');
     const bestTeamLeaderboard = createLeaderboard(bestTeamOfAll, 25, ' wins');
     const worstTeamLeaderboard = createLeaderboard(worstTeamOfAll, 25, ' losses')
+    const finalWinRatesLeaderboard = createLeaderboard(finalWinRates, 10, '%')
 
 
      const arrayIds = [
         ["bestWinRateLeaderboard", bestWinRateLeaderboard],
         ["bestGoalDiffLeaderboard",bestGoalDiffLeaderboard],
-        ['worstGoalDiffLeaderboard', worstGoalDiffLeaderboard],
+        ['finalWinRatesLeaderboard', finalWinRatesLeaderboard],
         ["bestTeamLeaderboard", bestTeamLeaderboard],
         ["worstTeamLeaderboard", worstTeamLeaderboard],
     ]
@@ -421,9 +444,9 @@ function generalStats(){
             </div> 
             <div class="statBoxSmallLeaderboard" id="bestGoalDiffLeaderboard"><p><strong>Best Goal Difference: </strong></p>
             </div> 
-            <div class="statBoxSmallLeaderboard" id="worstGoalDiffLeaderboard"><p><strong>Worst Goal Difference: </strong></p>
-
+            <div class="statBoxSmallLeaderboard" id="finalWinRatesLeaderboard"><p><strong>Final Win Rates: </strong></p>
             </div> 
+
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
@@ -436,20 +459,25 @@ function generalStats(){
     </div>
     `;
 
+
 // Append the leaderboards
 appendLeaderboards(arrayIds)
       
 }
 
 // Helper: All matches involving the player
-function getMatchesForPlayer(player) {
+function getMatchesForPlayer(player, context) {
     const season = document.getElementById("seasonSelect").value;
-    
+
     return matches.filter(m => {
         const playerMatch = m.p1 === player || m.p2 === player;
         const seasonMatch = season === "All" ? true : m.season === Number(season);
-        const validMatch = m.context !== 'forfeit';
-        return playerMatch && seasonMatch && validMatch;
+        const notForfeit = m.context !== 'forfeit';
+
+        // Apply context filter only if a context was passed in
+        const contextMatch = context ? m.context === context : true;
+
+        return playerMatch && seasonMatch && notForfeit && contextMatch;
     });
 }
 // Total Matches

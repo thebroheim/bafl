@@ -105,9 +105,13 @@ ol {
     display: grid;
     grid-template-columns: 2fr 0.3fr; 
     align-items: center;
-    padding: 2px 0;
+    padding: 0px 0;
     /* list-style-position: inside; */
     gap: 0px;
+}
+
+li p {
+  margin: 5px;
 }
 
 /* Webkit browsers (Chrome, Edge, Safari) */
