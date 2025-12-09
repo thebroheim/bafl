@@ -360,11 +360,12 @@ function getFinalWinRates(){
         let finalsMatches = getMatchesForPlayer(player, 'final');
         let totalFinalWins = getFinalResults(player, 'wins')
         let finalWinRate = (totalFinalWins.length / finalsMatches.length)*100
+        
 
         if(Number.isNaN(finalWinRate)){
             return
         } else {
-            finalsWinRates.push([player, finalWinRate])
+            finalsWinRates.push([player, finalWinRate.toFixed(2)])
         }
         
         
@@ -444,7 +445,7 @@ function generalStats(){
             </div> 
             <div class="statBoxSmallLeaderboard" id="bestGoalDiffLeaderboard"><p><strong>Best Goal Difference: </strong></p>
             </div> 
-            <div class="statBoxSmallLeaderboard" id="finalWinRatesLeaderboard"><p><strong>Final Win Rates: </strong></p>
+            <div class="statBoxSmallLeaderboard" id="finalWinRatesLeaderboard"><p><strong>Final Win Rate: </strong></p>
             </div> 
 
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
