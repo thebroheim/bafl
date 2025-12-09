@@ -389,6 +389,7 @@ function generalStats(){
     const biggestWinOfAll = getBiggestWinOfAll();
     const bestTeamOfAll = getBestTeamOfAll('wins');
     const worstTeamOfAll = getBestTeamOfAll('losses');
+    const finalWinRates = sortByValue(getFinalWinRates(),true);
 
     function createLeaderboard(array, entries, suffix){
         let counter = 1
@@ -402,7 +403,6 @@ function generalStats(){
         array.forEach((item => {
             const li = document.createElement('li');
             li.innerHTML = `<p>${counter}.  ${item[0]}</p><p>${item[1]}${suffix}</p>`
-            console.log(li)
             ol.appendChild(li)
             counter += 1
         })); return div
