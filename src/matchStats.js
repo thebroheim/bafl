@@ -394,6 +394,7 @@ function getFinalWinRates(){
 
 
 function generalStats(){
+    document.getElementById('headToHeadp2').selectedIndex = 1
     document.getElementById("search").style.display = ''
     document.getElementById("headToHead").style.display = 'none'
     let options = document.getElementById("options")
@@ -770,10 +771,10 @@ function playerStats() {
 
 // Head to Head
 document.getElementById("headToHead").style.display = 'none'
-document.getElementById('headToHeadp2').selectedIndex = 1
+
 
 function headToHead(){
-        let options = document.getElementById("options")
+    let options = document.getElementById("options")
     options.children[1].style.backgroundColor = "#7979796e"
     options.children[0].style.backgroundColor = ""
     document.getElementById("search").style.display = 'none'
