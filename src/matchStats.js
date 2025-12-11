@@ -89,7 +89,7 @@ players.forEach(player => {
     option.innerHTML = player
     select.appendChild(option)
 });
-}
+
 
 let h2hp1 = document.getElementById("headToHeadp1")
 let h2hp2 = document.getElementById("headToHeadp2")
@@ -101,6 +101,7 @@ players.forEach(player => {
     h2hp1.appendChild(optionp1)
     h2hp2.appendChild(optionp2)
 });
+}
 
 
 
