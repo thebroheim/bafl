@@ -91,6 +91,19 @@ players.forEach(player => {
 });
 }
 
+let h2hp1 = document.getElementById("headToHeadp1")
+let h2hp2 = document.getElementById("headToHeadp2")
+players.forEach(player => {
+    let optionp1 = document.createElement('option')
+    let optionp2 = document.createElement('option')
+    optionp1.innerHTML = player
+    optionp2.innerHTML = player
+    h2hp1.appendChild(optionp1)
+    h2hp2.appendChild(optionp2)
+});
+
+
+
 
 (async function initPage() {
     await init();
@@ -380,6 +393,11 @@ function getFinalWinRates(){
 
 
 function generalStats(){
+    document.getElementById("search").style.display = ''
+    document.getElementById("headToHead").style.display = 'none'
+    let options = document.getElementById("options")
+    options.children[0].style.backgroundColor = "#7979796e"
+    options.children[1].style.backgroundColor = ""
     const bestWinRate = sortByValue(getWinRates(), true);
     const div1Titles = getTitles().sortedDiv1;
     const div2Titles = getTitles().sortedDiv2;
@@ -493,29 +511,34 @@ function getTotalWins(player) {
     });
 }
 // Total Losses
-function getTotalLosses(player) {
-    return getMatchesForPlayer(player).filter(match => {
+function getTotalWins(player, matches = getMatchesForPlayer(player)) {
+    return matches.filter(match => {
+        if (match.p1 === player) return match.p1score > match.p2score;
+        if (match.p2 === player) return match.p2score > match.p1score;
+    });
+}
+
+function getTotalLosses(player, matches = getMatchesForPlayer(player)) {
+    return matches.filter(match => {
         if (match.p1 === player) return match.p1score < match.p2score;
         if (match.p2 === player) return match.p2score < match.p1score;
     });
 }
-// Total Draws
-function getTotalDraws(player) {
-    return getMatchesForPlayer(player).filter(match => match.p1score === match.p2score).length;
+
+function getTotalDraws(player, matches = getMatchesForPlayer(player)) {
+    return matches.filter(match => match.p1score === match.p2score).length;
 }
-// Goals For
-function getGoalsFor(player) {
-    return getMatchesForPlayer(player).reduce((sum, match) => {
+
+function getGoalsFor(player, matches = getMatchesForPlayer(player)) {
+    return matches.reduce((sum, match) => {
         if (match.p1 === player) return sum + Math.floor(match.p1score);
         if (match.p2 === player) return sum + Math.floor(match.p2score);
-        
         return sum;
     }, 0);
 }
 
-// Goals Against
-function getGoalsAgainst(player) {
-    return getMatchesForPlayer(player).reduce((sum, match) => {
+function getGoalsAgainst(player, matches = getMatchesForPlayer(player)) {
+    return matches.reduce((sum, match) => {
         if (match.p1 === player) return sum + Math.floor(match.p2score);
         if (match.p2 === player) return sum + Math.floor(match.p1score);
         return sum;
@@ -742,4 +765,95 @@ function playerStats() {
         </p></div>
     `
     ;}
+}
+
+// Head to Head
+document.getElementById("headToHead").style.display = 'none'
+document.getElementById('headToHeadp2').selectedIndex = 1
+
+function headToHead(){
+        let options = document.getElementById("options")
+    options.children[1].style.backgroundColor = "#7979796e"
+    options.children[0].style.backgroundColor = ""
+    document.getElementById("search").style.display = 'none'
+    document.getElementById("headToHead").style.display = ''
+    
+    const p1 = document.getElementById('headToHeadp1').value;
+    const p2 = document.getElementById('headToHeadp2').value;
+
+
+    const statsContent = document.getElementById("statsContent");
+    let p1Matches = getMatchesForPlayer(p1)
+
+    let h2hMatches = p1Matches.filter(match => {
+        if (p1 == match.p1){
+            return match.p2 == p2
+        } else {
+        return match.p1 == p2
+        }
+    })
+
+    p1Wins = getTotalWins(p1, h2hMatches).length
+    p1Losses = getTotalLosses(p1, h2hMatches).length
+    p1Draws = getTotalDraws(p1, h2hMatches)
+
+    p2Wins = p1Losses
+    p2Losses = p1Wins
+    p2Draws = p1Draws
+
+
+    statsContent.innerHTML = `
+    <div><h2>Head To Head</h2></div>
+    <div id='h2hStatsTotal'>
+        <div class="h2hStats">
+            <p><strong>${p1}</strong></p>
+            <p>Wins: ${p1Wins}</p>
+            <p>Losses: ${p1Losses}</p>
+            <p>Draws: ${p1Draws}</p>
+        </div>
+        <div class="h2hStats">
+            <p><strong>${p2}</strong></p>
+            <p>Wins: ${p2Wins}</p>
+            <p>Losses: ${p2Losses}</p>
+            <p>Draws: ${p2Draws}</p>
+        </div>
+    </div>
+    `
+    let container = document.createElement('div')
+    container.className = 'h2hList'
+    statsContent.appendChild(container)
+    let headerRow = document.createElement('div')
+    headerRow.className = 'h2hMatch'
+    headerRow.innerHTML = `<p>Season</p><p>Player</p><p>Team</p><p>Score</p><p>Opponent</p><p>Team</p><p>Score</p>`
+
+    container.appendChild(headerRow)
+      h2hMatches.forEach(match => {
+        let winner = null
+        if (match.p1score > match.p2score){
+            winner = match.p1
+        } else if (match.p1score < match.p2score){
+            winner = match.p2
+        } else {
+            winner ='draw'
+        }
+        
+
+        let row = document.createElement('div')
+        if (winner == p1){
+            row.style.backgroundColor = '#2bff0020'
+        } else if (winner == 'draw') {
+            row.style.backgroundColor = '#fffb0020'
+        } else {
+            row.style.backgroundColor = '#ff000020'
+        }
+
+        console.log(winner)
+        row.className= 'h2hMatch'
+        if(match.p1 == p1){
+            row.innerHTML = `<p>${match.season}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p>`
+        } else {row.innerHTML = `<p>${match.season}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p>`}
+        
+        container.appendChild(row)
+    })
+
 }

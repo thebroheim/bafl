@@ -34,6 +34,7 @@ eloTables.style.display = 'none'
 function setDefault(){
     let div1 = document.getElementById('div1matches');
     let div2 = document.getElementById('div2matches');
+    eloTables.style.display = 'none'
     div1.style.cssText = "display: ''; flex-direction: column;";
     div2.style.cssText = "display: ''; flex-direction: column;";
 }

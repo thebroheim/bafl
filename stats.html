@@ -15,6 +15,11 @@
     <script src="src\header.js"></script>
 
     <main id="main">
+        <div id="options">
+            <button onclick="generalStats()">Stats</button>
+            <button onclick="headToHead()">Head To Head</button>
+        </div>
+
         <div id="search">
             <h4>Player: </h4>
             <select id="playerName" onchange="playerStats()">
@@ -25,7 +30,16 @@
                 <option>All</option>
             </select>
         </div>
+        
 
+        <div id="headToHead">
+            <h4>Player</h4>
+            <select id="headToHeadp1" onchange="headToHead()">
+            </select>
+            <h4>Opponent</h4>
+            <select id="headToHeadp2" onchange="headToHead()">
+            </select>
+        </div>
         
         <p id="statsContent"></p>
     </main>

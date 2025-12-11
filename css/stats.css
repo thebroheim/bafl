@@ -8,7 +8,8 @@
   align-items: center;
 }
 
-#search select {
+
+select {
 
   background-color: rgb(27, 27, 27);
   color: #fff;
@@ -16,6 +17,19 @@
   padding: 6px 10px;
   border-radius: 6px;
   height: 40px;
+}
+
+button {
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  border: 1px solid #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  height: 40px;
+}
+
+#options button {
+  width: 120px;
 }
 
 main {
@@ -26,6 +40,9 @@ main {
 
 #statsContent {
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -127,6 +144,42 @@ ol::-webkit-scrollbar-thumb {
   background-color: #888; /* thumb color */
   border-radius: 4px;     /* rounded corners */
   border: 2px solid #000000; /* optional padding around thumb */
+}
+
+#headToHead {
+  margin: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#h2hStatsTotal {
+  display: flex;
+  /* padding: 50px; */
+  /* width: 90%; */
+  gap: 100px;
+  justify-content: space-between;
+}
+
+.h2hList {
+  border: #24e3fd solid;
+}
+
+
+
+.h2hList :first-child{
+  font-weight: bold;
+}
+
+
+.h2hMatch{
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr ; 
+}
+
+.h2hMatch p {
+  justify-self: center;
 }
 
 @media (max-width: 600px){
