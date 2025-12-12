@@ -795,6 +795,11 @@ function headToHead(){
         }
     })
 
+    if (h2hMatches.length == 0){
+        statsContent.innerHTML = `<p>No matches found between these players</p>`
+        return
+    }
+
     p1Wins = getTotalWins(p1, h2hMatches).length
     p1Losses = getTotalLosses(p1, h2hMatches).length
     p1Draws = getTotalDraws(p1, h2hMatches)
