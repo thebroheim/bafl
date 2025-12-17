@@ -138,6 +138,8 @@ async function loadData() {
   const showToggle = convertToObjects(scheduleRes.values);
   const seasonElo = convertToObjects(seasonEloRes.values);
   const allTimeElo = convertToObjects(allTimeEloRes.values);
+  
+  console.log(matchesFinal)
 
   // Now run all your existing display logic here.
 
