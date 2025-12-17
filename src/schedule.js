@@ -277,6 +277,8 @@ matches.forEach(match => {
   if(match.div === '2'){
     container= document.getElementById('div2matches')
   }
+  console.log(match.team1)
+  console.log(match.team2)
     let team1img = match.team1.replace(/[^a-zA-Z0-9]/g, '') + '.png'
     let team2img = match.team2.replace(/[^a-zA-Z0-9]/g, '') + '.png'
     let show1 = ''
