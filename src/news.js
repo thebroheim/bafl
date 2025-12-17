@@ -9,6 +9,32 @@ const newsArticles = [
 
         {
         season:"11",
+        week: "9/10",
+        date: "December 18",
+        summary: `We’ve finally made it to the end. After 78 matches filled with controversy, laughter, crying, and ragebaiting, the finals of Season 11 are here. Welcome back to the BAFL Times.
+<br><br>
+Going into finals, I didn’t exactly have the best record — as in, I’d never won one before. But surely that was about to change, right? I couldn’t imagine Dan actually putting up a fight… oh.
+<br><br>
+Dan and I went to battle downstairs in the first qualifying final. Dan’s Barcelona seemed to be no match for my Lombardia up until about the 12th minute. Then Dan tore me apart. I couldn’t penetrate his defence, or his midfield, or his attack. He ran out a 3–0 winner, setting up a date with Sam on Tuesday.
+<br><br>
+Sam and Dan then took part in what felt like a dress rehearsal for the final. The evenly matched duo took to the TV, with Sam jumping out to a fast start and holding Dan at arm’s length for most of the match. Dan mounted a comeback in the final 20 minutes, but it was unfortunately too little, too late. Sam secured a 3–2 victory and booked his spot in yet another BAFL final.
+<br><br>
+Oh look — the battle to see who gets to play me: Brent vs Lachy. The matchup heated up early as Brent pulled the almighty Real Madrid, a team boasting 28 wins across the seasons. Lachy lucked into PSG, which evened the playing field slightly. Lachy struck first with an early goal, but Brent wasn’t to be outdone and fired back to keep things close. However, with the pressure of the crowd mounting, Lachy went on a tear, scoring six goals with PSG to knock Brent out of the finals in a 6–2 win. This felt like giving someone the answer key and then watching them hand it directly to the exam supervisor.
+<br><br>
+In the lower semi — no, that’s not my THIS JOKE HAS BEEN REMOVED. I was still searching for my first-ever BAFL finals win. Lachy was never going to be an easy task, especially after pulling Real Madrid, bringing the total number of times I’ve faced them in finals to four. This time, though, I refused to be denied. I took Bayern to a 3–1 lead midway through the match. Unfortunately, I conceded two late goals — and nearly a third — sending the game to penalties. I had a chance to win it, but Lachy saved my shot. As the PTSD of losing yet another final washed over me, I somehow found it in myself to save Lachy’s final penalty, FINALLY securing my first BAFL finals win. A rematch with Dan awaited.
+<br><br>
+Winner plays Sam. Dan and I returned to the downstairs TV for the third time this season as I looked to break a long-awaited drought. Using Man City, I took an early lead thanks to a Haaland banger from outside the box. Dan equalised soon after, rendering all my hard work meaningless. He then went ahead 2–1 with the game still finely balanced. Disaster struck when I took Dan down in the box (got full ball btw), conceding a crucial penalty that extended his lead to 3–1. I couldn’t recover, and before long my season was over, setting up a rematch of the Season 10 final.
+<br><br>
+The final had arrived. Lachlan was sick once again, but Dan and Sam were primed and ready for what promised to be an epic clash. Somehow, they managed to pull the exact same teams Dan and I had used earlier (an 11% chance, by the way) — totally not rigged. Dan struck first, but Sam held firm, equalising before taking a 2–1 lead. Then came a monster goal from Dan that stunned all seven of Sam’s defenders, tying the match in the 70th minute. With some fancy footwork, Sam broke through Dan’s defence to score a late goal. With time remaining, it was still anyone’s game — until Sam resorted to passing around the back, drawing boos from the crowd.
+<br><br>
+The final whistle blew on a mammoth season, with Sam claiming his second title of the year, much to the disappointment of the BAFL faithful. Sam couldn’t beat me, but Dan beat me three times — so you decide who the real winner is.
+<br><br>
+Till next time, this has been the BAFL Times.`,
+        author: "Alex Villani"
+    },
+
+        {
+        season:"11",
         week: "8",
         date: "December 8",
         summary: `Still more games? Far out. At least it's only five games this week — same pay for half the work. Sounds eerily similar to my own job. Anyway… welcome back to the BAFL Times.
