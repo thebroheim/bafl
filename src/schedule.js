@@ -265,10 +265,10 @@ matches.forEach(match => {
     case '2':
       container = div2
       break;
-    case 'finals':
-      container = finals;
-      container.style.display = '';
-      prefix = ''
+    // case 'finals':
+    //   container = finals;
+    //   container.style.display = '';
+    //   prefix = ''
   } ;
 
   const div = document.createElement("div")
