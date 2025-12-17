@@ -2,12 +2,11 @@ export async function handler() {
   try {
     const url =
       "https://sheets.googleapis.com/v4/spreadsheets/1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk/values:batchGet" +
-      "?ranges=Players!A1:J19" + //players
-      "&ranges=Players!M1:V80" + //matches
-      "&ranges=Players!A22:J28" + //finals
-      "&ranges=Players!B29:C30" + //checkSchedule
-      "&ranges=Players!A79:B100" + //seasonElo
-      "&ranges=Players!E79:F115" + //allTimeElo
+      "?ranges=Table!A1:J30" + //players
+      "&ranges=Schedule!A1:L200" + //matches
+      "&ranges=Config!B2:C3" + //showSchedule
+      "&ranges=Elo!A2:B100" + //seasonElo
+      "&ranges=Elo!E2:F100" + //allTimeElo
       "&key=" + process.env.GOOGLE_API_KEY;
 
     const res = await fetch(url);
