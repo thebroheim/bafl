@@ -277,10 +277,8 @@ matches.forEach(match => {
   if(match.div === '2'){
     container= document.getElementById('div2matches')
   }
-  console.log(match.team1)
-  console.log(match.team2)
-    let team1img = match.team1.replace(/[^a-zA-Z0-9]/g, '') + '.png'
-    let team2img = match.team2.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+    let team1img = match.p1team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+    let team2img = match.p2team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
     let show1 = ''
     let show2= ``
     // if (match.reveal === "FALSE"){
@@ -288,8 +286,8 @@ matches.forEach(match => {
     // }
 
     if (match.reveal === "TRUE"){
-      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.team1}</p></div>`
-      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.team2}</p></div>`
+      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.p1team}</p></div>`
+      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.p2team}</p></div>`
     }
 
     div.className = 'match'
@@ -303,12 +301,12 @@ matches.forEach(match => {
         <div>Team</div>
       </div>
       <div class="row">
-        <div class= "playerName" data-div="div${match.div}">${match.player1}</div>
+        <div class= "playerName" data-div="div${match.div}">${match.p1}</div>
         <div>${match.p1score}</div>
         <div>${show1}</div>
       </div>
       <div class="row">
-        <div class= "playerName" data-div="div${match.div}">${match.player2}</div>
+        <div class= "playerName" data-div="div${match.div}">${match.p2}</div>
         <div>${match.p2score}</div>
         <div>${show2}</div>
       </div>
