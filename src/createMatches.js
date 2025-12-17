@@ -62,7 +62,7 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
 
 // /////////////////////////////////////////////////////////////// NEW CREATE MATCHES 
 function filterTeams(minOvr, maxOvr, type) {
-    const teams = teamSetFC25;
+    const teams = teamSetFC26;
     const filteredTeams = [];
         teams.forEach(element => {
             if (minOvr == null && element.gender == type) {
@@ -80,7 +80,7 @@ const typeConfig = [
     {name: 'Elite', minOvr: 83, maxOvr: 100, type: 'Men'},
     {name: 'Strong', minOvr: 80, maxOvr: 83, type: 'Men'},
     {name: 'Mid', minOvr: 75, maxOvr: 80, type: 'Men'},
-    {name: 'Women', minOvr: null, maxOvr: null, type: 'Women'},
+    // {name: 'Women', minOvr: null, maxOvr: null, type: 'Women'},
     {name: 'International', minOvr: null, maxOvr: null, type: 'International'},
 ];
 
