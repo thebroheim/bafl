@@ -176,6 +176,7 @@ ol::-webkit-scrollbar-thumb {
 .h2hMatch{
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr ; 
+  font-size: 0.9rem;
 }
 
 .h2hMatch p {
@@ -193,6 +194,11 @@ ol::-webkit-scrollbar-thumb {
 
 .statBoxSmall {
   grid-column: span 3;
+}
+
+.h2hMatch > :nth-child(3),
+.h2hMatch > :nth-child(6){
+  display: none;
 }
 
 }
