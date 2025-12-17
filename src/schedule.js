@@ -135,7 +135,6 @@ async function loadData() {
   // Convert each into your object arrays
   const players = convertToObjects(playersRes.values);
   const matchesFinal = convertToObjects(matchesRes.values);
-  const finalsMatches = convertToObjects(finalsRes.values);
   const showToggle = convertToObjects(scheduleRes.values);
   const seasonElo = convertToObjects(seasonEloRes.values);
   const allTimeElo = convertToObjects(allTimeEloRes.values);
@@ -333,10 +332,6 @@ if (showToggle[0].show == "TRUE"){
   displayMaintenance()
 };
 
-if (showToggle[0].finals ==="TRUE"){
-  displayMatches(finalsMatches)
-  finalsBtn.style.display = '';
-}
 return players
 }
 
