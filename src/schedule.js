@@ -127,7 +127,6 @@ async function loadData() {
   const [
     playersRes,
     matchesRes,
-    finalsRes,
     scheduleRes,
     seasonEloRes,
     allTimeEloRes
