@@ -367,6 +367,8 @@ if (showToggle[0].show == "TRUE"){
   displayMaintenance()
 };
 
+setDefault()
+
 return players
 }
 
