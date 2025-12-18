@@ -39,6 +39,18 @@ function setDefault(){
     div1.style.cssText = "display: ''; flex-direction: column;";
     div2.style.cssText = "display: ''; flex-direction: column;";
     misc.style.cssText = "display: ''; flex-direction: column;";
+
+  if(div1.children.length <= 1){
+    div1.style.display = "none"
+  }
+
+    if(div2.children.length <= 1){
+    div2.style.display = "none"
+  }
+
+    if(misc.children.length <= 1){
+    misc.style.display = "none"
+  }
 }
 
 setDefault()
