@@ -34,9 +34,11 @@ eloTables.style.display = 'none'
 function setDefault(){
     let div1 = document.getElementById('div1matches');
     let div2 = document.getElementById('div2matches');
+    let misc = document.getElementById('miscMatches');
     eloTables.style.display = 'none'
     div1.style.cssText = "display: ''; flex-direction: column;";
     div2.style.cssText = "display: ''; flex-direction: column;";
+    misc.style.cssText = "display: ''; flex-direction: column;";
 }
 
 setDefault()
@@ -252,11 +254,12 @@ function displayMatches(matches){
 matches.forEach(match => {
    let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
+   let misc = document.getElementById("miscMatches")
    let divTag = null
    let finals = document.getElementById("finals");
    let upcomingMatches = document.getElementById('upcomingMatches');
-   let prefix = 'Match'
-   let container = null;
+   let prefix = 'Match';
+   let container = misc;
 
   switch (match.div) {
     case '1':
@@ -270,6 +273,10 @@ matches.forEach(match => {
     //   container.style.display = '';
     //   prefix = ''
   } ;
+
+  if (match.context == 'misc'){
+    container = misc
+  }
 
   const div = document.createElement("div")
   
