@@ -8,6 +8,42 @@ const newsArticles = [
     // },
 
         {
+        prefix: " ",
+        season:"2025",
+        prefix2: " ",
+        week: "Wrap Up",
+        date: "",
+        summary: `Well, it’s finally here — the end of the year and the end of Season 11 of the BAFL. Before recapping the excitement that was the finals series, I’d like to reflect on the year as a whole: the uncommon highs, the record lows, and the memories made along the way.
+<br><br>
+On February 14th, I published the very first BAFL Times — and yes, I also had a date on Valentine’s Day. Everything was really coming up Milhouse. From there, I went on to create 25 articles that the BAFL family learned to dread on a weekly basis. Each one was packed with the best moments of the week, and occasionally involved scraping the absolute bottom of the barrel for those tiny hits of magic. But today, I want to share some of my favourite moments from throughout the year.
+<br><br>
+This season saw a whopping 26 different players take part and etch their names into Brendan’s spreadsheet forever. We also witnessed the sad departures of quite a few players — with an odd correlation between joining the BAFL and leaving the company shortly after. Commissioners might need to have a look into that one.
+<br><br>
+Justin was a weekly highlight, getting rinsed on a regular basis but always keeping his head held high. Lei managed to quit during the very first week of a new season. My dear cousin Oscar did the same thing much later into the season, fully aware of his circumstances. Oscar S beat Dan once, then promptly vanished from the BAFL entirely. John and David both claimed Division 2 titles before making shock exits, while Elliot remains a long-forgotten Division 1 member from seasons past.
+
+Looking at the results from this year, we had five unique division champions, with Sam going back-to-back thanks to some assistance from Bass in the Misc tournaments. The highs of the season saw Sam finally dethroned as BAFL Champion — even if it was Dan who took the crown (we take what we can get). Ricardo finally recorded his first-ever victory after 30+ attempts. I won my first-ever final after six tries, and Yasin claimed top spot in Division 2 after starting the year barely knowing how to spell FIFA.
+<br><br>
+Of course, no season is complete without its lows. Dru somehow made a Division 1 final at the start of the year, only to finish mid-table in Division 2 by the end — that’s got to be tanking for first-round picks. Ricardo’s 14–0 loss wasn’t a great look either, especially considering he’s only scored 16 goals in total across his entire BAFL career. Lachlan had a memorable Season 10 moment as well, declaring he’d quit the BAFL if he lost a single Division 2 match… before immediately losing his first one.
+<br><br>
+But enough of the sadness — it’s time to talk about the inaugural BAFL Times Awards.
+<br><br>
+For the end-of-year awards, I’ve created four unique categories that definitely won’t carry over into next year — but let’s pretend they will. The awards are: Biggest Upset, Funniest Moment, Craziest Stat, and Best Player.
+<br><br>
+**Biggest Upset of the Year** goes to Brent, with his unbelievable 4–3 victory over Sam. The result sent shockwaves through the BAFL, proving that Sam is, in fact, human — and also apparently Brent’s bitch.
+<br><br>
+**Funniest Moment of the Year** was incredibly hard to decide. Nominees included Manjeeve unplugging his controller to avoid a 12–0 defeat to Dan, Dan’s famous “F**k you, Alex” quote after I torched him, and Brent blaming a video game player’s appendage for an offside call. But the crown has to go to one moment above all others: the BAFL Times article written by Manjeeve himself. The shockingly authentic, clearly *not* AI-assisted piece from Mr Sookram takes the cake as the funniest BAFL moment of the year.
+<br><br>
+**Craziest Stat of the Year** doesn’t really have much competition. Ricardo takes this one comfortably, finishing with a goal difference of -118 — over 70 goals worse than the next closest contender. An outstanding and frankly impressive achievement.
+<br><br>
+Finally, **Best Player of the Year**. We’ll split this one between divisions. Dan and Sam both topped the year with one title each, but with a strong finish to the season, Sam is our Division 1 Best Player for 2025. Division 2 was a tougher call, but Yasin takes the honour with a first-place finish in Season 11 and a near-finals run in Season 10.
+<br><br>
+And that’s it from me. I hope you’ve enjoyed my weekly dribble. Shoutout to ChatGPT for cleaning up and killing many trees in the process of reading the atrocities I claim as journalism. Another shoutout to Manjeeve for making the BAFL Times look far better than it ever deserved to be.
+<br><br>
+On to next year — bigger and betterer things?`,
+        author: "Alex Villani"
+    },
+
+        {
         season:"11",
         week: "9/10",
         date: "December 18",
@@ -518,16 +554,31 @@ Finally we bid a sad fairwell to Justin as he departs back to his sacred land an
     const divNav = document.createElement("divNav");
     div.className = "news-article";
 
-    divNav.innerHTML = `
-    <a href="#${article.season}${article.week}">Season ${article.season} Week ${article.week}</a>`
-    
-    div.innerHTML = `
-      <h2 id=${article.season}${article.week}>Season ${article.season} Week ${article.week}</h2>
-      <p><em>Published on: ${article.date}</em></p>
-      <p>Author: ${article.author}</p>
-      <p>${article.summary}</p>
-      
-    `;
+    if(article.prefix && article.prefix2){
+          divNav.innerHTML = `
+          <a href="#${article.season}${article.week}">${article.prefix} ${article.season} ${article.prefix2} ${article.week}</a>`
+          
+          div.innerHTML = `
+            <h2 id=${article.season}${article.week}>${article.prefix} ${article.season} ${article.prefix2} ${article.week}</h2>
+            <p><em>Published on: ${article.date}</em></p>
+            <p>Author: ${article.author}</p>
+            <p>${article.summary}</p>
+            
+          `;
+    } else {
+          divNav.innerHTML = `
+          <a href="#${article.season}${article.week}">Season ${article.season} Week ${article.week}</a>`
+          
+          div.innerHTML = `
+            <h2 id=${article.season}${article.week}>Season ${article.season} Week ${article.week}</h2>
+            <p><em>Published on: ${article.date}</em></p>
+            <p>Author: ${article.author}</p>
+            <p>${article.summary}</p>
+            
+          `;
+    }
+
+
   
     container.appendChild(div);
     navContatiner.appendChild(divNav);
