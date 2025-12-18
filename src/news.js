@@ -12,7 +12,7 @@ const newsArticles = [
         season:"2025",
         prefix2: " ",
         week: "Wrap Up",
-        date: "",
+        date: "December 19",
         summary: `Well, it’s finally here — the end of the year and the end of Season 11 of the BAFL. Before recapping the excitement that was the finals series, I’d like to reflect on the year as a whole: the uncommon highs, the record lows, and the memories made along the way.
 <br><br>
 On February 14th, I published the very first BAFL Times — and yes, I also had a date on Valentine’s Day. Everything was really coming up Milhouse. From there, I went on to create 25 articles that the BAFL family learned to dread on a weekly basis. Each one was packed with the best moments of the week, and occasionally involved scraping the absolute bottom of the barrel for those tiny hits of magic. But today, I want to share some of my favourite moments from throughout the year.
