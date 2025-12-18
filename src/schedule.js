@@ -344,7 +344,7 @@ matches.forEach(match => {
   }
 
     if(misc.children.length <= 1){
-    div1.style.display = "none"
+    misc.style.display = "none"
   }
 };
 
