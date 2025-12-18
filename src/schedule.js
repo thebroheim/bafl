@@ -251,10 +251,11 @@ displayAllTimeEloTable()
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
 
 function displayMatches(matches){
-matches.forEach(match => {
-   let div1 = document.getElementById("div1matches");
+    let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
-   let misc = document.getElementById("miscmatches")
+   let misc = document.getElementById("miscmatches");
+matches.forEach(match => {
+
    let divTag = null
    let finals = document.getElementById("finals");
    let upcomingMatches = document.getElementById('upcomingMatches');
