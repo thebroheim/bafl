@@ -254,7 +254,7 @@ function displayMatches(matches){
 matches.forEach(match => {
    let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
-   let misc = document.getElementById("miscMatches")
+   let misc = document.getElementById("miscmatches")
    let divTag = null
    let finals = document.getElementById("finals");
    let upcomingMatches = document.getElementById('upcomingMatches');
@@ -332,7 +332,20 @@ matches.forEach(match => {
     container.appendChild(div);
     divisiontables.style.display = 'flex'
     schedules.style.display = 'flex'
-  })};
+  })
+
+  if(div1.children.length <= 1){
+    div1.style.display = "none"
+  }
+
+    if(div2.children.length <= 1){
+    div2.style.display = "none"
+  }
+
+    if(misc.children.length <= 1){
+    div1.style.display = "none"
+  }
+};
 
 if (showToggle[0].show == "TRUE"){
   displayTable()

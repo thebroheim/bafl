@@ -110,6 +110,12 @@ th, td {
     gap: 10px;
 }
 
+#miscmatches {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 #upComingHide {
     /* margin-left: 60px; */
   /* overflow: visible;  */
