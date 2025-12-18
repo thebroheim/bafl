@@ -31,7 +31,7 @@ For the end-of-year awards, I’ve created four unique categories that definitel
 <br><br>
 **Biggest Upset of the Year** goes to Brent, with his unbelievable 4–3 victory over Sam. The result sent shockwaves through the BAFL, proving that Sam is, in fact, human — and also apparently Brent’s bitch.
 <br><br>
-**Funniest Moment of the Year** was incredibly hard to decide. Nominees included Manjeeve unplugging his controller to avoid a 12–0 defeat to Dan, Dan’s famous “F**k you, Alex” quote after I torched him, and Brent blaming a video game player’s appendage for an offside call. But the crown has to go to one moment above all others: the BAFL Times article written by Manjeeve himself. The shockingly authentic, clearly *not* AI-assisted piece from Mr Sookram takes the cake as the funniest BAFL moment of the year.
+**Funniest Moment of the Year** was incredibly hard to decide. Nominees included Manjeeve unplugging his controller to avoid a 12–0 defeat to Dan, Dan’s famous “F**k you, Alex” quote after I torched him, and Brent blaming a video game player’s appendage for an offside call. But the crown has to go to one moment above all others: the BALF Times article written by Manjeeve himself. The shockingly authentic, clearly *not* AI-assisted piece from Mr Sookram takes the cake as the funniest BAFL moment of the year.
 <br><br>
 **Craziest Stat of the Year** doesn’t really have much competition. Ricardo takes this one comfortably, finishing with a goal difference of -118 — over 70 goals worse than the next closest contender. An outstanding and frankly impressive achievement.
 <br><br>
