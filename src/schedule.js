@@ -298,7 +298,7 @@ matches.forEach(match => {
     container= document.getElementById('div2matches')
   }
 
-    const fallBackImg = '/images/TeamImages/Default.png';
+    const fallBackImg = 'Default.png';
 
 const team1img =
   match.p1team?.trim()
