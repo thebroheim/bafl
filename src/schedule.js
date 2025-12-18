@@ -297,8 +297,15 @@ matches.forEach(match => {
   if(match.div === '2'){
     container= document.getElementById('div2matches')
   }
-    let team1img = match.p1team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
-    let team2img = match.p2team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+
+    const fallBackImg = '/images/TeamImages/Default.png';
+
+    const team1img =
+      match.p1team?.replace(/[^a-zA-Z0-9]/g, '') + '.png' ?? fallBackImg;
+
+    const team2img =
+      match.p2team?.replace(/[^a-zA-Z0-9]/g, '') + '.png' ?? fallBackImg;
+      
     let show1 = ''
     let show2= ``
     // if (match.reveal === "FALSE"){
