@@ -266,6 +266,7 @@ function displayMatches(matches){
     let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
    let misc = document.getElementById("miscmatches");
+   
 matches.forEach(match => {
 
    let divTag = null
@@ -291,14 +292,13 @@ matches.forEach(match => {
     container = misc
   }
 
-  const div = document.createElement("div")
-  
-  
-  if(match.div === '2'){
-    container= document.getElementById('div2matches')
+  if(match.context == 'final' || match.context == 'relplayoff'|| match.context == 'promplayoff'){
+    container = finals
   }
 
-    const fallBackImg = 'Default.png';
+  const div = document.createElement("div")
+  
+  const fallBackImg = 'Default.png';
 
 const team1img =
   match.p1team?.trim()
