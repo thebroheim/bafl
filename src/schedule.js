@@ -266,7 +266,7 @@ function displayMatches(matches){
     let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
    let misc = document.getElementById("miscmatches");
-   
+
 matches.forEach(match => {
 
    let divTag = null
@@ -281,12 +281,7 @@ matches.forEach(match => {
       break;
     case '2':
       container = div2
-      break;
-    // case 'finals':
-    //   container = finals;
-    //   container.style.display = '';
-    //   prefix = ''
-  } ;
+  };
 
   if (match.context == 'misc'){
     container = misc
@@ -294,7 +289,9 @@ matches.forEach(match => {
 
   if(match.context == 'final' || match.context == 'relplayoff'|| match.context == 'promplayoff'){
     container = finals
-  }
+    container.style.display = '';
+    prefix = ''
+  };
 
   const div = document.createElement("div")
   
