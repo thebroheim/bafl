@@ -222,6 +222,9 @@ playersDiv1.forEach(player =>{
 playersDiv2.forEach(player =>{
   let container = document.getElementById('div2TableData')
   const row = document.createElement("tr")
+  if (player.name == ''){
+    return console.log('Didnt add name to table')
+  }
   row.innerHTML = `
       <td  scope="row"><a class = 'playerName' data-div="div2">${player.name}</a></td>
       <td>${player.played}</td>
@@ -282,6 +285,10 @@ matches.forEach(match => {
    let upcomingMatches = document.getElementById('upcomingMatches');
    let prefix = 'Match';
    let container = misc;
+
+   if (match.p1 === ''){
+    return console.log('Didnt add match to schedule')
+   }
 
   switch (match.div) {
     case '1':

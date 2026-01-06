@@ -6,7 +6,7 @@
 
   // The spreadsheet ID and range you want to read
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
-  const playersRange = "Players!A1:J19";
+  const playersRange = "Table!A1:J11";
 
   function convertToObjects(values) {
     const headers = values[0]; // first row is the keys

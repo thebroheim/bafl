@@ -31,8 +31,8 @@ const players = [
     'Lachlan', 
     'Lachy W',
     'Brent',
+    'Bass',
     'Gus',
-    'Lachlan',
     'Matthew',
     'Brendan',
 ]
