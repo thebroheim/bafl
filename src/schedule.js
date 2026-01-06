@@ -196,7 +196,7 @@ function displayTable(){
 let div1header = document.getElementById("group1Header")
 let div2header = document.getElementById("group2Header")
 
-let groupPrefix = showToggle[0].groupPrefix
+let groupPrefix = showToggle[0].groupprefix
 console.log(showToggle[0])
 div1header.innerHTML = `${groupPrefix} 1`
 div2header.innerHTML = `${groupPrefix} 2`
