@@ -1,5 +1,5 @@
 function filterTeams(key, value1, condition, value2) {
-    const teams = teamSet;
+    const teams = teamsFC26;
     const filteredTeams = [];
 
     if (condition === 'between') {
@@ -27,15 +27,14 @@ const weak = filterTeams('ovr', 70, 'between', 76)
 const players = [
     'Sam',
     'Dan',
-    'Brent',
-    'Oscar', 
+    'Alex',
+    'Lachlan', 
     'Lachy W',
-    'Dru',
-    'Bass',
+    'Brent',
+    'Gus',
     'Lachlan',
-    'MJ',
-    'Jude',
     'Matthew',
+    'Brendan',
 ]
 
 //Selects the team randomly from the type

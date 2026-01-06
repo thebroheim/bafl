@@ -4,7 +4,7 @@ export async function handler() {
       "https://sheets.googleapis.com/v4/spreadsheets/1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk/values:batchGet" +
       "?ranges=Table!A1:J30" + //players
       "&ranges=Schedule!A1:L200" + //matches
-      "&ranges=Config!B2:C3" + //showSchedule
+      "&ranges=Config!B2:D3" + //showSchedule
       "&ranges=Elo!A2:B20" + //seasonElo
       "&ranges=Elo!E2:F32" + //allTimeElo
       "&key=" + process.env.GOOGLE_API_KEY;

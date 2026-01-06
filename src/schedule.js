@@ -193,6 +193,13 @@ function displayMaintenance(){
 
 // Print Tables for Div 1 and 2
 function displayTable(){
+let div1header = document.getElementById("group1Header")
+let div2header = document.getElementById("group2Header")
+
+let groupPrefix = showToggle.groupPrefix
+div1header.innerHTML = `${groupPrefix} 1`
+div2header.innerHTML = `${groupPrefix} 2`
+
 playersDiv1.forEach(player =>{
   let container = document.getElementById('div1TableData')
   const row = document.createElement("tr")
