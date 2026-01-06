@@ -33,8 +33,10 @@ const players = [
     'Brent',
     'Bass',
     'Gus',
+    'Dru',
     'Matthew',
     'Brendan',
+    'Ricardo',
 ]
 
 //Selects the team randomly from the type

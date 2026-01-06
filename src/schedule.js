@@ -35,6 +35,7 @@ function setDefault(){
     let div1 = document.getElementById('div1matches');
     let div2 = document.getElementById('div2matches');
     let misc = document.getElementById('miscmatches');
+    // finalsContainer.style.display = "none"
     eloTables.style.display = 'none'
     div1.style.cssText = "display: ''; flex-direction: column;";
     div2.style.cssText = "display: ''; flex-direction: column;";
@@ -158,8 +159,14 @@ async function loadData() {
   // Now run all your existing display logic here.
 
   if (showToggle[0].finals == "FALSE"){
-    finalsBtn.style.display = 'none'
+    finalsBtn.style.display = 'none';
+    finals.style.display = 'none'
+  };
+  if (showToggle[0].finals == "TRUE"){
+    finalsBtn.style.display = '';
+    finals.style.display = ''
   }
+
   mainContent.style.display = ''
   buttonsDivs.style.display = ''
   
