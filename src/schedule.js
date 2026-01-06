@@ -303,7 +303,15 @@ matches.forEach(match => {
 
   if(match.context == 'final' || match.context == 'relplayoff'|| match.context == 'promplayoff'){
     container = finals
-    container.style.display = '';
+      if (showToggle[0].finals == "FALSE"){
+      finalsBtn.style.display = 'none';
+      container.style.display = 'none';
+    };
+    if (showToggle[0].finals == "TRUE"){
+      finalsBtn.style.display = '';
+      container.style.display = '';
+    }
+    
     prefix = ''
   };
 
@@ -394,14 +402,7 @@ setDefault()
 return players
 }
 
-if (showToggle[0].finals == "FALSE"){
-  finalsBtn.style.display = 'none';
-  finals.style.display = 'none'
-};
-if (showToggle[0].finals == "TRUE"){
-  finalsBtn.style.display = '';
-  finals.style.display = ''
-}
+
 
 
 document.addEventListener("click", function(e) {
