@@ -154,9 +154,11 @@ async function loadData() {
   const seasonElo = convertToObjects(seasonEloRes.values);
   const allTimeElo = convertToObjects(allTimeEloRes.values);
   
-  console.log(matchesFinal)
+  // console.log(matchesFinal)
 
   // Now run all your existing display logic here.
+
+  console.log(`Finals toggle is:` + showToggle[0].finals)
 
   if (showToggle[0].finals == "FALSE"){
     finalsBtn.style.display = 'none';
