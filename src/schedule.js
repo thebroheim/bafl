@@ -158,17 +158,6 @@ async function loadData() {
 
   // Now run all your existing display logic here.
 
-  console.log(`Finals toggle is:` + showToggle[0].finals)
-
-  if (showToggle[0].finals == "FALSE"){
-    console.log('We hit the check for finals being false')
-    finalsBtn.style.display = 'none';
-    finals.style.display = 'none'
-  };
-  if (showToggle[0].finals == "TRUE"){
-    finalsBtn.style.display = '';
-    finals.style.display = ''
-  }
 
   mainContent.style.display = ''
   buttonsDivs.style.display = ''
@@ -404,6 +393,16 @@ setDefault()
 
 return players
 }
+
+if (showToggle[0].finals == "FALSE"){
+  finalsBtn.style.display = 'none';
+  finals.style.display = 'none'
+};
+if (showToggle[0].finals == "TRUE"){
+  finalsBtn.style.display = '';
+  finals.style.display = ''
+}
+
 
 document.addEventListener("click", function(e) {
     if (e.target.classList.contains("buttonDiv")) {
