@@ -161,6 +161,7 @@ async function loadData() {
   console.log(`Finals toggle is:` + showToggle[0].finals)
 
   if (showToggle[0].finals == "FALSE"){
+    console.log('We hit the check for finals being false')
     finalsBtn.style.display = 'none';
     finals.style.display = 'none'
   };
