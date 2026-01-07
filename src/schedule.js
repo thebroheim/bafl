@@ -285,7 +285,7 @@ matches.forEach(match => {
    let prefix = 'Match';
    let container = misc;
 
-   if (match.matchId === '' || match.p1 === 'undefined'){
+   if (match.matchId === '' || match.p1 === null){
     return console.log('Didnt add match to schedule')
    }
 
