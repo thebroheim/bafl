@@ -154,7 +154,6 @@ async function loadData() {
   const seasonElo = convertToObjects(seasonEloRes.values);
   const allTimeElo = convertToObjects(allTimeEloRes.values);
   
-  // console.log(matchesFinal)
 
   // Now run all your existing display logic here.
 
@@ -196,7 +195,6 @@ let div1header = document.getElementById("group1Header")
 let div2header = document.getElementById("group2Header")
 
 let groupPrefix = showToggle[0].groupprefix
-console.log(showToggle[0])
 div1header.innerHTML = `${groupPrefix} 1`
 div2header.innerHTML = `${groupPrefix} 2`
 
@@ -222,7 +220,7 @@ playersDiv2.forEach(player =>{
   let container = document.getElementById('div2TableData')
   const row = document.createElement("tr")
   if (player.name == ''){
-    return console.log('Didnt add name to table')
+    return
   }
   row.innerHTML = `
       <td  scope="row"><a class = 'playerName' data-div="div2">${player.name}</a></td>
@@ -286,10 +284,9 @@ matches.forEach(match => {
    let container = misc;
 
    if (match.matchId === '' || match.p1 == null){
-    return console.log('Didnt add match to schedule')
+    return
    }
 
-   console.log(match)
 
   switch (match.div) {
     case '1':
