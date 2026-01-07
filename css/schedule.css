@@ -84,6 +84,7 @@ th, td {
     margin-top: 20px;
     border: #24e3fd solid 1px;
     width: 100%;
+    padding: 2px;
 }
 
 #matches{
