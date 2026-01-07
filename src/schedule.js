@@ -193,6 +193,8 @@ function displayMaintenance(){
 function displayTable(){
 let div1header = document.getElementById("group1Header")
 let div2header = document.getElementById("group2Header")
+let div1table = document.getElementById("div1Table")
+let div2table = document.getElementById("div2Table")
 
 let groupPrefix = showToggle[0].groupprefix
 div1header.innerHTML = `${groupPrefix} 1`
@@ -235,7 +237,16 @@ playersDiv2.forEach(player =>{
 
   container.appendChild(row)
 
-})}
+})
+divisiontables.style.display = 'flex'
+if (playersDiv1.length == 0){
+  div1table.style.display = 'none'
+}
+
+if (playersDiv2.length == 0){
+  div2table.style.display = 'none'
+}
+}
 
 function displaySeasonEloTable() {
   seasonElo.forEach(player => {
@@ -372,7 +383,6 @@ const team2img =
           upcomingMatches.appendChild(clone);
     }
     container.appendChild(div);
-    divisiontables.style.display = 'flex'
     schedules.style.display = 'flex'
   })
 
