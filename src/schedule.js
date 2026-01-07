@@ -289,7 +289,7 @@ matches.forEach(match => {
     return console.log('Didnt add match to schedule')
    }
 
-   console.log('The code is going even with no matches')
+   console.log(match)
 
   switch (match.div) {
     case '1':
