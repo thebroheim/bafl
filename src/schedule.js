@@ -200,6 +200,9 @@ let groupPrefix = showToggle[0].groupprefix
 div1header.innerHTML = `${groupPrefix} 1`
 div2header.innerHTML = `${groupPrefix} 2`
 
+console.log('Div 1 Players: '+playersDiv1)
+console.log('Div 2 Players: '+playersDiv2)
+
 playersDiv1.forEach(player =>{
   let container = document.getElementById('div1TableData')
   const row = document.createElement("tr")
