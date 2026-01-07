@@ -80,6 +80,12 @@ th, td {
     width: 10%;
 }
 
+#table img {
+    margin-top: 20px;
+    border: #24e3fd solid 1px;
+    width: 100%;
+}
+
 #matches{
     width: 90%;
 }
