@@ -397,6 +397,16 @@ if (showToggle[0].show == "TRUE"){
   displayMaintenance()
 };
 
+if (!showToggle[0].tournamentbracket == ""){
+  let bracketContainer = document.createElement('div');
+  let imageSrc = showToggle[0].tournamentbracket
+  bracketContainer.innerHTML = `<img src= ${imageSrc}></img>`
+
+  divisiontables.appendChild(bracketContainer)
+  
+
+}
+
 setDefault()
 
 return players
