@@ -18,9 +18,9 @@ function filterTeams(key, value1, condition, value2) {
     return filteredTeams;
 }
 
-const elite = filterTeams('ovr', 84, 'between', 100)
-const strong = filterTeams('ovr', 81, 'between', 84)
-const mid = filterTeams('ovr', 77, 'between', 81)
+const elite = filterTeams('ovr', 83, 'between', 100)
+const strong = filterTeams('ovr', 80, 'between', 83)
+const mid = filterTeams('ovr', 76, 'between', 80)
 const weak = filterTeams('ovr', 70, 'between', 76)
 
 //Put players in order of rank. Best = Top, Worst = Bottom
@@ -28,15 +28,19 @@ const players = [
     'Sam',
     'Dan',
     'Alex',
+    'Yasin',
     'Lachlan', 
     'Lachy W',
     'Brent',
     'Bass',
     'Gus',
     'Dru',
+    'Kelvin',
     'Matthew',
     'Brendan',
     'Ricardo',
+    'Liam',
+    'Devyn',
 ]
 
 //Selects the team randomly from the type

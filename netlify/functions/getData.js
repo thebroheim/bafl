@@ -6,7 +6,7 @@ export async function handler() {
       "&ranges=Schedule!A1:L200" + //matches
       "&ranges=Config!B2:E3" + //showSchedule
       "&ranges=Elo!A2:B20" + //seasonElo
-      "&ranges=Elo!E2:F32" + //allTimeElo
+      "&ranges=Elo!E2:F34" + //allTimeElo
       "&key=" + process.env.GOOGLE_API_KEY;
 
     const res = await fetch(url);
