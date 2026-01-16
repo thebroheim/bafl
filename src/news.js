@@ -679,4 +679,6 @@ async function init() {
     
   }
 
-  loadData()
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+});
