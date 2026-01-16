@@ -678,3 +678,5 @@ async function init() {
       navContatiner.style.display === 'flex' ? 'none':'flex';
     
   }
+
+  loadData()
