@@ -673,6 +673,9 @@ async function init() {
 
 //   });
 
+const container = document.getElementById("news-container");
+const navContatiner =document.getElementById("newsNav")
+
   function showNav() {
     navContatiner.style.display = 
       navContatiner.style.display === 'flex' ? 'none':'flex';
