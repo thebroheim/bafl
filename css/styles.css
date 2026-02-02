@@ -261,6 +261,21 @@ input {
 
 /* News Section */
 
+#twitter{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    gap: 10px;
+    height: 200px;
+    overflow: scroll;
+}
+
+.tweet {
+    background-color: #0c0c0c;
+    width: 100%;
+}
+
 #news h1 {
     padding-left: 20px;
 }
