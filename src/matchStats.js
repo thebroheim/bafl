@@ -512,12 +512,13 @@ function getMatchesForPlayer(player, context) {
 
     return filteredMatches.filter(m => {
         const playerMatch = m.p1 === player || m.p2 === player;
+        const seasonMatch = season === "All" ? true : m.season === Number(season);
 
         // Apply context filter only if a context was passed in
         const contextMatch = context ? m.context === context : true;
 
         // ...and now it's included here:
-        return playerMatch && contextMatch;
+        return playerMatch && seasonMatch && contextMatch;
     });
 }
 // Total Matches
