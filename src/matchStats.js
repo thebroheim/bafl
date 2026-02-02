@@ -28,10 +28,10 @@ function convertToObjects(values) {
   });
 }
 
+    console.log("After Filter: " + matches.length)
+
     function filterMatches(matches){
         const showMisc = document.getElementById("miscCheck").checked
-        console.log(showMisc)
-
         const filteredMatches = matches.filter(m => {
         const notForfeit = m.context !== 'forfeit';
         const miscCheck = showMisc ? true : m.context !== 'misc';
@@ -45,7 +45,10 @@ function convertToObjects(values) {
 
 
 
-let matches = []
+
+
+let matches = filterMatches(matches)
+console.log("After Filter: "+ matches.length)
 let hof =[]
 let players = []
 
@@ -878,7 +881,6 @@ function headToHead(){
             row.style.backgroundColor = '#ff000020'
         }
 
-        console.log(winner)
         row.className= 'h2hMatch'
         if(match.p1 == p1){
             row.innerHTML = `<p>${match.season}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p>`
