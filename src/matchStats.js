@@ -220,7 +220,7 @@ const testhof = [
 ]
 
 
-showMisc = document.getElementById("miscCheck").value
+showMisc = document.getElementById("miscCheck").checked
 
 
 
