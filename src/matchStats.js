@@ -28,7 +28,7 @@ function convertToObjects(values) {
   });
 }
 
-    console.log("After Filter: " + matches.length)
+    
 
     function filterMatches(matches){
         const showMisc = document.getElementById("miscCheck").checked
@@ -43,12 +43,7 @@ function convertToObjects(values) {
     return filteredMatches
     }
 
-
-
-
-
-let matches = filterMatches(matches)
-console.log("After Filter: "+ matches.length)
+let matches = []
 let hof =[]
 let players = []
 
@@ -69,8 +64,9 @@ async function loadData() {
 
 async function init() {
     await loadData();
-
+    console.log("Before Filter: " + matches.length)
     matches = filterMatches(matches)
+    console.log("After Filter: " + matches.length)
 
 // Add Players To Dropdown
 matches.forEach(match => {
