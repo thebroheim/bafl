@@ -517,7 +517,7 @@ function getMatchesForPlayer(player, context) {
         const contextMatch = context ? m.context === context : true;
 
         // ...and now it's included here:
-        return playerMatch && seasonMatch && notForfeit && miscCheck && contextMatch;
+        return playerMatch && contextMatch;
     });
 }
 // Total Matches
