@@ -331,8 +331,20 @@ function getBiggestWinOfAll() {
 
 function getBestTeamOfAll(type, topN = 3) {
     const teamCounts = {};
+    const season = document.getElementById("seasonSelect").value;
+    const showMisc = document.getElementById("miscCheck").checked;
 
-    matches.forEach(match => {
+    // 1. Filter the matches first
+    const filteredMatches = matches.filter(m => {
+        const seasonMatch = season === "All" ? true : m.season === Number(season);
+        const notForfeit = m.context !== 'forfeit';
+        const miscCheck = showMisc || m.context !== 'misc';
+        
+        return seasonMatch && notForfeit && miscCheck;
+    });
+
+    // 2. Loop through the filtered list instead of the global matches array
+    filteredMatches.forEach(match => {
         let team1 = match.p1team;
         let team2 = match.p2team;
 
@@ -362,7 +374,6 @@ function getBestTeamOfAll(type, topN = 3) {
         }
     });
 
-    // Convert to [team, count] arrays and sort
     return Object.entries(teamCounts)
         .sort((a, b) => b[1] - a[1]);
 }
