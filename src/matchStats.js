@@ -38,6 +38,11 @@ function convertToObjects(values) {
         
         return notForfeit && miscCheck;
     });
+
+    playerStats()
+    generalStats()
+    
+
     return filteredMatches
     }
 
