@@ -28,6 +28,17 @@ function convertToObjects(values) {
   });
 }
 
+    function filterMatches(matches){
+        const filteredMatches = matches.filter(m => {
+        const seasonMatch = season === "All" ? true : m.season === Number(season);
+        const notForfeit = m.context !== 'forfeit';
+        const miscCheck = m.context !== 'misc';
+        
+        return seasonMatch && notForfeit && miscCheck;
+    });
+    return filteredMatches
+    }
+
 
 
 let matches = []
@@ -51,6 +62,8 @@ async function loadData() {
 
 async function init() {
     await loadData();
+
+    matches = filterMatches(matches)
 
 // Add Players To Dropdown
 matches.forEach(match => {
@@ -332,15 +345,6 @@ function getBiggestWinOfAll() {
 function getBestTeamOfAll(type, topN = 3) {
     const teamCounts = {};
     const season = document.getElementById("seasonSelect").value;
-
-    // 1. Filter the matches first
-    const filteredMatches = matches.filter(m => {
-        const seasonMatch = season === "All" ? true : m.season === Number(season);
-        const notForfeit = m.context !== 'forfeit';
-        const miscCheck = m.context !== 'misc';
-        
-        return seasonMatch && notForfeit && miscCheck;
-    });
 
     // 2. Loop through the filtered list instead of the global matches array
     filteredMatches.forEach(match => {
