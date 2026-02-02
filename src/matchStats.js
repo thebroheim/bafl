@@ -29,6 +29,9 @@ function convertToObjects(values) {
 }
 
     function filterMatches(matches){
+        const showMisc = document.getElementById("miscCheck").checked
+        console.log(showMisc)
+
         const filteredMatches = matches.filter(m => {
         const seasonMatch = m.season === "All" ? true : m.season === Number(m.season);
         const notForfeit = m.context !== 'forfeit';
