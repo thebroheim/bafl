@@ -346,6 +346,8 @@ function getBestTeamOfAll(type, topN = 3) {
     const teamCounts = {};
     const season = document.getElementById("seasonSelect").value;
 
+    filteredMatches = filterMatches(matches)
+
     // 2. Loop through the filtered list instead of the global matches array
     filteredMatches.forEach(match => {
         let team1 = match.p1team;
