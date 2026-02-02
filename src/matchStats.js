@@ -508,12 +508,10 @@ appendLeaderboards(arrayIds)
 // Helper: All matches involving the player
 function getMatchesForPlayer(player, context) {
     const season = document.getElementById("seasonSelect").value;
+    const filteredMatches = filterMatches(matches)
 
-    return matches.filter(m => {
+    return filteredMatches.filter(m => {
         const playerMatch = m.p1 === player || m.p2 === player;
-        const seasonMatch = season === "All" ? true : m.season === Number(season);
-        const notForfeit = m.context !== 'forfeit';
-        const miscCheck = m.context !== 'misc';
 
         // Apply context filter only if a context was passed in
         const contextMatch = context ? m.context === context : true;
