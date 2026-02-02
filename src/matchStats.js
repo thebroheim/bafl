@@ -33,7 +33,6 @@ function convertToObjects(values) {
         console.log(showMisc)
 
         const filteredMatches = matches.filter(m => {
-        const seasonMatch = m.season === "All" ? true : m.season === Number(m.season);
         const notForfeit = m.context !== 'forfeit';
         const miscCheck = showMisc ? true : m.context !== 'misc';
         
