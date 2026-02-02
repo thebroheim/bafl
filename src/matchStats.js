@@ -332,13 +332,12 @@ function getBiggestWinOfAll() {
 function getBestTeamOfAll(type, topN = 3) {
     const teamCounts = {};
     const season = document.getElementById("seasonSelect").value;
-    const showMisc = document.getElementById("miscCheck").checked;
 
     // 1. Filter the matches first
     const filteredMatches = matches.filter(m => {
         const seasonMatch = season === "All" ? true : m.season === Number(season);
         const notForfeit = m.context !== 'forfeit';
-        const miscCheck = showMisc || m.context !== 'misc';
+        const miscCheck = m.context !== 'misc';
         
         return seasonMatch && notForfeit && miscCheck;
     });
