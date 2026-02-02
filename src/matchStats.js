@@ -497,8 +497,7 @@ function getMatchesForPlayer(player, context) {
         const playerMatch = m.p1 === player || m.p2 === player;
         const seasonMatch = season === "All" ? true : m.season === Number(season);
         const notForfeit = m.context !== 'forfeit';
-        const miscCheck = showMisc || m.context !== 'misc';
-        console.log(showMisc)
+        const miscCheck = m.context !== 'misc';
 
         // Apply context filter only if a context was passed in
         const contextMatch = context ? m.context === context : true;
