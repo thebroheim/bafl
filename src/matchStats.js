@@ -220,7 +220,7 @@ const testhof = [
 ]
 
 
-
+showMisc = document.getElementById("miscCheck").value
 
 
 
@@ -486,6 +486,9 @@ appendLeaderboards(arrayIds)
       
 }
 
+
+
+
 // Helper: All matches involving the player
 function getMatchesForPlayer(player, context) {
     const season = document.getElementById("seasonSelect").value;
@@ -494,11 +497,13 @@ function getMatchesForPlayer(player, context) {
         const playerMatch = m.p1 === player || m.p2 === player;
         const seasonMatch = season === "All" ? true : m.season === Number(season);
         const notForfeit = m.context !== 'forfeit';
+        const miscCheck = showMisc || m.context !== 'misc';
 
         // Apply context filter only if a context was passed in
         const contextMatch = context ? m.context === context : true;
 
-        return playerMatch && seasonMatch && notForfeit && contextMatch;
+        // ...and now it's included here:
+        return playerMatch && seasonMatch && notForfeit && miscCheck && contextMatch;
     });
 }
 // Total Matches
