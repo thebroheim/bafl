@@ -30,7 +30,7 @@ function convertToObjects(values) {
 
     function filterMatches(matches){
         const filteredMatches = matches.filter(m => {
-        const seasonMatch = season === "All" ? true : m.season === Number(season);
+        const seasonMatch = m.season === "All" ? true : m.season === Number(season);
         const notForfeit = m.context !== 'forfeit';
         const miscCheck = m.context !== 'misc';
         
