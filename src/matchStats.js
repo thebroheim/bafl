@@ -36,7 +36,7 @@ function convertToObjects(values) {
         const notForfeit = m.context !== 'forfeit';
         const miscCheck = showMisc ? true : m.context !== 'misc';
         
-        return seasonMatch && notForfeit && miscCheck;
+        return notForfeit && miscCheck;
     });
     return filteredMatches
     }
