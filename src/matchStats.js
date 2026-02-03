@@ -810,7 +810,7 @@ function headToHead(){
     
     const p1 = document.getElementById('headToHeadp1').value;
     const p2 = document.getElementById('headToHeadp2').value;
-
+    matches = [...rawMatches]
 
     const statsContent = document.getElementById("statsContent");
     let p1Matches = getMatchesForPlayer(p1)
