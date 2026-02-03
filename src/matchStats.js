@@ -349,10 +349,9 @@ function getBestTeamOfAll(type, topN = 3) {
     const teamCounts = {};
     const season = document.getElementById("seasonSelect").value;
 
-    filteredMatches = filterMatches(matches)
 
     // 2. Loop through the filtered list instead of the global matches array
-    filteredMatches.forEach(match => {
+    matches.forEach(match => {
         let team1 = match.p1team;
         let team2 = match.p2team;
 
@@ -511,9 +510,8 @@ appendLeaderboards(arrayIds)
 // Helper: All matches involving the player
 function getMatchesForPlayer(player, context) {
     const season = document.getElementById("seasonSelect").value;
-    const filteredMatches = filterMatches(matches)
 
-    return filteredMatches.filter(m => {
+    return matches.filter(m => {
         const playerMatch = m.p1 === player || m.p2 === player;
         const seasonMatch = season === "All" ? true : m.season === Number(season);
 
