@@ -478,7 +478,8 @@ function generalStats(){
     ]
 
     
-
+<div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
+<div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
 
     const statsContent = document.getElementById("statsContent");
     statsContent.innerHTML = `
@@ -493,8 +494,7 @@ function generalStats(){
 
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
-            <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
+            
             <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
             <div class="statBoxMediumLeaderboard" id="bestTeamLeaderboard"><p><strong>Best Teams: </strong></p>
             </div> 
