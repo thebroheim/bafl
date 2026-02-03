@@ -44,6 +44,7 @@ function convertToObjects(values) {
     }
 
 let matches = []
+let rawMatches = []
 let hof =[]
 let players = []
 
@@ -57,7 +58,7 @@ async function loadData() {
     hofRes,
   ] = batch.valueRanges;
 
-  matches = convertToObjects(matchesRes.values);
+  rawMatches = convertToObjects(matchesRes.values);
   hof = convertToObjects(hofRes.values);
 
 }
@@ -738,6 +739,8 @@ function getFinalResults(player, type) {
 // MAIN FUNCTION THAT UPDATES THE PAGE
 function playerStats() {
     const player = document.getElementById("playerName").value;
+    
+    matches = filterMatches(rawMatches);
     console.log('Matches length on player call:'+ matches.length)
     if(player == "Overall"){
         generalStats()
