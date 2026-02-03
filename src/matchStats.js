@@ -79,6 +79,7 @@ matches.forEach(match => {
         players.push(match.p2);
     }
 });
+console.log('Players in init: '+players)
 
 let seasons = []
 
@@ -292,9 +293,8 @@ function sortByValue(arr, descending = true) {
 
 function getAllGoalsAgainst(){
         let total = []
-        console.log(players)
     players.forEach(player => {
-        console.log(player)
+
         let goalsAgainst = getGoalsAgainst(player)
         total.push([player, goalsAgainst])
     })
@@ -302,9 +302,7 @@ function getAllGoalsAgainst(){
 }
 function getAllGoalsFor(){
         let total = []
-        console.log(players)
     players.forEach(player => {
-        console.log(player)
         let goalsFor = getGoalsFor(player)
         total.push([player, goalsFor])
     })
@@ -417,6 +415,7 @@ function getFinalWinRates(){
 
 
 function generalStats(){
+    console.log(players)
     document.getElementById('headToHeadp2').selectedIndex = 1
     document.getElementById("search").style.display = ''
     document.getElementById("headToHead").style.display = 'none'
@@ -428,8 +427,8 @@ function generalStats(){
     const div2Titles = getTitles().sortedDiv2;
     const bestGoalDiff = sortByValue(getGoalDifferences(), true);
     const worstGoalDiff = sortByValue(getGoalDifferences(), false);
-    // const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
-    // const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
+    const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
+    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
     const biggestWinOfAll = getBiggestWinOfAll();
     const bestTeamOfAll = getBestTeamOfAll('wins');
     const worstTeamOfAll = getBestTeamOfAll('losses');
@@ -477,8 +476,7 @@ function generalStats(){
         ["worstTeamLeaderboard", worstTeamLeaderboard],
     ]
 
-    // <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
-    // <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
+    
 
 
     const statsContent = document.getElementById("statsContent");
@@ -494,7 +492,8 @@ function generalStats(){
 
             <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
             <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
-            
+            <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
+            <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
             <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
             <div class="statBoxMediumLeaderboard" id="bestTeamLeaderboard"><p><strong>Best Teams: </strong></p>
             </div> 
@@ -745,7 +744,6 @@ function playerStats() {
     const player = document.getElementById("playerName").value;
     
     matches = filterMatches(rawMatches);
-    console.log('Matches length on player call:'+ matches.length)
     if(player == "Overall"){
         generalStats()
     } else {
