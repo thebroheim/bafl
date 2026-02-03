@@ -292,7 +292,9 @@ function sortByValue(arr, descending = true) {
 
 function getAllGoalsAgainst(){
         let total = []
+        console.log(players)
     players.forEach(player => {
+        console.log(player)
         let goalsAgainst = getGoalsAgainst(player)
         total.push([player, goalsAgainst])
     })
@@ -300,7 +302,9 @@ function getAllGoalsAgainst(){
 }
 function getAllGoalsFor(){
         let total = []
+        console.log(players)
     players.forEach(player => {
+        console.log(player)
         let goalsFor = getGoalsFor(player)
         total.push([player, goalsFor])
     })
