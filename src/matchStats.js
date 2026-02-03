@@ -60,6 +60,7 @@ async function loadData() {
 
   rawMatches = convertToObjects(matchesRes.values);
   hof = convertToObjects(hofRes.values);
+  matches = [...rawMatches]
 
 }
 
