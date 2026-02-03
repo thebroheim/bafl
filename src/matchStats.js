@@ -428,8 +428,8 @@ function generalStats(){
     const div2Titles = getTitles().sortedDiv2;
     const bestGoalDiff = sortByValue(getGoalDifferences(), true);
     const worstGoalDiff = sortByValue(getGoalDifferences(), false);
-    const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
-    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
+    // const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
+    // const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
     const biggestWinOfAll = getBiggestWinOfAll();
     const bestTeamOfAll = getBestTeamOfAll('wins');
     const worstTeamOfAll = getBestTeamOfAll('losses');
