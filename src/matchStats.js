@@ -738,6 +738,7 @@ function getFinalResults(player, type) {
 // MAIN FUNCTION THAT UPDATES THE PAGE
 function playerStats() {
     const player = document.getElementById("playerName").value;
+    console.log('Matches length on player call:'+ matches.length)
     if(player == "Overall"){
         generalStats()
     } else {
