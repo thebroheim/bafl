@@ -418,7 +418,7 @@ function getFinalWinRates(){
 
 function generalStats(){
     console.log(players)
-    document.getElementById('headToHeadp2').selectedIndex = 1
+    document.getElementById('headToHeadp2').selectedIndex = 0
     document.getElementById("search").style.display = ''
     document.getElementById("headToHead").style.display = 'none'
     let options = document.getElementById("options")
