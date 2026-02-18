@@ -814,14 +814,20 @@ function headToHead(){
 
     const statsContent = document.getElementById("statsContent");
     let p1Matches = getMatchesForPlayer(p1)
+    let h2hMatches = []
 
-    let h2hMatches = p1Matches.filter(match => {
+    if (p2 == 'Any'){
+        h2hMatches = p1Matches
+    } else {
+        h2hMatches = p1Matches.filter(match => {
         if (p1 == match.p1){
             return match.p2 == p2
         } else {
         return match.p1 == p2
         }
     })
+    }
+
 
     if (h2hMatches.length == 0){
         statsContent.innerHTML = `<p>No matches found between these players</p>`
