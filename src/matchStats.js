@@ -116,7 +116,6 @@ players.forEach(player => {
     let optionp1 = document.createElement('option')
     let optionp2 = document.createElement('option')
     optionp1.innerHTML = player
-    optionp2.innerHTML = player
     h2hp1.appendChild(optionp1)
     h2hp2.appendChild(optionp2)
 });
