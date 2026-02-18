@@ -112,10 +112,12 @@ players.forEach(player => {
 
 let h2hp1 = document.getElementById("headToHeadp1")
 let h2hp2 = document.getElementById("headToHeadp2")
+
 players.forEach(player => {
     let optionp1 = document.createElement('option')
     let optionp2 = document.createElement('option')
     optionp1.innerHTML = player
+    optionp2.innerHTML = player
     h2hp1.appendChild(optionp1)
     h2hp2.appendChild(optionp2)
 });
