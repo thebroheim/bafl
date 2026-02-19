@@ -866,7 +866,7 @@ function headToHead(){
     statsContent.appendChild(container)
     let headerRow = document.createElement('div')
     headerRow.className = 'h2hMatch'
-    headerRow.innerHTML = `<p>Season</p><p>Player</p><p>Team</p><p>Score</p><p>Opponent</p><p>Team</p><p>Score</p>`
+    headerRow.innerHTML = `<p>Season</p><p>Division</p><p>Player</p><p>Team</p><p>Score</p><p>Opponent</p><p>Team</p><p>Score</p>`
 
     container.appendChild(headerRow)
       h2hMatches.forEach(match => {
