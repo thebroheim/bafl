@@ -891,8 +891,8 @@ function headToHead(){
 
         row.className= 'h2hMatch'
         if(match.p1 == p1){
-            row.innerHTML = `<p>${match.season}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p>`
-        } else {row.innerHTML = `<p>${match.season}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p>`}
+            row.innerHTML = `<p>${match.season}</p><p>${match.div}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p>`
+        } else {row.innerHTML = `<p>${match.season}</p><p>${match.div}</p><p>${match.p2}</p><p>${match.p2team}</p><p>${match.p2score}</p><p>${match.p1}</p><p>${match.p1team}</p><p>${match.p1score}</p>`}
         
         container.appendChild(row)
     })
