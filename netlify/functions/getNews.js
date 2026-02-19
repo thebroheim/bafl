@@ -2,7 +2,7 @@ export async function handler() {
   try {
     const url =
       "https://sheets.googleapis.com/v4/spreadsheets/1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk/values:batchGet" +
-      "?ranges=BAFLTimes!A2:H200" + //news
+      "?ranges=BAFLTimes!A2:I200" + //news
       "&key=" + process.env.GOOGLE_API_KEY;
 
     const res = await fetch(url);

@@ -47,6 +47,10 @@ async function init() {
     const divNav = document.createElement("divNav");
     div.className = "news-article";
 
+    if (article.publish == "FALSE"){
+      return
+    }
+
     if(article.prefix && article.prefix2){
           divNav.innerHTML = `
           <a href="#${article.season}${article.week}">${article.prefix} ${article.season} ${article.prefix2} ${article.week}</a>`
