@@ -462,11 +462,11 @@ function generalStats(){
         }))
     }
 
-    const bestWinRateLeaderboard = createLeaderboard(bestWinRate, 25, '%');
-    const bestGoalDiffLeaderboard = createLeaderboard(bestGoalDiff, 25, '');
-    const worstGoalDiffLeaderboard = createLeaderboard(worstGoalDiff, 25, '');
-    const bestTeamLeaderboard = createLeaderboard(bestTeamOfAll, 25, ' wins');
-    const worstTeamLeaderboard = createLeaderboard(worstTeamOfAll, 25, ' losses')
+    const bestWinRateLeaderboard = createLeaderboard(bestWinRate, 30, '%');
+    const bestGoalDiffLeaderboard = createLeaderboard(bestGoalDiff, 30, '');
+    const worstGoalDiffLeaderboard = createLeaderboard(worstGoalDiff, 30, '');
+    const bestTeamLeaderboard = createLeaderboard(bestTeamOfAll, 30, ' wins');
+    const worstTeamLeaderboard = createLeaderboard(worstTeamOfAll, 30, ' losses')
     const finalWinRatesLeaderboard = createLeaderboard(finalWinRates, 10, '%')
 
 
