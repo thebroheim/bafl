@@ -60,7 +60,7 @@ async function loadData() {
 
   rawMatches = convertToObjects(matchesRes.values);
   hof = convertToObjects(hofRes.values);
-  matches = [...rawMatches]
+  matches = [...rawMatches].sort((a, b) => a.season - b.season)
 
 }
 

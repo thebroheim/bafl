@@ -163,7 +163,7 @@ function generateTeam(){
             ovrVal = Number(targetOvr.value)
             let targminOvr = ovrVal -3
             let targmaxOvr = ovrVal + 3
-            console.log(targminOvr, targmaxOvr)
+
             teams = filterTeams(targminOvr, targmaxOvr, "Men", fc)
             
             selectedType.name = 'Custom'
