@@ -160,9 +160,12 @@ function generateTeam(){
     // console.log(selectedType)
     if (advancedGen){
         if(targetOvr.value > 39){
-            let minOvr = targetOvr.value -3
-            let maxOvr = targetOvr.value + 3
-            teams = filterTeams(minOvr, maxOvr, "Men", fc)
+            ovrVal = Number(targetOvr.value)
+            let targminOvr = ovrVal -3
+            let targmaxOvr = ovrVal + 3
+            console.log(targminOvr, targmaxOvr)
+            teams = filterTeams(targminOvr, targmaxOvr, "Men", fc)
+            
             selectedType.name = 'Custom'
             
         } else {
