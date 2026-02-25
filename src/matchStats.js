@@ -60,7 +60,7 @@ async function loadData() {
 
   rawMatches = convertToObjects(matchesRes.values);
   hof = convertToObjects(hofRes.values);
-  matches = [...rawMatches].sort((a, b) => a.season - b.season)
+  matches = [...rawMatches]
 
 }
 
@@ -811,7 +811,7 @@ function headToHead(){
     
     const p1 = document.getElementById('headToHeadp1').value;
     const p2 = document.getElementById('headToHeadp2').value;
-    matches = [...rawMatches]
+    matches = [...rawMatches].sort((a, b) => b.season - a.season)
 
     const statsContent = document.getElementById("statsContent");
     let p1Matches = getMatchesForPlayer(p1)
