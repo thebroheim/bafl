@@ -516,16 +516,24 @@ appendLeaderboards(arrayIds)
 // Helper: All matches involving the player
 function getMatchesForPlayer(player, context) {
     const season = document.getElementById("seasonSelect").value;
+    const showMisc = document.getElementById("miscCheck").checked;
 
-    return matches.filter(m => {
-        const playerMatch = m.p1 === player || m.p2 === player;
+    // Always start from rawMatches so you never "lose" data
+    return rawMatches.filter(m => {
+        // 1. Logic from your old filterMatches()
+        const notForfeit = m.context !== 'forfeit';
+        const miscCheck = showMisc ? true : m.context !== 'misc';
+        
+        // 2. Player Logic
+        const playerMatch = player ? (m.p1 === player || m.p2 === player) : true;
+        
+        // 3. Season Logic
         const seasonMatch = season === "All" ? true : m.season === Number(season);
 
-        // Apply context filter only if a context was passed in
+        // 4. Context (Finals) Logic
         const contextMatch = context ? m.context === context : true;
 
-        // ...and now it's included here:
-        return playerMatch && seasonMatch && contextMatch;
+        return notForfeit && miscCheck && playerMatch && seasonMatch && contextMatch;
     });
 }
 // Total Matches
@@ -745,7 +753,6 @@ function getFinalResults(player, type) {
 function playerStats() {
     const player = document.getElementById("playerName").value;
     
-    matches = filterMatches(rawMatches);
     if(player == "Overall"){
         generalStats()
     } else {
