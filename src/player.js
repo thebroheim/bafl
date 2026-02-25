@@ -135,17 +135,49 @@ function loadImage(src) {
     });
 };
 
+advancedGen = document.getElementById("advCheck").checked
+advancedGen.value = false
+targetOvr = document.getElementById("targetOvr")
+targetOvr.value = ''
+
 function generateTeam(){
+    advancedGen = document.getElementById("advCheck").checked
+    let advMinOvr = document.getElementById("minOutput").innerHTML 
+    let advMaxOvr = document.getElementById("maxOutput").innerHTML 
+
+    console.log(advMaxOvr)
+
     let optionSelect = document.getElementById('optionDropdown').value;
     let fc = document.getElementById('fc').value;
+
     if (optionSelect !== 'Any') {
         selectedType = typeConfig.find(type => type.name == optionSelect);
     } else {
         selectedType = typeConfig[Math.floor(Math.random()*typeConfig.length)]
     }
+
+    let teams = []
     // console.log(selectedType)
-    let teams = filterTeams(selectedType.minOvr, selectedType.maxOvr, selectedType.type, fc)
-    // console.log(teams)
+    if (advancedGen){
+        if(targetOvr.value > 39){
+            let minOvr = targetOvr.value -3
+            let maxOvr = targetOvr.value + 3
+            teams = filterTeams(minOvr, maxOvr, "Men", fc)
+            selectedType.name = 'Custom'
+            
+        } else {
+            teams = filterTeams(advMinOvr, advMaxOvr, "Men", fc);
+            selectedType.name = 'Custom'
+        }
+
+
+    } else {teams = filterTeams(selectedType.minOvr, selectedType.maxOvr, selectedType.type, fc)}
+    
+    if(teams.length == 0){
+        alert('No teams found')
+        return
+    }
+    console.log(teams)
     let teamsFinal = teamSelect(teams)
     let team1 = teamsFinal[0];
     let team2 = teamsFinal[1];
@@ -195,3 +227,58 @@ document.addEventListener("click", function(e) {
 
 });
 
+const minSlider = document.getElementById("minRange");
+const minOutput = document.getElementById("minOutput");
+const maxSlider = document.getElementById("maxRange");
+const maxOutput = document.getElementById("maxOutput");
+
+// Update the current slider value each time you drag the handle
+minSlider.oninput = function() {
+  minOutput.innerHTML = this.value;
+}
+maxSlider.oninput = function() {
+  maxOutput.innerHTML = this.value;
+}
+
+typeSelectContainer = document.getElementById("typeSelect")
+typeConfig.forEach(type => {
+    if(type.name == 'Women'){
+        return
+    }
+    typeOption = document.createElement("p")
+    typeOption.className = "typeOption"
+    typeOption.innerHTML = type.name
+    // typeSelectContainer.appendChild(typeOption)
+})
+
+let selectedTypes = [];
+
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("typeOption")) {
+        
+        // 1. Check if the element is already in the array
+        const index = selectedTypes.indexOf(e.target);
+        const isAlreadySelected = index !== -1;
+
+        // 2. Logic: If it's there, remove it; if not, add it (Toggle behavior)
+        isAlreadySelected 
+            ? selectedTypes.splice(index, 1) 
+            : selectedTypes.push(e.target);
+
+        // 3. Ternary for CSS Style
+        // If it's now in the array, show the border; otherwise, remove it
+        e.target.style.border = selectedTypes.includes(e.target) 
+            ? "solid #24e3fd" 
+            : "none";
+        
+        console.log(selectedTypes[0].innerHTML)
+
+    }
+});
+
+function showAdvanced() {
+    let s = document.getElementById("advancedGen").style;
+    let typeDrop = document.getElementById("optionDropdown").style
+    typeDrop.display = (typeDrop.display === '' ? 'none' : '');
+    s.display = (s.display === 'none' ? '' : 'none');
+}

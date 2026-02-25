@@ -50,14 +50,52 @@
             <option id="option1">FC26</option>
             <option id="option1">FC25</option>
           </select>
-        </div> 
-      </div>
+              
 
+            
+
+
+            
+            
+          </div>
+          <div>
+            <h4>Advanced</h4>
+            <input type="checkbox" autocomplete="off" onClick="showAdvanced()" id="advCheck">
+          </div>
+
+          <div id="advancedGen" style="display: none">
+            <h4>Advanced Generator</h4>
+            <div>
+              <label>Target OVR (This will override the range sliders) Gives you teams within 3 OVR of set target</label>
+              <input id="targetOvr" type="number" min="40" max="99">
+              
+            </div>
+
+            <div class="slider-row">
+              <label for="minRange">Min OVR:</label>
+              <input type="range" min="40" max="100" value="50" class="slider" id="minRange">
+              <span id="minOutput">50</span>
+            </div>
+
+            <div class="slider-row">
+              <label for="maxRange">Max OVR:</label>
+              <input type="range" min="40" max="100" value="95" class="slider" id="maxRange">
+              <span id="maxOutput">95</span>
+            </div>
+            <!-- <div id="typeSelect">
+              
+            </div> -->
+          </div>
+        </div> 
 
         <div id="teamsDisplay">
           <div id="teamsHeader"></div>
           <div id="teamsContent"></div>
         </div>
+      </div>
+
+
+
     
   </div>
   <script src="\src\player.js"></script>

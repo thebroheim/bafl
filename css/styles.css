@@ -321,6 +321,48 @@ input {
     display: none;
 }
 
+
+/* Advanced Generator */
+#advancedGen {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.rangeController {
+    display: flex;
+}
+
+.slider {
+  width: 100%;
+  height: 10px;
+  background: #000000;
+  outline: none;
+  border-radius: 5px;
+}
+
+/* The slider handle (the dragger) */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #000000;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#typeSelect{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+#typeSelect p{
+    padding: 5px;
+    background-color: #000000;
+    border-radius: 5px;
+}
+
 /* Media Queries */
 
 @media (max-width: 600px){
