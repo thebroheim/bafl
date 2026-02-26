@@ -818,7 +818,7 @@ function headToHead(){
     
     const p1 = document.getElementById('headToHeadp1').value;
     const p2 = document.getElementById('headToHeadp2').value;
-    matches = [...rawMatches].sort((a, b) => a.season - b.season)
+    
 
     const statsContent = document.getElementById("statsContent");
     let p1Matches = getMatchesForPlayer(p1)
@@ -874,6 +874,8 @@ function headToHead(){
     let headerRow = document.createElement('div')
     headerRow.className = 'h2hMatch'
     headerRow.innerHTML = `<p>Season</p><p>Division</p><p>Player</p><p>Team</p><p>Score</p><p>Opponent</p><p>Team</p><p>Score</p>`
+
+    h2hMatches.sort((a, b) => a.season - b.season)
 
     container.appendChild(headerRow)
       h2hMatches.forEach(match => {
