@@ -814,6 +814,7 @@ function headToHead(){
     options.children[1].style.backgroundColor = "#7979796e"
     options.children[0].style.backgroundColor = ""
     document.getElementById("search").style.display = 'none'
+    document.getElementById("seasonSelect").selectedIndex = 0
     document.getElementById("headToHead").style.display = ''
     
     const p1 = document.getElementById('headToHeadp1').value;
