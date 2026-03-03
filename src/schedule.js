@@ -368,12 +368,12 @@ const team2img =
         </div>
         <div class="row">
         <div class= "playerName" data-div="div${match.div}">${match.p1}</div>
-        <div>${match.p1score}</div>
+        <div class='matchScore'>${match.p1score}</div>
         <div>${show1}</div>
         </div>
         <div class="row">
         <div class= "playerName" data-div="div${match.div}">${match.p2}</div>
-        <div>${match.p2score}</div>
+        <div class='matchScore'>${match.p2score}</div>
         <div>${show2}</div>
         </div>
     </div>
