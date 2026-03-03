@@ -11,6 +11,8 @@ main {
 
 #buttonsDivs {
     display: flex;
+    justify-content: center;
+    width: 90%;
     margin-top: 20px;
 }
 
@@ -43,14 +45,17 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 95%;
+    padding: 10px;
 }
 
 table {
   text-align: center;
   align-self: center;
-  border: #24e3fd solid 2px;
+  border: #24e3fd solid 1px;
   width: 100%;
+  border-spacing: 0;
+
 }
 
 #table div {
@@ -59,6 +64,7 @@ table {
 
 th {
     font-weight: bolder;
+    background-color: #292727;
 }
 
 th,
@@ -69,6 +75,8 @@ td {
 tr {
 	border-bottom: 1px solid;
 }
+
+
 
 th:first-child,
 td:first-child {
@@ -118,7 +126,7 @@ th, td {
   margin-bottom: 20px;
   border: 1px solid #24e3fd;
   background-color: rgb(19, 19, 19);
-  max-height: 320px;
+  max-height: 300px;
   min-width: 100px;
   flex: 0 1 400px;
 }
@@ -133,7 +141,7 @@ th, td {
     flex-direction: column;
     /* gap: 10px; */
     font-weight: bolder;
-    padding: 0px 10px;
+    padding: 0px 10px 10px 10px;
 }
 
 .matchDetails {
@@ -152,7 +160,11 @@ th, td {
   display: contents;
 }
 
-.playerName, .matchScore
+.playerName{
+    margin-left: 15px;
+}
+
+.matchScore
  {
   justify-self: center;
 }
@@ -161,7 +173,7 @@ th, td {
 
 
 .row div {
-  padding: 10px;
+  padding: 5px;
 }
 
 /* Header Styling */
@@ -174,8 +186,9 @@ th, td {
   justify-content: center;
 }
 
+
+
 /* Remove bottom border from the last row's cells */
 .row:last-child div {
   border-bottom: none;
 }
-
