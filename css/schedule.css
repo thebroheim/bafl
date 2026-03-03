@@ -88,6 +88,14 @@ th, td {
     padding: 10px;
 }
 
+#upComingHide {
+    padding: 10px;
+}
+
+#upcomingMatches {
+    flex-wrap: wrap;
+}
+
 #schedule {
     display: flex;
     gap: 10px;
@@ -96,14 +104,13 @@ th, td {
     justify-content: center;
 }
 
-#upcomingHide {
-    padding: 10px
-}
-
 .matchesContainer{
     display: flex;
     min-width: 0;
     flex: 1 1 350px;
+    gap: 10px;
+
+    
 }
 
 .match {
@@ -111,8 +118,9 @@ th, td {
   margin-bottom: 20px;
   border: 1px solid #24e3fd;
   background-color: rgb(19, 19, 19);
-  height: 320px;
+  max-height: 320px;
   min-width: 100px;
+  flex: 0 1 400px;
 }
 
 .matchDiv {
@@ -134,10 +142,23 @@ th, td {
   align-items: center;
 }
 
+.matchScore {
+    font-size: 26px;
+    font-weight: bold;
+}
+
 /* Individual Rows */
 .row {
   display: contents;
 }
+
+.playerName, .matchScore
+ {
+  justify-self: center;
+}
+
+
+
 
 .row div {
   padding: 10px;
@@ -149,6 +170,8 @@ th, td {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
 }
 
 /* Remove bottom border from the last row's cells */
