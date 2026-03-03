@@ -88,161 +88,67 @@ th, td {
     padding: 10px;
 }
 
-#matches{
-    width: 90%;
-}
-
 #schedule {
     display: flex;
-    flex-direction: row;
-    /* margin-left: 20px;
-    margin-top: 20px; */
-    gap: 20px;
-    /* align-items: center; */
-    /* align-items: center; */
-    overflow: visible;
-    width: 10;
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-
-#div1matches {
+.matchesContainer{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    min-width: 0;
+    flex: 1 1 350px;
 }
 
-#div2matches {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#miscmatches {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#upComingHide {
-    /* margin-left: 60px; */
-  /* overflow: visible;  */
-  width: 100%;
-  /* display: flex; */
-  align-items: center;
-}
-
-#upcomingMatches {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    justify-content: flex-start;
-    
-}
-
-#upcomingMatches .match {
-    /* flex: 1; */
-    width: 450px;
-}
-
-.match img {
-    width: 3rem;
-    /* justify-self: flex-end; */
-    aspect-ratio: 1/1;
-    /* object-fit: none; */
-}
 .match {
-    padding: 10px;
-    background-color: rgb(27, 27, 27);
-    border: #24e3fd solid;
-    border-width: 2px;
-    border-radius: 20px;
-    /* border-radius: calc((20 / 200) * 100%); */
-    min-height: 300px;
-    /* max-width: 500px;
-    min-width: 350px; */
+  /* padding: 15px; */
+  margin-bottom: 20px;
+  border: 1px solid #24e3fd;
+  background-color: rgb(19, 19, 19);
+  height: 320px;
+  min-width: 100px;
 }
 
-.playerName:hover {
-    cursor: pointer;
-    color: #24e3fd;
+.matchDiv {
+    display: flex;
+    justify-content: space-between;
 }
 
-#finals {
+.matchHeader{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
+    font-weight: bolder;
+    padding: 0px 10px;
 }
 
-#finals .match {
-    border: solid rgba(255, 217, 0, 0.664);
-}
-
-
-#teams {
+.matchDetails {
   display: grid;
-  grid-template-columns: 1fr; /* stack rows */
-  /* grid-auto-rows: 60px; */
-  gap: 6px;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 80px 40px 1fr; /* player | score | team */
+  grid-template-columns: 1fr 1fr 2fr;
   align-items: center;
-  gap: 45px;
-  min-height: 40px;
 }
 
-.row :nth-child(2) {
-    justify-self: center;
+/* Individual Rows */
+.row {
+  display: contents;
 }
 
-.row.header {
+.row div {
+  padding: 10px;
+}
+
+/* Header Styling */
+.header div {
+  background: #292929;
   font-weight: bold;
-  border-bottom: 1px solid #444;
-  align-items: baseline;
-  max-height: 20px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 
-.team {
-  display: flex;
-  align-items: center;  /* ✅ keeps text aligned with logo */
-  gap: 8px;
+/* Remove bottom border from the last row's cells */
+.row:last-child div {
+  border-bottom: none;
 }
 
-.revealBtn {
-    background-color: rgb(27, 27, 27);
-    border: solid #24e3fd; 
-    border-width: 1px;
-    color: white;
-    width: 30%;
-    align-self: center;
-}
-
-/* Media Queries */
-
-@media (max-width: 800px){
-    #schedule {
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 10;
-
-    }
-
-    #div1matches {
-    width: 100%;
-}
-
-#bothButton {
-    display: none;
-}
-
-#div2matches {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-}
-    

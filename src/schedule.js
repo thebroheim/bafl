@@ -355,24 +355,27 @@ const team2img =
 
     div.className = 'match'
     div.innerHTML = `
-    <h3>${prefix} ${match.matchId}</h3>
-    <h3>${match.type}</h3>
-      <div id="teams">
-      <div class="row header">
+    <div class='matchHeader'>
+      <div class='matchDiv'><p>${prefix} ${match.matchId}</p><p>Div ${match.div}</p></div>
+      <div>${match.type}</div>
+    </div>
+      <div class='matchDetails'>
+
+        <div class="row header">
         <div>Player</div>
         <div>Score</div>
         <div>Team</div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
         <div class= "playerName" data-div="div${match.div}">${match.p1}</div>
         <div>${match.p1score}</div>
         <div>${show1}</div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
         <div class= "playerName" data-div="div${match.div}">${match.p2}</div>
         <div>${match.p2score}</div>
         <div>${show2}</div>
-      </div>
+        </div>
     </div>
         
       
