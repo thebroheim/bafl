@@ -96,6 +96,10 @@ th, td {
     justify-content: center;
 }
 
+#upcomingHide {
+    padding: 10px
+}
+
 .matchesContainer{
     display: flex;
     min-width: 0;
