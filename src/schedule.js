@@ -385,7 +385,6 @@ const team2img =
           const clone = div.cloneNode(true);
           let division = document.createElement("div")
           clone.prepend(division)
-          division.innerHTML = `<div><strong>Division ${match.div}</strong></div>`
           upcomingMatches.appendChild(clone);
     }
     container.appendChild(div);
