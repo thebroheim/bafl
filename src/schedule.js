@@ -17,7 +17,7 @@ upComingHide.style.display = 'none'
 let eloTables = document.getElementById('eloTables')
 
 eloTables.style.display = 'none'
-
+let seasonElo = []
 
 
   function convertToObjects(values) {
@@ -151,12 +151,11 @@ async function loadData() {
   const players = convertToObjects(playersRes.values);
   const matchesFinal = convertToObjects(matchesRes.values);
   const showToggle = convertToObjects(scheduleRes.values);
-  const seasonElo = convertToObjects(seasonEloRes.values);
+  seasonElo = convertToObjects(seasonEloRes.values);
   const allTimeElo = convertToObjects(allTimeEloRes.values);
   
 
   // Now run all your existing display logic here.
-
 
   mainContent.style.display = ''
   buttonsDivs.style.display = ''
@@ -199,9 +198,6 @@ let div2table = document.getElementById("div2Table")
 let groupPrefix = showToggle[0].groupprefix
 div1header.innerHTML = `${groupPrefix} 1`
 div2header.innerHTML = `${groupPrefix} 2`
-
-console.log('Div 1 Players: '+playersDiv1)
-console.log('Div 2 Players: '+playersDiv2)
 
 playersDiv1.forEach(player =>{
   let container = document.getElementById('div1TableData')
@@ -367,12 +363,12 @@ const team2img =
         <div>Team</div>
         </div>
         <div class="row">
-        <div class= "playerName" data-div="div${match.div}">${match.p1}</div>
+        <div class= "playerName" class='p1Name' data-div="div${match.div}"><span class='p1Name'>${match.p1}</span></div>
         <div class='matchScore'>${match.p1score}</div>
         <div>${show1}</div>
         </div>
         <div class="row">
-        <div class= "playerName" data-div="div${match.div}">${match.p2}</div>
+        <div class= "playerName" data-div="div${match.div}"><span class='p2Name'>${match.p2}</span></div>
         <div class='matchScore'>${match.p2score}</div>
         <div>${show2}</div>
         </div>
@@ -380,12 +376,24 @@ const team2img =
         
       
     `;
+
+  
     if (match.reveal === "TRUE" && (!match.p1score || match.p1score.trim() === "")) {
         upComingHide.style.display = ''
           const clone = div.cloneNode(true);
           let division = document.createElement("div")
           clone.prepend(division)
           upcomingMatches.appendChild(clone);
+          let p1EloGainLoss = eloWinLoss(match.p1, match.p2)
+
+          const p1NameElem = clone.querySelector(`.p1Name`)
+          const p2NameElem = clone.querySelector(`.p2Name`)
+          if (p1NameElem) {
+            p1NameElem.textContent += ` (+${p1EloGainLoss[0]})`;
+          }
+          if (p2NameElem) {
+              p2NameElem.textContent += ` (+${p1EloGainLoss[1]})`;
+          }
     }
     container.appendChild(div);
     schedules.style.display = 'flex'
@@ -424,6 +432,19 @@ if (!showToggle[0].tournamentbracket == ""){
 setDefault()
 
 return players
+}
+
+function eloWinLoss(p1, p2){
+  let p1Elo = Number(seasonElo.find(player => player.Name === p1).Elo)
+  let p2Elo = Number(seasonElo.find(player => player.Name === p2).Elo)
+
+
+  p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400))))-p1Elo)
+  p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400))))-p2Elo)
+
+  p1EloLoss = p2EloGain
+  p2EloLoss = p2EloGain
+  return [p1EloGain, p1EloLoss]
 }
 
 
@@ -495,4 +516,6 @@ function showElo(){
 
 
 loadData()
+
+
 
