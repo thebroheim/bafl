@@ -149,7 +149,7 @@ async function loadData() {
 
   // Convert each into your object arrays
   const players = convertToObjects(playersRes.values);
-  const matchesFinal = convertToObjects(matchesRes.values);
+  const matchesRaw = convertToObjects(matchesRes.values);
   const showToggle = convertToObjects(scheduleRes.values);
   seasonElo = convertToObjects(seasonEloRes.values);
   const allTimeElo = convertToObjects(allTimeEloRes.values);
@@ -281,7 +281,7 @@ displayAllTimeEloTable()
 // Print the matches in HTML. This now uses the matches imported from the spreadsheet
 
 function displayMatches(matches){
-    let div1 = document.getElementById("div1matches");
+  let div1 = document.getElementById("div1matches");
    let div2 = document.getElementById("div2matches");
    let misc = document.getElementById("miscmatches");
 
@@ -412,6 +412,8 @@ const team2img =
   }
 };
 
+let matchesFinal = sortMatches(matchesRaw)
+
 if (showToggle[0].show == "TRUE"){
   displayTable()
   displayMatches(matchesFinal)
@@ -513,6 +515,25 @@ function showElo(){
   }
  
 }
+
+function isMatchComplete(match){
+  if(match.p1score){
+    return true
+  }
+  return false
+}
+
+function sortMatches(matches){
+
+  const complete = matches.filter(m => isMatchComplete(m));
+  complete.sort((a,b) => b.matchId-  a.matchId)
+  console.log(complete)
+
+  const incomplete = matches.filter(m => !isMatchComplete(m));
+
+  return [...complete, ...incomplete];
+}
+
 
 
 loadData()
