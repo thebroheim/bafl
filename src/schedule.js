@@ -389,10 +389,10 @@ const team2img =
           const p1NameElem = clone.querySelector(`.p1Name`)
           const p2NameElem = clone.querySelector(`.p2Name`)
           if (p1NameElem) {
-            p1NameElem.textContent += ` (+${p1EloGainLoss[0]})`;
+            p1NameElem.innerHTML += `<br>(+${p1EloGainLoss[0]})`;
           }
           if (p2NameElem) {
-              p2NameElem.textContent += ` (+${p1EloGainLoss[1]})`;
+              p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
           }
     }
     container.appendChild(div);
