@@ -290,6 +290,12 @@ function displayMatches(matches){
    let incompleteD1 = document.createElement('div')
    let incompleteD2 = document.createElement('div')
 
+   completedD1.className = 'completed'
+   completedD2.className = 'completed'
+
+   incompleteD1.className = 'incomplete'
+   incompleteD2.className = 'incomplete'
+
    let completeMessage = `<h4>Completed</h4>`
    let incompleteMessage = `<h4>Incomplete</h4>`
 
@@ -492,6 +498,11 @@ document.addEventListener("click", function(e) {
       let div = e.target.innerHTML;
       let div1Content = [document.getElementById('div1Table'), document.getElementById('div1matches')]
       let div2Content = [document.getElementById('div2Table'), document.getElementById('div2matches')]
+
+      const completedContainers = document.getElementsByClassName('completed')
+      const incompleteContainers = document.getElementsByClassName('incomplete')
+      console.log(completedContainers)
+
       let finals = document.getElementById('finals')
       clearFilter()
       switch (div) {
@@ -520,6 +531,20 @@ document.addEventListener("click", function(e) {
           finals.style.display = '',
           div1Content[0].style.display = 'none', div1Content[1].style.display = 'none';
           div2Content[0].style.display = 'none', div2Content[1].style.display = 'none';
+          break;
+        case "Complete":
+          completedContainers[0].style.display = '', completedContainers[1].style.display = '';
+          incompleteContainers[0].style.display = 'none', incompleteContainers[1].style.display = 'none'
+          break;
+
+        case "Incomplete":
+          completedContainers[0].style.display = 'none', completedContainers[1].style.display = 'none';
+          incompleteContainers[0].style.display = '', incompleteContainers[1].style.display = ''
+          break;
+          
+        case "All":
+          completedContainers[0].style.display = '', completedContainers[1].style.display = '';
+          incompleteContainers[0].style.display = '', incompleteContainers[1].style.display = ''
           break;
       }
     }})
