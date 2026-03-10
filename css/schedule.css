@@ -127,6 +127,7 @@ th, td {
   border: 1px solid #24e3fd;
   background-color: rgb(19, 19, 19);
   max-height: 300px;
+  min-height: 300px;
   min-width: 100px;
   flex: 0 1 400px;
 }

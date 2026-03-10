@@ -285,6 +285,26 @@ function displayMatches(matches){
    let div2 = document.getElementById("div2matches");
    let misc = document.getElementById("miscmatches");
 
+   let completedD1 = document.createElement('div')
+   let completedD2 = document.createElement('div')
+   let incompleteD1 = document.createElement('div')
+   let incompleteD2 = document.createElement('div')
+
+   let completeMessage = `<h4>Completed</h4>`
+   let incompleteMessage = `<h4>Incomplete</h4>`
+
+   div1.appendChild(completedD1)
+   div1.appendChild(incompleteD1)
+
+  div2.appendChild(completedD2)
+   div2.appendChild(incompleteD2)
+
+  completedD1.innerHTML=completeMessage
+  completedD2.innerHTML=completeMessage
+
+  incompleteD1.innerHTML=incompleteMessage
+  incompleteD2.innerHTML=incompleteMessage
+
 matches.forEach(match => {
 
    let divTag = null
@@ -298,13 +318,23 @@ matches.forEach(match => {
    }
 
 
-  switch (match.div) {
-    case '1':
-      container = div1;
-      break;
-    case '2':
-      container = div2
-  };
+  if (match.div === '1'){
+    if (isMatchComplete(match)){
+      container = completedD1
+    } else {container=incompleteD1}
+  } else if (match.div==='2'){
+      if (isMatchComplete(match)){
+      container = completedD2
+    } else {container=incompleteD2}
+  }
+
+  // switch (match.div) {
+  //   case '1':
+  //     container = div1;
+  //     break;
+  //   case '2':
+  //     container = div2
+  // };
 
   if (match.context == 'misc'){
     container = misc
