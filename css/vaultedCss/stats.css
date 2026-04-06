@@ -1,0 +1,204 @@
+* { box-sizing: border-box; }
+
+#search {
+  margin: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+select {
+
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  border: 1px solid #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  height: 40px;
+}
+
+button {
+  background-color: rgb(27, 27, 27);
+  color: #fff;
+  border: 1px solid #555;
+  padding: 6px 10px;
+  border-radius: 6px;
+  height: 40px;
+}
+
+#options button {
+  width: 120px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#statsContent {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+#statBoxes {
+  gap: 10px;
+  display: grid;
+  margin: 0 auto;
+  /* 6 equal columns gives easy fractions: 2/6 = 33.33%, 3/6 = 50%, 6/6 = 100% */
+  grid-template-columns: repeat(6, 1fr);
+  /* width: 90%; */
+}
+
+/* shared */
+.statBoxSmall,
+.statBoxMedium,
+.statBoxLarge,
+.statBoxSmallLeaderboard,
+.statBoxMediumLeaderboard,
+.statBoxLargeLeaderboard {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background: rgb(27, 27, 27);
+  border: solid #24e3fd;
+  border-width: 2px;
+  font-size: 0.9rem;
+  /* max-height: 300px; */
+  
+}
+
+/* small: 2 of 6 = 33.33% -> 3 per row */
+.statBoxSmall { grid-column: span 2; }
+
+/* medium: 3 of 6 = 50% -> 2 per row */
+.statBoxMedium { grid-column: span 3; }
+
+/* large: full row (6 of 6) */
+.statBoxLarge { 
+    grid-column: span 6;
+    display: flex;
+    gap: 15px;
+ }
+
+.statBoxSmallLeaderboard {
+  padding: 0px;
+  flex-direction: column;
+  grid-column: span 2;
+}
+
+.statBoxMediumLeaderboard {
+  padding: 0px;
+  flex-direction: column;
+  grid-column: span 3;
+}
+
+.statBoxLargeLeaderboard {
+  padding: 0px;
+  flex-direction: column;
+  grid-column: span 6;
+}
+
+ol {
+  list-style: disc;
+  padding: 0;
+  margin: 0;
+  max-height: 140px;
+  overflow-y: scroll;
+  padding-right: 10px;
+  scrollbar-width: thin;           /* makes scrollbar thin */
+  scrollbar-color: #888 #1f1d1d;
+}
+
+.leaderboard li {
+    display: grid;
+    grid-template-columns: 2fr 0.3fr; 
+    align-items: center;
+    padding: 0px 0;
+    /* list-style-position: inside; */
+    gap: 0px;
+}
+
+li p {
+  margin: 5px;
+}
+
+/* Webkit browsers (Chrome, Edge, Safari) */
+ol::-webkit-scrollbar {
+  width: 8px;
+}
+
+ol::-webkit-scrollbar-track {
+  background: #272626; /* track color */
+}
+
+ol::-webkit-scrollbar-thumb {
+  background-color: #888; /* thumb color */
+  border-radius: 4px;     /* rounded corners */
+  border: 2px solid #000000; /* optional padding around thumb */
+}
+
+#headToHead {
+  margin: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#h2hStatsTotal {
+  display: flex;
+  /* padding: 50px; */
+  /* width: 90%; */
+  gap: 100px;
+  justify-content: space-between;
+}
+
+.h2hList {
+  border: #24e3fd solid;
+}
+
+
+
+.h2hList :first-child{
+  font-weight: bold;
+}
+
+
+.h2hMatch{
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr ; 
+  font-size: 0.9rem;
+}
+
+.h2hMatch p {
+  justify-self: center;
+}
+
+@media (max-width: 600px){
+  #statsContent {
+  width: 95%;
+}
+
+.statBoxSmallLeaderboard {
+  grid-column: span 3;
+}
+
+.statBoxSmall {
+  grid-column: span 3;
+}
+
+.h2hMatch > :nth-child(3),
+.h2hMatch > :nth-child(6){
+  display: none;
+}
+
+}

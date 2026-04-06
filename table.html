@@ -16,48 +16,11 @@
 
     <main id="main">
     <div class="content">
-      <div id="buttonsDivs">
-        <button id= "finalsFilter"class="buttonDiv">Finals</button>
-        <button class="buttonDiv">Div 1</button>
-        <button id= 'bothButton' class="buttonDiv">Both</button>
-        <button class="buttonDiv">Div 2</button>
-        <button id="filter" onclick="clearFilter()">Clear Filter</button>
-        <button id="eloButton" onclick="showElo()">ELO</button>
-      </div>
+
 
       <div id="maintenance">
       </div>
-      <div id="eloTables">
-      <div id="seasonEloTable" class="eloTable">
-        <h4>Season Elo</h4>
-          <table>
-            <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">ELO</th>
-            </tr>
-          </thead>
-          <tbody id="theSeasonEloTable">
-
-          </tbody>
-          </table>
-      </div>
-
-         <div id="allTimeEloTable" class="eloTable">
-          <h4>All Time Elo</h4>
-          <table>
-            <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">ELO</th>
-            </tr>
-          </thead>
-          <tbody id="theAllTimeEloTable">
-
-          </tbody>
-          </table>
-      </div>
-      </div>
+      
       <div id="table">
         <div id="div1Table">
           <h3 id="group1Header">Division 1</h3>
@@ -103,29 +66,66 @@
           </table>
           </div>
       </div>
-      <div id="matches">
-        <div id="buttonsDivs">
-        <button id= "complete"class="buttonDiv">Complete</button>
-        <button class="buttonDiv">All</button>
-        <button id= 'incomplete' class="buttonDiv">Incomplete</button>
+      <div id="buttonsDivs">
+        <button class="filterBtn" data-type="division" data-value="1">Div 1</button>
+        <button class="filterBtn" data-type="division" data-value="2">Div 2</button>
+        <button class="filterBtn" data-type="clear">Clear Filter</button>
+        <button id="eloButton">Show Elo</button>
       </div>
+      <div id="buttonsDivs">
+        <button class="filterBtn" data-type="status" data-value="complete">Complete</button>
+        <button class="filterBtn" data-type="status" data-value="incomplete">Incomplete</button>
+      </div>
+
+      <div id="eloTables" class="hidden">
+      <div id="seasonEloTable" class="eloTable">
+        <h4>Season Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theSeasonEloTable">
+
+          </tbody>
+          </table>
+      </div>
+
+         <div id="allTimeEloTable" class="eloTable">
+          <h4>All Time Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theAllTimeEloTable">
+
+          </tbody>
+          </table>
+      </div>
+      </div>
+      <div id="matches">
         <div id="finals">
             <h3>Finals</h3>
         </div>
         <div>
-            <div id="upComingHide">
-            <h3>Upcoming Matches</h3>
-              <div id="upcomingMatches" class="matchesContainer">
+          <div id="upcomingHide">
+              <div id="upcomingMatches" style="display: none;" class="matchesContainer">
+                <h3>Upcoming Matches</h3>
               </div>
-            </div>
+              </div>
           <div id="schedule">
-            <div id="div1matches" class="matchesContainer">
+            <div id="div1matches" style="display: none;" class="matchesContainer">
               <h3>Division 1</h3>
             </div>
-            <div id="div2matches" class="matchesContainer">
+            <div id="div2matches" style="display: none;" class="matchesContainer">
               <h3>Division 2</h3>
             </div>
-            <div id="miscmatches" class="matchesContainer">
+            <div id="miscmatches" style="display: none;" class="matchesContainer">
               <h3>Misc Tournament</h3>
             </div>
           </div>

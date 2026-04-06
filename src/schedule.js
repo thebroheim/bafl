@@ -1,26 +1,275 @@
-let mainContent = document.getElementById('main')
-mainContent.style.display = 'none'
-let divisiontables = document.getElementById('table');
-divisiontables.style.display = 'none'
-let schedules = document.getElementById('schedule')
-schedules.style.display = 'none'
-let clearFilterBtn = document.getElementById('filter')
-clearFilterBtn.style.display = 'none'
-let finalsBtn = document.getElementById("finalsFilter")
-let buttonsDivs = document.getElementById('buttonsDivs')
-buttonsDivs.style.display = 'none';
-let finalsContainer = document.getElementById('finals')
-finalsContainer.style.display = 'none'
-let upComingHide = document.getElementById('upComingHide')
-upComingHide.style.display = 'none'
-
-let eloTables = document.getElementById('eloTables')
-
-eloTables.style.display = 'none'
+// My Global State
+let players = []
+let matchesRaw = []
 let seasonElo = []
+let allTimeElo = []
 
+let currentFilters = {
+  selectedElement: [],
+  player: null,
+  division: 'all',
+  status: 'all',
+}
 
-  function convertToObjects(values) {
+let containers = ['eloTables', 'finals', 'upComingHide', 'schedule', 'table', 'buttonsDivs', 'miscmatches']
+
+// hideContainers(containers)
+
+function hideContainers(containers){
+  containers.forEach((container) => {
+    document.getElementById(container).style.display = 'none'
+  })
+}
+
+const eloBtn = document.getElementById('eloButton');
+const eloContainer = document.getElementById('eloTables');
+
+eloBtn.addEventListener('click', () => {
+  // 1. Toggle the 'hidden' class
+  const isHidden = eloContainer.classList.toggle('hidden');
+  
+  // 2. Update the button text based on the new state
+  eloBtn.textContent = isHidden ? 'Show Elo' : 'Hide Elo';
+
+});
+
+function getFilteredMatches() {
+  return matchesRaw.filter(m => {
+    const matchesPlayer = !currentFilters.player || 
+                          m.p1 === currentFilters.player || 
+                          m.p2 === currentFilters.player;
+
+    const matchesDiv = currentFilters.division === 'all' || 
+                       m.div === currentFilters.division;
+
+    const isComplete = !!m.p1score;
+    const matchesStatus = currentFilters.status === 'all' || 
+                          (currentFilters.status === 'complete' && isComplete) || 
+                          (currentFilters.status === 'incomplete' && !isComplete);
+
+    return matchesPlayer && matchesDiv && matchesStatus;
+  });
+}
+
+// 2. The Logic Engine
+function updateFilter(type, value, element) {
+    // A. Handle Reset
+    if (type === 'clear') {
+        currentFilters = { player: null, division: 'all', status: 'all' };
+        // Remove ALL selected classes from the UI
+        document.querySelectorAll('.filterBtn').forEach(btn => btn.classList.remove('selected'));
+    } 
+    
+    // B. Handle Division (Exclusive: Clears Player)
+    else if (type === 'division') {
+        currentFilters.division = value;
+        currentFilters.player = null;
+        clearVisuals('player'); // Clear player highlights
+        updateVisuals('division', element);
+    } 
+    
+    // C. Handle Player (Exclusive: Clears Division)
+    else if (type === 'player') {
+        currentFilters.player = value;
+        currentFilters.division = 'all';
+        clearVisuals('division'); // Clear division highlights
+        updateVisuals('player', element);
+    } 
+    
+    // D. Handle Status (Independent: Keeps others)
+    else if (type === 'status') {
+        currentFilters.status = value;
+        updateVisuals('status', element);
+    }
+
+    // E. Run the UI Update
+    const filteredMatches = getFilteredMatches();
+    displaySchedule(filteredMatches);
+}
+
+// 3. The Visual Helpers
+function updateVisuals(type, element) {
+    if (!element) return;
+    // Remove 'selected' from any other button in THIS category
+    document.querySelectorAll(`.filterBtn[data-type="${type}"]`)
+            .forEach(btn => btn.classList.remove('selected'));
+    
+    // Add 'selected' to the one we just clicked
+    element.classList.add('selected');
+}
+
+function clearVisuals(type) {
+    // Specifically wipe highlights for a certain category
+    document.querySelectorAll(`.filterBtn[data-type="${type}"]`)
+            .forEach(btn => btn.classList.remove('selected'));
+}
+
+// 4. The Event Listener
+document.addEventListener("click", function(e) {
+    const btn = e.target.closest('.filterBtn'); // Use closest in case they click an <i> or span inside
+    if (btn) {
+        const { type, value } = btn.dataset;
+        updateFilter(type, value, btn);
+    }
+});
+
+function displayEloTable(data, containerId) {
+  data.forEach(player => {
+      let container = document.getElementById(containerId)
+    const row = document.createElement("tr")
+      row.innerHTML = `
+        <td>${player.Name}</td>
+        <td>${player.Elo}</td>`
+
+    container.appendChild(row)
+  })
+}
+
+function eloWinLoss(p1, p2){
+  let p1Elo = Number(seasonElo.find(player => player.Name === p1).Elo)
+  let p2Elo = Number(seasonElo.find(player => player.Name === p2).Elo)
+
+  p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400))))-p1Elo)
+  p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400))))-p2Elo)
+
+  p1EloLoss = p2EloGain
+  p2EloLoss = p2EloGain
+  return [p1EloGain, p1EloLoss]
+}
+
+function displayTable(players, container){
+  // let div1header = document.getElementById("group1Header")
+
+  let groupPrefix = showToggle[0].groupprefix
+  // div1header.innerHTML = `${groupPrefix} 1`
+
+  players.forEach(player =>{
+    let table = document.getElementById(container)
+    const row = document.createElement("tr")
+    row.innerHTML = `
+        <td scope="row"><a class= 'playerName filterBtn' data-type= 'player' data-value="${player.name}">${player.name}</a></td>
+        <td>${player.played}</td>
+        <td>${player.wins}</td>
+        <td>${player.draws}</td>
+        <td>${player.losses}</td>
+        <td>${player.goalsfor}</td>
+        <td>${player.goalsagainst}</td>
+        <td>${player.goaldifference}</td>
+        <td>${player.points}</td>`
+
+    table.appendChild(row)
+
+  })
+}
+
+function createMatchHTML(match){
+  const div = document.createElement("div")
+  const fallBackImg = 'Default.png';
+
+  const team1img =
+    match.p1team?.trim()
+      ? match.p1team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+      : fallBackImg;
+
+  const team2img =
+    match.p2team?.trim()
+      ? match.p2team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
+      : fallBackImg;
+
+      let show1 = ''
+      let show2= ``
+
+      if (match.reveal === "TRUE"){
+        show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.p1team}</p></div>`
+        show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.p2team}</p></div>`
+      }
+
+      let prefix  = 'Match'
+
+      div.className = 'match'
+      div.innerHTML = `
+      <div class='matchHeader'>
+        <div class='matchDiv'><p>${prefix} ${match.matchId}</p><p>Div ${match.div}</p></div>
+        <div>${match.type}</div>
+      </div>
+        <div class='matchDetails'>
+
+          <div class="row header">
+          <div>Player</div>
+          <div>Score</div>
+          <div>Team</div>
+          </div>
+          <div class="row">
+          <div class= "playerName" class='p1Name' data-div="div${match.div}"><span class='p1Name'>${match.p1}</span></div>
+          <div class='matchScore'>${match.p1score}</div>
+          <div>${show1}</div>
+          </div>
+          <div class="row">
+          <div class= "playerName" data-div="div${match.div}"><span class='p2Name'>${match.p2}</span></div>
+          <div class='matchScore'>${match.p2score}</div>
+          <div>${show2}</div>
+          </div>
+      </div>
+          
+        
+      `;
+
+      if (match.reveal === "TRUE" && (!match.p1score || match.p1score.trim() === "")) {
+            const clone = div.cloneNode(true);
+            let division = document.createElement("div")
+            clone.prepend(division)
+            upcomingMatches.appendChild(clone);
+            let p1EloGainLoss = eloWinLoss(match.p1, match.p2)
+
+            const p1NameElem = clone.querySelector(`.p1Name`)
+            const p2NameElem = clone.querySelector(`.p2Name`)
+            if (p1NameElem) {
+              p1NameElem.innerHTML += `<br>(+${p1EloGainLoss[0]})`;
+            }
+            if (p2NameElem) {
+                p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
+            }
+            return clone
+      }
+      return div  
+}
+
+function displayScheduleContainer(matchList, containerId){
+  const container = document.getElementById(containerId)
+  container.innerHTML= ``;
+
+  if(matchList.length === 0){
+    container.style.display = 'none'
+    return
+  }
+  container.style.display = '';
+  matchList.forEach((match) => {
+    container.appendChild(createMatchHTML(match))
+  })
+
+}
+
+function displaySchedule(allMatches){
+  if(allMatches.length == 0)[
+    alert(`There are no matches to show matching the filter of:
+      Player: ${currentFilters.player} || Division: ${currentFilters.division} || Status: ${currentFilters.status}
+      
+      Please clear filter and try again` )
+  ]
+  const div1Matches = allMatches.filter(m=> m.div === '1' && m.context !== 'final');
+  const div2Matches = allMatches.filter(m=> m.div === '2' && m.context !== 'final');
+  const finalsMatches = allMatches.filter(m => m.context === 'final' || m.context === 'promplayoff');
+  const miscMatches = allMatches.filter(m => m.context === 'misc');
+  const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
+
+  displayScheduleContainer(div1Matches, 'div1matches')
+  displayScheduleContainer(div2Matches, 'div2matches')
+  displayScheduleContainer(miscMatches, 'miscmatches')
+  displayScheduleContainer(finalsMatches, 'finals')
+  displayScheduleContainer(upcomingMatches, 'upcomingMatches')
+}
+
+function convertToObjects(values) {
   const headers = values[0]; // first row is the keys
   return values.slice(1).map(row => {
     let obj = {};
@@ -31,113 +280,61 @@ let seasonElo = []
   });
 }
 
-function setDefault(){
-    let div1 = document.getElementById('div1matches');
-    let div2 = document.getElementById('div2matches');
-    let misc = document.getElementById('miscmatches');
-    // finalsContainer.style.display = "none"
-    eloTables.style.display = 'none'
-    div1.style.cssText = "display: ''; flex-direction: column;";
-    div2.style.cssText = "display: ''; flex-direction: column;";
-    misc.style.cssText = "display: ''; flex-direction: column;";
-
-  if(div1.children.length <= 1){
-    div1.style.display = "none"
-  }
-
-    if(div2.children.length <= 1){
-    div2.style.display = "none"
-  }
-
-    if(misc.children.length <= 1){
-    misc.style.display = "none"
-  }
+function sortPlayers(players) {
+  return players
+    .filter(p => p.name && p.name.trim() !== "") // Remove players with no name
+    .sort((a, b) => (b.points - a.points) || (b.goaldifference - a.goaldifference));
 }
 
-setDefault()
-
-let selectedPlayer = null
-
-function filterMatches(e) {
-  let div1 = document.getElementById('div1matches');
-  let div2 = document.getElementById('div2matches');
-  const tagValue = e.dataset.div;
- if (selectedPlayer == e){
-    clearFilter();
-    selectedPlayer = null;
-  } else {
-  selectedPlayer = e;
-  clearFilterBtn.style.display = '';
-  clearFilterBtn.style.backgroundColor = 'rgba(66, 66, 66, 1)'
-  
-  const rows = document.querySelectorAll('#table tr');
-
-  // Set rows background to default colour
-  rows.forEach((row) => {
-    row.style.backgroundColor = ''
-    const text = row.textContent
-    const firstLine = text.split('\n')[1];
-  })
-
-  // Set targeted row background colour
- const targetText = e.textContent.trim(); // assuming e is an element
-rows.forEach(row => {
-  if (row.textContent.includes(targetText)) {
-    row.style.backgroundColor = 'rgba(66, 66, 66, 1)'
+function isMatchComplete(match) {
+  // 1. Check if it's null or undefined
+  if (match.p1score === null || match.p1score === undefined) {
+    return false;
   }
-});
-  
 
-  if(tagValue== 'div2'){
-    div1.style.cssText = "display: none; flex-direction: column;";
-    div2.style.cssText = "display: ''; flex-direction: column; width: 100%";
-  } else if (tagValue== 'div1'){
-    div1.style.cssText = "display: ''; flex-direction: column; width: 100%;";
-    div2.style.cssText = "display: none; flex-direction: column;";
-  } else {
-    div1.style.cssText = "display: ''; flex-direction: column;";
-    div2.style.cssText = "display: ''; flex-direction: column;";
+  // 2. Convert to string and trim to check if it's just empty whitespace
+  // This catches the "" from Google Sheets
+  if (String(match.p1score).trim() === "") {
+    return false;
   }
-  
-  matches = document.querySelectorAll('.match')
-  let player = e.innerHTML
-  matches.forEach((match) => {
-    if(!match.textContent.includes(player)){
-      match.style.display = 'none'
-    } else {
-      match.style.display = ''
-    }
-  })
-}
+
+  // 3. If it passed those, it's a real score (even if it's 0)
+  return true;
 }
 
-function clearFilter(){
-  setDefault()
-  matches = document.querySelectorAll('.match');
-  const rows = document.querySelectorAll('#table tr');
-  // Set rows background to default colour
-  rows.forEach((row) => {
-    row.style.backgroundColor = ''
-  })
 
-  matches.forEach((match) => {
-      match.style.display = ''
+// Refactored Functions above
 
-  })
-  clearFilterBtn.style.display = 'none'
+function displayMaintenance(){
+  let buttons = document.getElementById('buttonsDivs')
+  buttons.style.display = 'none';
+  let container = document.getElementById('maintenance')
+  container.innerHTML = `<h2>Table is under maintenance</h2>`
 }
 
 
 
+function sortMatches(matches) {
+  return [...matches].sort((a, b) => {
+    const aDone = isMatchComplete(a);
+    const bDone = isMatchComplete(b);
 
+    // 1. Sort by Completion Status first
+    // If 'a' is complete and 'b' isn't, move 'b' to the top (return 1)
+    if (aDone && !bDone) return -1;
+    if (!aDone && bDone) return 1;
 
-
-
+    // 2. If both have the same status, sort by Match ID (Newest first)
+    return b.matchId - a.matchId;
+  });
+}
 
 async function loadData() {
   const res = await fetch("/.netlify/functions/getData");
   const batch = await res.json();
 
+
+  
   // The batch contains 6 valueRanges
   const [
     playersRes,
@@ -148,311 +345,29 @@ async function loadData() {
   ] = batch.valueRanges;
 
   // Convert each into your object arrays
-  const players = convertToObjects(playersRes.values);
-  const matchesRaw = convertToObjects(matchesRes.values);
-  const showToggle = convertToObjects(scheduleRes.values);
+  players = convertToObjects(playersRes.values);
+  matchesRaw = convertToObjects(matchesRes.values);
+  showToggle = convertToObjects(scheduleRes.values);
   seasonElo = convertToObjects(seasonEloRes.values);
-  const allTimeElo = convertToObjects(allTimeEloRes.values);
-  
+  allTimeElo = convertToObjects(allTimeEloRes.values);
 
   // Now run all your existing display logic here.
-
-  mainContent.style.display = ''
-  buttonsDivs.style.display = ''
-  
+let sortedPlayers = sortPlayers(players)
 
 
-
-
-function sortPlayers() {
-  players.sort((a, b) => {
-    if (a.points !== b.points){
-      return b.points - a.points;
-    }
-    return b.goaldifference - a.goaldifference;
-  })
-  return players
-}
-
-let sortedPlayers = sortPlayers()
 
 let playersDiv1 = sortedPlayers.filter(player => player.div === '1');
 let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
 
-
-function displayMaintenance(){
-  let buttons = document.getElementById('buttonsDivs')
-  buttons.style.display = 'none';
-  let container = document.getElementById('maintenance')
-  container.innerHTML = `<h2>Table is under maintenance</h2>`
-}
-
-
-// Print Tables for Div 1 and 2
-function displayTable(){
-let div1header = document.getElementById("group1Header")
-let div2header = document.getElementById("group2Header")
-let div1table = document.getElementById("div1Table")
-let div2table = document.getElementById("div2Table")
-
-let groupPrefix = showToggle[0].groupprefix
-div1header.innerHTML = `${groupPrefix} 1`
-div2header.innerHTML = `${groupPrefix} 2`
-
-playersDiv1.forEach(player =>{
-  let container = document.getElementById('div1TableData')
-  const row = document.createElement("tr")
-  row.innerHTML = `
-      <td scope="row"><a class= 'playerName' data-div="div1">${player.name}</a></td>
-      <td>${player.played}</td>
-      <td>${player.wins}</td>
-      <td>${player.draws}</td>
-      <td>${player.losses}</td>
-      <td>${player.goalsfor}</td>
-      <td>${player.goalsagainst}</td>
-      <td>${player.goaldifference}</td>
-      <td>${player.points}</td>`
-
-  container.appendChild(row)
-
-})
-
-playersDiv2.forEach(player =>{
-  let container = document.getElementById('div2TableData')
-  const row = document.createElement("tr")
-  if (player.name == ''){
-    return
-  }
-  row.innerHTML = `
-      <td  scope="row"><a class = 'playerName' data-div="div2">${player.name}</a></td>
-      <td>${player.played}</td>
-      <td>${player.wins}</td>
-      <td>${player.draws}</td>
-      <td>${player.losses}</td>
-      <td>${player.goalsfor}</td>
-      <td>${player.goalsagainst}</td>
-      <td>${player.goaldifference}</td>
-      <td>${player.points}</td>`
-
-  container.appendChild(row)
-
-})
-divisiontables.style.display = 'flex'
-if (playersDiv1.length == 0){
-  div1table.style.display = 'none'
-}
-
-if (playersDiv2.length == 0){
-  div2table.style.display = 'none'
-}
-}
-
-function displaySeasonEloTable() {
-  seasonElo.forEach(player => {
-      let container = document.getElementById('theSeasonEloTable')
-    const row = document.createElement("tr")
-      row.innerHTML = `
-        <td>${player.Name}</td>
-        <td>${player.Elo}</td>`
-
-    container.appendChild(row)
-  })
-
-
-}
-
-function displayAllTimeEloTable() {
-  allTimeElo.forEach(player => {
-      let container = document.getElementById('theAllTimeEloTable')
-    const row = document.createElement("tr")
-      row.innerHTML = `
-        <td>${player.Name}</td>
-        <td>${player.Elo}</td>`
-
-    container.appendChild(row)
-  })
-
-
-}
-
-
-displaySeasonEloTable()
-displayAllTimeEloTable()
-// Print the matches in HTML. This now uses the matches imported from the spreadsheet
-
-function displayMatches(matches){
-  let div1 = document.getElementById("div1matches");
-   let div2 = document.getElementById("div2matches");
-   let misc = document.getElementById("miscmatches");
-
-   let completedD1 = document.createElement('div')
-   let completedD2 = document.createElement('div')
-   let incompleteD1 = document.createElement('div')
-   let incompleteD2 = document.createElement('div')
-
-   completedD1.className = 'completed'
-   completedD2.className = 'completed'
-
-   incompleteD1.className = 'incomplete'
-   incompleteD2.className = 'incomplete'
-
-   let completeMessage = `<h4>Completed</h4>`
-   let incompleteMessage = `<h4>Incomplete</h4>`
-
-   div1.appendChild(completedD1)
-   div1.appendChild(incompleteD1)
-
-  div2.appendChild(completedD2)
-   div2.appendChild(incompleteD2)
-
-  completedD1.innerHTML=completeMessage
-  completedD2.innerHTML=completeMessage
-
-  incompleteD1.innerHTML=incompleteMessage
-  incompleteD2.innerHTML=incompleteMessage
-
-matches.forEach(match => {
-
-   let divTag = null
-   let finals = document.getElementById("finals");
-   let upcomingMatches = document.getElementById('upcomingMatches');
-   let prefix = 'Match';
-   let container = misc;
-
-   if (match.matchId === '' || match.p1 == null){
-    return
-   }
-
-
-  if (match.div === '1'){
-    if (isMatchComplete(match)){
-      container = completedD1
-    } else {container=incompleteD1}
-  } else if (match.div==='2'){
-      if (isMatchComplete(match)){
-      container = completedD2
-    } else {container=incompleteD2}
-  }
-
-  // switch (match.div) {
-  //   case '1':
-  //     container = div1;
-  //     break;
-  //   case '2':
-  //     container = div2
-  // };
-
-  if (match.context == 'misc'){
-    container = misc
-  }
-
-  if(match.context == 'final' || match.context == 'relplayoff'|| match.context == 'promplayoff'){
-    container = finals
-      if (showToggle[0].finals == "FALSE"){
-      finalsBtn.style.display = 'none';
-      container.style.display = 'none';
-    };
-    if (showToggle[0].finals == "TRUE"){
-      finalsBtn.style.display = '';
-      container.style.display = '';
-    }
-    
-    prefix = ''
-  };
-
-  const div = document.createElement("div")
-  
-  const fallBackImg = 'Default.png';
-
-const team1img =
-  match.p1team?.trim()
-    ? match.p1team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
-    : fallBackImg;
-
-const team2img =
-  match.p2team?.trim()
-    ? match.p2team.replace(/[^a-zA-Z0-9]/g, '') + '.png'
-    : fallBackImg;
-
-    let show1 = ''
-    let show2= ``
-    // if (match.reveal === "FALSE"){
-    //   show = 'display: none; gap:10px'
-    // }
-
-    if (match.reveal === "TRUE"){
-      show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.p1team}</p></div>`
-      show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.p2team}</p></div>`
-    }
-
-    div.className = 'match'
-    div.innerHTML = `
-    <div class='matchHeader'>
-      <div class='matchDiv'><p>${prefix} ${match.matchId}</p><p>Div ${match.div}</p></div>
-      <div>${match.type}</div>
-    </div>
-      <div class='matchDetails'>
-
-        <div class="row header">
-        <div>Player</div>
-        <div>Score</div>
-        <div>Team</div>
-        </div>
-        <div class="row">
-        <div class= "playerName" class='p1Name' data-div="div${match.div}"><span class='p1Name'>${match.p1}</span></div>
-        <div class='matchScore'>${match.p1score}</div>
-        <div>${show1}</div>
-        </div>
-        <div class="row">
-        <div class= "playerName" data-div="div${match.div}"><span class='p2Name'>${match.p2}</span></div>
-        <div class='matchScore'>${match.p2score}</div>
-        <div>${show2}</div>
-        </div>
-    </div>
-        
-      
-    `;
-
-  
-    if (match.reveal === "TRUE" && (!match.p1score || match.p1score.trim() === "")) {
-        upComingHide.style.display = ''
-          const clone = div.cloneNode(true);
-          let division = document.createElement("div")
-          clone.prepend(division)
-          upcomingMatches.appendChild(clone);
-          let p1EloGainLoss = eloWinLoss(match.p1, match.p2)
-
-          const p1NameElem = clone.querySelector(`.p1Name`)
-          const p2NameElem = clone.querySelector(`.p2Name`)
-          if (p1NameElem) {
-            p1NameElem.innerHTML += `<br>(+${p1EloGainLoss[0]})`;
-          }
-          if (p2NameElem) {
-              p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
-          }
-    }
-    container.appendChild(div);
-    schedules.style.display = 'flex'
-  })
-
-  if(div1.children.length <= 1){
-    div1.style.display = "none"
-  }
-
-    if(div2.children.length <= 1){
-    div2.style.display = "none"
-  }
-
-    if(misc.children.length <= 1){
-    misc.style.display = "none"
-  }
-};
-
-let matchesFinal = sortMatches(matchesRaw)
+matchesRaw = sortMatches(matchesRaw)
+displayEloTable(seasonElo, `seasonEloTable`)
+displayEloTable(allTimeElo, `allTimeEloTable`)
 
 if (showToggle[0].show == "TRUE"){
-  displayTable()
-  displayMatches(matchesFinal)
+  displayTable(playersDiv1, 'div1TableData')
+  displayTable(playersDiv2, 'div2TableData')
+  // displayMatches(matchesFinal)
+  displaySchedule(matchesRaw)
 } else {
   displayMaintenance()
 };
@@ -463,135 +378,9 @@ if (!showToggle[0].tournamentbracket == ""){
   bracketContainer.innerHTML = `<img src= ${imageSrc}></img>`
 
   divisiontables.appendChild(bracketContainer)
-  
-
 }
 
-setDefault()
-
-return players
 }
-
-function eloWinLoss(p1, p2){
-  let p1Elo = Number(seasonElo.find(player => player.Name === p1).Elo)
-  let p2Elo = Number(seasonElo.find(player => player.Name === p2).Elo)
-
-
-  p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400))))-p1Elo)
-  p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400))))-p2Elo)
-
-  p1EloLoss = p2EloGain
-  p2EloLoss = p2EloGain
-  return [p1EloGain, p1EloLoss]
-}
-
-
-
-
-document.addEventListener("click", function(e) {
-    if (e.target.classList.contains("buttonDiv")) {
-      const buttons = document.querySelectorAll('.buttonDiv');
-      buttons.forEach(button => {
-        button.style.backgroundColor = 'black';
-      })
-      e.target.style.backgroundColor = 'rgba(66, 66, 66, 1)';
-      let div = e.target.innerHTML;
-      let div1Content = [document.getElementById('div1Table'), document.getElementById('div1matches')]
-      let div2Content = [document.getElementById('div2Table'), document.getElementById('div2matches')]
-
-      const completedContainers = document.getElementsByClassName('completed')
-      const incompleteContainers = document.getElementsByClassName('incomplete')
-      console.log(completedContainers)
-
-      let finals = document.getElementById('finals')
-      clearFilter()
-      switch (div) {
-        case "Div 1":
-          div1Content[0].style.display = "",
-          div1Content[1].style.display = "", div1Content[1].style.width = "100%",
-          div2Content[0].style.display = "none",
-          div2Content[1].style.display = "none";
-          finals.style.display = 'none';
-          break;
-        case "Both":
-          div1Content[0].style.display = "",
-          div1Content[1].style.display = "", div1Content[1].style.width = "50%",
-          div2Content[0].style.display = "",
-          div2Content[1].style.display = "", div2Content[1].style.width = "50%";
-          finals.style.display = 'none';
-          break;
-        case "Div 2":
-          div1Content[0].style.display = "none",
-          div1Content[1].style.display = "none", div2Content[1].style.width = "100%",
-          div2Content[0].style.display = "",
-          div2Content[1].style.display = "";
-          finals.style.display = 'none';
-          break;
-        case "Finals":
-          finals.style.display = '',
-          div1Content[0].style.display = 'none', div1Content[1].style.display = 'none';
-          div2Content[0].style.display = 'none', div2Content[1].style.display = 'none';
-          break;
-        case "Complete":
-          completedContainers[0].style.display = '', completedContainers[1].style.display = '';
-          incompleteContainers[0].style.display = 'none', incompleteContainers[1].style.display = 'none'
-          break;
-
-        case "Incomplete":
-          completedContainers[0].style.display = 'none', completedContainers[1].style.display = 'none';
-          incompleteContainers[0].style.display = '', incompleteContainers[1].style.display = ''
-          break;
-          
-        case "All":
-          completedContainers[0].style.display = '', completedContainers[1].style.display = '';
-          incompleteContainers[0].style.display = '', incompleteContainers[1].style.display = ''
-          break;
-      }
-    }})
-
-
-
-
-document.addEventListener("click", function(e) {
-    if (e.target.classList.contains("playerName")) {
-      filterMatches(e.target)
-    }
-});
-
-function showElo(){
-  let eloButton = document.getElementById('eloButton')
-  if (eloTables.style.display == ''){
-    eloTables.style.display = 'none'
-
-    eloButton.style.backgroundColor = 'black'
-  } else {
-    eloTables.style.display = '';
-    eloButton.style.backgroundColor = 'rgba(66, 66, 66, 1)'
-  }
- 
-}
-
-function isMatchComplete(match){
-  if(match.p1score){
-    return true
-  }
-  return false
-}
-
-function sortMatches(matches){
-
-  const complete = matches.filter(m => isMatchComplete(m));
-  complete.sort((a,b) => b.matchId-  a.matchId)
-  console.log(complete)
-
-  const incomplete = matches.filter(m => !isMatchComplete(m));
-
-  return [...complete, ...incomplete];
-}
-
 
 
 loadData()
-
-
-

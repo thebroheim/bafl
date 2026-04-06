@@ -101,15 +101,21 @@ th, td {
 }
 
 #upcomingMatches {
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
 #schedule {
     display: flex;
+    flex-direction: row;
     gap: 10px;
     padding: 10px;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: center;
+}
+
+#matches {
+    margin-top: 20px;
 }
 
 .matchesContainer{
@@ -117,6 +123,7 @@ th, td {
     min-width: 0;
     flex: 1 1 350px;
     gap: 10px;
+    flex-direction: column
 
     
 }
@@ -192,4 +199,18 @@ th, td {
 /* Remove bottom border from the last row's cells */
 .row:last-child div {
   border-bottom: none;
+}
+
+
+.selected {
+    background-color:#696565;
+}
+
+/* Basic Hide */
+.hidden {
+  display: none !important;
+}
+
+#eloTables.hidden {
+  display: none;
 }
