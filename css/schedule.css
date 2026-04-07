@@ -110,7 +110,7 @@ th, td {
     flex-direction: row;
     gap: 10px;
     padding: 10px;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -213,4 +213,8 @@ th, td {
 
 #eloTables.hidden {
   display: none;
+}
+
+#matches {
+    width: 100%;
 }
