@@ -3,6 +3,7 @@ let players = []
 let matchesRaw = []
 let seasonElo = []
 let allTimeElo = []
+let showToggle = {}
 
 let currentFilters = {
   selectedElement: [],
@@ -258,7 +259,13 @@ function displaySchedule(allMatches){
   ]
   const div1Matches = allMatches.filter(m=> m.div === '1' && m.context !== 'final');
   const div2Matches = allMatches.filter(m=> m.div === '2' && m.context !== 'final');
-  const finalsMatches = allMatches.filter(m => m.context === 'final' || m.context === 'promplayoff');
+  let finalsMatches = []
+  if(showToggle[0].finals == "TRUE"){
+    finalsMatches = allMatches.filter(m => m.context === 'final' || m.context === 'promplayoff');
+  }
+
+  console.log(finalsMatches)
+  
   const miscMatches = allMatches.filter(m => m.context === 'misc');
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
 

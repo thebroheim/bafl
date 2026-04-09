@@ -219,3 +219,11 @@ th, td {
 #matches {
     width: 100%;
 }
+
+#finals {
+    padding: 10px;
+}
+
+#finals .match {
+    border: #d4bf02 solid 2px;
+}
