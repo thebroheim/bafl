@@ -138,6 +138,47 @@ function eloWinLoss(p1, p2){
   return [p1EloGain, p1EloLoss]
 }
 
+// Prediction 
+document.addEventListener("click", function(e) {
+    if(e.target.classList.contains('predictionCheckbox')){
+      let prediction = e.target.dataset.prediction
+      let matchId = e.target.dataset.matchid
+      alert('Maybe')
+      let odds = calculateOdds(prediction, matchId)
+    }})
+
+
+let totalPredictions = [
+    {
+  matchId: 232,
+  p1: ['Sam', 'John', 'Kelvin', 'Alex'],
+  p2: ['Sam', 'John', 'Kelvin', 'Alex', 'Michael', 'Elphaba']
+  },
+  {
+  matchId: 233,
+  p1: ['Sam', 'John', 'Seans', 'Alex'],
+  p2: ['Sam', 'John', 'Kelvin', 'Alex', 'Michael', 'Elphaba']
+  }
+]
+
+
+function calculateOdds(prediction, matchId){
+  let matchVotes = totalPredictions.find((match)=> {
+    return match.matchId == matchId
+  })
+
+  let p1Votes = matchVotes.p1.length
+  let p2Votes = matchVotes.p2.length
+  let totalVotes = p1Votes+p2Votes
+
+  return prediction === 'p1' ? p1Votes/totalVotes*100 : p2Votes/totalVotes * 100   
+}
+
+function sendPrediction(prediction, userId){
+
+}
+  
+
 function displayTable(players, container){
   // let div1header = document.getElementById("group1Header")
 
@@ -197,7 +238,7 @@ function createMatchHTML(match){
 
           <div class="row header">
           <div>Player</div>
-          <div>Score</div>
+          <div class="scoreHeader">Score</div>
           <div>Team</div>
           </div>
           <div class="row">
@@ -221,6 +262,12 @@ function createMatchHTML(match){
             clone.prepend(division)
             upcomingMatches.appendChild(clone);
             let p1EloGainLoss = eloWinLoss(match.p1, match.p2)
+            let predictionHeader = clone.querySelector(`.scoreHeader`)
+            predictionHeader.innerHTML = `Who wins?`
+
+            let predictionSlots = clone.querySelectorAll(`.matchScore`)
+            predictionSlots[0].innerHTML = `<button class= "predictionCheckbox" data-prediction='p1' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
+            predictionSlots[1].innerHTML = `<button class= "predictionCheckbox" data-prediction='p2' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
 
             const p1NameElem = clone.querySelector(`.p1Name`)
             const p2NameElem = clone.querySelector(`.p2Name`)
