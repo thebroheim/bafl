@@ -58,7 +58,7 @@ async function loadData() {
     hofRes,
   ] = batch.valueRanges;
 
-  rawMatches = convertToObjects(matchesRes.values);
+  rawMatches = convertToObjects(matchesRes.values).reverse();
   hof = convertToObjects(hofRes.values);
   matches = [...rawMatches]
 
