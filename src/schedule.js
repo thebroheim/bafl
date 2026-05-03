@@ -177,7 +177,6 @@ function calculateOdds(prediction, matchId){
 function sendPrediction(prediction, userId){
 
 }
-  
 
 function displayTable(players, container, tableDiv){
   // let div1header = document.getElementById("group1Header")
@@ -276,12 +275,15 @@ function createMatchHTML(match){
 
             const p1NameElem = clone.querySelector(`.p1Name`)
             const p2NameElem = clone.querySelector(`.p2Name`)
-            if (p1NameElem) {
+
+            if(!match.context == 'misc'){
+              if (p1NameElem) {
               p1NameElem.innerHTML += `<br>(+${p1EloGainLoss[0]})`;
             }
             if (p2NameElem) {
                 p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
-            }
+            }}
+
             return clone
       }
       return div  
