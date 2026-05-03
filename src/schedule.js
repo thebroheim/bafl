@@ -185,6 +185,10 @@ function displayTable(players, container){
   let groupPrefix = showToggle[0].groupprefix
   // div1header.innerHTML = `${groupPrefix} 1`
 
+  if(players.length == 0){
+    return
+  }
+
   players.forEach(player =>{
     let table = document.getElementById(container)
     const row = document.createElement("tr")

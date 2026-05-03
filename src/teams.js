@@ -210,6 +210,16 @@ const teamsFC26 = [
     {name: 'Netherlands', ovr: 83, star: null, gender: 'International'},
     {name: 'Argentina', ovr: 83, star: null, gender: 'International'},
     {name: 'Italy', ovr: 83, star: null, gender: 'International'},
+    {name: 'United States', ovr: 78, star: null, gender: 'International'},
+    {name: 'Sweden', ovr: 78, star: null, gender: 'International'},
+    {name: 'Scotland', ovr: 76, star: null, gender: 'International'},
+    {name: 'Norway', ovr: 78, star: null, gender: 'International'},
+    {name: 'Morocco', ovr: 79, star: null, gender: 'International'},
+    {name: 'Mexico', ovr: 76, star: null, gender: 'International'},
+    {name: 'Ghana', ovr: 76, star: null, gender: 'International'},
+    {name: 'Denmark', ovr: 78, star: null, gender: 'International'},
+    {name: 'Czechia', ovr: 76, star: null, gender: 'International'},
+    {name: 'Croatia', ovr: 79, star: null, gender: 'International'},
 
     // Women teams
     {name: 'Chelsea', ovr: null, star: null, gender: 'Women'},
