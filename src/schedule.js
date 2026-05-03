@@ -185,8 +185,10 @@ function displayTable(players, container, tableDiv){
   let groupPrefix = showToggle[0].groupprefix
   // div1header.innerHTML = `${groupPrefix} 1`
 
+
+
   if(players.length == 0){
-    tableDiv.style.display = 'none';
+    document.getElementById('tableDiv').style.display = 'none';
     return
   }
 
