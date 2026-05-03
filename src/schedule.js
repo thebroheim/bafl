@@ -179,13 +179,14 @@ function sendPrediction(prediction, userId){
 }
   
 
-function displayTable(players, container){
+function displayTable(players, container, tableDiv){
   // let div1header = document.getElementById("group1Header")
 
   let groupPrefix = showToggle[0].groupprefix
   // div1header.innerHTML = `${groupPrefix} 1`
 
   if(players.length == 0){
+    tableDiv.style.display = 'none';
     return
   }
 
@@ -422,8 +423,8 @@ displayEloTable(seasonElo, `seasonEloTable`)
 displayEloTable(allTimeElo, `allTimeEloTable`)
 
 if (showToggle[0].show == "TRUE"){
-  displayTable(playersDiv1, 'div1TableData')
-  displayTable(playersDiv2, 'div2TableData')
+  displayTable(playersDiv1, 'div1TableData', 'div1Table')
+  displayTable(playersDiv2, 'div2TableData', 'div2Table')
   // displayMatches(matchesFinal)
   displaySchedule(matchesRaw)
 } else {
