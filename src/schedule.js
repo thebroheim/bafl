@@ -188,7 +188,7 @@ function displayTable(players, container, tableDiv){
 
 
   if(players.length == 0){
-    document.getElementById('tableDiv').style.display = 'none';
+    document.getElementById(`${tableDiv}`).style.display = 'none';
     return
   }
 
