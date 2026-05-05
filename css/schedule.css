@@ -145,8 +145,8 @@ th, td {
     min-width: 0;
     flex: 1 1 350px;
     gap: 10px;
-    flex-direction: column
-
+    flex-direction: column;
+    max-width: 600px;
     
 }
 
