@@ -394,6 +394,9 @@ async function loadData() {
   const res = await fetch("/.netlify/functions/getData");
   const batch = await res.json();
 
+  let contentContainer = document.getElementById('content')
+  let loadingContainer = document.getElementById('loadingState')
+
 
   
   // The batch contains 6 valueRanges
@@ -441,6 +444,9 @@ if (!showToggle[0].tournamentbracket == ""){
   let divisionTables = document.getElementById('table')
   divisionTables.appendChild(bracketContainer)
 }
+
+contentContainer.classList.remove('hidden')
+loadingContainer.classList.add('hidden')
 
 }
 
