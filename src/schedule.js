@@ -439,6 +439,7 @@ if (showToggle[0].show == "TRUE"){
 
 if (!showToggle[0].tournamentbracket == ""){
   let bracketContainer = document.createElement('div');
+  bracketContainer.id = 'bracketImage'
   let imageSrc = showToggle[0].tournamentbracket
   bracketContainer.innerHTML = `<img src= ${imageSrc}></img>`
   let divisionTables = document.getElementById('table')

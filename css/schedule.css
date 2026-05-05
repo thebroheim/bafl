@@ -113,8 +113,13 @@ th, td {
     box-sizing: border-box;
     margin-top: 20px;
     border: #24e3fd solid 1px;
-    width: 100%;
+    max-width: 800px;
     padding: 10px;
+}
+
+#bracketImage {
+    display: flex;
+    justify-content: center;
 }
 
 #upComingHide {
