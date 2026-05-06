@@ -289,7 +289,7 @@ function createMatchHTML(match){
       return div  
 }
 
-function displayScheduleContainer(matchList, containerId){
+function displayScheduleContainer(matchList, containerId, header){
   const container = document.getElementById(containerId)
   container.innerHTML= ``;
 
@@ -298,6 +298,11 @@ function displayScheduleContainer(matchList, containerId){
     return
   }
   container.style.display = '';
+
+  let containerHeader = document.createElement('h3')
+  containerHeader.innerHTML = header
+  container.appendChild(containerHeader)
+
   matchList.forEach((match) => {
     container.appendChild(createMatchHTML(match))
   })
@@ -323,11 +328,11 @@ function displaySchedule(allMatches){
   const miscMatches = allMatches.filter(m => m.context === 'misc');
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
 
-  displayScheduleContainer(div1Matches, 'div1matches')
-  displayScheduleContainer(div2Matches, 'div2matches')
-  displayScheduleContainer(miscMatches, 'miscmatches')
-  displayScheduleContainer(finalsMatches, 'finals')
-  displayScheduleContainer(upcomingMatches, 'upcomingMatches')
+  displayScheduleContainer(div1Matches, 'div1matches', 'Division 1')
+  displayScheduleContainer(div2Matches, 'div2matches', 'Division 2')
+  displayScheduleContainer(miscMatches, 'miscmatches', 'Misc')
+  displayScheduleContainer(finalsMatches, 'finals', 'Finals')
+  displayScheduleContainer(upcomingMatches, 'upcomingMatches', 'Upcoming Matches')
 }
 
 function convertToObjects(values) {
