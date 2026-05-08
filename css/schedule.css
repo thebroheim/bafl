@@ -127,9 +127,8 @@ th, td {
 }
 
 #upcomingMatches {
-    flex-direction: row;
-    flex-wrap: wrap;
     padding: 10px;
+    margin: auto;
 }
 
 #schedule {
@@ -152,7 +151,6 @@ th, td {
     gap: 10px;
     flex-direction: column;
     max-width: 600px;
-    
 }
 
 .match {
