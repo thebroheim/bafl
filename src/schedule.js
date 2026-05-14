@@ -266,12 +266,13 @@ function createMatchHTML(match){
             clone.prepend(division)
             upcomingMatches.appendChild(clone);
             let p1EloGainLoss = eloWinLoss(match.p1, match.p2)
-            let predictionHeader = clone.querySelector(`.scoreHeader`)
-            predictionHeader.innerHTML = `Who wins?`
 
-            let predictionSlots = clone.querySelectorAll(`.matchScore`)
-            predictionSlots[0].innerHTML = `<button class= "predictionCheckbox" data-prediction='p1' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
-            predictionSlots[1].innerHTML = `<button class= "predictionCheckbox" data-prediction='p2' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
+            // let predictionHeader = clone.querySelector(`.scoreHeader`)
+            // predictionHeader.innerHTML = `Who wins?`
+
+            // let predictionSlots = clone.querySelectorAll(`.matchScore`)
+            // predictionSlots[0].innerHTML = `<button class= "predictionCheckbox" data-prediction='p1' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
+            // predictionSlots[1].innerHTML = `<button class= "predictionCheckbox" data-prediction='p2' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
 
             const p1NameElem = clone.querySelector(`.p1Name`)
             const p2NameElem = clone.querySelector(`.p2Name`)
