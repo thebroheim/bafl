@@ -430,8 +430,8 @@ let playersDiv1 = sortedPlayers.filter(player => player.div === '1');
 let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
 
 matchesRaw = sortMatches(matchesRaw)
-displayEloTable(seasonElo, `seasonEloTable`)
-displayEloTable(allTimeElo, `allTimeEloTable`)
+displayEloTable(seasonElo, `theSeasonEloTable`)
+displayEloTable(allTimeElo, `theAllTimeEloTable`)
 
 if (showToggle[0].show == "TRUE"){
   displayTable(playersDiv1, 'div1TableData', 'div1Table')
