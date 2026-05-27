@@ -245,6 +245,10 @@ function displayGroupsOfTables(players) {
   uniqueDivisions.forEach(divNum => {
     let playersInDiv = players.filter(player => player.div === divNum);
     displayTable(playersInDiv, 'table', divNum);
+
+    let filterBtn = document.createElement("button")
+    filterBtn.innerHTML = `<button class="filterBtn" data-type="division" data-value=${divNum} > ${showToggle[0].groupprefix} ${divNum}</button>`
+    document.getElementById("buttonsDivs").appendChild(filterBtn)
   });
 }
 
