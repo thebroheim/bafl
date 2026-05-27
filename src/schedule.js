@@ -4,6 +4,7 @@ let matchesRaw = []
 let seasonElo = []
 let allTimeElo = []
 let showToggle = {}
+let uniqueDivisions = []
 
 let currentFilters = {
   selectedElement: [],
@@ -52,7 +53,6 @@ function getFilteredMatches() {
   });
 }
 
-// 2. The Logic Engine
 function updateFilter(type, value, element) {
     // A. Handle Reset
     if (type === 'clear') {
@@ -138,45 +138,8 @@ function eloWinLoss(p1, p2){
   return [p1EloGain, p1EloLoss]
 }
 
-// Prediction 
-document.addEventListener("click", function(e) {
-    if(e.target.classList.contains('predictionCheckbox')){
-      let prediction = e.target.dataset.prediction
-      let matchId = e.target.dataset.matchid
-      alert('Maybe')
-      let odds = calculateOdds(prediction, matchId)
-    }})
 
 
-let totalPredictions = [
-    {
-  matchId: 232,
-  p1: ['Sam', 'John', 'Kelvin', 'Alex'],
-  p2: ['Sam', 'John', 'Kelvin', 'Alex', 'Michael', 'Elphaba']
-  },
-  {
-  matchId: 233,
-  p1: ['Sam', 'John', 'Seans', 'Alex'],
-  p2: ['Sam', 'John', 'Kelvin', 'Alex', 'Michael', 'Elphaba']
-  }
-]
-
-
-function calculateOdds(prediction, matchId){
-  let matchVotes = totalPredictions.find((match)=> {
-    return match.matchId == matchId
-  })
-
-  let p1Votes = matchVotes.p1.length
-  let p2Votes = matchVotes.p2.length
-  let totalVotes = p1Votes+p2Votes
-
-  return prediction === 'p1' ? p1Votes/totalVotes*100 : p2Votes/totalVotes * 100   
-}
-
-function sendPrediction(prediction, userId){
-
-}
 
 
 function displayTable(players, container, groupNumber){
@@ -239,7 +202,6 @@ function displayTable(players, container, groupNumber){
 }
 
 function displayGroupsOfTables(players) {
-  const uniqueDivisions = [...new Set(players.map(player => player.div))].sort();
 
   // Loop through whatever divisions were found (e.g., ['1', '2', '3', '4'])
   uniqueDivisions.forEach(divNum => {
@@ -283,7 +245,7 @@ function createMatchHTML(match){
       div.className = 'match'
       div.innerHTML = `
       <div class='matchHeader'>
-        <div class='matchDiv'><p>${prefix} ${match.matchId}</p><p>Div ${match.div}</p></div>
+        <div class='matchDiv'><p>${prefix} ${match.matchId}</p><p>${showToggle[0].groupprefix} ${match.div}</p></div>
         <div>${match.type}</div>
       </div>
         <div class='matchDetails'>
@@ -315,13 +277,6 @@ function createMatchHTML(match){
             upcomingMatches.appendChild(clone);
             let p1EloGainLoss = eloWinLoss(match.p1, match.p2)
 
-            // let predictionHeader = clone.querySelector(`.scoreHeader`)
-            // predictionHeader.innerHTML = `Who wins?`
-
-            // let predictionSlots = clone.querySelectorAll(`.matchScore`)
-            // predictionSlots[0].innerHTML = `<button class= "predictionCheckbox" data-prediction='p1' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
-            // predictionSlots[1].innerHTML = `<button class= "predictionCheckbox" data-prediction='p2' data-matchId=${match.div}${match.matchId} >Coming Soon!</button>`
-
             const p1NameElem = clone.querySelector(`.p1Name`)
             const p2NameElem = clone.querySelector(`.p2Name`)
 
@@ -338,50 +293,50 @@ function createMatchHTML(match){
       return div  
 }
 
-function displayScheduleContainer(matchList, containerId, header){
-  const container = document.getElementById(containerId)
-  container.innerHTML= ``;
+function displayScheduleContainer(matchList, divNum){
+  let scheduleContainer = document.getElementById("schedule")
+
+  // Create Division Schedule Container
+  divisionContainer = document.createElement("div")
+  divisionContainer.className="matchesContainer"
 
   if(matchList.length === 0){
-    container.style.display = 'none'
     return
   }
-  container.style.display = '';
 
   let containerHeader = document.createElement('h3')
-  containerHeader.innerHTML = header
-  container.appendChild(containerHeader)
+  containerHeader.innerHTML = `${showToggle[0].groupprefix} ${divNum}`
+  divisionContainer.appendChild(containerHeader)
 
   matchList.forEach((match) => {
-    container.appendChild(createMatchHTML(match))
+    divisionContainer.appendChild(createMatchHTML(match))
   })
+
+  scheduleContainer.appendChild(divisionContainer)
 
 }
 
 function displaySchedule(allMatches){
+  document.getElementById('schedule').innerHTML = ``
   if(allMatches.length == 0)[
     alert(`There are no matches to show matching the filter of:
       Player: ${currentFilters.player} || Division: ${currentFilters.division} || Status: ${currentFilters.status}
       
       Please clear filter and try again` )
   ]
-  const div1Matches = allMatches.filter(m=> m.div === '1' && m.context !== 'final');
-  const div2Matches = allMatches.filter(m=> m.div === '2' && m.context !== 'final');
   let finalsMatches = []
+
+  uniqueDivisions.forEach((division)=> {
+    displayScheduleContainer(allMatches.filter((match) => match.div == division), division)
+  })
+
+
   if(showToggle[0].finals == "TRUE"){
     finalsMatches = allMatches.filter(m => m.context === 'final' || m.context === 'promplayoff');
   }
 
   console.log(finalsMatches)
-  
-  const miscMatches = allMatches.filter(m => m.context === 'misc');
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
-
-  displayScheduleContainer(div1Matches, 'div1matches', 'Division 1')
-  displayScheduleContainer(div2Matches, 'div2matches', 'Division 2')
-  displayScheduleContainer(miscMatches, 'miscmatches', 'Misc')
-  displayScheduleContainer(finalsMatches, 'finals', 'Finals')
-  displayScheduleContainer(upcomingMatches, 'upcomingMatches', 'Upcoming Matches')
 }
 
 function convertToObjects(values) {
@@ -468,6 +423,7 @@ async function loadData() {
   showToggle = convertToObjects(scheduleRes.values);
   seasonElo = convertToObjects(seasonEloRes.values);
   allTimeElo = convertToObjects(allTimeEloRes.values);
+  uniqueDivisions = [...new Set(players.map(player => player.div))].sort().filter((division)=> division != null);
 
   // Now run all your existing display logic here.
 let sortedPlayers = sortPlayers(players)
