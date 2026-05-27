@@ -178,19 +178,48 @@ function sendPrediction(prediction, userId){
 
 }
 
-function displayTable(players, container, tableDiv){
-  // let div1header = document.getElementById("group1Header")
 
-  let groupPrefix = showToggle[0].groupprefix
-  // div1header.innerHTML = `${groupPrefix} 1`
-
+function displayTable(players, container, groupNumber){
   if(players.length == 0){
-    document.getElementById(`${tableDiv}`).style.display = 'none';
+    // document.getElementById(`${tableDiv}`).style.display = 'none';
     return
   }
 
+  let tableDiv = document.getElementById(container)
+
+  let tableContainer = document.createElement("div")
+  tableDiv.appendChild(tableContainer)
+
+  let tableHeader = document.createElement("h3")
+  let groupPrefix = showToggle[0].groupprefix
+  tableHeader.innerHTML = `${groupPrefix} ${groupNumber}`
+
+
+  tableContainer.appendChild(tableHeader)
+
+
+  let table = document.createElement('table')
+  table.innerHTML = `
+            <thead>
+            <tr>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">P</th>
+              <th scope="col">W</th>
+              <th scope="col">D</th>
+              <th scope="col">L</th>
+              <th scope="col">GF</th>
+              <th scope="col">GA</th>
+              <th scope="col">GD</th>
+              <th scope="col">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="div2TableData">
+            
+          </tbody>`
+
   players.forEach(player =>{
-    let table = document.getElementById(container)
+    
     const row = document.createElement("tr")
     row.innerHTML = `
         <td scope="row"><a class= 'playerName filterBtn' data-type= 'player' data-value="${player.name}">${player.name}</a></td>
@@ -204,8 +233,19 @@ function displayTable(players, container, tableDiv){
         <td>${player.points}</td>`
 
     table.appendChild(row)
+    tableDiv.appendChild(table)
 
   })
+}
+
+function displayGroupsOfTables(players) {
+  const uniqueDivisions = [...new Set(players.map(player => player.div))].sort();
+
+  // Loop through whatever divisions were found (e.g., ['1', '2', '3', '4'])
+  uniqueDivisions.forEach(divNum => {
+    let playersInDiv = players.filter(player => player.div === divNum);
+    displayTable(playersInDiv, 'table', divNum);
+  });
 }
 
 function createMatchHTML(match){
@@ -426,16 +466,12 @@ let sortedPlayers = sortPlayers(players)
 
 
 
-let playersDiv1 = sortedPlayers.filter(player => player.div === '1');
-let playersDiv2 = sortedPlayers.filter(player => player.div === '2');
-
 matchesRaw = sortMatches(matchesRaw)
 displayEloTable(seasonElo, `theSeasonEloTable`)
 displayEloTable(allTimeElo, `theAllTimeEloTable`)
 
 if (showToggle[0].show == "TRUE"){
-  displayTable(playersDiv1, 'div1TableData', 'div1Table')
-  displayTable(playersDiv2, 'div2TableData', 'div2Table')
+  displayGroupsOfTables(sortedPlayers)
   // displayMatches(matchesFinal)
   displaySchedule(matchesRaw)
 } else {
