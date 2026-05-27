@@ -247,7 +247,11 @@ function displayGroupsOfTables(players) {
     displayTable(playersInDiv, 'table', divNum);
 
     let filterBtn = document.createElement("button")
-    filterBtn.innerHTML = `<button class="filterBtn" data-type="division" data-value=${divNum} > ${showToggle[0].groupprefix} ${divNum}</button>`
+    filterBtn.innerHTML = `${showToggle[0].groupprefix} ${divNum}`;
+
+    filterBtn.classList.add("filterBtn");
+    filterBtn.dataset.type = "division";
+    filterBtn.dataset.value = divNum;
     document.getElementById("buttonsDivs").appendChild(filterBtn)
   });
 }
