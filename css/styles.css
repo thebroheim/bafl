@@ -225,6 +225,14 @@ input {
 #champcontent {
     margin: 20px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+#champcontent h1{
+    font-size:1.5rem;
+
 }
 
 .champs {
@@ -236,6 +244,7 @@ input {
     overflow-x: scroll;
     scrollbar-width: thin;
     padding-bottom: 5px;
+    flex-direction: column;
 }
 
 .player {
