@@ -126,16 +126,25 @@ function displayEloTable(data, containerId) {
   })
 }
 
-function eloWinLoss(p1, p2){
-  let p1Elo = Number(seasonElo.find(player => player.Name === p1).Elo)
-  let p2Elo = Number(seasonElo.find(player => player.Name === p2).Elo)
+function eloWinLoss(p1, p2) {
+  const player1 = seasonElo.find(player => player.Name === p1);
+  const player2 = seasonElo.find(player => player.Name === p2);
 
-  p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400))))-p1Elo)
-  p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400))))-p2Elo)
+  if (!player1 || !player2) {
+    console.error(`Error: One or both players (${p1}, ${p2}) not found in seasonElo.`);
+    return null; // Or return [0, 0] depending on how you want to handle it
+  }
 
-  p1EloLoss = p2EloGain
-  p2EloLoss = p2EloGain
-  return [p1EloGain, p1EloLoss]
+  let p1Elo = Number(player1.Elo);
+  let p2Elo = Number(player2.Elo);
+
+  const p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400)))) - p1Elo);
+  const p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400)))) - p2Elo);
+
+  const p1EloLoss = p2EloGain; 
+  const p2EloLoss = p1EloGain; 
+
+  return [p1EloGain, p1EloLoss];
 }
 
 
