@@ -405,7 +405,7 @@ function sortMatches(matches) {
     if (!aDone && bDone) return 1;
 
     // 2. If both have the same status, sort by Match ID (Newest first)
-    return b.matchId - a.matchId;
+    return a.matchId - b.matchId ;
   });
 }
 
