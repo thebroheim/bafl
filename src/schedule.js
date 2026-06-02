@@ -151,6 +151,7 @@ function displayTable(players, container, groupNumber){
   let tableDiv = document.getElementById(container)
 
   let tableContainer = document.createElement("div")
+  tableContainer.className="tableContainer"
   tableDiv.appendChild(tableContainer)
 
   let tableHeader = document.createElement("h3")
@@ -196,7 +197,7 @@ function displayTable(players, container, groupNumber){
         <td>${player.points}</td>`
 
     table.appendChild(row)
-    tableDiv.appendChild(table)
+    tableContainer.appendChild(table)
 
   })
 }

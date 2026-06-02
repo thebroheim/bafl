@@ -50,6 +50,12 @@ let playersdiv1 = playersFinal.filter(player => {
 let playersdiv2 = playersFinal.filter(player => {
   return player.div == '2';
 });
+let playersdiv3 = playersFinal.filter(player => {
+  return player.div == '3';
+});
+let playersdiv4 = playersFinal.filter(player => {
+  return player.div == '4';
+});
 
 function checkMatchForDupe(array, firstPlayer, secondPlayer) {
     // console.log(firstPlayer, secondPlayer)
@@ -97,7 +103,7 @@ function teamSelect(teamsArray){
     return teams
 }
 
-function generateTeams(div){
+function generateTeams(div, divLabel){
     let matches = []
     let players = div
     // console.log(selectedType)
@@ -124,7 +130,7 @@ function generateTeams(div){
     let team2 = teamsFinal[1];
     matchId = matchId + 1
     // let match = {matchId: matchId, type: selectedType[1], player1: players[i], team1: teams[0], player2: players[x], team2: teams[1]}
-    let match = [selectedType.name, players[i].name, players[x].name, team1.name, team2.name]
+    let match = [selectedType.name, players[i].name, players[x].name, team1.name, team2.name, divLabel]
     matches.push(match)
     console.log(matches)
     }}
@@ -238,13 +244,18 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 
 
 
-let div1matches = generateTeams(playersdiv1)
-let div2matches = generateTeams(playersdiv2)
+let div1matches = generateTeams(playersdiv1, '1')
+let div2matches = generateTeams(playersdiv2, '2')
+let div3matches = generateTeams(playersdiv3, '3')
+let div4matches = generateTeams(playersdiv4, '4')
 
-let finaldiv1Matches = reshuffleMatches(div1matches)
-let finaldiv2Matches = reshuffleMatches(div2matches)
+let finaldiv1Matches = div1matches
+let finaldiv2Matches = div2matches
+let finaldiv3Matches = div3matches
+let finaldiv4Matches = div4matches
+
 // console.log(finalMatches)
-let finalMatches = finaldiv1Matches.concat(finaldiv2Matches)
+let finalMatches = finaldiv1Matches.concat(finaldiv2Matches).concat(finaldiv3Matches).concat(finaldiv4Matches)
 
 const data = finalMatches;
 let csvContent = "data:text/csv;charset=utf-8," + data.map(e => e.join(",")).join("\n");
