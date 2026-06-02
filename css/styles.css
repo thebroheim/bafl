@@ -204,13 +204,8 @@ input {
 }
 
 /* Tables */
-#tables {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 20px;
 
-}
+
 
 #schedule {
     /* display: flex;
