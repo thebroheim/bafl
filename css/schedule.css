@@ -75,7 +75,8 @@ button {
 .tableContainer {
     display: flex;
     flex-direction: column;
-    flex: 0 0 500px; /* key fix */
+    flex: 0 0 45%; /* key fix */
+    min-width: 400px
 }
 
 table {
