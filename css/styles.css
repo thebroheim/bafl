@@ -221,8 +221,9 @@ input {
     margin: 20px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 60px;
+    /* gap: 60px; */
 }
 
 #champcontent h1{
@@ -231,28 +232,70 @@ input {
 }
 
 .champs {
-    border-top: white solid;
     display: flex;
-    width: 100%;
     gap: 10px;
-    justify-content: left;
-    overflow-x: scroll;
-    scrollbar-width: thin;
-    padding-bottom: 5px;
-    flex-direction: column;
+    overflow-x: auto;
+    align-items: flex-end;
 }
 
-.player {
+.hofCard {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    min-width: 300px;
+    width: 200px;
+    /* min-width: 200px; */
+    /* padding: 5px; */
+    align-items: center;
+    border: #24e3fd solid 3px;
+    box-shadow: 0 4px 15px rgba(36, 227, 253, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    /* 1. Tell the browser to animate changes smoothly */
+    transition: width 0.6s ease-out, min-width 0.6s ease-out, box-shadow 0.3s ease-out;
+
+    flex-shrink: 0;   /* STOP the browser from squishing cards when text is long */
+    flex-grow: 0;     /* STOP the browser from stretching cards automatically */
 }
 
-.player img {
+.hofCard:hover {
+    cursor: pointer;
+}
+
+.hofCard.expanded {
+    /* Physically grow the card so it pushes its neighbors */
+    width: 400px;
+    transition: width 0.6s ease-out, min-width 0.6s ease-out, box-shadow 0.3s ease-out;
+    
+    box-shadow: 0 10px 25px rgba(36, 227, 253, 0.4);
+}
+
+.hofCard h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #24e3fd;
+    margin: 15px 0 5px 0;
+}
+
+.hofCard h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+}
+
+.hofCard h2, 
+.hofCard h3 {
+    font-size: 95%;
+    width: 95%;          /* Keeps the text away from the absolute edges */
+    text-align: center;
+    word-wrap: break-word; /* Allows long names to split into two lines instead of breaking the card layout */
+}
+
+.hofCard img {
     aspect-ratio: 3/4;
-    width: 90%;
-    border: #24e3fd solid 3px;
+    width: 100%;
+    object-fit: cover; /* Prevents image distortion if the file isn't exactly 3:4 */
+    display: block; /* Removes tiny default whitespace at the bottom of images */
 }
 
 /* Knockout */
