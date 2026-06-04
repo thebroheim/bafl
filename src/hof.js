@@ -14,7 +14,7 @@ let players = [
     { name: 'Regi John', title: 'Season 1', imageSrc: '/images/Reg.png', div: '1' },
 
     // Div 2
-    { name: 'Sebastian Klarica', title: 'Season 12', imageSrc: "/images/BassSeason12Div2.png", div: '2'},
+    { name: 'Bass Klarica', title: 'Season 12', imageSrc: "/images/BassSeason12Div2.png", div: '2'},
     { name: 'Yasin Karatas', title: 'Season 11', imageSrc: '/images/YasinSeason11Div2.png', div: '2' },
     { name: 'Lachlan Thomson', title: 'Season 10', imageSrc: '/images/LachlanSeason10Div2.png', div: '2' },
     { name: 'John Hutchins', title: 'Season 9', imageSrc: '/images/JohnSeason9Div2.png', div: '2' },
@@ -24,12 +24,12 @@ let players = [
     { name: 'David Nguyen', title: 'Season 5', imageSrc: '/images/David.png', div: '2' },
     { name: 'John Hutchins', title: 'Season 4', imageSrc: '/images/John.png', div: '2' },
     // Misc
-    { name: 'Daniel Dunphy', title: 'No Rules Tournament', imageSrc: '/images/DanNoRulesMiscSeason7.png', div: 'misc' },
-    { name: 'Sam Harvey', title: 'Survival Tournament', imageSrc: '/images/SamSurvival1.png', div: 'misc' },
-    { name: 'Sam Harvey', title: 'Mystery Ball Tournament', imageSrc: '/images/SamMysteryBall1.png', div: 'misc' },
-    { name: 'Sam Harvey & Sebastian Klarica', title: 'Rush 2v2 Tournament', imageSrc: '/images/SamBass2v2Rush1.png', div: 'misc' },
-    { name: 'Sam Harvey', title: 'KO Tournament 2', imageSrc: '/images/SamKO2.png', div: 'misc' },
-    { name: 'Mackenzie Hyder', title: 'KO Tournament 1', imageSrc: '/images/MaccaKO1.png', div: 'misc' },
+    { name: 'Daniel Dunphy', title: 'No Rules', imageSrc: '/images/DanNoRulesMiscSeason7.png', div: 'misc' },
+    { name: 'Sam Harvey', title: 'Survival', imageSrc: '/images/SamSurvival1.png', div: 'misc' },
+    { name: 'Sam Harvey', title: 'Mystery Ball', imageSrc: '/images/SamMysteryBall1.png', div: 'misc' },
+    { name: 'Sam Harvey/Bass Klarica', title: 'Rush 2v2', imageSrc: '/images/SamBass2v2Rush1.png', div: 'misc' },
+    { name: 'Sam Harvey', title: 'KO 2', imageSrc: '/images/SamKO2.png', div: 'misc' },
+    { name: 'Mackenzie Hyder', title: 'KO 1', imageSrc: '/images/MaccaKO1.png', div: 'misc' },
     { name: 'Mackenzie Hyder', title: 'Season 4.5', imageSrc: '/images/Macca.png', div: 'misc' }
 
 ]

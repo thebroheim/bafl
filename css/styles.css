@@ -236,6 +236,9 @@ input {
     gap: 10px;
     overflow-x: auto;
     align-items: flex-end;
+    scrollbar-gutter: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #00a0eb #000000;
 }
 
 .hofCard {
@@ -303,6 +306,28 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* Scroll Bar */
+
+/* Apply to the specific container or 'body' */
+/* Chrome, Edge, Safari */
+.champs::-webkit-scrollbar {
+    height: 1px; /* Changed from width to height for horizontal scroll! */
+}
+
+.champs::-webkit-scrollbar-track {
+    background: #212121; /* Changed to match your dark theme */
+    border-radius: 5px;
+}
+
+.champs::-webkit-scrollbar-thumb {
+    background: #02000000;
+    border-radius: 5px;
+}
+
+.champs::-webkit-scrollbar-thumb:hover {
+    background: #24e3fd; /* Added your neon blue theme color on hover! */
 }
 
 
