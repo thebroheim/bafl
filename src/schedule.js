@@ -349,16 +349,6 @@ function displaySchedule(allMatches){
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
 }
 
-function convertToObjects(values) {
-  const headers = values[0]; // first row is the keys
-  return values.slice(1).map(row => {
-    let obj = {};
-    headers.forEach((key, i) => {
-      obj[key] = row[i]; // assign property from header → value
-    });
-    return obj;
-  });
-}
 
 function sortPlayers(players) {
   return players

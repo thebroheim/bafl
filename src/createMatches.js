@@ -8,17 +8,6 @@
   const SPREADSHEET_ID = "1eAhYqy0og9IEGeijDHTxvCnpQN8MD1v1FmE1TTDNGuk";
   const playersRange = "Table!A1:J18";
 
-  function convertToObjects(values) {
-    const headers = values[0]; // first row is the keys
-    return values.slice(1).map(row => {
-      let obj = {};
-      headers.forEach((key, i) => {
-        obj[key] = row[i]; // assign property from header → value
-      });
-      return obj;
-    });
-}
-
 async function getPlayers() {
   const response = await gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEET_ID,
@@ -67,17 +56,6 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
 }
 
 // /////////////////////////////////////////////////////////////// NEW CREATE MATCHES 
-function filterTeams(minOvr, maxOvr, type) {
-    const teams = teamSetFC26;
-    const filteredTeams = [];
-        teams.forEach(element => {
-            if (minOvr == null && element.gender == type) {
-                filteredTeams.push(element)
-            } else if (element.ovr >= minOvr && element.ovr < maxOvr && element.gender == type) 
-                filteredTeams.push(element);
-            }); 
-            return filteredTeams
-        };
         
     
 

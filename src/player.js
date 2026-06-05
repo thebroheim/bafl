@@ -1,17 +1,4 @@
-function filterTeams(minOvr, maxOvr, type, FC) {
-    let teams = teamSetFC25;
-    if (FC == 'FC26'){
-        teams = teamSetFC26
-    }
-    const filteredTeams = [];
-        teams.forEach(element => {
-            if (minOvr == null && element.gender == type) {
-                filteredTeams.push(element)
-            } else if (element.ovr >= minOvr && element.ovr < maxOvr && element.gender == type) 
-                filteredTeams.push(element);
-            }); 
-            return filteredTeams
-};
+
         
 
 
