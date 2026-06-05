@@ -1,47 +1,15 @@
-//   function convertToObjects(values) {
-//   const headers = values[0]; // first row is the keys
-//   return values.slice(1).map(row => {
-//     let obj = {};
-//     headers.forEach((key, i) => {
-//       obj[key] = row[i]; // assign property from header → value
-//     });
-//     return obj;
-//   });
-// }
+function filterMatches(matches){
+    const showMisc = document.getElementById("miscCheck").checked
+    const filteredMatches = matches.filter(m => {
+    const notForfeit = m.context !== 'forfeit';
+    const miscCheck = showMisc ? true : m.context !== 'misc';
+    
+    return notForfeit && miscCheck;
+});
 
-function convertToObjects(values) {
-  const headers = values[0];
 
-  return values.slice(1).map(row => {
-    let obj = {};
-
-    headers.forEach((key, i) => {
-      const val = row[i];
-
-      // Convert numbers that come in as strings
-      obj[key] = (typeof val === "string" && val.trim() !== "" && !isNaN(val))
-        ? Number(val)
-        : val;
-    });
-
-    return obj;
-  });
+return filteredMatches
 }
-
-    
-
-    function filterMatches(matches){
-        const showMisc = document.getElementById("miscCheck").checked
-        const filteredMatches = matches.filter(m => {
-        const notForfeit = m.context !== 'forfeit';
-        const miscCheck = showMisc ? true : m.context !== 'misc';
-        
-        return notForfeit && miscCheck;
-    });
-    
-
-    return filteredMatches
-    }
 
 let matches = []
 let rawMatches = []

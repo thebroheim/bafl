@@ -42,7 +42,7 @@ function getFilteredMatches() {
                           m.p2 === currentFilters.player;
 
     const matchesDiv = currentFilters.division === 'all' || 
-                       m.div === currentFilters.division;
+                       m.div == currentFilters.division;
 
     const isComplete = !!m.p1score;
     const matchesStatus = currentFilters.status === 'all' || 
@@ -344,8 +344,6 @@ function displaySchedule(allMatches){
   if(showToggle[0].finals == "TRUE"){
     finalsMatches = allMatches.filter(m => m.context === 'final' || m.context === 'promplayoff');
   }
-
-  console.log(finalsMatches)
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
 }
 
