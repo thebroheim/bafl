@@ -245,7 +245,7 @@ function createMatchHTML(match){
       let show1 = ''
       let show2= ``
 
-      if (match.reveal === "TRUE"){
+      if (match.reveal === "TRUE" || match.context == 'misc'){
         show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.p1team}</p></div>`
         show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.p2team}</p></div>`
       }
@@ -280,7 +280,8 @@ function createMatchHTML(match){
         
       `;
 
-      if (match.reveal === "TRUE" && (!match.p1score || match.p1score.trim() === "")) {
+      if (match.reveal === "TRUE" && (!match.p1score || match.p1score === null)) {
+        document.getElementById("upcomingMatches").style.display = ""
             const clone = div.cloneNode(true);
             let division = document.createElement("div")
             clone.prepend(division)
@@ -290,21 +291,25 @@ function createMatchHTML(match){
             const p1NameElem = clone.querySelector(`.p1Name`)
             const p2NameElem = clone.querySelector(`.p2Name`)
 
-            if(!match.context == 'misc'){
+            // Commented out Elo Check as Elo Used for World Cup Tournament
+            // if(!match.context == 'misc'){
               if (p1NameElem) {
               p1NameElem.innerHTML += `<br>(+${p1EloGainLoss[0]})`;
             }
             if (p2NameElem) {
                 p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
-            }}
-
-            return clone
+              }
+            // }}
+            console.log(clone)
+            console.log(document.getElementById("upcomingMatches"))
+            document.getElementById("upcomingMatches").appendChild(clone)
       }
       return div  
 }
 
 function displayScheduleContainer(matchList, divNum){
   let scheduleContainer = document.getElementById("schedule")
+
 
   // Create Division Schedule Container
   divisionContainer = document.createElement("div")
@@ -344,7 +349,7 @@ function displaySchedule(allMatches){
   if(showToggle[0].finals == "TRUE"){
     finalsMatches = allMatches.filter(m => m.context === 'final' || m.context === 'promplayoff');
   }
-  const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score.trim() === ""));
+  const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score == null));
 }
 
 
