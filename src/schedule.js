@@ -280,7 +280,7 @@ function createMatchHTML(match){
         
       `;
 
-      if (match.reveal === "TRUE" && (!match.p1score || match.p1score === null)) {
+      if (match.reveal === "TRUE" && (match.p1score === '')) {
         document.getElementById("upcomingMatches").style.display = ""
             const clone = div.cloneNode(true);
             let division = document.createElement("div")
