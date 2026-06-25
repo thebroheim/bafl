@@ -157,6 +157,7 @@ function displayTable(players, container, groupNumber){
     return
   }
 
+  players = sortPlayers(players, 'h2h')
   let tableDiv = document.getElementById(container)
 
   let tableContainer = document.createElement("div")
@@ -300,8 +301,7 @@ function createMatchHTML(match){
                 p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
               }
             // }}
-            console.log(clone)
-            console.log(document.getElementById("upcomingMatches"))
+          
             document.getElementById("upcomingMatches").appendChild(clone)
       }
       return div  
@@ -352,11 +352,63 @@ function displaySchedule(allMatches){
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score == null));
 }
 
+function getH2HPoints(a, b, matches) {
+  let aH2HPoints = 0;
+  let bH2HPoints = 0;
 
-function sortPlayers(players) {
-  return players
-    .filter(p => p.name && p.name.trim() !== "") // Remove players with no name
-    .sort((a, b) => (b.points - a.points) || (b.goaldifference - a.goaldifference));
+  // Filter matches where A and B played against each other
+  const directMatches = matchesRaw.filter(m => 
+    (m.p1 === a.name && m.p2 === b.name) ||
+    (m.p1 === b.name && m.p2 === a.name)
+  );
+
+  directMatches.forEach(match => {
+    const isAHome = match.p1 === a.name;
+    const aScore = isAHome ? match.p1score : match.p2score;
+    const bScore = isAHome ? match.p2score : match.p1score;
+
+    if (aScore > bScore) {
+      aH2HPoints += 3; // A wins
+    } else if (bScore > aScore) {
+      bH2HPoints += 3; // B wins
+    } else {
+      aH2HPoints += 1; // Draw
+      bH2HPoints += 1;
+    }
+  });
+
+  // JavaScript sort expects (b - a) for descending order.
+  // If B has more H2H points, this returns a positive number, moving B above A.
+  return bH2HPoints - aH2HPoints;
+}
+function sortPlayers(players, matches = []) {
+  // Clean up players list first
+  const validPlayers = players.filter(p => p.name && p.name.trim() !== "");
+  let sortMethod = showToggle[0].tiebreaker
+  if (sortMethod === 'goaldiff') {
+    return validPlayers.sort((a, b) => 
+      (b.points - a.points) || (b.goaldifference - a.goaldifference)
+    );
+  } 
+
+  if (sortMethod === "h2h") {
+    return validPlayers.sort((a, b) => {
+      // 1. Primary sort by overall points
+      if (b.points !== a.points) {
+        return b.points - a.points;
+      }
+
+      // 2. Tie-breaker: Head-to-Head points
+      const h2hResult = getH2HPoints(a, b, matches);
+      if (h2hResult !== 0) {
+        
+        return h2hResult; // Returns negative if 'b' is better, positive if 'a' is better
+      }
+
+      // 3. Fallback to overall goal difference if H2H is a draw
+      return b.goaldifference - a.goaldifference;
+    });
+  }
 }
 
 function isMatchComplete(match) {
@@ -429,7 +481,6 @@ async function loadData() {
   uniqueDivisions = [...new Set(players.map(player => player.div))].sort().filter((division)=> division != null);
 
   // Now run all your existing display logic here.
-let sortedPlayers = sortPlayers(players)
 
 
 
@@ -438,7 +489,7 @@ displayEloTable(seasonElo, `theSeasonEloTable`)
 displayEloTable(allTimeElo, `theAllTimeEloTable`)
 
 if (showToggle[0].show == "TRUE"){
-  displayGroupsOfTables(sortedPlayers)
+  displayGroupsOfTables(players)
   // displayMatches(matchesFinal)
   displaySchedule(matchesRaw)
 } else {
