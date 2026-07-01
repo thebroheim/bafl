@@ -157,7 +157,7 @@ function displayTable(players, container, groupNumber){
     return
   }
 
-  players = sortPlayers(players, 'h2h')
+  players = sortPlayers(players, matchesRaw)
   let tableDiv = document.getElementById(container)
 
   let tableContainer = document.createElement("div")
@@ -352,62 +352,126 @@ function displaySchedule(allMatches){
   const upcomingMatches = allMatches.filter(m=> m.reveal == 'TRUE' && (!m.p1score || m.p1score == null));
 }
 
-function getH2HPoints(a, b, matches) {
-  let aH2HPoints = 0;
-  let bH2HPoints = 0;
+function sortThreeWayTie(tiedTeams, matches) {
+  // 1. Create a map to hold mini-table stats for just these tied teams
+  const miniTable = {};
+  tiedTeams.forEach(team => {
+    miniTable[team.name] = { points: 0, goalDiff: 0, goalsFor: 0 };
+  });
 
-  // Filter matches where A and B played against each other
-  const directMatches = matchesRaw.filter(m => 
-    (m.p1 === a.name && m.p2 === b.name) ||
-    (m.p1 === b.name && m.p2 === a.name)
+  const tiedNames = Object.keys(miniTable);
+
+  // 2. Filter matches where BOTH players belong to the tied group
+  const directMatches = matches.filter(m => 
+    tiedNames.includes(m.p1) && tiedNames.includes(m.p2)
   );
 
+  // 3. Populate the mini-table stats
   directMatches.forEach(match => {
-    const isAHome = match.p1 === a.name;
-    const aScore = isAHome ? match.p1score : match.p2score;
-    const bScore = isAHome ? match.p2score : match.p1score;
+    const p1Stats = miniTable[match.p1];
+    const p2Stats = miniTable[match.p2];
 
-    if (aScore > bScore) {
-      aH2HPoints += 3; // A wins
-    } else if (bScore > aScore) {
-      bH2HPoints += 3; // B wins
+    p1Stats.goalsFor += match.p1score;
+    p2Stats.goalsFor += match.p2score;
+    
+    p1Stats.goalDiff += (match.p1score - match.p2score);
+    p2Stats.goalDiff += (match.p2score - match.p1score);
+
+    if (match.p1score > match.p2score) {
+      p1Stats.points += 3;
+    } else if (match.p2score > match.p1score) {
+      p2Stats.points += 3;
     } else {
-      aH2HPoints += 1; // Draw
-      bH2HPoints += 1;
+      p1Stats.points += 1;
+      p2Stats.points += 1;
     }
   });
 
-  // JavaScript sort expects (b - a) for descending order.
-  // If B has more H2H points, this returns a positive number, moving B above A.
-  return bH2HPoints - aH2HPoints;
+  // 4. Now use the standard .sort() leveraging our pre-calculated mini-table
+  return [...tiedTeams].sort((a, b) => {
+    const statsA = miniTable[a.name];
+    const statsB = miniTable[b.name];
+    console.log("")
+    console.log("Tiebreaker")
+    console.log(`Player: ${a.name} Points:${statsA.points} Goal Diff:${statsA.goalDiff} Goals For${statsA.goalsFor}`)
+    console.log(`Player: ${b.name} Points:${statsB.points} Goal Diff:${statsB.goalDiff} Goals For${statsB.goalsFor}`)
+    
+
+    // Tiebreaker 1: Head-to-Head Points in the mini-table
+    if (statsB.points !== statsA.points) {
+      console.log(`Result determined by H2H Points`)
+      return statsB.points - statsA.points;
+    }
+
+    // Tiebreaker 2: Head-to-Head Goal Difference
+    if (statsB.goalDiff !== statsA.goalDiff) {
+      console.log(`Result determined by H2H Goal Diff`)
+      return statsB.goalDiff - statsA.goalDiff;
+    }
+
+    // Tiebreaker 3: Head-to-Head Goals Scored
+    if (statsB.goalsFor !== statsA.goalsFor) {
+      console.log(`Result determined by H2H Points`)
+      return statsB.goalsFor - statsA.goalsFor;
+    }
+
+    // Fallback: If still perfectly tied, you'd fallback to overall group stats 
+    // (which you can access via a.overallGoalDiff, b.overallGoalDiff, etc.)
+
+    console.log(`Result determined by OVR Goal Diff`)
+
+    return (b.goaldifference || 0) - (a.goaldifference || 0);
+  });
 }
+
 function sortPlayers(players, matches = []) {
   // Clean up players list first
   const validPlayers = players.filter(p => p.name && p.name.trim() !== "");
-  let sortMethod = showToggle[0].tiebreaker
+  let sortMethod = showToggle[0].tiebreaker;
+
   if (sortMethod === 'goaldiff') {
     return validPlayers.sort((a, b) => 
       (b.points - a.points) || (b.goaldifference - a.goaldifference)
     );
   } 
 
+
   if (sortMethod === "h2h") {
-    return validPlayers.sort((a, b) => {
-      // 1. Primary sort by overall points
-      if (b.points !== a.points) {
-        return b.points - a.points;
+    // 1. Group players by their overall points total
+    const pointsGroups = {};
+    validPlayers.forEach(player => {
+      const pts = player.points;
+      if (!pointsGroups[pts]) {
+        pointsGroups[pts] = [];
       }
-
-      // 2. Tie-breaker: Head-to-Head points
-      const h2hResult = getH2HPoints(a, b, matches);
-      if (h2hResult !== 0) {
-        
-        return h2hResult; // Returns negative if 'b' is better, positive if 'a' is better
-      }
-
-      // 3. Fallback to overall goal difference if H2H is a draw
-      return b.goaldifference - a.goaldifference;
+      pointsGroups[pts].push(player);
     });
+
+    
+
+    // 2. Resolve ties within each point bucket
+    let resolvedStandings = [];
+    
+    // Sort point values descending (e.g., [9, 6, 3, 0])
+    const sortedPointKeys = Object.keys(pointsGroups).map(Number).sort((a, b) => b - a);
+
+    sortedPointKeys.forEach(pts => {
+      const tiedGroup = pointsGroups[pts];
+      
+
+      if (tiedGroup.length === 1) {
+        // No tie: add player directly
+        resolvedStandings.push(tiedGroup[0]);
+      } else {
+        // Tie detected (2, 3, or 4 players): route through your multi-way handler
+        // Note: For a 3-way tie, we need to pass down the overall group goal difference 
+        // to act as the fallback, matching your miniTable structure.
+        const resolvedGroup = sortThreeWayTie(tiedGroup, matches);
+        resolvedStandings = resolvedStandings.concat(resolvedGroup);
+      }
+    });
+
+    return resolvedStandings;
   }
 }
 
