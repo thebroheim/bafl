@@ -411,7 +411,7 @@ function sortThreeWayTie(tiedTeams, matches) {
 
     // Tiebreaker 3: Head-to-Head Goals Scored
     if (statsB.goalsFor !== statsA.goalsFor) {
-      console.log(`Result determined by H2H Points`)
+      console.log(`Result determined by H2H Goals For`)
       return statsB.goalsFor - statsA.goalsFor;
     }
 
