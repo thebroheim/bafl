@@ -393,8 +393,8 @@ function sortThreeWayTie(tiedTeams, matches) {
     const statsB = miniTable[b.name];
     console.log("")
     console.log("Tiebreaker")
-    console.log(`Player: ${a.name} Points:${statsA.points} Goal Diff:${statsA.goalDiff} Goals For${statsA.goalsFor}`)
-    console.log(`Player: ${b.name} Points:${statsB.points} Goal Diff:${statsB.goalDiff} Goals For${statsB.goalsFor}`)
+    console.log(`Player: ${a.name} Points:${statsA.points} Goal Diff:${statsA.goalDiff} Goals For: ${statsA.goalsFor} Overall Goal Diff: ${a.goaldifference}`)
+    console.log(`Player: ${b.name} Points:${statsB.points} Goal Diff:${statsB.goalDiff} Goals For: ${statsB.goalsFor} Overall Goal Diff: ${b.goaldifference}`)
     
 
     // Tiebreaker 1: Head-to-Head Points in the mini-table
