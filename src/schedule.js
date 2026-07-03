@@ -421,7 +421,7 @@ function sortThreeWayTie(tiedTeams, matches) {
     }
 
     if (b.goalsfor !== a.goalsfor){
-      console.log(`Result determined by overall goals for`)
+      console.log(`Result determined by OVR Goals for`)
       return (b.goalsfor || 0) - (a.goalsfor || 0)
     }
 
