@@ -415,12 +415,22 @@ function sortThreeWayTie(tiedTeams, matches) {
       return statsB.goalsFor - statsA.goalsFor;
     }
 
+    if (b.goaldifference !== a.goaldifference){
+      console.log(`Result determined by OVR Goal Diff`)
+      return (b.goaldifference || 0) - (a.goaldifference || 0)
+    }
+
+    if (b.goalsfor !== a.goalsfor){
+      console.log(`Result determined by overall goals for`)
+      return (b.goalsfor || 0) - (a.goalsfor || 0)
+    }
+
     // Fallback: If still perfectly tied, you'd fallback to overall group stats 
     // (which you can access via a.overallGoalDiff, b.overallGoalDiff, etc.)
 
-    console.log(`Result determined by OVR Goal Diff`)
+    
 
-    return (b.goaldifference || 0) - (a.goaldifference || 0);
+    return alert(`H2H Tiebreakers Could Not Determine the Group Placings for Group ${b.div}`);
   });
 }
 
