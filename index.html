@@ -1,45 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Ant FIFA League</title>
+    <title>Table</title>
+    <link rel="stylesheet" href="\css\styles.css">
+    <link rel="stylesheet" href="\css\schedule.css">
     <link rel="icon" href="images\BaflLogo.png">
-    <link rel="stylesheet" href="css\styles.css">
-    <!-- <script src="src\player.js"></script> -->
-    <script src="src\login.js"></script>
+    <script src="\src\teams.js"></script>
 </head>
+
 <body>
     <div id="header"></div>
     <script src="src\header.js"></script>
-    <div class = 'content'>
-        <div id="news">
-        <h1>The BAFL Times</h1>
-        <template id="tweetTemplate">
-            <div id="twitter">
-                <div class = "tweet">
-                    <h4>Alex "The Journalist" Villani</h4>
-                    <h6>@alexvilliani</h6>
-                    <p>This just in, the misc tournament is a coup from big dogs to get more trophies.<br><br>What is going to happen?!</p>
-                    <aside>1:54pm 8th January</aside>
-                </div>
-                <div class = "tweet">
-                    <h4>Alex "The Journalist" Villani</h4>
-                    <h6>@alexvilliani</h6>
-                    <p>This just in, the misc tournament is a coup from big dogs to get more trophies.<br><br>What is going to happen?!</p>
-                    <aside>1:54pm 8th January</aside>
-                </div>
-            </div>
-        </template>
-        <div class="news-section">
-        <div id="news-container"></div>
-        <div id="newsNav">
-        </div>
-        <button onclick="showNav()">Navigation Bar</button>
-        </div>
-        </div>
 
+    <main id="main">
+
+    <div id="loadingState" class="loader-container">
+      <div class="spinner"></div>
+      <p>Fetching BAFL Data...</p>
     </div>
-<script src="src/news.js"></script>
+    <div id='content' class="content hidden">
+
+
+      <div id="maintenance">
+      </div>
+      
+      <div id="table">
+
+      </div>
+      </div>
+      <div id="buttonsDivs">
+        <button class="filterBtn" data-type="clear">Clear Filter</button>
+        <button id="eloButton">Show Elo</button>
+      </div>
+      <div id="buttonsDivs">
+        <button class="filterBtn" data-type="status" data-value="complete">Complete</button>
+        <button class="filterBtn" data-type="status" data-value="incomplete">Incomplete</button>
+      </div>
+
+      <div id="eloTables" class="hidden">
+      <div id="seasonEloTable" class="eloTable">
+        <h4>Season Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theSeasonEloTable">
+
+          </tbody>
+          </table>
+      </div>
+
+         <div id="allTimeEloTable" class="eloTable">
+          <h4>All Time Elo</h4>
+          <table>
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ELO</th>
+            </tr>
+          </thead>
+          <tbody id="theAllTimeEloTable">
+
+          </tbody>
+          </table>
+      </div>
+      </div>
+      <div id="matches">
+        <div id="finals">
+        </div>
+        <div>
+          <div id="upcomingHide">
+              <div id="upcomingMatches" style="display: none;" class="matchesContainer">
+                <h3>Upcoming Matches</h3>
+              </div>
+              </div>
+          <div id="schedule">
+          </div>
+          </div>
+      </div>
+      </div>
+        
+
+
+      <div id="downloadMatches"></div>
+      <pre id="content" style="white-space: pre-wrap;"></pre>
+
+      <script src="https://apis.google.com/js/api.js"></script>
+
+      <script src="/src/utils.js"></script>
+      <script src="/src/schedule.js"></script>
+      <!-- <script src="\src\createMatches.js"></script> -->
+     </div>
+     </main>
+     
 </body>
