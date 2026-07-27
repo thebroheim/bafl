@@ -24,6 +24,7 @@ let players = [
     { name: 'David Nguyen', title: 'Season 5', imageSrc: '/images/David.png', div: '2' },
     { name: 'John Hutchins', title: 'Season 4', imageSrc: '/images/John.png', div: '2' },
     // Misc
+    { name: 'Sam Harvey', title: 'World Cup 26', imageSrc: '/images/SamWorldCupMisc.png', div: 'misc' },
     { name: 'Daniel Dunphy', title: 'No Rules', imageSrc: '/images/DanNoRulesMiscSeason7.png', div: 'misc' },
     { name: 'Sam Harvey', title: 'Survival', imageSrc: '/images/SamSurvival1.png', div: 'misc' },
     { name: 'Sam Harvey', title: 'Mystery Ball', imageSrc: '/images/SamMysteryBall1.png', div: 'misc' },
