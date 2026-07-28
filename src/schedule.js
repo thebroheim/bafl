@@ -118,9 +118,16 @@ function displayEloTable(data, containerId) {
   data.forEach(player => {
       let container = document.getElementById(containerId)
     const row = document.createElement("tr")
-      row.innerHTML = `
+    if(!player.Title == ''){
+        row.innerHTML = `
+        <td>(${player.Title}) ${player.Name}</td>
+        <td>${player.Elo}</td>`
+    } 
+    else {row.innerHTML = `
         <td>${player.Name}</td>
         <td>${player.Elo}</td>`
+      }
+
 
     container.appendChild(row)
   })
