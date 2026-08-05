@@ -28,7 +28,7 @@ const typeConfig = [
     {name: 'Strong', minOvr: 80, maxOvr: 83, type: 'Men'},
     {name: 'Mid', minOvr: 76, maxOvr: 80, type: 'Men'},
     // {name: 'Women', minOvr: null, maxOvr: null, type: 'Women'},
-    {name: 'International', minOvr: null, maxOvr: null, type: 'International'},
+    // {name: 'International', minOvr: null, maxOvr: null, type: 'International'},
 ];
 
 function teamSelect(teamsArray){
