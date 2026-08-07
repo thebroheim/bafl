@@ -196,12 +196,12 @@ async function init() {
   let playersdiv3 = playersFinal.filter(player => player.div == '3');
   let playersdiv4 = playersFinal.filter(player => player.div == '4');
 
-  let div1matches = generateTeams(playersdiv1, '1');
-  let div2matches = generateTeams(playersdiv2, '2');
+  let div1matches = reshuffleMatches(generateTeams(playersdiv1, '1'));
+  let div2matches = reshuffleMatches(generateTeams(playersdiv2, '2'));
   let div3matches = generateTeams(playersdiv3, '3');
   let div4matches = generateTeams(playersdiv4, '4');
 
-  let finalMatches = reshuffleMatches(div1matches.concat(div2matches).concat(div3matches).concat(div4matches));
+  let finalMatches = div1matches.concat(div2matches).concat(div3matches).concat(div4matches);
 
   let csvContent = "data:text/csv;charset=utf-8," + finalMatches.map(e => e.join(",")).join("\n");
 
