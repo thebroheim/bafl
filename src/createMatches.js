@@ -201,7 +201,7 @@ async function init() {
   let div3matches = generateTeams(playersdiv3, '3');
   let div4matches = generateTeams(playersdiv4, '4');
 
-  let finalMatches = div1matches.concat(div2matches).concat(div3matches).concat(div4matches);
+  let finalMatches = reshuffleMatches(div1matches.concat(div2matches).concat(div3matches).concat(div4matches));
 
   let csvContent = "data:text/csv;charset=utf-8," + finalMatches.map(e => e.join(",")).join("\n");
 
