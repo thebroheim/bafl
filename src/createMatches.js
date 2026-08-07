@@ -24,12 +24,12 @@ function checkMatchForDupe(array, firstPlayer, secondPlayer) {
 
 
 const typeConfig = [
-    {name: 'Elite', minOvr: 84, maxOvr: 100, type: 'Men'},
-    {name: 'Elite', minOvr: 84, maxOvr: 100, type: 'Men'},
-    {name: 'Strong', minOvr: 81, maxOvr: 84, type: 'Men'},
-    {name: 'Strong', minOvr: 81, maxOvr: 84, type: 'Men'},
-    {name: 'Mid', minOvr: 76, maxOvr: 78, type: 'Men'},
-    {name: 'Mid', minOvr: 78, maxOvr: 81, type: 'Men'},
+    {name: 'Elite', minOvr: 83, maxOvr: 100, type: 'Men'},
+    {name: 'Elite', minOvr: 83, maxOvr: 100, type: 'Men'},
+    {name: 'Strong', minOvr: 80, maxOvr: 83, type: 'Men'},
+    {name: 'Strong', minOvr: 80, maxOvr: 83, type: 'Men'},
+    {name: 'Mid', minOvr: 76, maxOvr: 80, type: 'Men'},
+    
     // {name: 'Women', minOvr: null, maxOvr: null, type: 'Women'},
     {name: 'International', minOvr: 80, maxOvr: 86, type: 'International'},
     {name: 'International', minOvr: 74, maxOvr: 79, type: 'International'},
