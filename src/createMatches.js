@@ -189,7 +189,14 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 
 
 async function init() {
-  const playersFinal = await loadPlayers();
+const rawPlayers = await loadPlayers();
+
+  // Filter out null/undefined players or players without a valid name
+  const playersFinal = rawPlayers.filter(player => 
+    player && 
+    typeof player.name === 'string' && 
+    player.name.trim() !== ''
+  );
 
   let playersdiv1 = playersFinal.filter(player => player.div == '1');
   let playersdiv2 = playersFinal.filter(player => player.div == '2');
