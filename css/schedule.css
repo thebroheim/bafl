@@ -76,7 +76,7 @@ button {
     display: flex;
     flex-direction: column;
     flex: 0 0 45%; /* key fix */
-    min-width: 400px
+    min-width: 60% /*Alter this to fit two width ways */
 }
 
 table {
