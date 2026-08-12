@@ -145,8 +145,8 @@ function eloWinLoss(p1, p2) {
   let p1Elo = Number(player1.Elo);
   let p2Elo = Number(player2.Elo);
 
-  const p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400)))) - p1Elo);
-  const p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400)))) - p2Elo);
+  const p1EloGain = Math.ceil((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400)))) - p1Elo);
+  const p2EloGain = Math.ceil((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400)))) - p2Elo);
 
   const p1EloLoss = p2EloGain; 
   const p2EloLoss = p1EloGain; 
