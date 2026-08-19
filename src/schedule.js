@@ -44,7 +44,10 @@ function getFilteredMatches() {
     const matchesDiv = currentFilters.division === 'all' || 
                        m.div == currentFilters.division;
 
-    const isComplete = !!m.p1score;
+const hasScore = (score) => score != null && score !== "";
+
+const isComplete = hasScore(m.p1score) && hasScore(m.p2score);
+
     const matchesStatus = currentFilters.status === 'all' || 
                           (currentFilters.status === 'complete' && isComplete) || 
                           (currentFilters.status === 'incomplete' && !isComplete);
@@ -145,8 +148,8 @@ function eloWinLoss(p1, p2) {
   let p1Elo = Number(player1.Elo);
   let p2Elo = Number(player2.Elo);
 
-  const p1EloGain = Math.ceil((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400)))) - p1Elo);
-  const p2EloGain = Math.ceil((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400)))) - p2Elo);
+  const p1EloGain = Math.round((p1Elo + 64 * (1 - 1 / (1 + 10**((p2Elo - p1Elo)/400)))) - p1Elo);
+  const p2EloGain = Math.round((p2Elo + 64 * (1 - 1 / (1 + 10**((p1Elo - p2Elo)/400)))) - p2Elo);
 
   const p1EloLoss = p2EloGain; 
   const p2EloLoss = p1EloGain; 
@@ -340,6 +343,8 @@ function displayScheduleContainer(matchList, divNum){
 
 function displaySchedule(allMatches){
   document.getElementById('schedule').innerHTML = ``
+  document.getElementById('upcomingMatches').innerHTML = `<h3>Upcoming Matches</h3>`
+
   if(allMatches.length == 0)[
     alert(`There are no matches to show matching the filter of:
       Player: ${currentFilters.player} || Division: ${currentFilters.division} || Status: ${currentFilters.status}
@@ -568,7 +573,7 @@ async function loadData() {
 matchesRaw = sortMatches(matchesRaw)
 displayEloTable(seasonElo, `theSeasonEloTable`)
 displayEloTable(allTimeElo, `theAllTimeEloTable`)
-
+showToggle[0].show = "TRUE"
 if (showToggle[0].show == "TRUE"){
   displayGroupsOfTables(players)
   // displayMatches(matchesFinal)
