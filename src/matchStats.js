@@ -482,7 +482,7 @@ appendLeaderboards(arrayIds)
 
 
 // Helper: All matches involving the player
-function getMatchesForPlayer(player, context) {
+function getMatchesForPlayer(player, context, division) {
     const season = document.getElementById("seasonSelect").value;
     const showMisc = document.getElementById("miscCheck").checked;
 
@@ -501,7 +501,9 @@ function getMatchesForPlayer(player, context) {
         // 4. Context (Finals) Logic
         const contextMatch = context ? m.context === context : true;
 
-        return notForfeit && miscCheck && playerMatch && seasonMatch && contextMatch;
+        const divMatch = division ? m.div === division : true;
+
+        return notForfeit && miscCheck && playerMatch && seasonMatch && contextMatch &&divMatch;
     });
 }
 // Total Matches
@@ -551,8 +553,8 @@ function getGoalsAgainst(player, matches = getMatchesForPlayer(player)) {
 }
 
 // Goal Difference
-function getGoalDifference(player) {
-    return getGoalsFor(player) - getGoalsAgainst(player);
+function getGoalDifference(player, matches = getMatchesForPlayer(player)) {
+    return getGoalsFor(player, matches) - getGoalsAgainst(player, matches);
 }
 
 // Biggest Win (returns scoreline)
@@ -586,20 +588,19 @@ function getGoalDifference(player) {
 // }
 
 
-function getBiggestWin(player) {
+function getBiggestWin(player, matches = getMatchesForPlayer(player)) {
     let biggest = null;
-    getMatchesForPlayer(player).forEach(match => {
+    matches.forEach(match => {
         let diff = 0;
-        let opponent = null
+        let opponent = null;
 
         if (match.p1 === player) {
             diff = match.p1score - match.p2score;
-            opponent = match.p2
+            opponent = match.p2;
         }
         else if (match.p2 === player) {
             diff = match.p2score - match.p1score;
-            opponent = match.p1
-        
+            opponent = match.p1;
         }
 
         if (diff > 0 && (!biggest || diff > biggest.diff)) {
@@ -609,22 +610,19 @@ function getBiggestWin(player) {
     return biggest;
 }
 
-
-//  Biggest Loss (returns scoreline) 
-function getBiggestLoss(player) {
+function getBiggestLoss(player, matches = getMatchesForPlayer(player)) {
     let biggest = null;
-    getMatchesForPlayer(player).forEach(match => {
+    matches.forEach(match => {
         let diff = 0;
-        let opponent = null
+        let opponent = null;
 
         if (match.p1 === player) {
             diff = match.p2score - match.p1score;
-            opponent = match.p2
+            opponent = match.p2;
         }
         else if (match.p2 === player) {
             diff = match.p1score - match.p2score;
-            opponent = match.p1
-        
+            opponent = match.p1;
         }
 
         if (diff > 0 && (!biggest || diff > biggest.diff)) {
@@ -635,68 +633,49 @@ function getBiggestLoss(player) {
 }
 
 // Win Rate
-function getWinRate(player) {
-    let total = getTotalMatches(player);
+function getWinRate(player, matches = getMatchesForPlayer(player)) {
+    const total = matches.length;
     if (total === 0) return 0;
-    return ((getTotalWins(player).length / total) * 100).toFixed(1);
+    return ((getTotalWins(player, matches).length / total) * 100).toFixed(1);
 }
 
 // Team Results
-function getTeamMost(player, type) {
-    // Determine which matches to use
-    let matches = getMatchesForPlayer(player).filter(match => {
+function getTeamMost(player, type, matches = getMatchesForPlayer(player)) {
+    let filtered = matches.filter(match => {
         if (type === "wins") {
             if (match.p1 === player) return match.p1score > match.p2score;
             if (match.p2 === player) return match.p2score > match.p1score;
         }
-
         if (type === "losses") {
             if (match.p1 === player) return match.p1score < match.p2score;
             if (match.p2 === player) return match.p2score < match.p1score;
         }
-
-        if (type === "draws") {
-            return match.p1score === match.p2score;
-        }
-
+        if (type === "draws") return match.p1score === match.p2score;
         return false;
     });
 
-    // NEW: Remove matches where the player's team is null
-    matches = matches.filter(match => {
+    filtered = filtered.filter(match => {
         const teamUsed = match.p1 === player ? match.p1team : match.p2team;
         return teamUsed != null && teamUsed !== "";
     });
 
     const teamCounts = {};
-
-    matches.forEach(match => {
+    filtered.forEach(match => {
         const teamUsed = match.p1 === player ? match.p1team : match.p2team;
         teamCounts[teamUsed] = (teamCounts[teamUsed] || 0) + 1;
     });
 
-    // Find the top team
-    let bestTeam = null;
-    let bestCount = 0;
-
+    let bestTeam = null, bestCount = 0;
     for (const team in teamCounts) {
-        if (teamCounts[team] > bestCount) {
-            bestTeam = team;
-            bestCount = teamCounts[team];
-        }
+        if (teamCounts[team] > bestCount) { bestTeam = team; bestCount = teamCounts[team]; }
     }
-
-    return {
-        team: bestTeam,
-        count: bestCount,
-        type
-    };
+    return { team: bestTeam, count: bestCount, type };
 }
 
 
 // Finals Results
-function getFinalResults(player, type) {
-    let matches = getMatchesForPlayer(player).filter(match => {
+function getFinalResults(player, type ,matches = getMatchesForPlayer(player)) {
+    let filtered = matches.filter(match => {
         if (type === "wins") {
             if (match.p1 === player) return match.p1score > match.p2score;
             if (match.p2 === player) return match.p2score > match.p1score;
@@ -709,7 +688,7 @@ function getFinalResults(player, type) {
 
         return false; // fallback
     });
-    let finalMatches = matches.filter(match => {
+    let finalMatches = filtered.filter(match => {
         if(match.context === "final"){
             return true
         }
@@ -718,59 +697,92 @@ function getFinalResults(player, type) {
 }
 
 // MAIN FUNCTION THAT UPDATES THE PAGE
+// module-level state — survives after playerStats() returns
+let currentDivFilter = 3; // 1 = Div1, 2 = Div2, 3 = All
+
+function switchMatchFilter(filter) {
+    currentDivFilter = filter;
+    playerStats(); // re-render with the new filter
+}
+
 function playerStats() {
     const player = document.getElementById("playerName").value;
-    
-    if(player == "Overall"){
-        generalStats()
-    } else {
+
+    if (player == "Overall") {
+        generalStats();
+        return;
+    }
+
     const statsContent = document.getElementById("statsContent");
 
+    const allMatches = getMatchesForPlayer(player);
+    const div1Matches = getMatchesForPlayer(player, null, 1);
+    const div2Matches = getMatchesForPlayer(player, null, 2);
 
-    const totalMatches = getTotalMatches(player);
-    const wins = getTotalWins(player);
-    const losses = getTotalLosses(player);
-    const draws = getTotalDraws(player);
-    const winRate = getWinRate(player);
-    const goalsFor = getGoalsFor(player);
-    const goalsAgainst = getGoalsAgainst(player);
-    const goalDiff = Math.round(getGoalDifference(player));
+    function buildStatsBlock(matches) {
+        const wins = getTotalWins(player, matches);
+        const losses = getTotalLosses(player, matches);
+        const draws = getTotalDraws(player, matches);
+        const winRate = getWinRate(player, matches);
+        const goalsFor = getGoalsFor(player, matches);
+        const goalsAgainst = getGoalsAgainst(player, matches);
+        const goalDiff = goalsFor - goalsAgainst;
+        const biggestWin = getBiggestWin(player, matches);
+        const biggestLoss = getBiggestLoss(player, matches);
+        const teamMostWins = getTeamMost(player, 'wins', matches);
+        const teamMostLosses = getTeamMost(player, 'losses', matches);
+        const finalWins = getFinalResults(player, 'wins', matches);
+        const finalLosses = getFinalResults(player, 'losses', matches);
 
-    const biggestWin = getBiggestWin(player);
-    const biggestLoss = getBiggestLoss(player);
-    const teamMostWins = getTeamMost(player, 'wins');
-    const teamMostLosses = getTeamMost(player, 'losses');
-    const finalWins = getFinalResults(player, 'wins');
-    const finalLosses = getFinalResults(player, 'losses');
+        return {
+            total: matches.length, wins, losses, draws, winRate,
+            goalsFor, goalsAgainst, goalDiff, biggestWin, biggestLoss,
+            teamMostWins, teamMostLosses, finalWins, finalLosses
+        };
+    }
+
+    const all = buildStatsBlock(allMatches);
+    const d1 = buildStatsBlock(div1Matches);
+    const d2 = buildStatsBlock(div2Matches);
+
+    // pick which block to display based on the persisted filter state
+    let statsMatches;
+    if (currentDivFilter === 1) statsMatches = d1;
+    else if (currentDivFilter === 2) statsMatches = d2;
+    else statsMatches = all;
 
     statsContent.innerHTML = `
         <h2>${player}'s Stats</h2>
+        <div>
+            <button onclick="switchMatchFilter(1)" class="${currentDivFilter === 1 ? 'selectedBtn' : ''}">Div 1</button>
+            <button onclick="switchMatchFilter(3)" class="${currentDivFilter === 3 ? 'selectedBtn' : ''}">All</button>
+            <button onclick="switchMatchFilter(2)" class="${currentDivFilter === 2 ? 'selectedBtn' : ''}">Div 2</button>
+        </div>
         <div id="statBoxes">
-            <div class="statBoxLarge"><p><strong>Total Matches:</strong> ${totalMatches}</p>
-            <p><strong>Wins: </strong> ${wins.length}</p>
-            <p><strong>Losses: </strong> ${losses.length}</p>
-            <p><strong>Draws: </strong> ${draws}</p>
-            <p><strong>Win Rate:</strong>  ${winRate}%</p></div>
+            <div class="statBoxLarge"><p><strong>Matches:</strong> ${statsMatches.total}</p>
+            <p><strong>Wins: </strong> ${statsMatches.wins.length}</p>
+            <p><strong>Losses: </strong> ${statsMatches.losses.length}</p>
+            <p><strong>Draws: </strong> ${statsMatches.draws}</p>
+            <p><strong>Win Rate:</strong>  ${statsMatches.winRate}%</p></div>
 
-            <div class="statBoxSmall"><p><strong>Goals For: </strong> ${goalsFor}</p></div>
-            <div class="statBoxSmall"><p><strong>Goals Against:</strong> ${goalsAgainst}</p></div>
-            <div class="statBoxSmall"><p><strong>Goal Difference:</strong> ${goalDiff}</p></div>
+            <div class="statBoxSmall"><p><strong>Goals For: </strong> ${statsMatches.goalsFor}</p></div>
+            <div class="statBoxSmall"><p><strong>Goals Against:</strong> ${statsMatches.goalsAgainst}</p></div>
+            <div class="statBoxSmall"><p><strong>Goal Diff:</strong> ${statsMatches.goalDiff}</p></div>
+
             <div class="statBoxMedium"><p><strong>Biggest Win:</strong> ${
-                biggestWin ? 
-                `${biggestWin.match.p1score}-${biggestWin.match.p2score} vs ${biggestWin.opponent}` : "None"
+                statsMatches.biggestWin ? `${statsMatches.biggestWin.match.p1score}-${statsMatches.biggestWin.match.p2score} vs ${statsMatches.biggestWin.opponent}` : "None"
             }</p></div>
-            <div class="statBoxMedium"><p><strong>Biggest Loss:</strong> ${biggestLoss ? 
-                `${biggestLoss.match.p1score}-${biggestLoss.match.p2score} vs ${biggestLoss.opponent}` : "None"
+            <div class="statBoxMedium"><p><strong>Biggest Loss:</strong> ${
+                statsMatches.biggestLoss ? `${statsMatches.biggestLoss.match.p1score}-${statsMatches.biggestLoss.match.p2score} vs ${statsMatches.biggestLoss.opponent}` : "None"
             }</p></div>
 
-            <div class="statBoxMedium"><p><strong>Best Team:</strong> ${teamMostWins.team} --- ${teamMostWins.count} wins</p></div>
-            <div class="statBoxMedium"><p><strong>Worst Team:</strong> ${teamMostLosses.team} --- ${teamMostLosses.count} losses</p></div>
-            <div class="statBoxSmall"><p><strong>Final Wins:</strong> ${finalWins.length}</p></div>
-            <div class="statBoxSmall"><p><strong>Final Losses:</strong> ${finalLosses.length}</p></div>
+            <div class="statBoxMedium"><p><strong>Best Team:</strong> ${statsMatches.teamMostWins.team ?? "None"} --- ${statsMatches.teamMostWins.count} wins</p></div>
+            <div class="statBoxMedium"><p><strong>Worst Team:</strong> ${statsMatches.teamMostLosses.team ?? "None"} --- ${statsMatches.teamMostLosses.count} losses</p></div>
 
-        </p></div>
-    `
-    ;}
+            <div class="statBoxSmall"><p><strong>Final Wins:</strong> ${statsMatches.finalWins.length}</p></div>
+            <div class="statBoxSmall"><p><strong>Final Losses:</strong> ${statsMatches.finalLosses.length}</p></div>
+        </div>
+    `;
 }
 
 // Head to Head
