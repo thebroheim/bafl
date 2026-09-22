@@ -212,10 +212,15 @@ const testhof = [
 
 
 
-function getWinRates(){
+// All these "get...for all players" functions now accept an optional `division`
+// (1, 2, or undefined/null for all) and pass it through to getMatchesForPlayer
+// so the leaderboards on the Overall Stats page can be filtered by division.
+
+function getWinRates(division){
     let winRates = []
     players.forEach(player => {
-        let winRate = getWinRate(player)
+        let matches = getMatchesForPlayer(player, null, division)
+        let winRate = getWinRate(player, matches)
         winRates.push([player, winRate])
     })
     return winRates
@@ -248,10 +253,11 @@ function getTitles() {
     return { sortedDiv1, sortedDiv2 };
 }
 
-function getGoalDifferences(){
-        let goalDiffs = []
+function getGoalDifferences(division){
+    let goalDiffs = []
     players.forEach(player => {
-        let goalDiff = getGoalDifference(player)
+        let matches = getMatchesForPlayer(player, null, division)
+        let goalDiff = getGoalDifference(player, matches)
         goalDiffs.push([player, goalDiff])
     })
     return goalDiffs
@@ -261,29 +267,30 @@ function sortByValue(arr, descending = true) {
     return arr.slice().sort((a, b) => descending ? b[1] - a[1] : a[1] - b[1]);
 }
 
-function getAllGoalsAgainst(){
-        let total = []
+function getAllGoalsAgainst(division){
+    let total = []
     players.forEach(player => {
-
-        let goalsAgainst = getGoalsAgainst(player)
+        let matches = getMatchesForPlayer(player, null, division)
+        let goalsAgainst = getGoalsAgainst(player, matches)
         total.push([player, goalsAgainst])
     })
     return total
 }
-function getAllGoalsFor(){
-        let total = []
+function getAllGoalsFor(division){
+    let total = []
     players.forEach(player => {
-        let goalsFor = getGoalsFor(player)
+        let matches = getMatchesForPlayer(player, null, division)
+        let goalsFor = getGoalsFor(player, matches)
         total.push([player, goalsFor])
     })
     return total
 }
 
-function getBiggestWinOfAll() {
+function getBiggestWinOfAll(division) {
     let biggestOverall = null;
 
     players.forEach(player => {
-        const matches = getMatchesForPlayer(player);
+        const matches = getMatchesForPlayer(player, null, division);
         
         matches.forEach(match => {
             let playerScore, opponentScore, opponent;
@@ -318,13 +325,15 @@ function getBiggestWinOfAll() {
     return biggestOverall;
 }
 
-function getBestTeamOfAll(type, topN = 3) {
+function getBestTeamOfAll(type, division) {
     const teamCounts = {};
-    const season = document.getElementById("seasonSelect").value;
 
-
-    // 2. Loop through the filtered list instead of the global matches array
+    // Loop through the filtered global "matches" list, applying the same
+    // division filter used elsewhere (matches on div is coerced to Number
+    // since data loaded from Google Sheets often arrives as strings).
     matches.forEach(match => {
+        if (division && Number(match.div) !== Number(division)) return;
+
         let team1 = match.p1team;
         let team2 = match.p2team;
 
@@ -359,11 +368,11 @@ function getBestTeamOfAll(type, topN = 3) {
 }
 
 
-function getFinalWinRates(){
+function getFinalWinRates(division){
     let finalsWinRates = [];
     players.forEach(player => {
-        let finalsMatches = getMatchesForPlayer(player, 'final');
-        let totalFinalWins = getFinalResults(player, 'wins')
+        let finalsMatches = getMatchesForPlayer(player, 'final', division);
+        let totalFinalWins = getFinalResults(player, 'wins', finalsMatches)
         let finalWinRate = (totalFinalWins.length / finalsMatches.length)*100
         
 
@@ -383,6 +392,14 @@ function getFinalWinRates(){
 }
 
 
+// Module-level filter state for the Overall Stats page.
+// 1 = Div 1 only, 2 = Div 2 only, 3 = All divisions.
+let currentGeneralDivFilter = 3;
+
+function switchGeneralDivFilter(filter){
+    currentGeneralDivFilter = filter;
+    generalStats();
+}
 
 function generalStats(){
     console.log(players)
@@ -392,17 +409,22 @@ function generalStats(){
     let options = document.getElementById("options")
     options.children[0].style.backgroundColor = "#7979796e"
     options.children[1].style.backgroundColor = ""
-    const bestWinRate = sortByValue(getWinRates(), true);
+
+    // "All" (3) maps to undefined so getMatchesForPlayer's divMatch check
+    // is skipped entirely, same convention used on the player stats page.
+    const division = currentGeneralDivFilter === 3 ? undefined : currentGeneralDivFilter;
+
+    const bestWinRate = sortByValue(getWinRates(division), true);
     const div1Titles = getTitles().sortedDiv1;
     const div2Titles = getTitles().sortedDiv2;
-    const bestGoalDiff = sortByValue(getGoalDifferences(), true);
-    const worstGoalDiff = sortByValue(getGoalDifferences(), false);
-    const mostGoalsFor = sortByValue(getAllGoalsFor(), true)[0]
-    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(), true)[0]
-    const biggestWinOfAll = getBiggestWinOfAll();
-    const bestTeamOfAll = getBestTeamOfAll('wins');
-    const worstTeamOfAll = getBestTeamOfAll('losses');
-    const finalWinRates = sortByValue(getFinalWinRates(),true);
+    const bestGoalDiff = sortByValue(getGoalDifferences(division), true);
+    const worstGoalDiff = sortByValue(getGoalDifferences(division), false);
+    const mostGoalsFor = sortByValue(getAllGoalsFor(division), true)[0]
+    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(division), true)[0]
+    const biggestWinOfAll = getBiggestWinOfAll(division);
+    const bestTeamOfAll = getBestTeamOfAll('wins', division);
+    const worstTeamOfAll = getBestTeamOfAll('losses', division);
+    const finalWinRates = sortByValue(getFinalWinRates(division),true);
 
     function createLeaderboard(array, entries, suffix){
         let counter = 1
@@ -452,6 +474,11 @@ function generalStats(){
     const statsContent = document.getElementById("statsContent");
     statsContent.innerHTML = `
     <h2>Overall Stats</h2>
+    <div class="btnFilters">
+        <button onclick="switchGeneralDivFilter(1)" class="${currentGeneralDivFilter === 1 ? 'selectedBtn' : ''}">Div 1</button>
+        <button onclick="switchGeneralDivFilter(3)" class="${currentGeneralDivFilter === 3 ? 'selectedBtn' : ''}">All</button>
+        <button onclick="switchGeneralDivFilter(2)" class="${currentGeneralDivFilter === 2 ? 'selectedBtn' : ''}">Div 2</button>
+    </div>
     <div id="statBoxes">
             <div class="statBoxSmallLeaderboard" id="bestWinRateLeaderboard"><p><strong>Best Win Rate: </strong></p>
             </div> 
@@ -501,23 +528,18 @@ function getMatchesForPlayer(player, context, division) {
         // 4. Context (Finals) Logic
         const contextMatch = context ? m.context === context : true;
 
-        const divMatch = division ? m.div === division : true;
+        // 5. Division Logic — Number() coercion handles data loaded from
+        // Google Sheets, which often comes through as strings ("1" vs 1).
+        const divMatch = division ? Number(m.div) === Number(division) : true;
 
         return notForfeit && miscCheck && playerMatch && seasonMatch && contextMatch &&divMatch;
     });
 }
 // Total Matches
-function getTotalMatches(player) {
-    return getMatchesForPlayer(player).length;
+function getTotalMatches(player, matches = getMatchesForPlayer(player)) {
+    return matches.length;
 }
 // Total Wins
-function getTotalWins(player) {
-    return getMatchesForPlayer(player).filter(match => {
-        if (match.p1 === player) return match.p1score > match.p2score;
-        if (match.p2 === player) return match.p2score > match.p1score;
-    });
-}
-// Total Losses
 function getTotalWins(player, matches = getMatchesForPlayer(player)) {
     return matches.filter(match => {
         if (match.p1 === player) return match.p1score > match.p2score;
@@ -557,37 +579,6 @@ function getGoalDifference(player, matches = getMatchesForPlayer(player)) {
     return getGoalsFor(player, matches) - getGoalsAgainst(player, matches);
 }
 
-// Biggest Win (returns scoreline)
-// function getBiggestWin(player) {
-//     let biggest = null;
-
-//     getMatchesForPlayer(player).forEach(match => {
-//         let diff = 0;
-//         let tempOpponent, tempWinScore, tempLoseScore;
-
-//         if (match.p1 === player) {
-//             diff = match.p1score - match.p2score;
-//             tempOpponent = match.p2;
-//             tempWinScore = match.p1score;
-//             tempLoseScore = match.p2score;
-//         } else if (match.p2 === player) {
-//             diff = match.p2score - match.p1score;
-//             tempOpponent = match.p1;
-//             tempWinScore = match.p2score;
-//             tempLoseScore = match.p1score;
-//         }
-
-//         const absDiff = Math.abs(diff);
-
-//         if (!biggest || absDiff > biggest.diff) {
-//             biggest = { match, diff: absDiff, opponent: tempOpponent, winScore: tempWinScore, loseScore: tempLoseScore };
-//         }
-//     });
-
-//     return biggest;
-// }
-
-
 function getBiggestWin(player, matches = getMatchesForPlayer(player)) {
     let biggest = null;
     matches.forEach(match => {
@@ -610,6 +601,8 @@ function getBiggestWin(player, matches = getMatchesForPlayer(player)) {
     return biggest;
 }
 
+
+//  Biggest Loss (returns scoreline) 
 function getBiggestLoss(player, matches = getMatchesForPlayer(player)) {
     let biggest = null;
     matches.forEach(match => {
@@ -674,7 +667,7 @@ function getTeamMost(player, type, matches = getMatchesForPlayer(player)) {
 
 
 // Finals Results
-function getFinalResults(player, type ,matches = getMatchesForPlayer(player)) {
+function getFinalResults(player, type, matches = getMatchesForPlayer(player)) {
     let filtered = matches.filter(match => {
         if (type === "wins") {
             if (match.p1 === player) return match.p1score > match.p2score;
