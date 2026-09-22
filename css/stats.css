@@ -202,3 +202,15 @@ ol::-webkit-scrollbar-thumb {
 }
 
 }
+
+.btnFilters{
+  display: flex;
+  padding: 10px
+}
+.btnFilters *{
+ width: 80px 
+}
+
+.selectedBtn {
+  background-color: #454545;
+}
