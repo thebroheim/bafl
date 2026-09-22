@@ -753,7 +753,7 @@ function playerStats() {
 
     statsContent.innerHTML = `
         <h2>${player}'s Stats</h2>
-        <div>
+        <div class="btnFilters">
             <button onclick="switchMatchFilter(1)" class="${currentDivFilter === 1 ? 'selectedBtn' : ''}">Div 1</button>
             <button onclick="switchMatchFilter(3)" class="${currentDivFilter === 3 ? 'selectedBtn' : ''}">All</button>
             <button onclick="switchMatchFilter(2)" class="${currentDivFilter === 2 ? 'selectedBtn' : ''}">Div 2</button>
