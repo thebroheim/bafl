@@ -220,6 +220,7 @@ function getWinRates(division){
     let winRates = []
     players.forEach(player => {
         let matches = getMatchesForPlayer(player, null, division)
+        if (matches.length === 0) return  // 👈 skip players with no matches
         let winRate = getWinRate(player, matches)
         winRates.push([player, winRate])
     })
@@ -257,6 +258,7 @@ function getGoalDifferences(division){
     let goalDiffs = []
     players.forEach(player => {
         let matches = getMatchesForPlayer(player, null, division)
+        if (matches.length === 0) return  // 👈
         let goalDiff = getGoalDifference(player, matches)
         goalDiffs.push([player, goalDiff])
     })
@@ -271,15 +273,18 @@ function getAllGoalsAgainst(division){
     let total = []
     players.forEach(player => {
         let matches = getMatchesForPlayer(player, null, division)
+        if (matches.length === 0) return  // 👈
         let goalsAgainst = getGoalsAgainst(player, matches)
         total.push([player, goalsAgainst])
     })
     return total
 }
+
 function getAllGoalsFor(division){
     let total = []
     players.forEach(player => {
         let matches = getMatchesForPlayer(player, null, division)
+        if (matches.length === 0) return  // 👈
         let goalsFor = getGoalsFor(player, matches)
         total.push([player, goalsFor])
     })
@@ -327,13 +332,15 @@ function getBiggestWinOfAll(division) {
 
 function getBestTeamOfAll(type, division) {
     const teamCounts = {};
+    const season = document.getElementById("seasonSelect").value;
 
     // Loop through the filtered global "matches" list, applying the same
     // division filter used elsewhere (matches on div is coerced to Number
     // since data loaded from Google Sheets often arrives as strings).
     matches.forEach(match => {
         if (division && Number(match.div) !== Number(division)) return;
-
+        const seasonMatch = season === "All" ? true : match.season === Number(season); // 👈 add this
+        if (!seasonMatch) return;
         let team1 = match.p1team;
         let team2 = match.p2team;
 
@@ -419,8 +426,8 @@ function generalStats(){
     const div2Titles = getTitles().sortedDiv2;
     const bestGoalDiff = sortByValue(getGoalDifferences(division), true);
     const worstGoalDiff = sortByValue(getGoalDifferences(division), false);
-    const mostGoalsFor = sortByValue(getAllGoalsFor(division), true)[0]
-    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(division), true)[0]
+    const mostGoalsFor = sortByValue(getAllGoalsFor(division), true)
+    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(division), true)
     const biggestWinOfAll = getBiggestWinOfAll(division);
     const bestTeamOfAll = getBestTeamOfAll('wins', division);
     const worstTeamOfAll = getBestTeamOfAll('losses', division);
@@ -458,6 +465,8 @@ function generalStats(){
     const bestTeamLeaderboard = createLeaderboard(bestTeamOfAll, 30, ' wins');
     const worstTeamLeaderboard = createLeaderboard(worstTeamOfAll, 30, ' losses')
     const finalWinRatesLeaderboard = createLeaderboard(finalWinRates, 10, '%')
+    const mostGoalsForLeaderboard = createLeaderboard(mostGoalsFor, 30, '')
+    const mostGoalsAgainstLeaderboard = createLeaderboard(mostGoalsAgainst, 30, '')
 
 
      const arrayIds = [
@@ -466,6 +475,8 @@ function generalStats(){
         ['finalWinRatesLeaderboard', finalWinRatesLeaderboard],
         ["bestTeamLeaderboard", bestTeamLeaderboard],
         ["worstTeamLeaderboard", worstTeamLeaderboard],
+        ["mostGoalsAgainstLeaderboard",mostGoalsAgainstLeaderboard],
+        ["mostGoalsForLeaderboard",mostGoalsForLeaderboard]
     ]
 
     
@@ -487,15 +498,16 @@ function generalStats(){
             <div class="statBoxSmallLeaderboard" id="finalWinRatesLeaderboard"><p><strong>Final Win Rate: </strong></p>
             </div> 
 
-            <div class="statBoxSmall"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
-            <div class="statBoxSmall"><p><strong>Most Goals For: </strong>${mostGoalsFor[0]} [${mostGoalsFor[1]}]</p></div>
-            <div class="statBoxMedium"><p><strong>Most Goals Against: </strong>${mostGoalsAgainst[0]} [${mostGoalsAgainst[1]}]</p></div>
-            <div class="statBoxMedium"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
+
+            <div class="statBoxSmallLeaderboard" id="mostGoalsForLeaderboard"><p><strong>Most Goals For: </strong></p></div>
+            <div class="statBoxSmallLeaderboard" id="mostGoalsAgainstLeaderboard"><p><strong>Most Goals Against: </strong></p></div>
+            <div class="statBoxSmall"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
             <div class="statBoxMediumLeaderboard" id="bestTeamLeaderboard"><p><strong>Best Teams: </strong></p>
             </div> 
             <div class="statBoxMediumLeaderboard" id="worstTeamLeaderboard"><p><strong>Worst Teams: </strong></p>
             </div> 
+            <div class="statBoxMedium"><p><strong>Most Div 1 Titles:</strong> ${div1Titles[0][0]}  [${div1Titles[0][1]}]</p></div>
+            <div class="statBoxMedium"><p><strong>Most Div 2 Titles:</strong> ${div2Titles[0][0]}  [${div2Titles[0][1]}]</p></div>
     </div>
     `;
 
