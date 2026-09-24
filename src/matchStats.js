@@ -100,132 +100,7 @@ players.forEach(player => {
 })();
 
 
-//Required Structure For Matches
-// { matchType: "strong", p1: "Nick", p2: "Ezekiel", p1score: 0, p2score: 3, p1team: "Liverpool", p2team: "Arsenal", season: 3, context: 'finals' }
-
-const testmatches = [
-  { matchType: null, p1: "Dan", p1score: 2, p2: "Lachlan", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Sam", p1score: 2, p2: "David", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Kelvin", p1score: 2, p2: "Alex", p2score: 2, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Lei", p1score: 5, p2: "Oscar", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "David", p1score: 0, p2: "Dan", p2score: 3, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Alex", p1score: 1, p2: "Lachlan", p2score: 0, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Oscar", p1score: 0, p2: "Sam", p2score: 7, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Lei", p1score: 2, p2: "Kelvin", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Dan", p1score: 3, p2: "Alex", p2score: 3, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "David", p1score: 0, p2: "Oscar", p2score: 0, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Lachlan", p1score: 3, p2: "Lei", p2score: 6, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Sam", p1score: 5, p2: "Kelvin", p2score: 2, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Oscar", p1score: 1, p2: "Dan", p2score: 0, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Alex", p1score: 1, p2: "Lei", p2score: 6, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Kelvin", p1score: 2, p2: "David", p2score: 2, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Lachlan", p1score: 0, p2: "Sam", p2score: 4, p1team: null, p2team: null, div: 1, season: 8, context: "final" },
-  { matchType: null, p1: "Dan", p1score: 2, p2: "Lei", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Oscar", p1score: 1, p2: "Kelvin", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Alex", p1score: 0, p2: "Sam", p2score: 5, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "David", p1score: 3, p2: "Lachlan", p2score: 2, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Kelvin", p1score: 1, p2: "Dan", p2score: 3, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Sam", p1score: 8, p2: "Lei", p2score: 2, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Lachlan", p1score: 1, p2: "Oscar", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "David", p1score: 1, p2: "Alex", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Dan", p1score: 2, p2: "Sam", p2score: 1, p1team: null, p2team: null, div: 1, season: 8, context: "final"},
-  { matchType: null, p1: "Kelvin", p1score: 1, p2: "Lachlan", p2score: 0, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Lei", p1score: 5, p2: "David", p2score: 0, p1team: null, p2team: null, div: 1, season: 8, context: null },
-  { matchType: null, p1: "Oscar", p1score: 0, p2: "Alex", p2score: 3, p1team: null, p2team: null, div: 1, season: 8, context: "forfeit" },
-  { matchType: null, p1: "John", p1score: 7, p2: "Ricardo", p2score: 0, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Dru", p1score: 4, p2: "Justin", p2score: 2, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Jude", p1score: 0, p2: "Brent", p2score: 1, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "MJ", p1score: 0, p2: "Lachy W", p2score: 3, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Ricardo", p1score: 0, p2: "Elliot", p2score: 3, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Brent", p1score: 2, p2: "John", p2score: 0, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Lachy W", p1score: 0, p2: "Dru", p2score: 1, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "MJ", p1score: 2, p2: "Jude", p2score: 3, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Elliot", p1score: 2, p2: "Justin", p2score: 0, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Ricardo", p1score: 0, p2: "Brent", p2score: 3, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "John", p1score: 4, p2: "MJ", p2score: 1, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Dru", p1score: 2, p2: "Jude", p2score: 2, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Brent", p1score: 2, p2: "Elliot", p2score: 0, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Lachy W", p1score: 3, p2: "Justin", p2score: 0, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "MJ", p1score: 0, p2: "Ricardo", p2score: 0, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Dru", p1score: 6, p2: "John", p2score: 3, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Elliot", p1score: 3, p2: "Lachy W", p2score: 1, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Brent", p1score: 3, p2: "MJ", p2score: 1, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Justin", p1score: 0, p2: "Jude", p2score: 10, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Ricardo", p1score: 0, p2: "Dru", p2score: 8, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "MJ", p1score: 2, p2: "Elliot", p2score: 2, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Jude", p1score: 2, p2: "Lachy W", p2score: 2, p1team: null, p2team: null, div: 2, season: 8, context: null },
-  { matchType: null, p1: "Sam", p1score: 1, p2: "Dan", p2score: 0, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
-  { matchType: null, p1: "Alex", p1score: 2, p2: "Brent", p2score: 2, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
-  { matchType: null, p1: "Dan", p1score: 7, p2: "Brent", p2score: 1, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
-  { matchType: null, p1: "Dan", p1score: 4, p2: "Sam", p2score: 1, p1team: null, p2team: null, div: 1, season: 9, context: "final" },
-  { matchType: null, p1: "Lachy W", p1score: 7, p2: "Dru", p2score: 0, p1team: null, p2team: null, div: 1, season: 9, context: "relplayoff" },
-  { matchType: null, p1: "MJ", p1score: 2, p2: "Jude", p2score: 1, p1team: null, p2team: null, div: 2, season: 9, context: "promplayoff" },
-  { matchType: "Women", p1: "MJ", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Paris Saint-Germain", p2team: "Arsenal", div: 1, season: 11, context: "forfeit"},
-  { matchType: "Strong", p1: "Lachy W", p1score: 1, p2: "Sam", p2score: 5, p1team: "Tottenham Hotspur", p2team: "Milano (AC Milan)", div: 1, season: 11, context: null },
-  { matchType: "Elite", p1: "Dan", p1score: 2, p2: "Kelvin", p2score: 0, p1team: "Manchester City", p2team: "FC Bayern Munchen", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Alex", p1score: 8, p2: "Lachlan", p2score: 1, p1team: "Paris Saint-Germain", p2team: "Arsenal", div: 1, season: 11, context: null },
-  { matchType: "Strong", p1: "Brent", p1score: 5, p2: "MJ", p2score: 4, p1team: "Bergamo Calcio (Atalanta)", p2team: "Atletico Madrid", div: 1, season: 11, context: null },
-  { matchType: "Strong", p1: "Oscar", p1score: 0, p2: "Sam", p2score: 3, p1team: "Juventus", p2team: "Aston Villa", div: 1, season: 11, context: "forfeit" },
-  { matchType: "Elite", p1: "Kelvin", p1score: 1, p2: "Lachy W", p2score: 2, p1team: "FC Bayern Munchen", p2team: "Bayer 04 Leverkusen", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Dan", p1score: 2, p2: "Lachlan", p2score: 0, p1team: "Olympique Lyonnais", p2team: "Crystal Palace", div: 1, season: 11, context: null },
-  { matchType: "Strong", p1: "Alex", p1score: 8, p2: "Brent", p2score: 3, p1team: "Newcastle United", p2team: "Juventus", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "MJ", p1score: 2, p2: "Sam", p2score: 9, p1team: "FC Barcelona", p2team: "Chelsea", div: 1, season: 11, context: null },
-  { matchType: "International", p1: "Kelvin", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Italy", p2team: "Argentina", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Lachlan", p1score: 1, p2: "Lachy W", p2score: 3, p1team: "Chelsea", p2team: "Manchester United", div: 1, season: 11, context: null },
-  { matchType: "International", p1: "Brent", p1score: 1, p2: "Dan", p2score: 2, p1team: "France", p2team: "Netherlands", div: 1, season: 11, context: null },
-  { matchType: "International", p1: "Alex", p1score: 2, p2: "Sam", p2score: 1, p1team: "Germany", p2team: "Argentina", div: 1, season: 11, context: null },
-  { matchType: "Elite", p1: "Kelvin", p1score: 0, p2: "MJ", p2score: 4, p1team: "Manchester City", p2team: "Real Madrid", div: 1, season: 11, context: null },
-  { matchType: "Elite", p1: "Lachlan", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Manchester City", p2team: "Paris Saint-Germain", div: 1, season: 11, context: null },
-  { matchType: "Strong", p1: "Brent", p1score: 6, p2: "Lachy W", p2score: 2, p1team: "Fenerbahce SK", p2team: "Borussia Dortmund", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Alex", p1score: 0, p2: "Dan", p2score: 1, p1team: "Real Madrid", p2team: "Real Madrid", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Kelvin", p1score: 1, p2: "Sam", p2score: 3, p1team: "Olympique de Marseille", p2team: "Al Hilal", div: 1, season: 11, context: null },
-  { matchType: "Strong", p1: "Lachlan", p1score: 5, p2: "MJ", p2score: 2, p1team: "Chelsea", p2team: "RB Leipzig", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Lachy W", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Sevilla FC", p2team: "Everton", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Alex", p1score: 1, p2: "Kelvin", p2score: 2, p1team: "Manchester United", p2team: "Paris Saint-Germain", div: 1, season: 11, context: null },
-  { matchType: "Elite", p1: "Brent", p1score: 2, p2: "Sam", p2score: 8, p1team: "Manchester City", p2team: "Bayer 04 Leverkusen", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Dan", p1score: 11, p2: "MJ", p2score: 0, p1team: "Sporting CP", p2team: "Brentford", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Alex", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Napoli", p2team: "Real Sociedad", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Kelvin", p1score: 0, p2: "Lachlan", p2score: 2, p1team: "Real Betis", p2team: "Al Hilal", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Lachy W", p1score: 6, p2: "MJ", p2score: 0, p1team: "Galatasaray SK", p2team: "Fulham FC", div: 1, season: 11, context: null },
-  { matchType: "International", p1: "Dan", p1score: 3, p2: "Sam", p2score: 5, p1team: "Argentina", p2team: "Portugal", div: 1, season: 11, context: null },
-  { matchType: "International", p1: "Brent", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Italy", p2team: "Portugal", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Alex", p1score: 3, p2: "Lachy W", p2score: 3, p1team: "Fiorentina", p2team: "Real Sociedad", div: 1, season: 11, context: null },
-  { matchType: "Mid", p1: "Lachlan", p1score: 2, p2: "Sam", p2score: 7, p1team: "Ajax", p2team: "Fiorentina", div: 1, season: 11, context: null },
-  { matchType: "International", p1: "Dan", p1score: 3, p2: "Oscar", p2score: 0, p1team: "Portugal", p2team: "Argentina", div: 1, season: 11, context: null },
-  { matchType: "Elite", p1: "Brent", p1score: null, p2: "Kelvin", p2score: null, p1team: "FC Barcelona", p2team: "Bayer 04 Leverkusen", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Alex", p1score: null, p2: "MJ", p2score: null, p1team: "Real Madrid", p2team: "Manchester United", div: 1, season: 11, context: null },
-  { matchType: "Strong", p1: "Dan", p1score: null, p2: "Lachy W", p2score: null, p1team: "Newcastle United", p2team: "Tottenham Hotspur", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Brent", p1score: null, p2: "Lachlan", p2score: null, p1team: "Manchester City", p2team: "FC Barcelona", div: 1, season: 11, context: null },
-  { matchType: "Women", p1: "Ricardo", p1score: 0, p2: "Lachlan", p2score: 14, p1team: "Manchester City", p2team: "FC Barcelona", div: 1, season: 11, context: null }
-];
-
-const testhof = [
-    {season: 1, div1Winner: 'Regi', div2Winner: null},
-    {season: 2, div1Winner: 'Dan', div2Winner: null},
-    {season: 3, div1Winner: 'Sam', div2Winner: null},
-    {season: 4, div1Winner: 'Sam', div2Winner: "John"},
-    {season: 5, div1Winner: "Lei", div2Winner: 'Dan'},
-]
-
-
 // showMisc = document.getElementById("miscCheck").checked
-
-
-
-// All these "get...for all players" functions now accept an optional `division`
-// (1, 2, or undefined/null for all) and pass it through to getMatchesForPlayer
-// so the leaderboards on the Overall Stats page can be filtered by division.
-
-function getWinRates(division){
-    let winRates = []
-    players.forEach(player => {
-        let matches = getMatchesForPlayer(player, null, division)
-        if (matches.length === 0) return  // 👈 skip players with no matches
-        let winRate = getWinRate(player, matches)
-        winRates.push([player, winRate])
-    })
-    return winRates
-}
 
 function getTitles() {
     let div1Winners = [];
@@ -254,41 +129,8 @@ function getTitles() {
     return { sortedDiv1, sortedDiv2 };
 }
 
-function getGoalDifferences(division){
-    let goalDiffs = []
-    players.forEach(player => {
-        let matches = getMatchesForPlayer(player, null, division)
-        if (matches.length === 0) return  // 👈
-        let goalDiff = getGoalDifference(player, matches)
-        goalDiffs.push([player, goalDiff])
-    })
-    return goalDiffs
-}
-
 function sortByValue(arr, descending = true) {
     return arr.slice().sort((a, b) => descending ? b[1] - a[1] : a[1] - b[1]);
-}
-
-function getAllGoalsAgainst(division){
-    let total = []
-    players.forEach(player => {
-        let matches = getMatchesForPlayer(player, null, division)
-        if (matches.length === 0) return  // 👈
-        let goalsAgainst = getGoalsAgainst(player, matches)
-        total.push([player, goalsAgainst])
-    })
-    return total
-}
-
-function getAllGoalsFor(division){
-    let total = []
-    players.forEach(player => {
-        let matches = getMatchesForPlayer(player, null, division)
-        if (matches.length === 0) return  // 👈
-        let goalsFor = getGoalsFor(player, matches)
-        total.push([player, goalsFor])
-    })
-    return total
 }
 
 function getBiggestWinOfAll(division) {
@@ -398,6 +240,16 @@ function getFinalWinRates(division){
     
 }
 
+function getStatForAllPlayers(statFn, division) {
+    let results = []
+    players.forEach(player => {
+        let matches = getMatchesForPlayer(player, null, division)
+        if (matches.length === 0) return
+        results.push([player, statFn(player, matches)])  // statFn is whatever you pass in
+    })
+    return results
+}
+
 
 // Module-level filter state for the Overall Stats page.
 // 1 = Div 1 only, 2 = Div 2 only, 3 = All divisions.
@@ -421,17 +273,18 @@ function generalStats(){
     // is skipped entirely, same convention used on the player stats page.
     const division = currentGeneralDivFilter === 3 ? undefined : currentGeneralDivFilter;
 
-    const bestWinRate = sortByValue(getWinRates(division), true);
+    const bestWinRate = sortByValue(getStatForAllPlayers(getWinRate, division), true);
     const div1Titles = getTitles().sortedDiv1;
     const div2Titles = getTitles().sortedDiv2;
-    const bestGoalDiff = sortByValue(getGoalDifferences(division), true);
-    const worstGoalDiff = sortByValue(getGoalDifferences(division), false);
-    const mostGoalsFor = sortByValue(getAllGoalsFor(division), true)
-    const mostGoalsAgainst = sortByValue(getAllGoalsAgainst(division), true)
+    const bestGoalDiff = sortByValue(getStatForAllPlayers(getGoalDifference, division), true);
+    const mostGoalsFor = sortByValue(getStatForAllPlayers(getGoalsFor, division), true)
+    const mostGoalsAgainst = sortByValue(getStatForAllPlayers(getGoalsAgainst, division), true)
     const biggestWinOfAll = getBiggestWinOfAll(division);
     const bestTeamOfAll = getBestTeamOfAll('wins', division);
     const worstTeamOfAll = getBestTeamOfAll('losses', division);
     const finalWinRates = sortByValue(getFinalWinRates(division),true);
+    const avgGoalsScored = sortByValue(getStatForAllPlayers(getAvgGoalsScoredPerGame, division), true)
+    const avgGoalsConceded = sortByValue(getStatForAllPlayers(getAvgGoalsConcededPerGame, division), true)
 
     function createLeaderboard(array, entries, suffix){
         let counter = 1
@@ -461,12 +314,14 @@ function generalStats(){
 
     const bestWinRateLeaderboard = createLeaderboard(bestWinRate, 30, '%');
     const bestGoalDiffLeaderboard = createLeaderboard(bestGoalDiff, 30, '');
-    const worstGoalDiffLeaderboard = createLeaderboard(worstGoalDiff, 30, '');
     const bestTeamLeaderboard = createLeaderboard(bestTeamOfAll, 30, ' wins');
     const worstTeamLeaderboard = createLeaderboard(worstTeamOfAll, 30, ' losses')
     const finalWinRatesLeaderboard = createLeaderboard(finalWinRates, 10, '%')
     const mostGoalsForLeaderboard = createLeaderboard(mostGoalsFor, 30, '')
     const mostGoalsAgainstLeaderboard = createLeaderboard(mostGoalsAgainst, 30, '')
+    const avgGoalsScoredLeaderboard = createLeaderboard(avgGoalsScored, 30, '') 
+    const avgGoalsConcededLeaderboard = createLeaderboard(avgGoalsConceded, 30, '')
+
 
 
      const arrayIds = [
@@ -476,7 +331,9 @@ function generalStats(){
         ["bestTeamLeaderboard", bestTeamLeaderboard],
         ["worstTeamLeaderboard", worstTeamLeaderboard],
         ["mostGoalsAgainstLeaderboard",mostGoalsAgainstLeaderboard],
-        ["mostGoalsForLeaderboard",mostGoalsForLeaderboard]
+        ["mostGoalsForLeaderboard",mostGoalsForLeaderboard],
+        ["avgGoalsScoredLeaderboard", avgGoalsScoredLeaderboard],
+        ["avgGoalsConcededLeaderboard", avgGoalsConcededLeaderboard]
     ]
 
     
@@ -491,17 +348,20 @@ function generalStats(){
         <button onclick="switchGeneralDivFilter(2)" class="${currentGeneralDivFilter === 2 ? 'selectedBtn' : ''}">Div 2</button>
     </div>
     <div id="statBoxes">
-            <div class="statBoxSmallLeaderboard" id="bestWinRateLeaderboard"><p><strong>Best Win Rate: </strong></p>
+            <div class="statBoxMediumLeaderboard" id="bestWinRateLeaderboard"><p><strong>Best Win Rate: </strong></p>
             </div> 
+            <div class="statBoxMediumLeaderboard" id="finalWinRatesLeaderboard"><p><strong>Final Win Rate: </strong></p></div> 
+            
             <div class="statBoxSmallLeaderboard" id="bestGoalDiffLeaderboard"><p><strong>Best Goal Difference: </strong></p>
             </div> 
-            <div class="statBoxSmallLeaderboard" id="finalWinRatesLeaderboard"><p><strong>Final Win Rate: </strong></p>
-            </div> 
+
 
 
             <div class="statBoxSmallLeaderboard" id="mostGoalsForLeaderboard"><p><strong>Most Goals For: </strong></p></div>
             <div class="statBoxSmallLeaderboard" id="mostGoalsAgainstLeaderboard"><p><strong>Most Goals Against: </strong></p></div>
-            <div class="statBoxSmall"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
+            <div class="statBoxMediumLeaderboard" id="avgGoalsScoredLeaderboard"><p><strong>Average Goals Scored: </strong></p></div>
+            <div class="statBoxMediumLeaderboard" id="avgGoalsConcededLeaderboard"><p><strong>Average Goals Conceded: </strong></p></div>
+            <div class="statBoxLarge"><p><strong>Biggest Win: </strong>${biggestWinOfAll.player} [${biggestWinOfAll.winScore}] vs ${biggestWinOfAll.opponent} [${biggestWinOfAll.loseScore}]</p></div>
             <div class="statBoxMediumLeaderboard" id="bestTeamLeaderboard"><p><strong>Best Teams: </strong></p>
             </div> 
             <div class="statBoxMediumLeaderboard" id="worstTeamLeaderboard"><p><strong>Worst Teams: </strong></p>
@@ -585,6 +445,16 @@ function getGoalsAgainst(player, matches = getMatchesForPlayer(player)) {
         return sum;
     }, 0);
 }
+
+function getAvgGoalsScoredPerGame(player, matches) {
+    return (getGoalsFor(player, matches) / matches.length).toFixed(2);
+}
+
+function getAvgGoalsConcededPerGame(player, matches) {
+    return (getGoalsAgainst(player, matches) / matches.length).toFixed(2);
+}
+
+
 
 // Goal Difference
 function getGoalDifference(player, matches = getMatchesForPlayer(player)) {
