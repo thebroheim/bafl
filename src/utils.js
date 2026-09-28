@@ -30,7 +30,10 @@ function convertToObjects(values) {
 // };
 
 function filterTeams(minOvr, maxOvr, type, FC) {
-    let teams = teamSetFC26;
+    let teams = teamSetFC27;
+        if (FC == 'FC26'){
+        teams = teamSetFC26
+    }
     if (FC == 'FC25'){
         teams = teamSetFC25
     }
