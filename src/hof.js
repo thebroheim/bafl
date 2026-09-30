@@ -1,5 +1,6 @@
 let players = [
     // Div 1
+    { name: 'Sam Harvey', title: 'Season 13', imageSrc: "/images/SamSeason13Div1.png", div: '1'},
     { name: 'Sam Harvey', title: 'Season 12', imageSrc: "/images/SamSeason12Div1.png", div: '1'},
     { name: 'Sam Harvey', title: 'Season 11', imageSrc: '/images/SamSeason11Div1.png', div: '1' },
     { name: 'Daniel Dunphy', title: 'Season 10', imageSrc: '/images/DanSeason10Div1.png', div: '1' },
@@ -14,6 +15,7 @@ let players = [
     { name: 'Regi John', title: 'Season 1', imageSrc: '/images/Reg.png', div: '1' },
 
     // Div 2
+    { name: 'Matthew Harrison', title: 'Season 13', imageSrc: "/images/MatthewSeason13Div2.png", div: '2'},
     { name: 'Bass Klarica', title: 'Season 12', imageSrc: "/images/BassSeason12Div2.png", div: '2'},
     { name: 'Yasin Karatas', title: 'Season 11', imageSrc: '/images/YasinSeason11Div2.png', div: '2' },
     { name: 'Lachlan Thomson', title: 'Season 10', imageSrc: '/images/LachlanSeason10Div2.png', div: '2' },
