@@ -1,5 +1,5 @@
 function filterTeams(key, value1, condition, value2) {
-    const teams = teamsFC26;
+    const teams = teamsFC27;
     const filteredTeams = [];
 
     if (condition === 'between') {
@@ -18,25 +18,25 @@ function filterTeams(key, value1, condition, value2) {
     return filteredTeams;
 }
 
-const elite = filterTeams('ovr', 84, 'between', 100)
-const strong = filterTeams('ovr', 81, 'between', 84)
-const mid = filterTeams('ovr', 79, 'between', 81)
-const weak = filterTeams('ovr', 74, 'between', 78)
+const legend = filterTeams('ovr', 87, 'between', 100)
+const elite = filterTeams('ovr', 83, 'between', 87)
+const strong = filterTeams('ovr', 81, 'between', 83)
+const mid = filterTeams('ovr', 80, 'between', 82)
+const weak = filterTeams('ovr', 74, 'between', 80)
+
+
 
 //Put players in order of rank. Best = Top, Worst = Bottom
 const players = [
     'Sam',
     'Dan',
-    'Lachy W',
     'Alex',
     'Brent',
-    'Manjeeve',
     'Dru',
-    'Devyn',
-    'Lachlan', 
-    'Jude',
-    'Nick',
     'Matthew',
+    'Jude',
+    'Lachlan', 
+    'Nick',
     'Brendan',
     'Ricardo',
 ]
@@ -92,18 +92,18 @@ function selectType(players, player){
     if (index < firstQuarter){
         return weak
     }if (index < secondQuarter){
-        return mid
-    }if (index < thirdQuarter){
         return strong
-    }if (index < fourthQuarter){
+    }if (index < thirdQuarter){
         return elite
+    }if (index < fourthQuarter){
+        return legend
     }
+    
 
 }
 
 // let assignedTeams = (assignTeams(players))
 let assignedTeams = assignTeams(players)
-console.log(assignedTeams)
 
 // Display the teams on website
 function displayTeams(assignedTeams){
@@ -115,6 +115,7 @@ function displayTeams(assignedTeams){
             // console.log(arr[0]); // <-- replace with your custom code below
             let list = document.getElementById("myList");
             let li = document.createElement("li");
+            console.log(arr)
             
             li.innerText = `${arr[0].playerName} will play as ${arr[0].teamName.name}`;
             console.log(arr[0])

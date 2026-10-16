@@ -237,6 +237,14 @@ const teamsFC26 = [
 ]
 
 const teamsFC27 = [
+    // Legend Teams
+    { name: 'Bundesliga XI', ovr: 90, star: 5, gender: 'Men' },
+    { name: 'La Liga XI', ovr: 90, star: 5, gender: 'Men' },
+    { name: 'Premier League XI', ovr: 89, star: 5, gender: 'Men' },
+    { name: 'Ligue 1 XI', ovr: 89, star: 5, gender: 'Men' },
+    { name: 'Classic XI', ovr: 92, star: 5, gender: 'Men' },
+    { name: 'Soccer Aid', ovr: 90, star: 5, gender: 'Men' },
+
     // Premier League
     { name: 'Manchester City', ovr: 84, star: 5, gender: 'Men' },
     { name: 'Liverpool', ovr: 83, star: 5, gender: 'Men' },

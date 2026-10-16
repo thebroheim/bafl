@@ -3,7 +3,7 @@
 
 
 const typeConfig = [
-    {name: 'Elite', minOvr: 83, maxOvr: 100, type: 'Men'},
+    {name: 'Elite', minOvr: 83, maxOvr: 87, type: 'Men'},
     {name: 'Strong', minOvr: 80, maxOvr: 83, type: 'Men'},
     {name: 'Mid', minOvr: 76, maxOvr: 80, type: 'Men'},
     {name: 'Weak', minOvr: 68, maxOvr: 76, type: 'Men'},
