@@ -579,7 +579,8 @@ if (showToggle[0].show == "TRUE"){
   // displayMatches(matchesFinal)
   displaySchedule(matchesRaw)
 } else {
-  displayMaintenance()
+  displaySchedule(matchesRaw)
+  // displayMaintenance()
 };
 
 
