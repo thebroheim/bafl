@@ -256,3 +256,9 @@ th, td {
 #finals .match {
     border: #d4bf02 solid 2px;
 }
+
+.teamInfo img {
+    max-width: 60px;
+    aspect-ratio: 1;
+    
+}
