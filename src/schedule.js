@@ -573,15 +573,30 @@ async function loadData() {
 matchesRaw = sortMatches(matchesRaw)
 displayEloTable(seasonElo, `theSeasonEloTable`)
 displayEloTable(allTimeElo, `theAllTimeEloTable`)
-showToggle[0].show = "TRUE"
-if (showToggle[0].show == "TRUE"){
-  displayGroupsOfTables(players)
-  // displayMatches(matchesFinal)
-  displaySchedule(matchesRaw)
-} else {
-  displaySchedule(matchesRaw)
-  // displayMaintenance()
-};
+
+switch (String(showToggle[0].show).trim().toUpperCase()) {
+  case "MAINTENANCE":
+    displayMaintenance()
+    break
+
+  case "TABLE":
+    displayGroupsOfTables(players)
+    break
+
+  case "SCHEDULE":
+    displaySchedule(matchesRaw)
+    break
+
+  case "BOTH":
+    displayGroupsOfTables(players)
+    displaySchedule(matchesRaw)
+    break
+
+  default:
+    // Unknown or empty value: fall back to the old "else" behaviour
+    console.log("Unrecognised show value:", showToggle[0].show)
+    displaySchedule(matchesRaw)
+}
 
 
 if (!showToggle[0].tournamentbracket == ""){
