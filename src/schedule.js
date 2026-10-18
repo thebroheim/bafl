@@ -304,12 +304,16 @@ function createMatchHTML(match){
 
             // Commented out Elo Check as Elo Used for World Cup Tournament
             // if(!match.context == 'misc'){
+
+            if (showToggle[0].showelo == "TRUE"){
               if (p1NameElem) {
               p1NameElem.innerHTML += `<br>(+${p1EloGainLoss[0]})`;
             }
-            if (p2NameElem) {
+              if (p2NameElem) {
                 p2NameElem.innerHTML += `<br>(+${p1EloGainLoss[1]})`;
               }
+            }
+
             // }}
           
             document.getElementById("upcomingMatches").appendChild(clone)
