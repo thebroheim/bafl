@@ -260,8 +260,10 @@ function createMatchHTML(match){
         show1 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team1img}"><p>${match.p1team}</p></div>`
         show2 = `<div class='teamInfo' style=' display: flex; align-items: center; gap: 8px;'><img src="/images/TeamImages/${team2img}"><p>${match.p2team}</p></div>`
       }
+    
 
-      let prefix  = 'Match'
+  // Use Match for match prefix if the matchId is purely a number
+      let prefix = /^\d+$/.test(String(match.matchId)) ? 'Match' : '';
 
       div.className = 'match'
       div.innerHTML = `
