@@ -162,6 +162,7 @@ function eloWinLoss(p1, p2) {
 
 
 function displayTable(players, container, groupNumber){
+  players = (players || []).filter(p => p && p.name && p.name.trim() !== '')
   if(players.length == 0){
     // document.getElementById(`${tableDiv}`).style.display = 'none';
     return
