@@ -189,6 +189,47 @@ function reshuffleMatches(matches, { playerIndices = [1, 2], maxAttempts = 2000 
 }
 
 
+function renderMatchesTable(matches, containerId = "matchesPreview") {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = "";
+
+  const headers = ["#", "Type", "Player 1", "Player 2", "Team 1", "Team 2", "Div"];
+
+  const table = document.createElement("table");
+  table.className = "matches-table";
+
+  // Header
+  const thead = table.createTHead();
+  const headRow = thead.insertRow();
+  headers.forEach(h => {
+    const th = document.createElement("th");
+    th.textContent = h;
+    headRow.appendChild(th);
+  });
+
+  // Body
+  const tbody = table.createTBody();
+  matches.forEach((match, i) => {
+    const row = tbody.insertRow();
+    row.dataset.div = match[5];
+    [i + 1, ...match].forEach(cell => {
+      const td = row.insertCell();
+      td.textContent = cell; // textContent avoids injecting HTML from sheet data
+    });
+  });
+
+  const title = document.createElement("h3");
+  title.textContent = `Matches preview (${matches.length})`;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "matches-table-wrapper";
+  wrapper.appendChild(table);
+
+  container.appendChild(title);
+  container.appendChild(wrapper);
+}
+
 async function init() {
 const rawPlayers = await loadPlayers();
 
@@ -249,6 +290,8 @@ const rawPlayers = await loadPlayers();
   let totalMatches = document.createElement('h4');
   totalMatches.innerHTML = `Total matches: ${finalMatches.length}`;
   container.appendChild(totalMatches);
+
+  renderMatchesTable()
 }
 
 init();
