@@ -291,7 +291,7 @@ const rawPlayers = await loadPlayers();
   totalMatches.innerHTML = `Total matches: ${finalMatches.length}`;
   container.appendChild(totalMatches);
 
-  renderMatchesTable()
+  renderMatchesTable(finalMatches)
 }
 
 init();
